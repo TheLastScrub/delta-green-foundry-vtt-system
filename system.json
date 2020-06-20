@@ -1,0 +1,29 @@
+{
+  "name": "deltagreen",
+  "title": "Delta Green",
+  "description": "Delta Green RPG system for FoundryVTT!",
+  "version": "1.0.3",
+  "minimumCoreVersion": "0.6.2",
+  "compatibleCoreVersion": "0.6.2",
+  "templateVersion": 2,
+  "author": "Nick Eimers",
+  "esmodules": ["module/deltagreen.js"],
+  "styles": ["css/deltagreen.css"],
+  "scripts": [],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "gridDistance": 5,
+  "gridUnits": "ft",
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "wp",
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "license": "LICENSE.txt"
+}
