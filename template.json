@@ -65,13 +65,6 @@
                         "proficiency": 0,
                         "failure": false
                     },
-                    "art": [
-                        {
-                            "specialization": "Painting/Dance/Sculpture/etc.",
-                            "proficiency": 0,
-                            "failure": false
-                        }
-                    ],
                     "artillery": {
                         "label": "Artillery",
                         "proficiency": 0,
@@ -92,13 +85,6 @@
                         "proficiency": 0,
                         "failure": false
                     },
-                    "craft": [
-                        {
-                            "specialization": "Carpentry/Electrical/Etc.",
-                            "proficiency": 0,
-                            "failure": false
-                        }
-                    ],
                     "criminology": {
                         "label": "Criminology",
                         "proficiency": 10,
@@ -174,16 +160,6 @@
                         "proficiency": 30,
                         "failure": false
                     },
-                    "military_science": {
-                        "label": "Military Science",
-                        "specializations": [
-                            {
-                                "label": "Land/Air/Sea/Etc.",
-                                "proficiency": 0,
-                                "failure": false
-                            }
-                        ]
-                    },
                     "navigate": {
                         "label": "Navigate",
                         "proficiency": 10,
@@ -199,16 +175,6 @@
                         "proficiency": 20,
                         "failure": false
                     },
-                    "pilot": {
-                        "label": "Pilot",
-                        "specializations": [
-                            {
-                                "label": "Airplane/Small Boat/Helicopter/Etc.",
-                                "proficiency": 0,
-                                "failure": false
-                            }
-                        ]
-                    },
                     "psychotherapy": {
                         "label": "Psychotherapy",
                         "proficiency": 10,
@@ -218,16 +184,6 @@
                         "label": "Ride",
                         "proficiency": 10,
                         "failure": false
-                    },
-                    "science": {
-                        "label": "Science",
-                        "specializations": [
-                            {
-                                "label": "Biology/Chemistry/Physics/Etc.",
-                                "proficiency": 0,
-                                "failure": false
-                            }
-                        ]
                     },
                     "search": {
                         "label": "Search",
@@ -262,27 +218,86 @@
                     "unnatural": {
                         "label": "Unnatural",
                         "proficiency": 0
+                    }
+                },
+                "type_skills":{
+                    "art": {
+                        "label": "Art (Type)",
+                        "hasSubtypes": true,
+                        "types":[
+                            {
+                                "specialization": "Painting/Dance/Sculpture/Etc.",
+                                "proficiency": 0,
+                                "failure": false
+                            }
+                        ]
+                    },
+                    "craft": {
+                        "label": "Craft (Type)",
+                        "hasSubtypes": true,
+                        "types":[
+                            {
+                                "specialization": "Carpentry/Electrical/Etc.",
+                                "proficiency": 0,
+                                "failure": false
+                            }
+                        ]
+                    },
+                    "military_science": {
+                        "label": "Military Science (Type)",
+                        "hasSubtypes": true,
+                        "types":[
+                            {
+                                "specialization": "Land/Air/Sea/Etc.",
+                                "proficiency": 0,
+                                "failure": false
+                            }
+                        ]
+                    },
+                    "pilot": {
+                        "label": "Pilot (Type)",
+                        "hasSubtypes": true,
+                        "types":[
+                            {
+                                "specialization": "Airplane/Small Boat/Helicopter/Etc.",
+                                "proficiency": 0,
+                                "failure": false
+                            }
+                        ]
+                    },
+                    "science": {
+                        "label": "Science (Field)",
+                        "hasSubtypes": true,
+                        "types":[
+                            {
+                                "specialization": "Biology/Chemistry/Physics/Etc.",
+                                "proficiency": 0,
+                                "failure": false
+                            }
+                        ]
                     },
                     "foreign_languages": {
                         "label": "Foreign Languages",
-                        "specializations": [
+                        "hasSubtypes": true,
+                        "types":[
                             {
-                                "label": "Spanish/Yiddish/Etc.",
+                                "specialization": "Spanish/Yiddish/Aklo/Etc.",
                                 "proficiency": 0,
                                 "failure": false
                             }
                         ]
                     },
                     "other_skills": {
-                        "label": "Other Skills and Training",
-                        "specializations": [
+                        "label": "Other Skills, Specialties, or Training",
+                        "hasSubtypes": true,
+                        "types":[
                             {
-                                "label": "",
+                                "specialization": "",
                                 "proficiency": 0,
                                 "failure": false
                             }
                         ]
-                    }
+                    },
                 }
             }
         },

@@ -170,7 +170,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       let targetVal = "";
 
       // check the 'data-target="something" property to determine how to grab the target for the roll
-      if(! Number.isNaN(dataset.target)){
+      if(Number.isNumeric(dataset.target)){
         targetVal = dataset.target;
         label += `, Target: ${targetVal}`;
       }
