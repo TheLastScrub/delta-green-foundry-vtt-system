@@ -1,8 +1,8 @@
 {
   "name": "deltagreen",
   "title": "Delta Green",
-  "description": "Delta Green RPG system for FoundryVTT!",
-  "version": "1.0.3",
+  "description": "Delta Green RPG system for FoundryVTT.",
+  "version": "1.0.0",
   "minimumCoreVersion": "0.6.2",
   "compatibleCoreVersion": "0.6.2",
   "templateVersion": 2,

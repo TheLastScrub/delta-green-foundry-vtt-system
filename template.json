@@ -12,7 +12,9 @@
                     "max": 10
                 },
                 "wp": {
-                    "value": 10
+                    "value": 10,
+                    "min": 0,
+                    "max": 10
                 },
                 "statistics": {
                     "str": {
@@ -76,7 +78,7 @@
                         "failure": false
                     },
                     "athletics": {
-                        "label": "Artillery",
+                        "label": "Athletics",
                         "proficiency": 30,
                         "failure": false
                     },
@@ -289,6 +291,7 @@
                 "base",
                 "human_skills"
             ],
+            "schemaVersion": 1.0,
             "sanity": {
                 "value": 100,
                 "currentBreakingPoint": 101,
@@ -309,7 +312,8 @@
             "motivations":[
               {
                 "description":"",
-                "disorder":""
+                "disorder":"",
+                "crossedOut": false
               }
             ]
         }
@@ -317,8 +321,7 @@
     "Item": {
         "types": [
             "weapon",
-            "equipment",
-            "ability",
+            "gear",
             "ritual"
         ],
         "templates": {
@@ -331,12 +334,7 @@
                 "base"
             ]
         },
-        "equipment": {
-            "templates": [
-                "base"
-            ]
-        },
-        "ability": {
+        "gear": {
             "templates": [
                 "base"
             ]

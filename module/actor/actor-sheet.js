@@ -10,7 +10,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       classes: ["deltagreen", "sheet", "actor"],
       template: "systems/deltagreen/templates/actor/actor-sheet.html",
       width: 600,
-      height: 600,
+      height: 800,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
     });
   }
@@ -20,11 +20,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
   /** @override */
   getData() {
     const data = super.getData();
-    
-    //data.dtypes = ["String", "Number", "Boolean"];
-    //for (let attr of Object.values(data.data.attributes)) {
-    //  attr.isCheckbox = attr.dtype === "Boolean";
-    //}
 
     // Prepare items.
     if (this.actor.data.type == 'character') {
@@ -66,15 +61,15 @@ export class DeltaGreenActorSheet extends ActorSheet {
       let item = i.data;
       i.img = i.img || DEFAULT_TOKEN;
       // Append to gear.
-      if (i.type === 'item') {
+      if (i.type === 'gear') {
         gear.push(i);
       }
       // Append to features.
-      else if (i.type === 'feature') {
+      else if (i.type === 'weapon') {
         features.push(i);
       }
       // Append to spells.
-      else if (i.type === 'spell') {
+      else if (i.type === 'ritual') {
         if (i.data.spellLevel != undefined) {
           spells[i.data.spellLevel].push(i);
         }
@@ -113,9 +108,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
       li.slideUp(200, () => this.render(false));
     });
 
-    // Rollable abilities.
+    // Rollable abilities - bind to everything with the 'Rollable' class
     html.find('.rollable').click(this._onRoll.bind(this));
-
+    
     // Drag events for macros.
     if (this.actor.owner) {
       let handler = ev => this._onDragItemStart(ev);
@@ -128,6 +123,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
     // Custom Sheet Macros
     html.find('#btnResetBreakingPoint').click(this._resetBreakingPoint.bind(this));
+    //html.find('.sanity-test-btn').click(this._onSanityTest.bind(this));
   }
 
   /**
@@ -174,7 +170,11 @@ export class DeltaGreenActorSheet extends ActorSheet {
       let targetVal = "";
 
       // check the 'data-target="something" property to determine how to grab the target for the roll
-      if(dataset.target === "statistic.x5"){
+      if(! Number.isNaN(dataset.target)){
+        targetVal = dataset.target;
+        label += `, Target: ${targetVal}`;
+      }
+      else if(dataset.target === "statistic.x5"){
         let stat = this.actor.data.data.statistics[key];
         targetVal = stat.x5;
         label += `, Target: ${targetVal}`;
@@ -192,11 +192,8 @@ export class DeltaGreenActorSheet extends ActorSheet {
   }
 
   _resetBreakingPoint(event){
-    //let actorData = this.actor.data;
     let currentBreakingPoint = 0;
-    console.log('Resetting breaking point...');
-    //console.log(actorData);
-
+    
     currentBreakingPoint = this.actor.data.data.sanity.value - this.actor.data.data.statistics.pow.value;
     
     let updatedData = duplicate(this.actor.data.data);

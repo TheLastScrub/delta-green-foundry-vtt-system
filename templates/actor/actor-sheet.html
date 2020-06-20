@@ -25,7 +25,7 @@
                   <div class="resource-content flexrow flex-center flex-between">
                     <input type="text" name="data.wp.value" value="{{data.wp.value}}" data-dtype="Number"/>
                     <span> / </span>
-                    <span class="max-attribute-value-label">{{numberFormat data.wp.max decimals=0 sign=false}}</span>
+                    <span class="max-attribute-value-label" title="Maximum WP is equal to POW.">{{numberFormat data.wp.max decimals=0 sign=false}}</span>
                   </div>
               </div>
           </div>
@@ -36,16 +36,17 @@
               <div class="resource flex-group-center">
                   <label for="data.sanity.value" class="resource-label">SANITY</label>
                   <div class="resource-content flexrow flex-center flex-between">
+                    <span class="rollable" data-roll="d100" data-target="sanity" data-label="SAN" title="Click to roll a sanity check...">SAN</span>
                     <input title="Starting sanity is equal to POW x 5." type="text" name="data.sanity.value" value="{{data.sanity.value}}" data-dtype="Number"/>
                     <span> / </span>
                     <span title="Maximum sanity is equal to 99 - the Unnatural skill." class="max-attribute-value-label">{{numberFormat data.sanity.max decimals=0 sign=false}}</span>
                     <!-- <span class="statistic-mod rollable left-aligned-label" data-roll="d100" data-target="sanity" data-label="SAN">(SAN Test)</span> -->
-                    <button class="btn-tiny rollable" data-roll="d100" data-target="sanity" data-label="SAN" title="Click to roll a sanity check...">TEST</button>
+                    <!-- <button id="btnSanityTest" class="btn-tiny sanity-test-btn" data-roll="d100" data-target="sanity" data-label="SAN" title="Click to roll a sanity check...">TEST</button> -->
                     <span> </span>            
                     <span class="breaking-point-label"> Breaking Point: </span>                   
                     <!-- <span title="The current breaking point, resent when current sanity falls to or below this value." class="max-attribute-value-label">{{numberFormat data.sanity.currentBreakingPoint decimals=0 sign=false}}</span> -->
-                    <input title="The current breaking point, resent when current sanity falls to or below this value." type="text" name="data.sanity.currentBreakingPoint" value="{{data.sanity.currentBreakingPoint}}" data-dtype="Number"/>
-                    <button id="btnResetBreakingPoint" class="btn-tiny" title="Reset breaking point to be SAN - WP.">Reset</button>
+                    <input title="The current breaking point, reset when current sanity falls to or below this value." type="text" name="data.sanity.currentBreakingPoint" value="{{data.sanity.currentBreakingPoint}}" data-dtype="Number"/>
+                    <button id="btnResetBreakingPoint" class="btn-tiny" title="Reset breaking point to be current SAN - WP.">Reset</button>
                   </div>
               </div>
           </div>
@@ -55,9 +56,9 @@
           <div class="statistics grid grid-3col">
             {{#each data.statistics as |statistic key|}}
               <div class="statistic flexrow flex-group-center">
-                <label for="data.statistics.{{key}}.value" class="resource-label">{{key}}</label>
+                <label class="rollable" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="Click to roll a x5 check." for="data.statistics.{{key}}.value" class="resource-label">{{toUpperCase key}}</label>
                 <input type="text" name="data.statistics.{{key}}.value" value="{{statistic.value}}" data-dtype="Number"/>
-                <span class="statistic-mod rollable" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="Click to roll a x5 check.">{{numberFormat statistic.x5 decimals=0 sign=false}}</span>
+                <span class="statistic-mod">({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
               </div>
             {{/each}}
           </div>
@@ -75,13 +76,20 @@
     {{!-- Sheet Body --}}
     <section class="sheet-body">
 
-        {{!-- Biography Tab --}}
-        <div class="tab biography" data-group="primary" data-tab="physical-description">
-            {{editor content=data.physicalDescription target="data.physicalDescription" button=true owner=owner editable=editable}}
+        {{!-- Skills Tab --}}
+        <div class="tab skills" data-group="primary" data-tab="skills">
+            <div class="statistics grid grid-3col">
+            {{#each data.skills as |skill key|}}
+              <div class="statistic flexrow flex-group-center">
+                <label class="rollable" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" title="Click to roll a skill check."  for="data.skills.{{key}}.value" class="resource-label">{{skill.label}}</label>
+                <input type="text" name="data.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
+              </div>
+            {{/each}}
+          </div>
         </div>
 
         {{!-- Owned Items Tab --}}
-        <div class="tab items" data-group="primary" data-tab="items">
+        <div class="tab items" data-group="primary" data-tab="gear">
             <ol class="items-list">
                 <li class="item flexrow item-header">
                   <div class="item-image"></div>
@@ -103,56 +111,9 @@
             </ol>
         </div>
 
-        {{!-- Owned Features Tab --}}
-        <div class="tab features" data-group="primary" data-tab="features">
-            <ol class="items-list">
-                <li class="item flexrow item-header">
-                  <div class="item-image"></div>
-                  <div class="item-name">Name</div>
-                  <div class="item-controls">
-                    <a class="item-control item-create" title="Create item" data-type="feature"><i class="fas fa-plus"></i> Add item</a>
-                  </div>
-                </li>
-            {{#each actor.features as |item id|}}
-                <li class="item flexrow" data-item-id="{{item._id}}">
-                    <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                    <h4 class="item-name">{{item.name}}</h4>
-                    <div class="item-controls">
-                        <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                    </div>
-                </li>
-            {{/each}}
-            </ol>
-        </div>
-
-        {{!-- Owned Spells Tab --}}
-        <div class="tab spells" data-group="primary" data-tab="spells">
-            <ol class="items-list">
-                <li class="item flexrow item-header">
-                  <div class="item-image"></div>
-                  <div class="item-name">Name</div>
-                  <div class="item-controls"></div>
-                </li>
-                {{#each actor.spells as |spells spellLevel|}}
-                    <li class="item flexrow item-header">
-                      <div class="item-name">Level {{spellLevel}} Spells</div>
-                      <div class="item-controls">
-                        <a class="item-control item-create" title="Create item" data-type="spell" data-spell-level="{{spellLevel}}"><i class="fas fa-plus"></i> Add LVL {{spellLevel}}</a>
-                      </div>
-                    </li>
-                    {{#each spells as |item id|}}
-                        <li class="item flexrow" data-item-id="{{item._id}}">
-                            <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                            <h4 class="item-name">{{item.name}}</h4>
-                            <div class="item-controls">
-                                <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                                <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                            </div>
-                        </li>
-                    {{/each}}
-                {{/each}}
-            </ol>
+        {{!-- Description Tab --}}
+        <div class="tab physical-description" data-group="primary" data-tab="physical-description">
+            {{editor content=data.physicalDescription target="data.physicalDescription" button=true owner=owner editable=editable}}
         </div>
 
     </section>
