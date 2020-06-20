@@ -19,7 +19,7 @@
     }
   ],
   "gridDistance": 5,
-  "gridUnits": "ft",
+  "gridUnits": "m",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "wp",
   "url": "",

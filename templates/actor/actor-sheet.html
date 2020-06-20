@@ -40,7 +40,7 @@
                     <span> / </span>
                     <span title="Maximum sanity is equal to 99 - the Unnatural skill." class="max-attribute-value-label">{{numberFormat data.sanity.max decimals=0 sign=false}}</span>
                     <!-- <span class="statistic-mod rollable left-aligned-label" data-roll="d100" data-target="sanity" data-label="SAN">(SAN Test)</span> -->
-                    <button class="btn-tiny rollable" data-roll="d100" data-target="sanity" data-label="SAN">TEST</button>
+                    <button class="btn-tiny rollable" data-roll="d100" data-target="sanity" data-label="SAN" title="Click to roll a sanity check...">TEST</button>
                     <span> </span>            
                     <span class="breaking-point-label"> Breaking Point: </span>                   
                     <!-- <span title="The current breaking point, resent when current sanity falls to or below this value." class="max-attribute-value-label">{{numberFormat data.sanity.currentBreakingPoint decimals=0 sign=false}}</span> -->
@@ -57,7 +57,7 @@
               <div class="statistic flexrow flex-group-center">
                 <label for="data.statistics.{{key}}.value" class="resource-label">{{key}}</label>
                 <input type="text" name="data.statistics.{{key}}.value" value="{{statistic.value}}" data-dtype="Number"/>
-                <span class="statistic-mod rollable" data-roll="d100" data-target="statistic.x5" data-label="{{key}}">{{numberFormat statistic.x5 decimals=0 sign=false}}</span>
+                <span class="statistic-mod rollable" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="Click to roll a x5 check.">{{numberFormat statistic.x5 decimals=0 sign=false}}</span>
               </div>
             {{/each}}
           </div>
@@ -67,7 +67,7 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="skills">Skills</a>
-        <a class="item" data-tab="gear">gear</a>
+        <a class="item" data-tab="gear">Gear</a>
         <a class="item" data-tab="physical-description">Description</a>
         <a class="item" data-tab="bonds">Bonds</a>
     </nav>

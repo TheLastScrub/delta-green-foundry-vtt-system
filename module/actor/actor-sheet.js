@@ -116,8 +116,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Rollable abilities.
     html.find('.rollable').click(this._onRoll.bind(this));
 
-    html.find('#btnResetBreakingPoint').click(this._resetBreakingPoint.bind(this));
-
     // Drag events for macros.
     if (this.actor.owner) {
       let handler = ev => this._onDragItemStart(ev);
@@ -127,6 +125,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
         li.addEventListener("dragstart", handler, false);
       });
     }
+
+    // Custom Sheet Macros
+    html.find('#btnResetBreakingPoint').click(this._resetBreakingPoint.bind(this));
   }
 
   /**
@@ -192,12 +193,15 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
   _resetBreakingPoint(event){
     //let actorData = this.actor.data;
-
+    let currentBreakingPoint = 0;
     console.log('Resetting breaking point...');
     //console.log(actorData);
-    this.actor.data.data.sanity.currentBreakingPoint = this.actor.data.data.sanity.value - this.actor.data.data.statistics.pow.value;
 
-    this._render();
+    currentBreakingPoint = this.actor.data.data.sanity.value - this.actor.data.data.statistics.pow.value;
+    
+    let updatedData = duplicate(this.actor.data.data);
+    updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
+    this.actor.update({"data": updatedData});
   }
 
 }
