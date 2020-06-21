@@ -133,9 +133,9 @@
 
 .deltagreen .sheet-header {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 300px;
+  -ms-flex: 0 0 400px;
   flex: 0 0 auto;
-  overflow: scroll;
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
