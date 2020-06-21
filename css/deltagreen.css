@@ -289,3 +289,15 @@ span.max-attribute-value-label{
 .deltagreen .skill-label{
   margin: 5px;
 }
+
+.deltagreen .sheet-header h2.profession{
+  border-bottom: 0px;
+  margin-top: 5px;
+  margin-right: 0px;
+}
+
+.deltagreen .sheet-header h2.profession input {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
