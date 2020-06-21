@@ -117,6 +117,11 @@
   justify-content: space-between;
 }
 
+.horizontal-flex-column{
+  display: flex; 
+  flex-direction: column;
+}
+
 /* Styles limited to delta green sheets */
 .deltagreen {
   font-family: "Didact Gothic", "Roboto", sans-serif;
@@ -129,8 +134,8 @@
 .deltagreen .sheet-header {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 300px;
-  flex: 0 0 300px;
-  overflow: hidden;
+  flex: 0 0 auto;
+  overflow: scroll;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
