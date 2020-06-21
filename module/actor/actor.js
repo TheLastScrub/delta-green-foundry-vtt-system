@@ -33,7 +33,19 @@ export class DeltaGreenActor extends Actor {
       // the x5 is just whatever the raw statistic is x 5 to turn it into a d100 percentile
       statistic.x5 = statistic.value * 5;
     }
-    //console.log(data.statistics);
+    
+    // The unnatural skill is sort of special
+    // It cannot be improved via failure, so add in a special property to reflect this
+    // Mostly to make it easy to deactivate the failure checkbox in the GUI
+    for (let [key, skill] of Object.entries(data.skills)){
+      if(key === 'unnatural'){
+        skill.cannotBeImprovedByFailure = true;
+      }
+      else{
+        skill.cannotBeImprovedByFailure = false;
+      }
+    }
+
     console.log(actorData);
     actorData.data.wp.max = actorData.data.statistics.pow.value;
 
