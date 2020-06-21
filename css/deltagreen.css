@@ -168,7 +168,6 @@
 .deltagreen .sheet-header h1.charname {
   height: 50px;
   padding: 0px;
-  margin: 5px 0;
   border-bottom: 0;
 }
 
@@ -285,4 +284,8 @@ span.max-attribute-value-label{
   padding-bottom: 1px;
   padding-left: 3px;
   padding-right: 3px;
+}
+
+.deltagreen .skill-label{
+  margin: 5px;
 }

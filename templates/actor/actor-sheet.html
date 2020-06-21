@@ -97,8 +97,9 @@
             <div class="statistics grid grid-3col">
             {{#each data.skills as |skill key|}}
               <div class="statistic flexrow flex-group-center">
-                <label class="rollable" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" title="Click to roll a skill check."  for="data.skills.{{key}}.value" class="resource-label">{{skill.label}}</label>
+                <label class="rollable skill-label" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" title="Click to roll a skill check."  for="data.skills.{{key}}.value" class="resource-label">{{skill.label}}</label>
                 <input type="text" name="data.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
+                <input type="checkbox" name="data.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" />
               </div>
             {{/each}}
           </div>
