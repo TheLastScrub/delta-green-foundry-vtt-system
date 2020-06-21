@@ -2,32 +2,41 @@
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="100"/>
+        
         <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="Name"/></h1>
-            {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
-            use both the "grid" and "grid-Ncol" class where "N" can be any number
-            from 1 to 12 and will create that number of columns.  --}}
-            <div class="resources grid grid-2col">
-              {{!-- "flex-group-center" is also defined in the _grid.scss file
-              and it will add a small amount of padding, a border, and will
-              center all of its child elements content and text. --}}
-              <div class="resource flex-group-center">
-                  <label for="data.health.value" class="resource-label">Health</label>
-                  <div class="resource-content flexrow flex-center flex-between">
-                    <input type="text" name="data.health.value" value="{{data.health.value}}" data-dtype="Number"/>
-                    <span> / </span>
-                    <span title="Maximum health is the average of STR + CON, rounded UP." class="max-attribute-value-label">{{numberFormat data.health.max decimals=0 sign=false}}</span>
-                  </div>
+          
+          <div class="flexrow">
+            <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="100"/>
+            <div class="horizontal-flex-column">
+              <div>
+                <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="LAST NAME, FIRST NAME (AND ALIAS IF APPLICABLE)"/></h1>
               </div>
-              <div class="resource flex-group-center">
-                  <label for="data.wp.value" class="resource-label">WP</label>
-                  <div class="resource-content flexrow flex-center flex-between">
-                    <input type="text" name="data.wp.value" value="{{data.wp.value}}" data-dtype="Number"/>
-                    <span> / </span>
-                    <span class="max-attribute-value-label" title="Maximum WP is equal to POW.">{{numberFormat data.wp.max decimals=0 sign=false}}</span>
-                  </div>
+              <div>
+                <h2 class="charname"><input name="data.biography.profession" type="text" value="{{data.biography.profession}}" placeholder="PROFESSION (RANK IF APPLICABLE)"/></h1>
               </div>
+            </div>
+          </div>
+        
+          <div class="resources grid grid-2col">
+            {{!-- "flex-group-center" is also defined in the _grid.scss file
+            and it will add a small amount of padding, a border, and will
+            center all of its child elements content and text. --}}
+            <div class="resource flex-group-center">
+                <label for="data.health.value" class="resource-label">Health</label>
+                <div class="resource-content flexrow flex-center flex-between">
+                  <input type="text" name="data.health.value" value="{{data.health.value}}" data-dtype="Number"/>
+                  <span> / </span>
+                  <span title="Maximum health is the average of STR + CON, rounded UP." class="max-attribute-value-label">{{numberFormat data.health.max decimals=0 sign=false}}</span>
+                </div>
+            </div>
+            <div class="resource flex-group-center">
+                <label for="data.wp.value" class="resource-label">WP</label>
+                <div class="resource-content flexrow flex-center flex-between">
+                  <input type="text" name="data.wp.value" value="{{data.wp.value}}" data-dtype="Number"/>
+                  <span> / </span>
+                  <span class="max-attribute-value-label" title="Maximum WP is equal to POW.">{{numberFormat data.wp.max decimals=0 sign=false}}</span>
+                </div>
+            </div>
           </div>
           <div class="resources">
               {{!-- "flex-group-center" is also defined in the _grid.scss file
