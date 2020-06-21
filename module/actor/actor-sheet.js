@@ -122,8 +122,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
     }
 
     // Custom Sheet Macros
-    html.find('#btnResetBreakingPoint').click(this._resetBreakingPoint.bind(this));
-    //html.find('.sanity-test-btn').click(this._onSanityTest.bind(this));
+    html.find('#btnResetBreakingPoint').click((event) => {
+      this._resetBreakingPoint(this);
+    });
   }
 
   /**

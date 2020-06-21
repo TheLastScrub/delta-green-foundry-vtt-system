@@ -55,10 +55,17 @@
           from 1 to 12 and will create that number of columns.  --}}
           <div class="statistics grid grid-3col">
             {{#each data.statistics as |statistic key|}}
-              <div class="statistic flexrow flex-group-center">
-                <label class="rollable" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="Click to roll a x5 check." for="data.statistics.{{key}}.value" class="resource-label">{{toUpperCase key}}</label>
-                <input type="text" name="data.statistics.{{key}}.value" value="{{statistic.value}}" data-dtype="Number"/>
-                <span class="statistic-mod">({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
+              <div class="statistic flexrow flex-group-center" style="flex-direction: column; clear:both;">
+                <div class="grid">
+                  <div class="flexrow">
+                    <label class="rollable" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="Click to roll a x5 check." for="data.statistics.{{key}}.value" class="resource-label">{{toUpperCase key}}</label>
+                    <input type="text" name="data.statistics.{{key}}.value" value="{{statistic.value}}" data-dtype="Number"/>
+                    <span class="statistic-mod">({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
+                  </div>
+                  <div class="flexrow">
+                    <input type="text" name="data.statistics.{{key}}.distinguishing_feature" value="{{statistic.distinguishing_feature}}" data-dtype="Text"/>
+                  </div>
+                </div>
               </div>
             {{/each}}
           </div>
