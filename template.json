@@ -227,7 +227,7 @@
                         "types":[
                             {
                                 "specialization": "Painting/Dance/Sculpture/Etc.",
-                                "proficiency": 0,
+                                "proficiency": 20,
                                 "failure": false
                             }
                         ]

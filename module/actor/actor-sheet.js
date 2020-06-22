@@ -122,9 +122,22 @@ export class DeltaGreenActorSheet extends ActorSheet {
     }
 
     // Custom Sheet Macros
-    html.find('#btnResetBreakingPoint').click((event) => {
-      this._resetBreakingPoint(this);
+    //html.find('.btn-reset-breaking-point').click(this._resetBreakingPoint.bind(this));
+    //html.find('.btn-reset-breaking-point').click((event) => {
+    //  this._resetBreakingPoint(this);
+    //});
+    //html.find('.btn-reset-breaking-point').bind('click', this._resetBreakingPoint(this));
+    html.find('.btn-reset-breaking-point').click(event => {
+      event.preventDefault();
+      let currentBreakingPoint = 0;
+    
+      currentBreakingPoint = this.actor.data.data.sanity.value - this.actor.data.data.statistics.pow.value;
+      
+      let updatedData = duplicate(this.actor.data.data);
+      updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
+      this.actor.update({"data": updatedData});
     });
+
   }
 
   /**
@@ -193,6 +206,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
   }
 
   _resetBreakingPoint(event){
+    event.preventDefault();
     let currentBreakingPoint = 0;
     
     currentBreakingPoint = this.actor.data.data.sanity.value - this.actor.data.data.statistics.pow.value;
