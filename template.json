@@ -222,52 +222,52 @@
                 },
                 "type_skills":{
                     "art": {
-                        "label": "Art (Type)",
-                        "hasSubtypes": true,
+                        "label": "Art",
+                        "examples": "Sculpting, Painting, Dance, Music, Etc.",
                         "types":[
                             {
-                                "specialization": "Painting/Dance/Sculpture/Etc.",
-                                "proficiency": 20,
+                                "specialization": "Painting",
+                                "proficiency": 0,
                                 "failure": false
                             }
                         ]
                     },
                     "craft": {
-                        "label": "Craft (Type)",
-                        "hasSubtypes": true,
+                        "label": "Craft",
+                        "examples": "Mechanic, Carpentry, Electrical, Microelectronics, Locksmith, Gunsmith, Etc.",
                         "types":[
                             {
-                                "specialization": "Carpentry/Electrical/Etc.",
+                                "specialization": "Electrical",
                                 "proficiency": 0,
                                 "failure": false
                             }
                         ]
                     },
                     "military_science": {
-                        "label": "Military Science (Type)",
-                        "hasSubtypes": true,
+                        "label": "Military Science",
+                        "examples": "Land, Air, Sea, Etc.",
                         "types":[
                             {
-                                "specialization": "Land/Air/Sea/Etc.",
+                                "specialization": "Land",
                                 "proficiency": 0,
                                 "failure": false
                             }
                         ]
                     },
                     "pilot": {
-                        "label": "Pilot (Type)",
-                        "hasSubtypes": true,
+                        "label": "Pilot",
+                        "examples": "Airplane, Drone, Small Boat, Ship, Helicopter, Space Shuttle, etc.",
                         "types":[
                             {
-                                "specialization": "Airplane/Small Boat/Helicopter/Etc.",
+                                "specialization": "Airplane",
                                 "proficiency": 0,
                                 "failure": false
                             }
                         ]
                     },
                     "science": {
-                        "label": "Science (Field)",
-                        "hasSubtypes": true,
+                        "label": "Science",
+                        "examples": "Biology, Chemistry, Physics, Astronomy, Geology, Mathematics, etc.",
                         "types":[
                             {
                                 "specialization": "Biology/Chemistry/Physics/Etc.",
@@ -278,10 +278,10 @@
                     },
                     "foreign_languages": {
                         "label": "Foreign Languages",
-                        "hasSubtypes": true,
+                        "examples": "Spanish, Yiddish, Aklo, etc.",
                         "types":[
                             {
-                                "specialization": "Spanish/Yiddish/Aklo/Etc.",
+                                "specialization": "Spanish",
                                 "proficiency": 0,
                                 "failure": false
                             }
@@ -289,7 +289,7 @@
                     },
                     "other_skills": {
                         "label": "Other Skills, Specialties, or Training",
-                        "hasSubtypes": true,
+                        "examples": "Lockpicks, SCUBA Diving, Parachuting, Some Exotic Weapon, etc.",
                         "types":[
                             {
                                 "specialization": "",

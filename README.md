@@ -1,17 +1,16 @@
-# DeltaGreen System
+# (Unofficial) Delta Green: The RPG Foundry System
 
-This system is a Delta Green (standalone) system based on the Agent's Handbook from Arc Dream Publishing.
-
-# Delta Green Community License
-Published by arrangement with the Delta Green Partnership. The intellectual property known as Delta Green is a trademark and copyright owned by the Delta Green Partnership, who has licensed its use here. The contents of this system are free for public use, excepting those elements that are components of the Delta Green intellectual property.
+This is a fan made Foundry system for Delta Green: The RPG, based on the Agent's Handbook from Arc Dream Publishing.  It is unaffiliated with Arc Dream Publishing.
 
 # Foundry VTT License
 This code uses the Foundry VTT and its API under the terms of the Limited License Agreement for Module Development.
 Foundry VTT is a Copyright of Foundry Gaming, LLC.
 
-# Delta Green Foundry System License
-The code (HTML, CSS, Javascript, etc.) in this system and any related information are provided under the MIT license, excepting that which comes via Foundry VTT 
-excepting that which is otherwise covered by the Delta Green Partnership and/or Arc Dream Publishing.
+# Delta Green Community License
+Published by arrangement with the Delta Green Partnership. The intellectual property known as Delta Green is a trademark and copyright owned by the Delta Green Partnership, who has licensed its use here. The contents of this system are licensed as detailed below, excepting those elements that are components of the Delta Green intellectual property.
+
+# System License
+The code (HTML, CSS, Javascript, etc.) in this system and any related information are provided under the MIT license, excepting that which comes via Foundry VTT API.
 
 Copyright 2020 N. Eimers
 
@@ -21,12 +20,12 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# Licenses, Citations and Shoutouts
+# Other Licenses, Citations and Shoutouts
 System Base Code
 This system is built upon on Matt Smith's (AKA Asacolips) excellent Boilerplate System and corresponding tutorial.
 https://gitlab.com/asacolips-projects/foundry-mods/foundryvtt-system-tutorial
 
-DIDACT GOTHIC
+DIDACT GOTHIC FONT
 
 The font used in many places is Didact Gothic, by Daniel Johnson and Cyreal. 
 https://fonts.google.com/specimen/Didact+Gothic?query=did#about

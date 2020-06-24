@@ -138,6 +138,51 @@ export class DeltaGreenActorSheet extends ActorSheet {
       this.actor.update({"data": updatedData});
     });
 
+    html.find('.btn-add-typed-skill').click(event => {
+      event.preventDefault();
+
+      let targetskill = event.target.getAttribute("data-typeskill");
+      let updatedData = duplicate(this.actor.data.data);
+
+      // It sucks, but seems like Foundry and/or Handlebars always converts 'types' from an array to an object...
+      // As such normal array functions like 'push' won't work.
+      // So just create an array, add all existing items to it, then update the existing object.
+      // Handlebars doesn't seem to be broken by this sudden change of type from 'Object' to 'Array'.
+      let typesArr =  [];
+      let x;
+      for(x in updatedData.type_skills[targetskill].types){
+        if(Number.isNumeric(x)){
+          typesArr.push(updatedData.type_skills[targetskill].types[x]);
+        }
+      }
+
+      typesArr.push({specialization:"New", proficiency: 0, failure: false});
+
+      updatedData.type_skills[targetskill].types = typesArr;
+
+      this.actor.update({"data": updatedData});
+    });
+
+    html.find('.btn-remove-typed-skill').click(event => {
+      event.preventDefault();
+      let targetskill = event.target.getAttribute("data-typeskill");
+      let skillindex = event.target.getAttribute("data-index");
+      let updatedData = duplicate(this.actor.data.data);
+
+      let typesArr =  [];
+      let x;
+      for(x in updatedData.type_skills[targetskill].types){
+        if(Number.isNumeric(x) && x != skillindex){
+          typesArr.push(updatedData.type_skills[targetskill].types[x]);
+        }
+      }
+
+      updatedData.type_skills[targetskill].types = typesArr;
+
+      this.actor.update({"data": updatedData});
+      //console.log(targetskill);
+      //console.log(skillindex);
+    });
   }
 
   /**

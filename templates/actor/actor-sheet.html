@@ -98,33 +98,39 @@
               {{#each data.skills as |skill key|}}
                 <div class="statistic flexrow flex-group-center">
                   <label class="rollable skill-label" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" title="Click to roll a skill check."  for="data.skills.{{key}}.value" >{{skill.label}}</label>
-                  <input type="text" name="data.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
+                  <input class="percentile-skill-input" type="text" name="data.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
                   <input type="checkbox" name="data.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} />
                 </div>
               {{/each}}
           </div>
 
-          <div class="statistics grid grid-2col">
+          <div class="grid">
             {{#each data.type_skills as |typeskill key|}}
-            <div class="statistic flexrow flex-group-center">
-              <label class="skill-label">{{typeskill.label}}</label>
-              
-              {{#each typeskill.types}}
-                <div class="statistic flexrow flex-group-center">
+            <!-- <div class="statistic flexrow flex-group-left"></div> -->
+              <div class="">
+                
+                  <div>
+                    <label class="skill-type-label" title="{{typeskill.examples}}">{{typeskill.label}}</label>
+                    <a class="btn-tiny btn-add-typed-skill" title="Add another skill." data-typeskill="{{key}}">+</a>
+                  </div>
                   
-                  <label class="skill-label">{{this.specialization}}</label>
-                  <label class="skill-label">{{this}}</label>
-                  <!-- <label class="skill-label">data.type_skills.{{key}}.types[{{@index}}].proficiency</label> -->
-                  
-                  <!-- <label class="skill-label">{{actor.data.data.type_skills.art.label}}</label> -->
-                  {{!-- Subtyped Skills take the form: data.type_skills.art.types[0].proficiency where 'types' is an array of object. --}}
-                  <input type="text" name="data.type_skills.{{key}}.types[{{@index}}].proficiency" value="{{this.proficiency}}" data-dtype="Number"/>
-                  
+                
+                <div>
+                  {{#each typeskill.types}}
+                    <!-- <div class="flexrow flex-group-center"> -->
+                    <div class="typed-skill-flexrow">
+
+                      {{!-- Subtyped Skills take the form: data.type_skills.art.types[0].proficiency where 'types' is an array of object. --}}
+                      <a class="btn-tiny btn-remove-typed-skill" title="Add another skill." data-typeskill="{{key}}" data-index="{{@index}}">-</a>
+                      <input type="text" name="data.type_skills.{{key}}.types.{{@index}}.specialization" value="{{this.specialization}}" data-dtype="Text"/>
+                      <input class="percentile-skill-input" type="text" name="data.type_skills.{{key}}.types.{{@index}}.proficiency" value="{{this.proficiency}}" data-dtype="Number"/>
+                      <input type="checkbox" name="data.type_skills.{{key}}.types.{{@index}}.failure" {{checked this.failure}} data-dtype="Boolean" />
+                      
+                    </div>
+                  {{/each}}
                 </div>
-              {{/each}}
-
-
-            </div>
+              </div>
+            
             {{/each}}
           </div>
         </div>
