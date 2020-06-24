@@ -307,8 +307,9 @@ span.max-attribute-value-label{
 }
 
 input.percentile-skill-input{
-  width: 25px;
-  min-width: 10px;
+  width: 50px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .deltagreen .sheet-header h2.profession{
@@ -326,6 +327,5 @@ input.percentile-skill-input{
 .typed-skill-flexrow{
   display: flex;
   flex-direction: row;
-  margin: 5px;
-  padding: 5px;
+  margin: 1px;
 }
