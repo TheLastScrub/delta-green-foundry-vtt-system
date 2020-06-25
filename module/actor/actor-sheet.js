@@ -8,7 +8,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["deltagreen", "sheet", "actor"],
-      template: "systems/deltagreen/templates/actor/actor-sheet.html",
+      template: "systems/deltagreen-unofficial/templates/actor/actor-sheet.html",
       width: 600,
       height: 800,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
