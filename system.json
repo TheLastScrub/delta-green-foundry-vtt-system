@@ -1,7 +1,7 @@
 {
-  "name": "deltagreen",
-  "title": "Delta Green",
-  "description": "Delta Green RPG system for FoundryVTT.",
+  "name": "deltagreen-unofficial",
+  "title": "Delta Green (Unofficial)",
+  "description": "Delta Green: The RPG system for Foundry VTT (unaffiliated with Arc Dream Publishing or the Delta Green Partnership).",
   "version": "1.0.0",
   "minimumCoreVersion": "0.6.2",
   "compatibleCoreVersion": "0.6.2",
