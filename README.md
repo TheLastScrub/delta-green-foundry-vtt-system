@@ -30,5 +30,5 @@ DIDACT GOTHIC FONT
 The font used in many places is Didact Gothic, by Daniel Johnson and Cyreal. 
 https://fonts.google.com/specimen/Didact+Gothic?query=did#about
 
-It is licensed and used under the Open Font License.
+License: Open Font License.
 https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
