@@ -281,6 +281,8 @@ a.btn-tiny{
   border-radius: 4px;
   line-height: 25px;
   border: 1px solid #333333;
+  min-width: 20px;
+  text-align: center;
 }
 
 span.breaking-point-label{
@@ -361,5 +363,11 @@ div span.bio-grid-label{
 .bio-grid-5col{
   display: grid;
   grid-template-columns: 100px auto 20px 100px auto;
+  align-items: center;
+} 
+
+.bonds-grid-3col{
+  display: grid;
+  grid-template-columns: auto 50px max-content;
   align-items: center;
 } 

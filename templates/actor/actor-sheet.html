@@ -86,7 +86,8 @@
         <a class="item" data-tab="skills">Skills</a>
         <a class="item" data-tab="gear">Gear</a>
         <a class="item" data-tab="bio">Biography</a>
-        <a class="item" data-tab="bonds">Bonds</a>
+        <a class="item" data-tab="bonds">Bonds</a> 
+        <a class="item" data-tab="motivations">Motivations</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -120,7 +121,7 @@
                       {{!-- Subtyped Skills take the form: data.type_skills.art.types[0].proficiency where 'types' is an array of object. --}}
                       <a class="btn-tiny btn-remove-typed-skill" title="Add another skill." data-typeskill="{{key}}" data-index="{{@index}}">-</a>
                       <span class="rollable" data-roll="d100" data-target="{{this.proficiency}}" data-label="{{this.specialization}}" title="Click to roll a skill check." name="data.type_skills.{{key}}.subskills.{{@index}}.specialization" >{{this.specialization}}</span>
-                      <input class="percentile-skill-input" type="text" name="data.type_skills.{{key}}.subskills.{{@index}}.proficiency" value="{{this.proficiency}}" data-dtype="Number"/>
+                      <input class="percentile-skill-input" type="number" name="data.type_skills.{{key}}.subskills.{{@index}}.proficiency" value="{{this.proficiency}}" data-dtype="Number"/>
                       <input type="checkbox" name="data.type_skills.{{key}}.subskills.{{@index}}.failure" {{checked this.failure}} data-dtype="Boolean" />
                       
                     </div>
@@ -182,9 +183,25 @@
             {{editor content=data.physicalDescription target="data.physicalDescription" button=true owner=owner editable=editable}}
         </div>
 
-        {{!-- bonds Tab --}}
+        {{!-- Bonds Tab --}}
         <div class="tab bonds" data-group="primary" data-tab="bonds">
-          <p>test</p>
+          
+            <a class="btn-tiny btn-add-bond" title="Add another bond." data-typeskill="{{key}}" data-index="{{@index}}">+</a>
+          
+          {{#each data.bonds as |bond index|}}
+            <div class="bonds-grid-3col">
+              
+              <input  type="text" name="data.bonds.{{@index}}.description" value="{{this.description}}" data-dtype="String" placeholder="Bond name and description" />
+              <input  type="text" name="data.bonds.{{@index}}.score" value="{{this.score}}" data-dtype="Number" title="The starting value of a bond is the agents CHA value."/>
+              <a class="btn-tiny btn-remove-bond" title="Add another bond." data-index="{{@index}}">-</a>
+            </div>
+          {{/each}}
+        </div>
+
+        {{!-- Motivations Tab --}}
+        <div class="tab motivations" data-group="primary" data-tab="motivations">
+          
+            <p>Under Construction</p>
         </div>
 
     </section>

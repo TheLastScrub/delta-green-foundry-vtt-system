@@ -341,6 +341,12 @@
                 "disorder":"",
                 "crossedOut": false
               }
+            ],
+            "bonds":[
+              {
+                "description":"",
+                "score": 10
+              }
             ]
         }
     },

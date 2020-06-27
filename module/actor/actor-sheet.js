@@ -142,7 +142,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
       event.preventDefault();
 
       let targetskill = event.target.getAttribute("data-typeskill");
-      //let updatedData = duplicate(this.actor.data.data);
 
       this._showNewTypeSkillDialog(targetskill);
     });
@@ -165,6 +164,19 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
       this.actor.update({"data": updatedData});
     });
+
+    html.find('.btn-add-bond').click(event => {
+      event.preventDefault();
+      this._addNewBond();
+    });
+
+    html.find('.btn-remove-bond').click(event => {
+      event.preventDefault();
+      let skillindex = event.target.getAttribute("data-index");
+
+      this._removeBond(skillindex);
+    });
+    
   }
 
   _showNewTypeSkillDialog(targetskill){
@@ -200,6 +212,40 @@ export class DeltaGreenActorSheet extends ActorSheet {
     typesArr.push({specialization:newTypeSkillLabel, proficiency: 40, failure: false});
 
     updatedData.type_skills[targetskill].subskills = typesArr;
+
+    this.actor.update({"data": updatedData});
+  }
+
+  _addNewBond(){
+    let updatedData = duplicate(this.actor.data.data);
+    let updatedBonds = [];
+    let x;
+
+    for(x in updatedData.bonds){
+      if(Number.isNumeric(x)){
+        updatedBonds.push(updatedData.bonds[x]);
+      }
+    }
+
+    updatedBonds.push({"description": "New", "score": updatedData.statistics.cha.value});
+
+    updatedData.bonds = updatedBonds;
+
+    this.actor.update({"data": updatedData});
+  }
+
+  _removeBond(pos){
+    let updatedData = duplicate(this.actor.data.data);
+    let updatedBonds = [];
+    let x;
+
+    for(x in updatedData.bonds){
+      if(Number.isNumeric(x) && x != pos){
+        updatedBonds.push(updatedData.bonds[x]);
+      }
+    }
+
+    updatedData.bonds = updatedBonds;
 
     this.actor.update({"data": updatedData});
   }
