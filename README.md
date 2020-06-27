@@ -2,6 +2,10 @@
 
 This is a fan made Foundry system for Delta Green: The RPG, based on the Agent's Handbook from Arc Dream Publishing.  It is unaffiliated with Arc Dream Publishing.
 
+# System Status
+
+This is a work in progress and is not currently stable.  Any use is at your own risk, as the underlying structure is still seeing frequent changes.
+
 # Foundry VTT License
 This code uses the Foundry VTT and its API under the terms of the Limited License Agreement for Module Development.
 Foundry VTT is a Copyright of Foundry Gaming, LLC.
