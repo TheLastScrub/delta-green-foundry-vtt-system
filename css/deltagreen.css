@@ -13,6 +13,12 @@
   cursor: pointer;
 }
 
+.grid-1col{
+  display: grid;
+  grid-column: span 1 / span 1;
+  gap: 10px;
+}
+
 .grid,
 .grid-2col {
   display: grid;
@@ -306,6 +312,12 @@ span.max-attribute-value-label{
   margin: 5px;
 }
 
+.typed-skill-flexrow{
+  display: flex;
+  flex-direction: row;
+  margin: 1px;
+}
+
 input.percentile-skill-input{
   width: 50px;
   margin-right: 5px;
@@ -324,8 +336,30 @@ input.percentile-skill-input{
   margin: 0;
 }
 
-.typed-skill-flexrow{
+div .simple-centered-flex-div{
   display: flex;
-  flex-direction: row;
-  margin: 1px;
+  align-items: center;
 }
+
+div input.fill-remaining-space{
+  flex: 1;
+  margin: 1px;
+  text-align: left;
+}
+
+div span.bio-grid-label{
+  margin: 1px;
+  text-align: left;
+}
+
+.bio-grid-2col{
+  display: grid;
+  grid-template-columns: 100px auto;
+  align-items: center;
+} 
+
+.bio-grid-5col{
+  display: grid;
+  grid-template-columns: 100px auto 20px 100px auto;
+  align-items: center;
+} 

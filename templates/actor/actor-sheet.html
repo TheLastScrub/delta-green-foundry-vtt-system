@@ -72,7 +72,7 @@
                     <span >({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
                   </div>
                   <div >
-                    <input type="text" name="data.statistics.{{key}}.distinguishing_feature" value="{{statistic.distinguishing_feature}}" data-dtype="Text" />
+                    <input type="text" name="data.statistics.{{key}}.distinguishing_feature" value="{{statistic.distinguishing_feature}}" data-dtype="String" />
                   </div>
                 </div>
               </div>
@@ -85,8 +85,8 @@
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="skills">Skills</a>
         <a class="item" data-tab="gear">Gear</a>
-        <a class="item" data-tab="physical-description">Description</a>
-        <a class="item" data-tab="bonds">Bonds</a>
+        <a class="item" data-tab="bio">Biography</a>
+        <a class="item" data-tab="bonds">Motivations</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -94,9 +94,9 @@
 
         {{!-- Skills Tab --}}
         <div class="tab skills" data-group="primary" data-tab="skills">
-            <div class="statistics grid grid-3col">
+            <div class="grid grid-3col">
               {{#each data.skills as |skill key|}}
-                <div class="statistic flexrow flex-group-center">
+                <div class="flexrow flex-group-center">
                   <label class="rollable skill-label" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" title="Click to roll a skill check."  for="data.skills.{{key}}.value" >{{skill.label}}</label>
                   <input class="percentile-skill-input" type="text" name="data.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
                   <input type="checkbox" name="data.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} />
@@ -107,24 +107,21 @@
           <div class="grid">
             {{#each data.type_skills as |typeskill key|}}
             <!-- <div class="statistic flexrow flex-group-left"></div> -->
-              <div class="">
-                
+              <div class="flexrow flex-group-center">
                   <div>
                     <label class="skill-type-label" title="{{typeskill.examples}}">{{typeskill.label}}</label>
                     <a class="btn-tiny btn-add-typed-skill" title="Add another skill." data-typeskill="{{key}}">+</a>
                   </div>
-                  
-                
                 <div>
-                  {{#each typeskill.types}}
+                  {{#each typeskill.subskills as |subskill index|}}
                     <!-- <div class="flexrow flex-group-center"> -->
                     <div class="typed-skill-flexrow">
 
                       {{!-- Subtyped Skills take the form: data.type_skills.art.types[0].proficiency where 'types' is an array of object. --}}
                       <a class="btn-tiny btn-remove-typed-skill" title="Add another skill." data-typeskill="{{key}}" data-index="{{@index}}">-</a>
-                      <input type="text" name="data.type_skills.{{key}}.types.{{@index}}.specialization" value="{{this.specialization}}" data-dtype="Text"/>
-                      <input class="percentile-skill-input" type="text" name="data.type_skills.{{key}}.types.{{@index}}.proficiency" value="{{this.proficiency}}" data-dtype="Number"/>
-                      <input type="checkbox" name="data.type_skills.{{key}}.types.{{@index}}.failure" {{checked this.failure}} data-dtype="Boolean" />
+                      <span class="rollable" data-roll="d100" data-target="{{this.proficiency}}" data-label="{{this.specialization}}" title="Click to roll a skill check." name="data.type_skills.{{key}}.subskills.{{@index}}.specialization" >{{this.specialization}}</span>
+                      <input class="percentile-skill-input" type="text" name="data.type_skills.{{key}}.subskills.{{@index}}.proficiency" value="{{this.proficiency}}" data-dtype="Number"/>
+                      <input type="checkbox" name="data.type_skills.{{key}}.subskills.{{@index}}.failure" {{checked this.failure}} data-dtype="Boolean" />
                       
                     </div>
                   {{/each}}
@@ -159,7 +156,29 @@
         </div>
 
         {{!-- Description Tab --}}
-        <div class="tab physical-description" data-group="primary" data-tab="physical-description">
+        <div class="tab bio" data-group="primary" data-tab="bio">
+          <div class="bio-grid-5col">
+              <span>Sex</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.sex" value="{{data.biography.sex}}" data-dtype="String" placeholder="Sex" />
+              <span></span>
+              <span class="bio-grid-label">Age And D.O.B</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.sex" value="{{data.biography.sex}}" data-dtype="String" placeholder="Age & Date of Birth" />
+          </div>
+
+          <div class="bio-grid-2col">
+            
+              <span>Employer</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.employer" value="{{data.biography.employer}}" data-dtype="String" placeholder="Employer or Work History" />
+            
+              <span>Nationality</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.nationality" value="{{data.biography.nationality}}" data-dtype="String" placeholder="Nationality" />
+            
+          </div>
+          
+          <div class="bio-grid-2col">
+              <span>Education</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.education" value="{{data.biography.education}}" data-dtype="String" placeholder="Education and occupational history" />
+          </div>
             {{editor content=data.physicalDescription target="data.physicalDescription" button=true owner=owner editable=editable}}
         </div>
 

@@ -1,8 +1,7 @@
 {
     "Actor": {
         "types": [
-            "agent",
-            "npc"
+            "agent"
         ],
         "templates": {
             "base": {
@@ -224,7 +223,7 @@
                     "art": {
                         "label": "Art",
                         "examples": "Sculpting, Painting, Dance, Music, Etc.",
-                        "types":[
+                        "subskills":[
                             {
                                 "specialization": "Painting",
                                 "proficiency": 0,
@@ -235,7 +234,7 @@
                     "craft": {
                         "label": "Craft",
                         "examples": "Mechanic, Carpentry, Electrical, Microelectronics, Locksmith, Gunsmith, Etc.",
-                        "types":[
+                        "subskills":[
                             {
                                 "specialization": "Electrical",
                                 "proficiency": 0,
@@ -246,7 +245,7 @@
                     "military_science": {
                         "label": "Military Science",
                         "examples": "Land, Air, Sea, Etc.",
-                        "types":[
+                        "subskills":[
                             {
                                 "specialization": "Land",
                                 "proficiency": 0,
@@ -257,7 +256,7 @@
                     "pilot": {
                         "label": "Pilot",
                         "examples": "Airplane, Drone, Small Boat, Ship, Helicopter, Space Shuttle, etc.",
-                        "types":[
+                        "subskills":[
                             {
                                 "specialization": "Airplane",
                                 "proficiency": 0,
@@ -268,7 +267,7 @@
                     "science": {
                         "label": "Science",
                         "examples": "Biology, Chemistry, Physics, Astronomy, Geology, Mathematics, etc.",
-                        "types":[
+                        "subskills":[
                             {
                                 "specialization": "Biology/Chemistry/Physics/Etc.",
                                 "proficiency": 0,
@@ -279,7 +278,7 @@
                     "foreign_languages": {
                         "label": "Foreign Languages",
                         "examples": "Spanish, Yiddish, Aklo, etc.",
-                        "types":[
+                        "subskills":[
                             {
                                 "specialization": "Spanish",
                                 "proficiency": 0,
@@ -290,7 +289,7 @@
                     "other_skills": {
                         "label": "Other Skills, Specialties, or Training",
                         "examples": "Lockpicks, SCUBA Diving, Parachuting, Some Exotic Weapon, etc.",
-                        "types":[
+                        "subskills":[
                             {
                                 "specialization": "",
                                 "proficiency": 0,
@@ -311,11 +310,23 @@
                 "value": 100,
                 "currentBreakingPoint": 101,
                 "adaptations": {
-                    "violence": 0,
-                    "helplessness": 0
+                    "violence": [
+                        false,
+                        false,
+                        false
+                    ],
+                    "helplessness": [
+                        false,
+                        false,
+                        false
+                    ]
                 }
             },
-            "physicalDescription": "",
+            "physical":{
+                "description": "(Physical description of agent)",
+                "wounds": "",
+                "firstAidAttempted": false
+            },
             "biography": {
                 "profession": "",
                 "employer": "",
