@@ -1,5 +1,5 @@
 {
-  "name": "deltagreen-unofficial",
+  "name": "deltagreen",
   "version": "1.0.0",
   "description": "CSS compiler for the DeltaGreen system",
   "scripts": {
