@@ -347,28 +347,30 @@
     "Item": {
         "types": [
             "weapon",
-            "gear",
-            "ritual"
+            "gear"
         ],
         "templates": {
             "base": {
-                "description": ""
+                "name": ""
             }
         },
         "weapon": {
             "templates": [
                 "base"
-            ]
+            ],
+            "skill": "",
+            "range": 10,
+            "damage:": "1d8",
+            "armorPiercing": 0,
+            "lethality": 0,
+            "killRadius": 0,
+            "ammo": 20
         },
         "gear": {
             "templates": [
                 "base"
-            ]
-        },
-        "ritual": {
-            "templates": [
-                "base"
-            ]
+            ],
+            "armor": 3
         }
     }
 }

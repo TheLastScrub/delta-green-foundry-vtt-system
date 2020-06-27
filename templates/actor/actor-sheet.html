@@ -86,7 +86,7 @@
         <a class="item" data-tab="skills">Skills</a>
         <a class="item" data-tab="gear">Gear</a>
         <a class="item" data-tab="bio">Biography</a>
-        <a class="item" data-tab="bonds">Motivations</a>
+        <a class="item" data-tab="bonds">Bonds</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -155,14 +155,14 @@
             </ol>
         </div>
 
-        {{!-- Description Tab --}}
+        {{!-- Biography Tab --}}
         <div class="tab bio" data-group="primary" data-tab="bio">
           <div class="bio-grid-5col">
               <span>Sex</span>
               <input class="fill-remaining-space" type="text" name="data.biography.sex" value="{{data.biography.sex}}" data-dtype="String" placeholder="Sex" />
               <span></span>
               <span class="bio-grid-label">Age And D.O.B</span>
-              <input class="fill-remaining-space" type="text" name="data.biography.sex" value="{{data.biography.sex}}" data-dtype="String" placeholder="Age & Date of Birth" />
+              <input class="fill-remaining-space" type="text" name="data.biography.age" value="{{data.biography.age}}" data-dtype="String" placeholder="Age & Date of Birth" />
           </div>
 
           <div class="bio-grid-2col">
@@ -180,6 +180,11 @@
               <input class="fill-remaining-space" type="text" name="data.biography.education" value="{{data.biography.education}}" data-dtype="String" placeholder="Education and occupational history" />
           </div>
             {{editor content=data.physicalDescription target="data.physicalDescription" button=true owner=owner editable=editable}}
+        </div>
+
+        {{!-- bonds Tab --}}
+        <div class="tab bonds" data-group="primary" data-tab="bonds">
+          <p>test</p>
         </div>
 
     </section>
