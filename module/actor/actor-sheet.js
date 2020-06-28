@@ -40,46 +40,27 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const actorData = sheetData.actor;
 
     // Initialize containers.
-    const gear = [];
-    const features = [];
-    const spells = {
-      0: [],
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-      5: [],
-      6: [],
-      7: [],
-      8: [],
-      9: []
-    };
+    const armor = [];
+    const weapons = [];
 
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
     for (let i of sheetData.items) {
       let item = i.data;
       i.img = i.img || DEFAULT_TOKEN;
-      // Append to gear.
-      if (i.type === 'gear') {
-        gear.push(i);
+      // Append to armor.
+      if (i.type === 'armor') {
+        armor.push(i);
       }
       // Append to features.
       else if (i.type === 'weapon') {
-        features.push(i);
-      }
-      // Append to spells.
-      else if (i.type === 'ritual') {
-        if (i.data.spellLevel != undefined) {
-          spells[i.data.spellLevel].push(i);
-        }
+        weapons.push(i);
       }
     }
 
     // Assign and return
-    actorData.gear = gear;
-    actorData.features = features;
-    actorData.spells = spells;
+    actorData.armor = armor;
+    actorData.weapons = weapons;
   }
 
   /* -------------------------------------------- */
@@ -275,6 +256,10 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
     if(type == "weapon"){
       itemData.data.skill = "firearms"; //default skill to firearms, since that will be most common
+    }
+
+    if(type == "armor"){
+      itemData.data.armor
     }
     
     // Finally, create the item!

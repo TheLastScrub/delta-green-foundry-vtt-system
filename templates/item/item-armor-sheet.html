@@ -5,16 +5,8 @@
             <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
             <div class="grid grid-2col">
               <div class="resource">
-                <label class="resource-label">Skill</label>
-                <select name="data.skill" >
-                    <option {{#if_eq data.skill 'firearms'}}selected{{/if_eq}} value="firearms">Firearms</option>
-                    <option {{#if_eq data.skill 'melee_weapons'}}selected{{/if_eq}} value="melee_weapons">Melee Weapons</option>
-                    <option {{#if_eq data.skill 'unarmed_combat'}}selected{{/if_eq}} value="unarmed_combat">Unarmed Combat</option>
-                    <option {{#if_eq data.skill 'heavy_weapons'}}selected{{/if_eq}} value="heavy_weapons">Heavy Weapons</option>
-                    <option {{#if_eq data.skill 'athletics'}}selected{{/if_eq}} value="athletics">Athletics</option>
-                    <option {{#if_eq data.skill 'demolitions'}}selected{{/if_eq}} value="demolitions">Demolitions</option>
-                    <option {{#if_eq data.skill 'artillery'}}selected{{/if_eq}} value="artillery">Artillery</option>
-                </select>
+                <label class="resource-label">Armor Rating</label>
+                <input type="text" name="data.protection" value="{{data.protection}}" data-dtype="Number"/>
               </div>
               <div class="resource">
                 <label class="resource-label">Expense</label>
@@ -27,20 +19,8 @@
                 </select>
               </div>
               <div class="resource">
-                <label class="resource-label">Damage</label>
-                <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="String"/>
-              </div>
-              <div class="resource">
-                <label class="resource-label">Lethality %</label>
-                <input type="text" name="data.lethality" value="{{data.lethality}}" data-dtype="Number"/>
-              </div>
-              <div class="resource">
-                <label class="resource-label">Armor Piercing</label>
-                <input type="text" name="data.armorPiercing" value="{{data.armorPiercing}}" data-dtype="Number"/>
-              </div>
-              <div class="resource">
-                <label class="resource-label">Ammo</label>
-                <input type="text" name="data.ammo" value="{{data.ammo}}" data-dtype="Number"/>
+                <label class="resource-label">Equipped</label>
+                <input type="checkbox" name="data.equipped" {{checked data.equipped}} data-dtype="Boolean" />
               </div>
             </div>
         </div>

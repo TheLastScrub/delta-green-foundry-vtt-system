@@ -171,6 +171,33 @@
           </div>
           <div>
             <h3>ARMOR</h3>
+            <ol class="items-list">
+              <li class="item flexrow item-header">
+                <div class="item-image"></div>
+                <div class="item-name">Name</div>
+                <div class="item-name">Armor</div>
+                <div class="item-controls">
+                  <a class="item-control item-create" title="Create item" data-type="armor"><i class="fas fa-plus"></i> Add item</a>
+                </div>
+              </li>
+
+              {{#each actor.items as |item id|}}
+                {{#if_eq item.type 'armor'}}
+
+                  <li class="item flexrow" data-item-id="{{item._id}}">
+                    <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
+                    <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
+                    <span>{{item.data.protection}}</span>
+                    <div class="item-controls">
+                        <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                    </div>
+                  </li>
+
+                {{/if_eq}}
+              {{/each}}
+
+            </ol>
           </div>
         </div>
 

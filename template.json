@@ -353,7 +353,7 @@
     "Item": {
         "types": [
             "weapon",
-            "gear"
+            "armor"
         ],
         "templates": {
             "base": {
@@ -366,19 +366,23 @@
                 "base"
             ],
             "skill": "",
-            "range": 10,
+            "range": "10M",
             "damage:": "1d8",
             "armorPiercing": 0,
             "lethality": 0,
-            "killRadius": 0,
-            "ammo": 20
+            "killRadius": "",
+            "ammo": 20,
+            "restricted": false,
+            "expense": "Standard",
+            "category": "Firearms"
         },
-        "gear": {
+        "armor": {
             "templates": [
                 "base"
             ],
-            "armor": 3,
-            "equipped": true
+            "protection": 3,
+            "equipped": true,
+            "expense": "Standard"
         }
     }
 }
