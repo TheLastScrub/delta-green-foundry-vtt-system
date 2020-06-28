@@ -273,6 +273,10 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Remove the type from the dataset since it's in the itemData.type prop.
     delete itemData.data["type"];
 
+    if(type == "weapon"){
+      itemData.data.skill = "firearms"; //default skill to firearms, since that will be most common
+    }
+    
     // Finally, create the item!
     return this.actor.createOwnedItem(itemData);
   }
@@ -306,6 +310,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
       else if(dataset.target === "sanity"){
         targetVal = this.actor.data.data.sanity.value;
         label += `, Target: ${targetVal}`;
+      }
+      else if(dataset.target === "damage"){
+        // damage roll, not a skill check
       }
 
       roll.roll().toMessage({

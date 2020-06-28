@@ -43,11 +43,19 @@ Hooks.once('init', async function() {
   });
 
   Handlebars.registerHelper('toLowerCase', function(str) {
-    return str.toLowerCase();
+    try {
+      return str.toLowerCase();
+    } catch (error) {
+      return "";
+    }
   });
 
   Handlebars.registerHelper('toUpperCase', function(str) {
-    return str.toUpperCase();
+    try {
+      return str.toUpperCase();
+    } catch (error) {
+      return "";
+    }
   });
 
   Handlebars.registerHelper('if_eq', function(a, b, opts) {
@@ -59,10 +67,15 @@ Hooks.once('init', async function() {
   });
 
   Handlebars.registerHelper('getActorSkillProp', function(actorData, skillName, prop) {
-    let skills = actorData.skills;
-    let skill = skills[skillName];
-    let propVal = skill[prop];
-    return propVal;
+    if(skillName != "" && prop != ""){
+      let skills = actorData.skills;
+      let skill = skills[skillName];
+      let propVal = skill[prop];
+      return propVal;
+    }
+    else{
+      return "";
+    }
   });
 });
 

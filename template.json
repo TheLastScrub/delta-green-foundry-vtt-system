@@ -377,7 +377,8 @@
             "templates": [
                 "base"
             ],
-            "armor": 3
+            "armor": 3,
+            "equipped": true
         }
     }
 }
