@@ -357,7 +357,8 @@
         ],
         "templates": {
             "base": {
-                "name": ""
+                "name": "",
+                "description":""
             }
         },
         "weapon": {

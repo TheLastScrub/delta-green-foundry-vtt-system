@@ -49,6 +49,21 @@ Hooks.once('init', async function() {
   Handlebars.registerHelper('toUpperCase', function(str) {
     return str.toUpperCase();
   });
+
+  Handlebars.registerHelper('if_eq', function(a, b, opts) {
+    if (a == b) {
+        return opts.fn(this);
+    } else {
+        return opts.inverse(this);
+    }
+  });
+
+  Handlebars.registerHelper('getActorSkillProp', function(actorData, skillName, prop) {
+    let skills = actorData.skills;
+    let skill = skills[skillName];
+    let propVal = skill[prop];
+    return propVal;
+  });
 });
 
 Hooks.once("ready", async function() {
