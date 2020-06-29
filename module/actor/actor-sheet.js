@@ -256,10 +256,12 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
     if(type == "weapon"){
       itemData.data.skill = "firearms"; //default skill to firearms, since that will be most common
+      itemData.data.expense = "Standard";
     }
 
     if(type == "armor"){
-      itemData.data.armor
+      itemData.data.armor = 3;
+      itemData.data.expense = "Standard";
     }
     
     // Finally, create the item!
@@ -298,6 +300,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       }
       else if(dataset.target === "damage"){
         // damage roll, not a skill check
+        label = dataset.label ? `Rolling damage for ${dataset.label.toUpperCase()}` : '';
       }
 
       roll.roll().toMessage({

@@ -3,7 +3,7 @@
   "title": "Delta Green (Unofficial)",
   "description": "Delta Green: The RPG system for Foundry VTT (unaffiliated with Arc Dream Publishing or the Delta Green Partnership).",
   "version": "0.6.2",
-  "minimumCoreVersion": "0.6.3",
+  "minimumCoreVersion": "0.6.4",
   "compatibleCoreVersion": "0.6.2",
   "templateVersion": 2,
   "author": "Nick Eimers",

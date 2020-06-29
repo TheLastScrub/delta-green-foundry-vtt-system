@@ -225,7 +225,10 @@
               <span>Education</span>
               <input class="fill-remaining-space" type="text" name="data.biography.education" value="{{data.biography.education}}" data-dtype="String" placeholder="Education and occupational history" />
           </div>
-            {{editor content=data.physicalDescription target="data.physicalDescription" button=true owner=owner editable=editable}}
+          <div>
+            <span style="font-weight: bold;">Physical Description/Notes</span>  
+          </div>
+          {{editor content=data.physicalDescription target="data.physicalDescription" button=true owner=owner editable=editable}}
         </div>
 
         {{!-- Bonds Tab --}}
