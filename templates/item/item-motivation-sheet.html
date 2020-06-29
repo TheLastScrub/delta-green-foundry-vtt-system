@@ -1,0 +1,56 @@
+<form class="{{cssClass}}" autocomplete="off">
+    
+    <div class="motivation-section">
+        <label class="resource-label">Is Disorder: </label>
+        <input class="labeled-resource-checkbox" type="checkbox" name="data.crossedOut" {{checked data.crossedOut}} data-dtype="Boolean" 
+            title="Check this if the motivation has been lost after hitting a break point, or if entering a disorder."
+        />
+    </div>
+
+    
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+
+        {{!-- Attributes Tab --}}
+        <div class=" attributes" data-group="primary" data-tab="attributes">
+            
+            <div class="resource">
+                <label class="resource-label">Motivation</label>
+                <input type="text" name="name" value="{{item.name}}" data-dtype="String"
+                    
+                     title="Something that drives the character."
+
+                     {{#if data.crossedOut}}
+                        style="text-decoration: line-through;"
+                        disabled
+                     {{/if}}
+                />
+            </div>
+
+            {{!-- Only Show the Disorders Section if Motivation Lost Checked --}}
+            {{#if data.crossedOut}}
+            <div class="resource">
+                <label class="resource-label">Disorder</label>
+                <input type="text" name="data.disorder" value="{{data.disorder}}" data-dtype="String"
+                       
+                     title="A disorder replaces a motivation after hitting a break point."
+                />
+            </div>
+            {{/if}}
+
+            <div class="motivation-section">
+                <label class="resource-label">Details</label>
+            </div>
+            
+            <div style="height: 300px;">
+                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            </div>  
+                
+            
+            
+        </div>
+        
+    </section>
+
+</form>

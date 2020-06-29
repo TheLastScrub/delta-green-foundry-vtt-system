@@ -195,6 +195,11 @@
   height: 100%;
 }
 
+div.motivation-editor-container div.editor{
+  height: 400px;
+  min-height: 100% !important;
+}
+
 .deltagreen .tox .tox-editor-container {
   background: #fff;
 }
@@ -372,3 +377,12 @@ div span.bio-grid-label{
   grid-template-columns: auto 50px max-content;
   align-items: center;
 } 
+
+.resource .labeled-resource-checkbox{
+  vertical-align: middle;
+}
+
+div .motivation-section{
+  border-bottom: 1px solid #AAA;
+  margin-bottom: 10px;
+}

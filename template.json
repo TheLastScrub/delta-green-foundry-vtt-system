@@ -335,13 +335,6 @@
                 "age": "",
                 "education": ""
             },
-            "motivations":[
-              {
-                "description":"",
-                "disorder":"",
-                "crossedOut": false
-              }
-            ],
             "bonds":[
               {
                 "description":"",
@@ -353,7 +346,8 @@
     "Item": {
         "types": [
             "weapon",
-            "armor"
+            "armor",
+            "motivation"
         ],
         "templates": {
             "base": {
@@ -383,6 +377,13 @@
             "protection": 3,
             "equipped": true,
             "expense": "Standard"
+        },
+        "motivation":{
+            "templates": [
+                "base"
+            ],
+            "disorder":"",
+            "crossedOut": false
         }
     }
 }
