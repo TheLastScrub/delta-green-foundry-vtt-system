@@ -302,6 +302,10 @@ export class DeltaGreenActorSheet extends ActorSheet {
         // damage roll, not a skill check
         label = dataset.label ? `Rolling damage for ${dataset.label.toUpperCase()}` : '';
       }
+      else if(dataset.target === "lethality"){
+        // a lethality roll
+        label = dataset.label ? `Rolling LETHALITY for ${dataset.label.toUpperCase()}` : '';
+      }
 
       roll.roll().toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),

@@ -158,11 +158,14 @@
                     <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
                     <span class="item-name rollable" data-roll="d100" data-target="{{getActorSkillProp ../data item.data.skill 'proficiency'}}" data-label="{{getActorSkillProp ../data item.data.skill 'label'}}">{{getActorSkillProp ../data item.data.skill 'label'}}</span>
                     <span class="rollable" data-target="damage" data-label="{{toUpperCase item.name}}" data-roll="{{toUpperCase item.data.damage}}" >{{toUpperCase item.data.damage}}</span>
-                    <span>{{item.data.lethality}}%</span>
+                    
+                    <span class="rollable" data-target="lethality" data-label="{{toUpperCase item.name}}" data-roll="d100">{{formatLethality item.data.lethality}}</span>
+                    
                     <div class="item-controls">
                         <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                         <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
                     </div>
+                    
                   </li>
 
                 {{/if_eq}}

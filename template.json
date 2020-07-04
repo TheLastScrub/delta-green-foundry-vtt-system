@@ -383,7 +383,8 @@
                 "base"
             ],
             "disorder":"",
-            "crossedOut": false
+            "crossedOut": false,
+            "disorderCured": false
         }
     }
 }

@@ -7,12 +7,10 @@
         />
     </div>
 
-    
 
     {{!-- Sheet Body --}}
     <section class="sheet-body">
 
-        {{!-- Attributes Tab --}}
         <div class=" attributes" data-group="primary" data-tab="attributes">
             
             <div class="resource">
@@ -20,37 +18,44 @@
                 <input type="text" name="name" value="{{item.name}}" data-dtype="String"
                     
                      title="Something that drives the character."
-
-                     {{#if data.crossedOut}}
+                    
+                    {{!-- If a motivation has been crossed off after a breaking point, do a strikeout on it and disable it. --}}
+                    {{#if data.crossedOut}}
                         style="text-decoration: line-through;"
                         disabled
-                     {{/if}}
+                    {{/if}}
                 />
             </div>
 
             {{!-- Only Show the Disorders Section if Motivation Lost Checked --}}
             {{#if data.crossedOut}}
+            
             <div class="resource">
                 <label class="resource-label">Disorder</label>
                 <input type="text" name="data.disorder" value="{{data.disorder}}" data-dtype="String"
-                       
-                     title="A disorder replaces a motivation after hitting a break point."
+                    
+                    title="A disorder replaces a motivation after hitting a break point."
                 />
             </div>
+            <div class="motivation-section">
+                <label class="resource-label">Disorder Has Been Cured: </label>
+                <input class="" type="checkbox" name="data.disorderCured" {{checked data.disorderCured}} data-dtype="Boolean" 
+                    title="A critical success on a therapy luck roll can cure a disorder.  It may return the next time a breaking point is hit however."
+                />
+            </div>
+
             {{/if}}
 
             <div class="motivation-section">
                 <label class="resource-label">Details</label>
             </div>
             
-            <div style="height: 300px;">
-                {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
-            </div>  
+              
                 
             
             
         </div>
         
     </section>
-
+    {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
 </form>

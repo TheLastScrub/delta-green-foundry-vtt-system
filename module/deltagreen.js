@@ -66,6 +66,15 @@ Hooks.once('init', async function() {
     }
   });
 
+  Handlebars.registerHelper('formatLethality', function(lethality) {
+    if (lethality > 0) {
+      return lethality.toString() + "%";
+    }
+    else {
+      return "";
+    }
+  });
+
   Handlebars.registerHelper('getActorSkillProp', function(actorData, skillName, prop) {
     if(skillName != "" && prop != ""){
       let skills = actorData.skills;
