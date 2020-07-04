@@ -334,20 +334,15 @@
                 "sex": "",
                 "age": "",
                 "education": ""
-            },
-            "bonds":[
-              {
-                "description":"",
-                "score": 10
-              }
-            ]
+            }
         }
     },
     "Item": {
         "types": [
             "weapon",
             "armor",
-            "motivation"
+            "motivation",
+            "bond"
         ],
         "templates": {
             "base": {
@@ -364,6 +359,7 @@
             "damage:": "1d8",
             "armorPiercing": 0,
             "lethality": 0,
+            "isLethal": false,
             "killRadius": "",
             "ammo": 20,
             "restricted": false,
@@ -385,6 +381,12 @@
             "disorder":"",
             "crossedOut": false,
             "disorderCured": false
+        },
+        "bond":{
+            "templates":[
+                "base"
+            ],
+            "score": -9999
         }
     }
 }

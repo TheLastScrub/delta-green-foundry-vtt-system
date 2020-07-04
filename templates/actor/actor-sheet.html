@@ -236,17 +236,32 @@
 
         {{!-- Bonds Tab --}}
         <div class="tab bonds" data-group="primary" data-tab="bonds">
-          
-            <a class="btn-tiny btn-add-bond" title="Add another bond." data-typeskill="{{key}}" data-index="{{@index}}">+</a>
-          
-          {{#each data.bonds as |bond index|}}
-            <div class="bonds-grid-3col">
-              
-              <input  type="text" name="data.bonds.{{@index}}.description" value="{{this.description}}" data-dtype="String" placeholder="Bond name and description" />
-              <input  type="text" name="data.bonds.{{@index}}.score" value="{{this.score}}" data-dtype="Number" title="The starting value of a bond is the agents CHA value."/>
-              <a class="btn-tiny btn-remove-bond" title="Add another bond." data-index="{{@index}}">-</a>
+          <div>
+            <ol class="items-list">
+              <li class="item flexrow item-header">
+                <div class="item-name">Name</div>
+                <div class="item-name">Score</div>
+                <div class="item-controls">
+                  <a class="item-control item-create" title="Create item" data-type="bond"><i class="fas fa-plus"></i> Add item</a>
+                </div>
+              </li>
+
+              {{#each actor.items as |item id|}}
+                {{#if_eq item.type 'bond'}}
+
+                  <li class="item flexrow" data-item-id="{{item._id}}">
+                    
+                    <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
+                    <span>{{item.data.score}}</span>
+                    <div class="item-controls">
+                        <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                    </div>
+                  </li>
+
+                {{/if_eq}}
+              {{/each}}
             </div>
-          {{/each}}
         </div>
 
         {{!-- Motivations Tab --}}
