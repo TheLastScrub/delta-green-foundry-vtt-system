@@ -146,17 +146,17 @@ export class DeltaGreenActorSheet extends ActorSheet {
       this.actor.update({"data": updatedData});
     });
 
-    html.find('.btn-add-bond').click(event => {
-      event.preventDefault();
-      this._addNewBond();
-    });
+    //html.find('.btn-add-bond').click(event => {
+    //  event.preventDefault();
+    //  this._addNewBond();
+    //});
 
-    html.find('.btn-remove-bond').click(event => {
-      event.preventDefault();
-      let skillindex = event.target.getAttribute("data-index");
+    //html.find('.btn-remove-bond').click(event => {
+    //  event.preventDefault();
+    //  let skillindex = event.target.getAttribute("data-index");
 
-      this._removeBond(skillindex);
-    });
+    //  this._removeBond(skillindex);
+    //});
     
   }
 
@@ -197,40 +197,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
     this.actor.update({"data": updatedData});
   }
 
-  _addNewBond(){
-    let updatedData = duplicate(this.actor.data.data);
-    let updatedBonds = [];
-    let x;
-
-    for(x in updatedData.bonds){
-      if(Number.isNumeric(x)){
-        updatedBonds.push(updatedData.bonds[x]);
-      }
-    }
-
-    updatedBonds.push({"description": "New", "score": updatedData.statistics.cha.value});
-
-    updatedData.bonds = updatedBonds;
-
-    this.actor.update({"data": updatedData});
-  }
-
-  _removeBond(pos){
-    let updatedData = duplicate(this.actor.data.data);
-    let updatedBonds = [];
-    let x;
-
-    for(x in updatedData.bonds){
-      if(Number.isNumeric(x) && x != pos){
-        updatedBonds.push(updatedData.bonds[x]);
-      }
-    }
-
-    updatedData.bonds = updatedBonds;
-
-    this.actor.update({"data": updatedData});
-  }
-
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
    * @param {Event} event   The originating click event
@@ -258,10 +224,12 @@ export class DeltaGreenActorSheet extends ActorSheet {
       itemData.data.skill = "firearms"; //default skill to firearms, since that will be most common
       itemData.data.expense = "Standard";
     }
-
-    if(type == "armor"){
+    else if(type == "armor"){
       itemData.data.armor = 3;
       itemData.data.expense = "Standard";
+    }
+    else if(type == "bond"){
+      itemData.data.score = this.object.data.data.statistics.cha.value; // Can vary, but at character creation starting bond score is usually agent's charisma
     }
     
     // Finally, create the item!
