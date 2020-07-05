@@ -11,7 +11,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       template: "systems/deltagreen/templates/actor/actor-sheet.html",
       width: 600,
       height: 800,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "skills" }]
     });
   }
 
