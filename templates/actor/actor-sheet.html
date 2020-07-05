@@ -45,7 +45,7 @@
               <div class="resource flex-group-center">
                   <label for="data.sanity.value" class="resource-label">SANITY</label>
                   <div class="resource-content flexrow flex-center flex-between">
-                    <span class="rollable" data-roll="d100" data-target="sanity" data-label="SAN" title="Click to roll a sanity check...">SAN</span>
+                    <span class="rollable" data-rolltype="sanity" data-roll="d100" data-target="sanity" data-label="SAN" title="Click to roll a sanity check...">SAN</span>
                     <input title="Starting sanity is equal to POW x 5." type="text" name="data.sanity.value" value="{{data.sanity.value}}" data-dtype="Number"/>
                     <span> / </span>
                     <span title="Maximum sanity is equal to 99 - the Unnatural skill." class="max-attribute-value-label">{{numberFormat data.sanity.max decimals=0 sign=false}}</span>
@@ -67,7 +67,7 @@
               <div class="flex-group-center">
                 <div class="horizontal-flex-column">
                   <div class="flexrow" style="padding: 5px;">
-                    <label class="rollable" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="Click to roll a x5 check." for="data.statistics.{{key}}.value" class="resource-label">{{toUpperCase key}}</label>
+                    <label class="rollable" data-rolltype="statistic.x5" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="Click to roll a x5 check." for="data.statistics.{{key}}.value" class="resource-label">{{toUpperCase key}}</label>
                     <input type="text" name="data.statistics.{{key}}.value" value="{{statistic.value}}" data-dtype="Number"/>
                     <span >({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
                   </div>
@@ -98,7 +98,7 @@
             <div class="grid grid-3col">
               {{#each data.skills as |skill key|}}
                 <div class="flexrow flex-group-center">
-                  <label class="rollable skill-label" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" title="Click to roll a skill check."  for="data.skills.{{key}}.value" >{{skill.label}}</label>
+                  <label class="rollable skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" title="Click to roll a skill check."  for="data.skills.{{key}}.value" >{{skill.label}}</label>
                   <input class="percentile-skill-input" type="text" name="data.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
                   <input type="checkbox" name="data.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} />
                 </div>
@@ -120,7 +120,7 @@
 
                       {{!-- Subtyped Skills take the form: data.type_skills.art.types[0].proficiency where 'types' is an array of object. --}}
                       <a class="btn-tiny btn-remove-typed-skill" title="Add another skill." data-typeskill="{{key}}" data-index="{{@index}}">-</a>
-                      <span class="rollable" data-roll="d100" data-target="{{this.proficiency}}" data-label="{{this.specialization}}" title="Click to roll a skill check." name="data.type_skills.{{key}}.subskills.{{@index}}.specialization" >{{this.specialization}}</span>
+                      <span class="rollable" data-rolltype="typeskill" data-roll="d100" data-target="{{this.proficiency}}" data-label="{{this.specialization}}" title="Click to roll a skill check." name="data.type_skills.{{key}}.subskills.{{@index}}.specialization" >{{this.specialization}}</span>
                       <input class="percentile-skill-input" type="text" name="data.type_skills.{{key}}.subskills.{{@index}}.proficiency" value="{{this.proficiency}}" data-dtype="Number"/>
                       <input type="checkbox" name="data.type_skills.{{key}}.subskills.{{@index}}.failure" {{checked this.failure}} data-dtype="Boolean" />
                       
@@ -133,7 +133,7 @@
           </div>
         </div>
 
-        {{!-- Owned Items Tab --}}
+        {{!-- GEAR Tab --}}
         <div class="tab items" data-group="primary" data-tab="gear">
           <div>
             <h3>WEAPONS</h3>
@@ -143,8 +143,8 @@
                 <div class="item-image"></div>
                 <div class="item-name">Name</div>
                 <!-- <div class="item-name">Skill</div> -->
-                <div class="item-name">Damage</div>
-                <div class="item-name">Lethality</div>
+                <div class="item-name">Damage/Lethality</div>
+                <div class="item-name">Armor Piercing</div>
                 <div class="item-controls">
                   <a class="item-control item-create" title="Create item" data-type="weapon"><i class="fas fa-plus"></i> Add item</a>
                 </div>
@@ -159,7 +159,8 @@
                     <h4 style="word-wrap: break-word;" 
                       
                       class="item-name rollable" 
-                      data-roll="d100" 
+                      data-roll="d100"
+                      data-rolltype="weapon" 
                       data-target="{{getActorSkillProp ../data item.data.skill 'proficiency'}}"
                       data-label="{{getActorSkillProp ../data item.data.skill 'label'}}"
                       title="Click to roll {{getActorSkillProp ../data item.data.skill 'label'}}"
@@ -167,11 +168,20 @@
                         {{item.name}}
                     </h4>
 
-                    <!-- <span class="item-name rollable" data-roll="d100" data-target="{{getActorSkillProp ../data item.data.skill 'proficiency'}}" data-label="{{getActorSkillProp ../data item.data.skill 'label'}}">{{getActorSkillProp ../data item.data.skill 'label'}}</span> -->
-                    <span class="rollable" data-target="damage" data-label="{{toUpperCase item.name}}" data-roll="{{toUpperCase item.data.damage}}" >{{toUpperCase item.data.damage}}</span>
-                    
-                    <span class="rollable" data-target="lethality" data-label="{{toUpperCase item.name}}" data-roll="d100">{{formatLethality item.data.lethality}}</span>
-                    
+                    {{#unless item.data.isLethal}}
+                    <span class="rollable" data-rolltype="damage" data-target="damage" data-label="{{toUpperCase item.name}}" data-roll="{{toUpperCase item.data.damage}}" 
+                      title="A lethal weapon has a chance to instantly kill a target.  Roll a D100 instead of damage die.  If it is not lethal, damage is dealt instead as if the result was a 2d10 roll, with a '00' on the first d10 equaling a 10."
+                    >
+                      {{toUpperCase item.data.damage}}
+                      </span>
+                    {{/unless}}
+
+                    {{#if item.data.isLethal}}
+                    <span class="rollable" data-rolltype="lethality" data-target="{{item.data.lethality}}" data-label="{{toUpperCase item.name}}" data-roll="d100">{{formatLethality item.data.lethality}}</span>
+                    {{/if}}
+
+                    <span >{{item.data.armorPiercing}}</span>
+
                     <div class="item-controls">
                         <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                         <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>

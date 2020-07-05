@@ -386,3 +386,8 @@ div .motivation-section{
   border-bottom: 1px solid #AAA;
   margin-bottom: 10px;
 }
+
+div .bottom-left-justified-resource{
+  vertical-align: bottom;
+  text-align: left;
+}

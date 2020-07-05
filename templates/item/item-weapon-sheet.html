@@ -26,16 +26,30 @@
                     <option {{#if_eq data.expense 'Extreme'}}selected{{/if_eq}} value="Extreme">Extreme</option>
                 </select>
               </div>
+
+              {{#unless data.isLethal}}
               <div class="resource">
                 <label class="resource-label">Damage</label>
                 <input type="text" name="data.damage" value="{{data.damage}}" data-dtype="String"/>
               </div>
+              {{/unless}}
+
+              {{#if data.isLethal}}
               <div class="resource">
                 <label class="resource-label">Lethality %</label>
-                <input type="text" name="data.lethality" value="{{data.lethality}}" data-dtype="Number"
-                  title="A lethal weapon has a chance to instantly kill a target.  Roll a D100 instead of damage die.  If it is not lethal, treat the result as 2d10 for damage."
+                <input class="" type="text" name="data.lethality" value="{{data.lethality}}" data-dtype="Number"
+                  title="A lethal weapon has a chance to instantly kill a target.  Roll a D100 instead of damage die.  If it is not lethal, damage is dealt instead as if the result was a 2d10 roll, with a '00' on the first d10 equaling a 10."
                 />
               </div>
+              {{/if}}
+
+              <div class="resource">
+                <label class="resource-label">Is Lethal: </label>
+                <input class="labeled-resource-checkbox" type="checkbox" name="data.isLethal" {{checked data.isLethal}} data-dtype="Boolean" 
+                    title="Check this if the weapon has a lethality % associated with it."
+                />
+              </div>
+
               <div class="resource">
                 <label class="resource-label">Armor Piercing</label>
                 <input type="text" name="data.armorPiercing" value="{{data.armorPiercing}}" data-dtype="Number"/>
