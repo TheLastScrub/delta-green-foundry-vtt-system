@@ -142,7 +142,7 @@
               <li class="item flexrow item-header">
                 <div class="item-image"></div>
                 <div class="item-name">Name</div>
-                <div class="item-name">Skill</div>
+                <!-- <div class="item-name">Skill</div> -->
                 <div class="item-name">Damage</div>
                 <div class="item-name">Lethality</div>
                 <div class="item-controls">
@@ -155,8 +155,19 @@
 
                   <li class="item flexrow" data-item-id="{{item._id}}">
                     <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                    <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
-                    <span class="item-name rollable" data-roll="d100" data-target="{{getActorSkillProp ../data item.data.skill 'proficiency'}}" data-label="{{getActorSkillProp ../data item.data.skill 'label'}}">{{getActorSkillProp ../data item.data.skill 'label'}}</span>
+                    
+                    <h4 style="word-wrap: break-word;" 
+                      
+                      class="item-name rollable" 
+                      data-roll="d100" 
+                      data-target="{{getActorSkillProp ../data item.data.skill 'proficiency'}}"
+                      data-label="{{getActorSkillProp ../data item.data.skill 'label'}}"
+                      title="Click to roll {{getActorSkillProp ../data item.data.skill 'label'}}"
+                      >
+                        {{item.name}}
+                    </h4>
+
+                    <!-- <span class="item-name rollable" data-roll="d100" data-target="{{getActorSkillProp ../data item.data.skill 'proficiency'}}" data-label="{{getActorSkillProp ../data item.data.skill 'label'}}">{{getActorSkillProp ../data item.data.skill 'label'}}</span> -->
                     <span class="rollable" data-target="damage" data-label="{{toUpperCase item.name}}" data-roll="{{toUpperCase item.data.damage}}" >{{toUpperCase item.data.damage}}</span>
                     
                     <span class="rollable" data-target="lethality" data-label="{{toUpperCase item.name}}" data-roll="d100">{{formatLethality item.data.lethality}}</span>
