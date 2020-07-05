@@ -6,7 +6,7 @@
   "minimumCoreVersion": "0.6.2",
   "compatibleCoreVersion": "0.6.4",
   "templateVersion": 2,
-  "author": "Nick Eimers",
+  "author": "TheLastScrub (https://github.com/TheLastScrub)",
   "esmodules": ["module/deltagreen.js"],
   "styles": ["css/deltagreen.css"],
   "scripts": [],

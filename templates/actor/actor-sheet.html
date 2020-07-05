@@ -88,6 +88,7 @@
         <a class="item" data-tab="bio">Biography</a>
         <a class="item" data-tab="bonds">Bonds</a> 
         <a class="item" data-tab="motivations">Motivations</a>
+        <a class="item fas fa-question-circle" data-tab="about"></a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -323,6 +324,27 @@
                 {{/if_eq}}
               {{/each}}
             </ol>
+          </div>
+        </div>
+
+        {{!-- About Tab --}}
+        <div class="tab items" data-group="primary" data-tab="about">
+          <div class="flex horizontal-flex-column">
+            <div>
+              <a class="fas fa-question-circle" title="Launch browser with help." data-type="weapon">Online Help</a>
+            </div>
+            <br>
+            <div>
+              <span>Delta Green Community License (NONCOMMERCIAL)</span>
+              <p>
+                 Published by arrangement with the Delta Green Partnership. 
+                 The intellectual property known as Delta Green is a trademark and copyright owned by the Delta Green Partnership, who has licensed its use here. 
+                 The contents of this system are licensed per the terms of the included LICENSE.TXT file, excepting those elements that are components of the Delta Green intellectual property.
+              </p>
+              <p>
+                Some content may additionally also be covered under the terms of the OGL Open Game License v.1.0a (Copyright 2000 Wizards of the Coast, Inc.).
+              </p>
+            </div>
           </div>
         </div>
 
