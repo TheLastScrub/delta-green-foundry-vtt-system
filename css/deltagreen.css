@@ -3,8 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
 /* Global styles */
+/* switch fonts to include "Special Elite" as option? */
 .window-app {
-  font-family: "Special Elite", "Didact Gothic", "Roboto", sans-serif;
+  font-family: "Didact Gothic", "Roboto", sans-serif;
   height: auto;
 }
 

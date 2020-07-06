@@ -356,7 +356,7 @@
             ],
             "skill": "",
             "range": "10M",
-            "damage:": "1d8",
+            "damage": "1d8",
             "armorPiercing": 0,
             "lethality": 0,
             "isLethal": false,

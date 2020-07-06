@@ -170,15 +170,15 @@
                     </h4>
 
                     {{#unless item.data.isLethal}}
-                    <span class="rollable" data-rolltype="damage" data-target="damage" data-label="{{toUpperCase item.name}}" data-roll="{{toUpperCase item.data.damage}}" 
-                      title="A lethal weapon has a chance to instantly kill a target.  Roll a D100 instead of damage die.  If it is not lethal, damage is dealt instead as if the result was a 2d10 roll, with a '00' on the first d10 equaling a 10."
-                    >
+                    <span class="rollable" data-rolltype="damage" data-target="damage" data-label="{{toUpperCase item.data.damage}}" data-roll="{{toUpperCase item.data.damage}}">
                       {{toUpperCase item.data.damage}}
                       </span>
                     {{/unless}}
 
                     {{#if item.data.isLethal}}
-                    <span class="rollable" data-rolltype="lethality" data-target="{{item.data.lethality}}" data-label="{{toUpperCase item.name}}" data-roll="d100">{{formatLethality item.data.lethality}}</span>
+                    <span class="rollable" data-rolltype="lethality" data-target="{{item.data.lethality}}" data-label="{{item.name}}" data-roll="d100"
+                      title="A lethal weapon has a chance to instantly kill a target.  Roll a D100 instead of damage die.  If it is not lethal, damage is dealt instead as if the result was a 2d10 roll, with a '00' on the first d10 equaling a 10."
+                      >{{formatLethality item.data.lethality}}</span>
                     {{/if}}
 
                     <span >{{item.data.armorPiercing}}</span>
@@ -331,15 +331,21 @@
         <div class="tab items" data-group="primary" data-tab="about">
           <div class="flex horizontal-flex-column">
             <div>
-              <a class="fas fa-question-circle" title="Launch browser with help." data-type="weapon">Online Help</a>
+              <a class="fas fa-question-circle" title="Launch browser with help." href="https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/blob/master/documentation/home.md" >Online System Documentation</a>
             </div>
             <br>
             <div>
-              <span>Delta Green Community License (NONCOMMERCIAL)</span>
+              <span>This is an unofficial fan work, it is not affiliated with or endorsed by Shaney Ivey or Arc Dream Publishing.</span>
+            </div>
+            <br>
+            <div>
+              <span style="font-weight: bold;">Delta Green Community License (NONCOMMERCIAL)</span>
               <p>
                  Published by arrangement with the Delta Green Partnership. 
-                 The intellectual property known as Delta Green is a trademark and copyright owned by the Delta Green Partnership, who has licensed its use here. 
-                 The contents of this system are licensed per the terms of the included LICENSE.TXT file, excepting those elements that are components of the Delta Green intellectual property.
+                 The intellectual property known as Delta Green is a trademark and copyright owned by the Delta Green Partnership, who has licensed its use here.
+              </p>
+              <p>
+                 The contents of this system are licensed per the terms of the included <a href="systems/deltagreen/LICENSE.txt">license</a> file, excepting those elements that are components of the Delta Green intellectual property.
               </p>
               <p>
                 Some content may additionally also be covered under the terms of the OGL Open Game License v.1.0a (Copyright 2000 Wizards of the Coast, Inc.).

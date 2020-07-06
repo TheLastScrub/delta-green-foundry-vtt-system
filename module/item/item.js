@@ -27,7 +27,10 @@ export class DeltaGreenItem extends Item {
     const actorData = this.actor ? this.actor.data.data : {};
     const itemData = item.data;
 
-    let roll = new Roll('d20+@abilities.str.mod', actorData);
+    // this isn't correct, but just leave it like this for now
+    // eventually need to point towards chat message rolling functions in actors sheet
+    // maybe need to put those in a script file and export them...
+    let roll = new Roll('item.data.damage', actorData);
     let label = `Rolling ${item.name}`;
     roll.roll().toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
