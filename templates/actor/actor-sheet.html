@@ -200,7 +200,8 @@
               <li class="item flexrow item-header">
                 <div class="item-image"></div>
                 <div class="item-name">Name</div>
-                <div class="item-name">Armor</div>
+                <div class="item-name">Armor Rating</div>
+                <div class="item-name"></div> <!-- This is for whether it's equipped or not, probably doesn't need a label. -->
                 <div class="item-controls">
                   <a class="item-control item-create" title="Create item" data-type="armor"><i class="fas fa-plus"></i> Add item</a>
                 </div>
@@ -213,6 +214,13 @@
                     <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
                     <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
                     <span>{{item.data.protection}}</span>
+                    
+                    <span>
+                    {{#if item.data.equipped}}
+                      EQUIPPED
+                    {{/if}}
+                    </span>
+
                     <div class="item-controls">
                         <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                         <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
