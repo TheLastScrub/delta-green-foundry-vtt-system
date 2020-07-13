@@ -8,10 +8,7 @@
                 <label class="resource-label">Quantity</label>
                   <input type="text" name="data.quantity" value="{{data.quantity}}" data-dtype="Number"/>
               </div>
-              <div class="resource">
-                <label class="resource-label">Weight</label>
-                  <input type="text" name="data.weight" value="{{data.weight}}" data-dtype="Number"/>
-              </div>
+              
             </div>
         </div>
     </header>
@@ -32,7 +29,10 @@
 
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
-            {{!-- As you add new fields, add them in here! --}}
+            <div class="resource">
+                <label class="resource-label">Group</label>
+                  <input type="text" name="data.group" value="{{data.group}}" data-dtype="String"/>
+              </div>
         </div>
     </section>
 </form>

@@ -130,6 +130,13 @@
   flex-direction: column;
 }
 
+.flex-left {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  text-align: left;
+}
+
 /* Styles limited to delta green sheets */
 .deltagreen {
   font-family: "Didact Gothic", "Roboto", sans-serif;
@@ -293,11 +300,7 @@ a.btn-tiny{
   text-align: center;
 }
 
-span.breaking-point-label{
-  justify-content: right;
-  margin-right: 10px;
-  width: 100px;
-}
+
 
 span.left-aligned-label{
   justify-content: left;
@@ -379,6 +382,34 @@ div span.bio-grid-label{
   grid-template-columns: auto 50px max-content;
   align-items: center;
 } 
+
+.breaking-point-grid-3col{
+  display: grid;
+  grid-template-columns: 100px 70px 65px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-content: center;
+  justify-content: left;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #AAA;
+}
+
+.adaptation-grid-5col{
+  display: grid;
+  grid-template-columns: 100px 50px 50px 50px 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-content: center;
+  justify-content: left;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #AAA;
+}
+
+.bolded-label{
+  font-weight: bold;
+}
 
 .resource .labeled-resource-checkbox{
   vertical-align: middle;

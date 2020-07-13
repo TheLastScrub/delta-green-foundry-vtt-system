@@ -310,16 +310,16 @@
                 "value": 100,
                 "currentBreakingPoint": 101,
                 "adaptations": {
-                    "violence": [
-                        false,
-                        false,
-                        false
-                    ],
-                    "helplessness": [
-                        false,
-                        false,
-                        false
-                    ]
+                    "violence": {
+                        "incident1": false,
+                        "incident2": false,
+                        "incident3": false
+                    },
+                    "helplessness": {
+                        "incident1": false,
+                        "incident2": false,
+                        "incident3": false
+                    }
                 }
             },
             "physical":{
@@ -342,7 +342,8 @@
             "weapon",
             "armor",
             "motivation",
-            "bond"
+            "bond",
+            "typedSkill"
         ],
         "templates": {
             "base": {
@@ -387,6 +388,13 @@
                 "base"
             ],
             "score": 10
+        },
+        "typedSkill":{
+            "group": "Art",
+            "label": "New Skill",
+            "proficiency": 20,
+            "failure": false,
+            "cannotBeImprovedByFailure": false
         }
     }
 }

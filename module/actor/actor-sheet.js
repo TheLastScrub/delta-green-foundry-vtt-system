@@ -312,7 +312,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // In this situation, the lethality threshold doubles (e.g. 20% would become 40%),
     // and if the lethality roll fails, the damage is doubled per normal.  However right now
     // the attack roll and damage roll are completely separate... Perhaps in the future, use a
-    // hotkey to allow the doubling logic?
+    // button in the skill check roll to allow doubling this logic?
 
     // try to determine what the d100 result would be as if it was two d10's being rolled
     let damageDie1 = Math.floor(skillCheckTotal / 10);
