@@ -8,7 +8,7 @@ More information on Foundry VTT:
 https://foundryvtt.com/
 
 # System Status
-This is a *work in progress* and is not currently stable.  Any use is at your own risk, as the underlying structure is still seeing frequent changes.
+The system is now largely stable, but still missing a few fields.  The underlying data structure will likely not change much but potentially could still.  Changes to the GUI will likely still happen.
 
 # Installation Guide
 To install, paste this link into the manifest section of Foundry VTT:
@@ -43,5 +43,25 @@ https://fonts.google.com/specimen/Didact+Gothic?query=did#about
 License: Open Font License.
 https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 
+ICONS -  https://game-icons.net/
+https://creativecommons.org/licenses/by/3.0/
+
+Sawed-off shotgun icon by Delapouite under CC BY 3.0
+Crosshair icon by Delapouite under CC BY 3.0
+Two handed sword icon by Delapouite under CC BY 3.0
+Katana icon by Delapouite under CC BY 3.0
+AK47 icon by Skoll under CC BY 3.0
+Switchblade icon by Skoll under CC BY 3.0
+Desert Eagle iconby Skoll under CC BY 3.0
+Colt M1911 icon by Skoll under CC BY 3.0
+Revolver icon by Skoll under CC BY 3.0
+Lee Enfield icon by Skoll under CC BY 3.0
+FN FAL icon by Skoll under CC BY 3.0
+Walther PPK icon by Skoll under CC BY 3.0
+Kevlar vest icon by Skoll under CC BY 3.0
+Spectre M4 icon by Skoll under CC BY 3.0
+Helmet icon by sbed under CC BY 3.0
+Bowie knife icon by Lorc under CC BY 3.0
+Grenade icon by Lorc under CC BY 3.0
 
 
