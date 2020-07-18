@@ -63,5 +63,6 @@ Spectre M4 icon by Skoll under CC BY 3.0
 Helmet icon by sbed under CC BY 3.0
 Bowie knife icon by Lorc under CC BY 3.0
 Grenade icon by Lorc under CC BY 3.0
+Stiletto iconby Lorc under CC BY 3.0
 
 
