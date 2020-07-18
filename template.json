@@ -271,8 +271,7 @@
             "weapon",
             "armor",
             "motivation",
-            "bond",
-            "typedSkill"
+            "bond"
         ],
         "templates": {
             "base": {
@@ -317,13 +316,6 @@
                 "base"
             ],
             "score": 10
-        },
-        "typedSkill":{
-            "group": "Art",
-            "label": "New Skill",
-            "proficiency": 20,
-            "failure": false,
-            "cannotBeImprovedByFailure": false
         }
     }
 }
