@@ -219,83 +219,12 @@
                         "proficiency": 0
                     }
                 },
-                "type_skills":{
-                    "art": {
-                        "label": "Art",
-                        "examples": "Sculpting, Painting, Dance, Music, Etc.",
-                        "subskills":[
-                            {
-                                "specialization": "Painting",
-                                "proficiency": 0,
-                                "failure": false
-                            }
-                        ]
-                    },
-                    "craft": {
-                        "label": "Craft",
-                        "examples": "Mechanic, Carpentry, Electrical, Microelectronics, Locksmith, Gunsmith, Etc.",
-                        "subskills":[
-                            {
-                                "specialization": "Electrical",
-                                "proficiency": 0,
-                                "failure": false
-                            }
-                        ]
-                    },
-                    "military_science": {
-                        "label": "Military Science",
-                        "examples": "Land, Air, Sea, Etc.",
-                        "subskills":[
-                            {
-                                "specialization": "Land",
-                                "proficiency": 0,
-                                "failure": false
-                            }
-                        ]
-                    },
-                    "pilot": {
-                        "label": "Pilot",
-                        "examples": "Airplane, Drone, Small Boat, Ship, Helicopter, Space Shuttle, etc.",
-                        "subskills":[
-                            {
-                                "specialization": "Airplane",
-                                "proficiency": 0,
-                                "failure": false
-                            }
-                        ]
-                    },
-                    "science": {
-                        "label": "Science",
-                        "examples": "Biology, Chemistry, Physics, Astronomy, Geology, Mathematics, etc.",
-                        "subskills":[
-                            {
-                                "specialization": "Biology/Chemistry/Physics/Etc.",
-                                "proficiency": 0,
-                                "failure": false
-                            }
-                        ]
-                    },
-                    "foreign_languages": {
-                        "label": "Foreign Languages",
-                        "examples": "Spanish, Yiddish, Aklo, etc.",
-                        "subskills":[
-                            {
-                                "specialization": "Spanish",
-                                "proficiency": 0,
-                                "failure": false
-                            }
-                        ]
-                    },
-                    "other_skills": {
-                        "label": "Other Skills, Specialties, or Training",
-                        "examples": "Lockpicks, SCUBA Diving, Parachuting, Some Exotic Weapon, etc.",
-                        "subskills":[
-                            {
-                                "specialization": "",
-                                "proficiency": 0,
-                                "failure": false
-                            }
-                        ]
+                "typedSkills":{
+                    "tskill_01": {
+                        "label": "Painting",
+                        "group": "Art",
+                        "proficiency": 0,
+                        "failure": false
                     }
                 }
             }

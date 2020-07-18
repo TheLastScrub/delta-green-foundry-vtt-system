@@ -119,7 +119,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       this.actor.update({"data": updatedData});
     });
 
-    html.find('.btn-add-typed-skill').click(event => {
+    html.find('.typed-skill-add').click(event => {
       event.preventDefault();
 
       let targetskill = event.target.getAttribute("data-typeskill");
@@ -127,23 +127,12 @@ export class DeltaGreenActorSheet extends ActorSheet {
       this._showNewTypeSkillDialog(targetskill);
     });
 
-    html.find('.btn-remove-typed-skill').click(event => {
+    html.find('.typed-skill-delete').click(event => {
       event.preventDefault();
-      let targetskill = event.target.getAttribute("data-typeskill");
-      let skillindex = event.target.getAttribute("data-index");
-      let updatedData = duplicate(this.actor.data.data);
+      let targetskill = event.target.getAttribute("data-typedskill");
 
-      let typesArr =  [];
-      let x;
-      for(x in updatedData.type_skills[targetskill].subskills){
-        if(Number.isNumeric(x) && x != skillindex){
-          typesArr.push(updatedData.type_skills[targetskill].subskills[x]);
-        }
-      }
-
-      updatedData.type_skills[targetskill].subskills = typesArr;
-
-      this.actor.update({"data": updatedData});
+      // many bothans died to bring us this information on how to delete a property on an entity
+      this.actor.update({[`data.typedSkills.-=${targetskill}`]: null});
     });
 
     //html.find('.btn-add-bond').click(event => {
@@ -161,38 +150,53 @@ export class DeltaGreenActorSheet extends ActorSheet {
   }
 
   _showNewTypeSkillDialog(targetskill){
+    let htmlContent = "";
+
+    htmlContent += `<div>`;
+    htmlContent += `     <label>Skill Group</label>`;
+    htmlContent += `     <select name="new-type-skill-group" />`;
+    htmlContent += `          <option>Art</option>`;
+    htmlContent += `          <option>Craft</option>`;
+    htmlContent += `          <option>Foreign Language</option>`;
+    htmlContent += `          <option>Military Science</option>`;
+    htmlContent += `          <option>Pilot</option>`;
+    htmlContent += `          <option>Science</option>`;
+    htmlContent += `          <option>Other</option>`;
+    htmlContent += `     </select>`;
+    htmlContent += `</div>`;
+
+    htmlContent += `<div>`;
+    htmlContent += `     <label>Skill Name</label>`;
+    htmlContent += `     <input type="text" name="new-type-skill-label" />`;
+    htmlContent += `</div>`;
+
     new Dialog({
-      content:`<div><input type="text" name="new-type-skill-label" /></div>`,
+      content:htmlContent,
       title: "Add New Skill",
       buttons: {
         add:{
           label: "Add Skill",
           callback: btn =>{
             let newTypeSkillLabel = btn.find("[name='new-type-skill-label']").val();
-            this._addNewTypedSkill(targetskill, newTypeSkillLabel);
+            let newTypeSkillGroup = btn.find("[name='new-type-skill-group']").val();
+            this._addNewTypedSkill(newTypeSkillLabel, newTypeSkillGroup);
           }
         }
       }
     }).render(true);
   }
 
-  _addNewTypedSkill(targetskill, newTypeSkillLabel){
-    // It sucks, but seems like Foundry and/or Handlebars somehow converts 'types' from being typed as an array to an object...
-    // As such, normal array functions like 'push' won't work which makes doing the update difficult...
-    // So just create an array, add all existing items to it, then use that to update the existing object.
-    // Handlebars doesn't seem to be broken by this sudden update of the type from 'Object' to 'Array'.
+  _addNewTypedSkill(newSkillLabel, newSkillGroup){
     let updatedData = duplicate(this.actor.data.data);
-    let typesArr =  [];
-    let x;
-    for(x in updatedData.type_skills[targetskill].subskills){
-      if(Number.isNumeric(x)){
-        typesArr.push(updatedData.type_skills[targetskill].subskills[x]);
-      }
-    }
+    let typedSkills = updatedData.typedSkills;
 
-    typesArr.push({specialization:newTypeSkillLabel, proficiency: 40, failure: false});
+    let d = new Date();
 
-    updatedData.type_skills[targetskill].subskills = typesArr;
+    let newSkillPropertyName = d.getFullYear().toString() + (d.getMonth() + 1).toString() + d.getDate().toString() + d.getHours().toString() + d.getMinutes().toString() + d.getSeconds().toString();
+    console.log(newSkillPropertyName);
+    typedSkills[newSkillPropertyName] = {"label": newSkillLabel, "group": newSkillGroup, "proficiency": 0, "failure": false};
+
+    updatedData.typedSkills = typedSkills;
 
     this.actor.update({"data": updatedData});
   }

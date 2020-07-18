@@ -87,22 +87,19 @@
 
           <div>
             <div class="item-controls">
-              <a class="item-control item-create" title="Create item" data-type="typedSkill"><i class="fas fa-plus"></i>Add Typed or Custom Skill</a>
+              <a class="item-control typed-skill-add" title="Create item"><i class="fas fa-plus"></i>Add Typed or Custom Skill</a>
             </div>
             <div class="grid-2col">
-            {{#each actor.items as |item id|}}
-              {{#if_eq item.type 'typedSkill'}}
-                <div class="item flexrow flex-group-center" data-item-id="{{item._id}}">
-                  <label class="rollable skill-label" data-rolltype="skill" data-roll="d100" data-target="{{item.data.proficiency}}" data-label="{{item.data.label}}" title="Click to roll a skill check." >{{item.data.group}} ({{item.name}})</label>
-                  <input class="percentile-skill-input" type="text" name="item.data.proficiency" value="{{item.data.proficiency}}" data-dtype="Number"/>
-                  <input type="checkbox" name="item.data.failure" {{checked item.data.failure}} data-dtype="Boolean" {{#if item.data.cannotBeImprovedByFailure}} disabled {{/if}} />
+              {{#each data.typedSkills as |skill key|}}
+                <div class="item flexrow flex-group-center">
+                  <label class="rollable skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" title="Click to roll a skill check." >{{skill.group}} ({{skill.label}})</label>
+                  <input class="percentile-skill-input" type="text" name="data.typedSkills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
+                  <input type="checkbox" name="data.typedSkills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} />
                   <div class="item-controls">
-                      <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                      <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                      <a class="item-control typed-skill-delete" title="Delete Item"><i class="fas fa-trash" data-typedskill="{{key}}" ></i></a>
                   </div>
                 </div>
-              {{/if_eq}}
-            {{/each}}
+              {{/each}}
             </div>
           </div>
         </div>
