@@ -96,7 +96,7 @@
                   <input class="percentile-skill-input" type="text" name="data.typedSkills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
                   <input type="checkbox" name="data.typedSkills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} />
                   <div class="item-controls">
-                      <a class="item-control typed-skill-delete" title="Delete Item"><i class="fas fa-trash" data-typedskill="{{key}}" ></i></a>
+                      <a class="item-control typed-skill-delete" title="Delete Skill"><i class="fas fa-trash" data-typedskill="{{key}}" ></i></a>
                   </div>
                 </div>
               {{/each}}
