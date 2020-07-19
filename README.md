@@ -1,5 +1,8 @@
 # (Unofficial) Delta Green: The RPG Foundry System
-This is a fan made Foundry VTT system for Delta Green: The RPG, based on the Agent's Handbook from Arc Dream Publishing.  It is unaffiliated with Arc Dream Publishing.  
+This is a fan made Foundry VTT system for Delta Green: The RPG, based on the Agent's Handbook from Arc Dream Publishing.  It is unaffiliated with the Delta Green Partnershipt or Arc Dream Publishing (although they did give permission to make the system).
+
+Whatever documentation currently exists can be found here:
+https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/blob/master/documentation/home.md
 
 More details on Delta Green can be found here:
 http://www.delta-green.com/
@@ -11,7 +14,7 @@ https://foundryvtt.com/
 The system is now largely stable, but still missing a few fields.  The underlying data structure will likely not change much but potentially could still.  Changes to the GUI will likely still happen.
 
 # Installation Guide
-To install, paste this link into the manifest section of Foundry VTT:
+The system is not currently an official Foundry system list.  To install go to _Game Systems_ and click _Install System_.  Then in the _Manifest URL_ input field, paste the following link and click _Install_:
 https://raw.githubusercontent.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/master/system.json
 
 # Foundry VTT License
