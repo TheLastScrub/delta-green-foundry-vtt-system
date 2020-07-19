@@ -62,6 +62,23 @@ export class DeltaGreenActorSheet extends ActorSheet {
     actorData.armor = armor;
     actorData.weapons = weapons;
   }
+  
+  // Can add extra buttons to form header here if necessary
+  // I don't need this right now, but maybe will move the about section to the header in the future...
+  _getHeaderButtons(){
+    let buttons = super._getHeaderButtons();
+
+    //buttons = [
+    //  {
+    //    label: "Test",
+    //    class: "test-extra-icon",
+    //    icon: "fas fa-dice",
+    //    onclick: (ev) => prepareRollDialog(this, "Roll", 0, 0, 0, 0)
+    //  }
+    //].concat(buttons);
+
+    return buttons;
+  }
 
   /* -------------------------------------------- */
 

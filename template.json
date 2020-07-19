@@ -285,15 +285,13 @@
             ],
             "skill": "",
             "range": "10M",
-            "damage": "1d8",
+            "damage": "1D8",
             "armorPiercing": 0,
             "lethality": 0,
             "isLethal": false,
-            "killRadius": "",
-            "ammo": 20,
-            "restricted": false,
-            "expense": "Standard",
-            "category": "Firearms"
+            "killRadius": "N/A",
+            "ammo": "",
+            "expense": "Standard"
         },
         "armor": {
             "templates": [

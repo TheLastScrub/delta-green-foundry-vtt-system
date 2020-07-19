@@ -58,5 +58,23 @@ export class DeltaGreenActor extends Actor {
     };
 
     actorData.data.sanity.max = 99 - actorData.data.skills.unnatural.proficiency;
+
+
+    // Sanity Loss Adaptations Logic
+    let adaptations = actorData.data.sanity.adaptations;
+
+    if (adaptations.violence.incident1 && adaptations.violence.incident2 && adaptations.violence.incident3){
+      actorData.data.sanity.adaptations.violence.isAdapted = true;
+    }
+    else{
+      actorData.data.sanity.adaptations.violence.isAdapted = false;
+    }
+
+    if (adaptations.helplessness.incident1 && adaptations.helplessness.incident2 && adaptations.helplessness.incident3){
+      actorData.data.sanity.adaptations.helplessness.isAdapted = true;
+    }
+    else{
+      actorData.data.sanity.adaptations.helplessness.isAdapted = false;
+    }
   }
 }

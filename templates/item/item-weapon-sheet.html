@@ -3,7 +3,7 @@
         <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
         <div class="header-fields">
             <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
-            <div class="grid grid-2col">
+            <div class="weapon-grid-2col">
               <div class="resource">
                 <label class="resource-label">Skill</label>
                 <select name="data.skill" >
@@ -27,6 +27,15 @@
                 </select>
               </div>
 
+              <div class="resource">
+                <label class="resource-label"
+                  title="Check this if the weapon has a lethality % associated with it."
+                >Is Lethal: </label>
+                <input class="labeled-resource-checkbox" type="checkbox" name="data.isLethal" {{checked data.isLethal}} data-dtype="Boolean" 
+                    title="Check this if the weapon has a lethality % associated with it."
+                />
+              </div>
+
               {{#unless data.isLethal}}
               <div class="resource">
                 <label class="resource-label">Damage</label>
@@ -43,20 +52,26 @@
               </div>
               {{/if}}
 
-              <div class="resource">
-                <label class="resource-label">Is Lethal: </label>
-                <input class="labeled-resource-checkbox" type="checkbox" name="data.isLethal" {{checked data.isLethal}} data-dtype="Boolean" 
-                    title="Check this if the weapon has a lethality % associated with it."
-                />
-              </div>
+              
 
               <div class="resource">
                 <label class="resource-label">Armor Piercing</label>
                 <input type="text" name="data.armorPiercing" value="{{data.armorPiercing}}" data-dtype="Number"/>
               </div>
+
               <div class="resource">
-                <label class="resource-label">Ammo</label>
-                <input type="text" name="data.ammo" value="{{data.ammo}}" data-dtype="Number"/>
+                <label class="resource-label">Ammo (Amount/Type)</label>
+                <input type="text" name="data.ammo" value="{{data.ammo}}" data-dtype="String"/>
+              </div>
+
+              <div class="resource">
+                <label class="resource-label">Range</label>
+                <input type="text" name="data.range" value="{{data.range}}" data-dtype="String"/>
+              </div>
+
+              <div class="resource">
+                <label class="resource-label">Kill Radius</label>
+                <input type="text" name="data.killRadius" value="{{data.killRadius}}" data-dtype="String"/>
               </div>
             </div>
         </div>

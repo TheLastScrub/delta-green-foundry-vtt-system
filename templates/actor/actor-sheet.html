@@ -124,7 +124,7 @@
           </div>
         </div>
 
-        {{!-- Motivations Tab --}}
+        {{!-- Mental Tab (formerly 'Motivations') --}}
         <div class="tab motivations" data-group="primary" data-tab="motivations">
           <div class="">
               <div class="breaking-point-grid-3col">
@@ -139,15 +139,26 @@
                   
                   <Label>Violence</Label>
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident1" {{checked data.sanity.adaptations.violence.incident1}} data-dtype="Boolean" />
-                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident2" {{checked data.sanity.adaptations.violence.incident2}} data-dtype="Boolean" />
-                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident3" {{checked data.sanity.adaptations.violence.incident3}} data-dtype="Boolean" />
-                  <label>Adapted</label>
+                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident2" {{#if_eq data.sanity.adaptations.violence.incident1 false}}disabled{{/if_eq}} {{checked data.sanity.adaptations.violence.incident2}} data-dtype="Boolean" />
+                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident3" {{#if_eq data.sanity.adaptations.violence.incident2 false}}disabled{{/if_eq}} {{checked data.sanity.adaptations.violence.incident3}} data-dtype="Boolean" />
+                  
+                  <label style="font-style: italic;">
+                  {{#if data.sanity.adaptations.violence.isAdapted}}
+                    Adapted
+                  {{/if}}
+                  </label>
+                  
                 
                   <label>Helplessness</label>
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident1" {{checked data.sanity.adaptations.helplessness.incident1}} data-dtype="Boolean" />
-                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident2" {{checked data.sanity.adaptations.helplessness.incident2}} data-dtype="Boolean" />
-                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident3" {{checked data.sanity.adaptations.helplessness.incident3}} data-dtype="Boolean" />
-                  <label>Adapted</label>
+                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident2" {{#if_eq data.sanity.adaptations.helplessness.incident1 false}}disabled{{/if_eq}} {{checked data.sanity.adaptations.helplessness.incident2}} data-dtype="Boolean" />
+                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident3" {{#if_eq data.sanity.adaptations.helplessness.incident2 false}}disabled{{/if_eq}} {{checked data.sanity.adaptations.helplessness.incident3}} data-dtype="Boolean" />
+                  
+                  <label style="font-style: italic;">
+                  {{#if data.sanity.adaptations.helplessness.isAdapted}}
+                    Adapted
+                  {{/if}}
+                  </label>
                   
                 </div>
               </div>

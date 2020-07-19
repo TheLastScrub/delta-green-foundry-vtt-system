@@ -407,6 +407,17 @@ div span.bio-grid-label{
   border-bottom: 1px solid #AAA;
 }
 
+.weapon-grid-2col{
+  display: grid;
+  grid-template-columns: 48% 48%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  justify-content: left;
+  align-items: flex-end;
+  padding: 0px;
+  column-gap: 4%;
+}
+
 .bolded-label{
   font-weight: bold;
 }
