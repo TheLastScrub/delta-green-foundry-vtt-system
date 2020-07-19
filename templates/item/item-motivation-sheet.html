@@ -14,13 +14,13 @@
             <div class="motivation-section">
                 <label class="resource-label">Is Disorder: </label>
                 <input class="labeled-resource-checkbox" type="checkbox" name="data.crossedOut" {{checked data.crossedOut}} data-dtype="Boolean" 
-                    title="Check this if the motivation has been lost after hitting a break point, or if entering a disorder."
+                    title="Check this if adding a disorder, or if an existing motivation has been lost due to gaining a disorder."
                 />
             </div>
 
             <div class="resource">
                 <label class="resource-label">Motivation</label>
-                <input type="text" name="name" value="{{item.name}}" data-dtype="String"
+                <input type="text" name="name" value="{{item.name}}" placeholder="" data-dtype="String"
                     
                      title="Something that drives the character."
                     
@@ -43,7 +43,7 @@
                 />
             </div>
             <div class="motivation-section">
-                <label class="resource-label">Disorder Has Been Cured: </label>
+                <label class="resource-label">Disorder Has Been "Cured": </label>
                 <input class="" type="checkbox" name="data.disorderCured" {{checked data.disorderCured}} data-dtype="Boolean" 
                     title="A critical success on a therapy luck roll can cure a disorder.  It may return the next time a breaking point is hit however."
                 />
