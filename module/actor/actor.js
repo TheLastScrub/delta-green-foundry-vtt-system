@@ -41,12 +41,13 @@ export class DeltaGreenActor extends Actor {
       if(key === 'unnatural'){
         skill.cannotBeImprovedByFailure = true;
       }
+      else if(key==='luck'){
+        skill.cannotBeImprovedByFailure = true;
+      }
       else{
         skill.cannotBeImprovedByFailure = false;
       }
     }
-
-    console.log(actorData);
     actorData.data.wp.max = actorData.data.statistics.pow.value;
 
     actorData.data.health.max = Math.ceil((actorData.data.statistics.con.value + actorData.data.statistics.str.value) / 2);
@@ -76,5 +77,7 @@ export class DeltaGreenActor extends Actor {
     else{
       actorData.data.sanity.adaptations.helplessness.isAdapted = false;
     }
+    
+    console.log(actorData);
   }
 }
