@@ -300,8 +300,6 @@ a.btn-tiny{
   text-align: center;
 }
 
-
-
 span.left-aligned-label{
   justify-content: left;
   margin-left: 10px;
@@ -434,4 +432,9 @@ div .motivation-section{
 div .bottom-left-justified-resource{
   vertical-align: bottom;
   text-align: left;
+}
+
+div .first-aid-received-section{
+  border-bottom: 1px solid #AAA;
+  margin-bottom: 10px;
 }

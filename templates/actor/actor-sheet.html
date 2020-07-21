@@ -122,6 +122,18 @@
               </div>
             {{/each}}
           </div>
+          <div>
+            <div class="first-aid-received-section">
+              <label class="bolded-label"
+                title="Once an agent receives first aid, they cannot benefit from it again until they are damaged again."
+              >First Aid Has Already Been Attempted: </label>
+              <input class="labeled-resource-checkbox" type="checkbox" name="data.physical.firstAidAttempted" {{checked data.physical.firstAidAttempted}} data-dtype="Boolean" />
+            </div>
+            <div>
+              <label class="bolded-label">Wounds</label>
+              <input class="fill-remaining-space" type="text" name="data.physical.wounds" value="{{data.physical.wounds}}" data-dtype="String" />
+            </div>
+          </div>
         </div>
 
         {{!-- Mental Tab (formerly 'Motivations') --}}
@@ -150,7 +162,6 @@
                   {{/if}}
                   </label>
                   
-                
                   <label>Helplessness</label>
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident1" {{checked data.sanity.adaptations.helplessness.incident1}} data-dtype="Boolean" />
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident2" {{checked data.sanity.adaptations.helplessness.incident2}} data-dtype="Boolean" />
