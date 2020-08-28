@@ -68,14 +68,13 @@ export class DeltaGreenActorSheet extends ActorSheet {
   _getHeaderButtons(){
     let buttons = super._getHeaderButtons();
 
-    //buttons = [
-    //  {
-    //    label: "Test",
-    //    class: "test-extra-icon",
-    //    icon: "fas fa-dice",
-    //    onclick: (ev) => prepareRollDialog(this, "Roll", 0, 0, 0, 0)
-    //  }
-    //].concat(buttons);
+    buttons = [
+      {
+        label: "Roll Luck",
+        class: "test-extra-icon",
+        icon: "fas fa-dice",
+        onclick: (ev) => this._sendPercentileTestToChat("Luck", 50)
+      }].concat(buttons);
 
     return buttons;
   }
