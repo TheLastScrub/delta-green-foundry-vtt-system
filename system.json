@@ -24,6 +24,6 @@
   "secondaryTokenAttribute": "wp",
   "url": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial",
   "manifest": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/raw/master/system.json",
-  "download": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/archive/master.zip",
+  "download": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/archive/v0.8.9.zip",
   "license": "LICENSE.txt"
 }
