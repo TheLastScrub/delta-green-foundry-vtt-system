@@ -78,9 +78,16 @@
             <div class="grid grid-3col">
               {{#each data.skills as |skill key|}}
                 <div class="flexrow flex-group-center">
-                  <label class="rollable skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" title="Click to roll a skill check."  for="data.skills.{{key}}.value" >{{skill.label}}</label>
+                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}"   for="data.skills.{{key}}.value" 
+                      {{#if skill.proficiency}}title="Click to roll a skill check."{{/if}}
+                      {{#unless skill.proficiency}}title="A skill at 0% cannot be used.  See page 28 of the Agent's Handbook."{{/unless}}
+                    >
+                    {{skill.label}}
+                  </label>
                   <input class="percentile-skill-input" type="text" name="data.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
-                  <input type="checkbox" name="data.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} />
+                  <input type="checkbox" name="data.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} 
+                    title="After failing a test on this skill (if proficiency is at least 1%), check this box. At the end of the session, add 1D4-1 percentage points to the skill and uncheck the box. Does not apply to the Unnatural skill.  See page 29 of the Agent's Handbook."
+                    />
                 </div>
               {{/each}}
           </div>
@@ -92,7 +99,12 @@
             <div class="grid-2col">
               {{#each data.typedSkills as |skill key|}}
                 <div class="item flexrow flex-group-center">
-                  <label class="rollable skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" title="Click to roll a skill check." >{{skill.group}} ({{skill.label}})</label>
+                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" 
+                      {{#if skill.proficiency}}title="Click to roll a skill check."{{/if}}
+                      {{#unless skill.proficiency}}title="A skill at 0% cannot be used.  See page 28 of the Agent's Handbook."{{/unless}} 
+                    >
+                    {{skill.group}} ({{skill.label}})
+                  </label>
                   <input class="percentile-skill-input" type="text" name="data.typedSkills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
                   <input type="checkbox" name="data.typedSkills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} />
                   <div class="item-controls">

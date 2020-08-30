@@ -120,11 +120,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
     }
 
     // Custom Sheet Macros
-    //html.find('.btn-reset-breaking-point').click(this._resetBreakingPoint.bind(this));
-    //html.find('.btn-reset-breaking-point').click((event) => {
-    //  this._resetBreakingPoint(this);
-    //});
-    //html.find('.btn-reset-breaking-point').bind('click', this._resetBreakingPoint(this));
     html.find('.btn-reset-breaking-point').click(event => {
       event.preventDefault();
       let currentBreakingPoint = 0;
@@ -151,18 +146,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
       // many bothans died to bring us this information on how to delete a property on an entity
       this.actor.update({[`data.typedSkills.-=${targetskill}`]: null});
     });
-
-    //html.find('.btn-add-bond').click(event => {
-    //  event.preventDefault();
-    //  this._addNewBond();
-    //});
-
-    //html.find('.btn-remove-bond').click(event => {
-    //  event.preventDefault();
-    //  let skillindex = event.target.getAttribute("data-index");
-
-    //  this._removeBond(skillindex);
-    //});
     
   }
 

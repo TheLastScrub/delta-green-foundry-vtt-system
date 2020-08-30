@@ -66,6 +66,18 @@ Hooks.once('init', async function() {
     }
   });
 
+  Handlebars.registerHelper('if_gt', function(a, b, trueVal, falseVal) {
+    if (a > b) {
+        return trueVal;
+    } else {
+        return falseVal;
+    }
+  });
+
+  Handlebars.registerHelper('cite_ahb', function(page) {
+    return "See page " + str(page) + " of the Agent's Handbook.";
+  });
+
   Handlebars.registerHelper('formatLethality', function(lethality) {
     if (lethality > 0) {
       return lethality.toString() + "%";

@@ -15,6 +15,10 @@
   cursor: pointer;
 }
 
+.not-rollable{
+  color: #999999;
+}
+
 .grid-1col{
   display: grid;
   grid-column: span 1 / span 1;
