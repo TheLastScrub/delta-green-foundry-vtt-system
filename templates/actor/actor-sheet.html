@@ -154,11 +154,11 @@
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident2" {{checked data.sanity.adaptations.violence.incident2}} data-dtype="Boolean" />
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident3" {{checked data.sanity.adaptations.violence.incident3}} data-dtype="Boolean" />
                   
-                  <label style="font-style: italic;"
+                  <label class="adapted-label"
                     title="Unfortunately, being adapted to violence means your Agent’s empathy suffers as they come to view violence as nothing but another tool to be wielded. He or she permanently loses 1D6 CHA and the same amount from each of their Bonds."
                   >
                   {{#if data.sanity.adaptations.violence.isAdapted}}
-                    Adapted
+                    Adapted To Violence
                   {{/if}}
                   </label>
                   
@@ -167,11 +167,11 @@
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident2" {{checked data.sanity.adaptations.helplessness.incident2}} data-dtype="Boolean" />
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident3" {{checked data.sanity.adaptations.helplessness.incident3}} data-dtype="Boolean" />
                   
-                  <label style="font-style: italic;"
+                  <label class="adapted-label"
                     title="Being adapted to helplessness means your Agent’s personal drive suffers as they pull back from the world around them. As soon as your Agent becomes adapted to helplessness, he or she permanently loses 1D6 POW."
                   >
                   {{#if data.sanity.adaptations.helplessness.isAdapted}}
-                    Adapted
+                    Adapted To Hopelessness
                   {{/if}}
                   </label>
                   

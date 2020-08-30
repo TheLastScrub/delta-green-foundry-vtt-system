@@ -405,6 +405,11 @@ div span.bio-grid-label{
   border-bottom: 1px solid #AAA;
 }
 
+.adapted-label{
+  font-weight: bold;
+  font-style: italic;
+}
+
 .weapon-grid-2col{
   display: grid;
   grid-template-columns: 48% 48%;
