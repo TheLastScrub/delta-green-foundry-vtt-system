@@ -80,4 +80,16 @@ export class DeltaGreenActor extends Actor {
     
     console.log(actorData);
   }
+
+  /** @override */
+  static async create(data, options={}) {
+    data.token = data.token || {};
+    if ( data.type === "agent" ) {
+      mergeObject(data.token, {
+        actorLink: true
+      }, {overwrite: false});
+    }
+    return super.create(data, options);
+  }
+
 }
