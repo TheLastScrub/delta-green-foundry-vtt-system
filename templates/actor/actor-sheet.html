@@ -155,7 +155,7 @@
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident3" {{checked data.sanity.adaptations.violence.incident3}} data-dtype="Boolean" />
                   
                   <label style="font-style: italic;"
-                    title="Unfortunately, being adapted to violence means your Agent’s empathy suffers. He or she permanently loses 1D6 CHA and the same amount from each Bond."
+                    title="Unfortunately, being adapted to violence means your Agent’s empathy suffers as they come to view violence as nothing but another tool to be wielded. He or she permanently loses 1D6 CHA and the same amount from each of their Bonds."
                   >
                   {{#if data.sanity.adaptations.violence.isAdapted}}
                     Adapted
@@ -168,7 +168,7 @@
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident3" {{checked data.sanity.adaptations.helplessness.incident3}} data-dtype="Boolean" />
                   
                   <label style="font-style: italic;"
-                    title="Being adapted to helplessness means your Agent’s personal drive suffers. As soon as your Agent becomes adapted to helplessness, he or she permanently loses 1D6 POW."
+                    title="Being adapted to helplessness means your Agent’s personal drive suffers as they pull back from the world around them. As soon as your Agent becomes adapted to helplessness, he or she permanently loses 1D6 POW."
                   >
                   {{#if data.sanity.adaptations.helplessness.isAdapted}}
                     Adapted
@@ -298,6 +298,44 @@
                     <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
                     <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
                     <span>{{item.data.protection}}</span>
+                    
+                    <span>
+                    {{#if item.data.equipped}}
+                      EQUIPPED
+                    {{/if}}
+                    </span>
+
+                    <div class="item-controls">
+                        <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                    </div>
+                  </li>
+
+                {{/if_eq}}
+              {{/each}}
+
+            </ol>
+          </div>
+          <div>
+            <h3>OTHER GEAR</h3>
+            <ol class="items-list">
+              <li class="item flexrow item-header">
+                <div class="item-image"></div>
+                <div class="item-name">Name</div>
+                <div class="item-name"></div>
+                <div class="item-name"></div> <!-- This is for whether it's equipped or not, probably doesn't need a label. -->
+                <div class="item-controls">
+                  <a class="item-control item-create" title="Create item" data-type="gear"><i class="fas fa-plus"></i> Add</a>
+                </div>
+              </li>
+
+              {{#each actor.items as |item id|}}
+                {{#if_eq item.type 'gear'}}
+
+                  <li class="item flexrow" data-item-id="{{item._id}}">
+                    <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
+                    <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
+                    <span></span>
                     
                     <span>
                     {{#if item.data.equipped}}

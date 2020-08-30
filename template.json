@@ -271,7 +271,8 @@
             "weapon",
             "armor",
             "motivation",
-            "bond"
+            "bond",
+            "gear"
         ],
         "templates": {
             "base": {
@@ -314,6 +315,11 @@
                 "base"
             ],
             "score": 10
+        },
+        "gear":{
+            "templates":["base"],
+            "equipped": true,
+            "expense": "Standard"
         }
     }
 }
