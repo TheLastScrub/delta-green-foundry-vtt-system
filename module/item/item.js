@@ -1,3 +1,5 @@
+import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat } from "../roll/roll.js"
+
 /**
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
@@ -27,14 +29,12 @@ export class DeltaGreenItem extends Item {
     const actorData = this.actor ? this.actor.data.data : {};
     const itemData = item.data;
 
-    // this isn't correct, but just leave it like this for now
-    // eventually need to point towards chat message rolling functions in actors sheet
-    // maybe need to put those in a script file and export them...
-    let roll = new Roll('item.data.damage', actorData);
-    let label = `Rolling ${item.name}`;
-    roll.roll().toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor: label
-    });
+    if(item.data.isLethal){
+      sendLethalityTestToChat(this.actor, item.name, item.data.lethality)
+    }
+    else{
+      // regular damage roll
+      sendDamageRollToChat(this.actor, item.name, item.data.damage);
+    }
   }
 }
