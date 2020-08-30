@@ -2,7 +2,7 @@
   "name": "deltagreen",
   "title": "Delta Green (Unofficial)",
   "description": "Delta Green: The RPG system for Foundry VTT (unaffiliated with Arc Dream Publishing or the Delta Green Partnership).  Based on the updated rules in the Agent's Handbook.",
-  "version": "0.8.8",
+  "version": "0.8.9",
   "minimumCoreVersion": "0.6.2",
   "compatibleCoreVersion": "0.6.6",
   "templateVersion": 2,
