@@ -1,7 +1,7 @@
 {
   "name": "deltagreen",
   "title": "Delta Green (Unofficial)",
-  "description": "Delta Green: The RPG system for Foundry VTT (unaffiliated with Arc Dream Publishing or the Delta Green Partnership).  Based on the updated rules in the Agent's Handbook.",
+  "description": "Fan-made Foundry VTT system for Delta Green: The Role Playing Game for Foundry VTT. Based on the rules in the Agent's Handbook (https://www.drivethrurpg.com/product/181674/Delta-Green-Agents-Handbook). Made with the permission of but unaffiliated with or endorsed by Arc Dream Publishing or the Delta Green Partnership.",
   "version": "0.9.0",
   "minimumCoreVersion": "0.6.2",
   "compatibleCoreVersion": "0.6.6",
