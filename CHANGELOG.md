@@ -1,5 +1,8 @@
 ## Release/Patch Notes
 
+### Version 0.9.3
+We will never speak of 0.9.1 or 0.9.2 ever again.
+
 ### Version 0.9.1
 Added a few compendium packs with some common armor and weapon choices for Agents to equip themselves with.  
 
