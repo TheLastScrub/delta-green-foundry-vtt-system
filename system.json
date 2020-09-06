@@ -10,7 +10,32 @@
   "esmodules": ["module/deltagreen.js"],
   "styles": ["css/deltagreen.css"],
   "scripts": [],
-  "packs": [],
+  "packs": [
+    {
+      "name": "firearms",
+      "label": "Firearms",
+      "system": "deltagreen",
+      "module": "deltagreen",
+      "path": "./packs/firearms.db",
+      "entity": "Item"
+    },
+    {
+      "name": "armor",
+      "label": "Armor",
+      "system": "deltagreen",
+      "module": "deltagreen",
+      "path": "./packs/armor.db",
+      "entity": "Item"
+    },
+    {
+      "name": "hand-to-hand-weapons",
+      "label": "Hand-to-Hand Weapons",
+      "system": "deltagreen",
+      "module": "deltagreen",
+      "path": "./packs/hand-to-hand-weapons.db",
+      "entity": "Item"
+    }
+  ],
   "languages": [
     {
       "lang": "en",

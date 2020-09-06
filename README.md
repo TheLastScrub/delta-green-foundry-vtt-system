@@ -1,5 +1,7 @@
 # (Unofficial) Delta Green: The RPG Foundry System
-This is a fan made Foundry VTT system for Delta Green: The RPG, based on the Agent's Handbook from Arc Dream Publishing.  It is unaffiliated with the Delta Green Partnershipt or Arc Dream Publishing (although they did give permission to make the system).
+This is a fan made Foundry VTT system for Delta Green: The RPG, based on the Agent's Handbook from Arc Dream Publishing.  It is unaffiliated with the Delta Green Partnershipt or Arc Dream Publishing (although they did give permission to make the system).  Please consider supporting the publisher by buying a copy of the official rules book which can be done here:
+
+https://www.drivethrurpg.com/product/181674/Delta-Green-Agents-Handbook
 
 Whatever documentation currently exists can be found here:
 https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/blob/master/documentation/home.md
@@ -11,11 +13,13 @@ More information on Foundry VTT:
 https://foundryvtt.com/
 
 # System Status
-The system is now largely stable, but still missing a few fields.  The underlying data structure will likely not change much but potentially could still.  Changes to the GUI will likely still happen.
+The system is now largely stable and publicably available in Foundry as an official system!  There may still be a few tweaks here and there, but no major changes are currently planned.
 
 # Installation Guide
-The system is not currently an official Foundry system list.  To install go to _Game Systems_ and click _Install System_.  Then in the _Manifest URL_ input field, paste the following link and click _Install_:
-https://raw.githubusercontent.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/master/system.json
+The system is now included in the list of official Foundry VTT game systems and can be installed directly from within Foundry.
+
+To manually install the system go to _Game Systems_ and click _Install System_.  Then in the _Manifest URL_ input field, paste the following link and click _Install_:
+https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/raw/master/system.json
 
 # Foundry VTT License
 This code uses the Foundry VTT and its API under the terms of the Limited License Agreement for Module Development.
@@ -25,6 +29,8 @@ Foundry VTT is a Copyright of Foundry Gaming, LLC.
 Published by arrangement with the Delta Green Partnership. The intellectual property known as Delta Green is a trademark and copyright owned by the Delta Green Partnership, who has licensed its use here. The contents of this system are licensed per the terms of the included LICENSE.TXT file, excepting those elements that are components of the Delta Green intellectual property.
 
 Some content may additionally also be covered under the terms of the OGL Open Game License v.1.0a (Copyright 2000 Wizards of the Coast, Inc.).
+
+Some weapons and armor from the Agent's Handbook are included as compendium packs.  These are *not* covered under the terms of the OGL, but have been included with permission of the Delta Green partnership.
 
 # Other Licenses, Citations and Shoutouts
 This system is built upon on Matt Smith's (AKA Asacolips) excellent Boilerplate System and corresponding tutorial.
@@ -53,6 +59,13 @@ Sawed-off shotgun icon by Delapouite under CC BY 3.0
 Crosshair icon by Delapouite under CC BY 3.0
 Two handed sword icon by Delapouite under CC BY 3.0
 Katana icon by Delapouite under CC BY 3.0
+Baseball bat icon by Delapouite under CC BY 3.0
+Hatchet icon by Delapouite under CC BY 3.0
+Wood axe icon by Delapouite under CC BY 3.0
+Brass knuckles icon by Delapouite under CC BY 3.0
+Flashlight icon by Delapouite under CC BY 3.0
+Wire icon by Delapouite under CC BY 3.0
+Gun stock icon by Delapouite under CC BY 3.0
 AK47 icon by Skoll under CC BY 3.0
 Switchblade icon by Skoll under CC BY 3.0
 Desert Eagle iconby Skoll under CC BY 3.0
@@ -63,9 +76,17 @@ FN FAL icon by Skoll under CC BY 3.0
 Walther PPK icon by Skoll under CC BY 3.0
 Kevlar vest icon by Skoll under CC BY 3.0
 Spectre M4 icon by Skoll under CC BY 3.0
+FN Fal icon by Skoll under CC BY 3.0
+Telescopic baton icon by Skoll under CC BY 3.0
+Baton icon by Skoll under CC BY 3.0
+Bayonet icon by Skoll under CC BY 3.0
 Helmet icon by sbed under CC BY 3.0
+Kevlar icon by sbed under CC BY 3.0
 Bowie knife icon by Lorc under CC BY 3.0
+Space suit icon by Lorc under CC BY 3.0
 Grenade icon by Lorc under CC BY 3.0
-Stiletto iconby Lorc under CC BY 3.0
+Stiletto icon by Lorc under CC BY 3.0
+Punch icon by Lorc under CC BY 3.0.
+Arrowhead icon by Lorc under CC BY 3.0
 
 

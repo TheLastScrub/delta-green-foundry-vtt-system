@@ -17,8 +17,8 @@ Only one 'Typed' skill is shown for an Agent by default, that being Art (Paintin
 
 This allows adding any number of skills as needed, without having dead space for unused skills.
 
-## Why Does the Lethality Roll Show Damage?
-For Lethality, the D100 test against the target lethality threshold is evaluated like a normal skill test. But regardless of the outcome, the damage associated with a non-lethal roll (2D10) is also displayed in paretheses as lethality does not affect many creatures.
+## Why Does the 'Lethality' Roll Show Damage Even on a Success?
+For Lethality, the D100 test against the target lethality threshold is evaluated like a normal skill test. But regardless of the outcome, the damage associated with a non-lethal roll (2D10) is also displayed in paretheses as lethality does not affect some creatures.
 
 Note - the Lethality roll does not currently take into account the changes that rolling a critical on the associated attack roll involves.  For example, on a critical _Firearms_ check with a weapon with a lethality of 10%, the threshold doubles to 20%, and if that check fails the resulting damage doubles as well.
 
