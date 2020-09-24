@@ -71,7 +71,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
     buttons = [
       {
-        label: "Roll Luck",
+        label: game.i18n.translations.DG.RollLuck,
         class: "test-extra-icon",
         icon: "fas fa-dice",
         onclick: (ev) => sendPercentileTestToChat(this.actor, "Luck", 50)
@@ -153,29 +153,29 @@ export class DeltaGreenActorSheet extends ActorSheet {
     let htmlContent = "";
 
     htmlContent += `<div>`;
-    htmlContent += `     <label>Skill Group</label>`;
+    htmlContent += `     <label>${game.i18n.translations.DG.Skills.SkillGroup}:</label>`;
     htmlContent += `     <select name="new-type-skill-group" />`;
-    htmlContent += `          <option>Art</option>`;
-    htmlContent += `          <option>Craft</option>`;
-    htmlContent += `          <option>Foreign Language</option>`;
-    htmlContent += `          <option>Military Science</option>`;
-    htmlContent += `          <option>Pilot</option>`;
-    htmlContent += `          <option>Science</option>`;
-    htmlContent += `          <option>Other</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Art}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Craft}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.ForeignLanguage}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.MilitaryScience}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Pilot}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Science}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Other}</option>`;
     htmlContent += `     </select>`;
     htmlContent += `</div>`;
 
     htmlContent += `<div>`;
-    htmlContent += `     <label>Skill Name</label>`;
+    htmlContent += `     <label>${game.i18n.translations.DG.Skills.SkillName}</label>`;
     htmlContent += `     <input type="text" name="new-type-skill-label" />`;
     htmlContent += `</div>`;
 
     new Dialog({
       content:htmlContent,
-      title: "Add New Skill",
+      title: game.i18n.translations.DG.Skills.AddTypedOrCustomSkill,
       buttons: {
         add:{
-          label: "Add Skill",
+          label: game.i18n.translations.DG.Skills.AddSkill,
           callback: btn =>{
             let newTypeSkillLabel = btn.find("[name='new-type-skill-label']").val();
             let newTypeSkillGroup = btn.find("[name='new-type-skill-group']").val();

@@ -46,7 +46,7 @@
                 "skills": {
                     "accounting": {
                         "label": "Accounting",
-                        "proficiency": 0,
+                        "proficiency": 10,
                         "failure": false
                     },
                     "alertness": {
@@ -96,7 +96,7 @@
                     },
                     "disguise": {
                         "label": "Disguise",
-                        "proficiency": 0,
+                        "proficiency": 10,
                         "failure": false
                     },
                     "dodge": {

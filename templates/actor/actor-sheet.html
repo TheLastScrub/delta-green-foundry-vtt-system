@@ -10,10 +10,10 @@
           <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="100"/>
           <div class="horizontal-flex-column">
             <div>
-              <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" placeholder="LAST NAME, FIRST NAME (AND ALIAS IF APPLICABLE)"/></h1>
+              <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" title="{{localize 'DG.AgentNameFieldTooltip' }}"/></h1>
             </div>
             <div>
-              <h2 class="profession"><input name="data.biography.profession" type="text" value="{{data.biography.profession}}" placeholder="PROFESSION (RANK IF APPLICABLE)"/></h1>
+              <h2 class="profession"><input name="data.biography.profession" type="text" value="{{data.biography.profession}}" placeholder="{{localize 'DG.FallbackText.ProfessionAndOrRank'}}"/></h1>
             </div>
           </div>
         </div>
@@ -22,7 +22,7 @@
 
           {{!-- HP --}}
           <div class="resource flex-group-center">
-              <label for="data.health.value" class="resource-label" title="Hit points, a character becomes unconsious at 2 HP, and dies at 0 HP.">HP</label>
+              <label for="data.health.value" class="resource-label" title="Hit points, a character becomes unconsious at 2 HP, and dies at 0 HP.">{{localize 'DG.Attributes.HP' }}</label>
               <div class="resource-content flexrow flex-center flex-between">
                 <input type="text" name="data.health.value" value="{{data.health.value}}" data-dtype="Number"/>
                 <span> / </span>
@@ -34,7 +34,7 @@
           <div class="resource flex-group-center">
               <label for="data.wp.value" class="resource-label" 
                 title="Willpower Points are mental fuel. Agents require Willpower Points to keep going despite exhaustion or mentally taxing situations.  See page 47 of the Agent's Handbook for more detail."
-                >WP</label>
+                >{{localize 'DG.Attributes.WP' }}</label>
               <div class="resource-content flexrow flex-center flex-between">
                 <input type="text" name="data.wp.value" value="{{data.wp.value}}" data-dtype="Number"/>
                 <span> / </span>
@@ -46,7 +46,7 @@
           <div class="resource flex-group-center">
               <label for="data.wp.value" class="resource-label rollable"
                 data-rolltype="sanity" data-roll="d100" data-target="sanity" data-label="SAN" title="Click to roll a sanity check..."
-              >SAN</label>
+              >{{localize 'DG.Attributes.SAN' }}</label>
               <div class="resource-content flexrow flex-center flex-between">
                 <input type="text" name="data.sanity.value" value="{{data.sanity.value}}" data-dtype="Number"
                   title="Current sanity, current breaking point is {{data.sanity.currentBreakingPoint}}, click the SAN label above to roll a sanity check."
@@ -61,12 +61,12 @@
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="skills">Skills</a>
-        <a class="item" data-tab="physical">Physical</a>
-        <a class="item" data-tab="motivations">Mental</a>
-        <a class="item" data-tab="gear">Gear</a>
-        <a class="item" data-tab="bio">C.V.</a>
-        <a class="item" data-tab="bonds">Contacts</a> 
+        <a class="item" data-tab="skills">{{localize 'DG.Navigation.Skills'}}</a>
+        <a class="item" data-tab="physical">{{localize 'DG.Navigation.Physical'}}</a>
+        <a class="item" data-tab="motivations">{{localize 'DG.Navigation.Mental'}}</a>
+        <a class="item" data-tab="gear">{{localize 'DG.Navigation.Gear'}}</a>
+        <a class="item" data-tab="bio">{{localize 'DG.Navigation.CV'}}</a>
+        <a class="item" data-tab="bonds">{{localize 'DG.Navigation.Contacts'}}</a> 
         <a class="item fas fa-question-circle" data-tab="about"></a>
     </nav>
 
@@ -82,7 +82,7 @@
                       {{#if skill.proficiency}}title="Click to roll a skill check."{{/if}}
                       {{#unless skill.proficiency}}title="A skill at 0% cannot be used.  See page 28 of the Agent's Handbook."{{/unless}}
                     >
-                    {{skill.label}}
+                    {{ localize (concat "DG.Skills." key) }}
                   </label>
                   <input class="percentile-skill-input" type="text" name="data.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
                   <input type="checkbox" name="data.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} 
@@ -94,7 +94,7 @@
 
           <div>
             <div class="item-controls">
-              <a class="item-control typed-skill-add" title="Create item"><i class="fas fa-plus"></i>Add Typed or Custom Skill</a>
+              <a class="item-control typed-skill-add"><i class="fas fa-plus"></i>{{localize 'DG.Skills.AddTypedOrCustomSkill'}}</a>
             </div>
             <div class="grid-2col">
               {{#each data.typedSkills as |skill key|}}
