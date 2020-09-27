@@ -214,7 +214,8 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Grab any data associated with this control.
     const data = duplicate(header.dataset);
     // Initialize a default name.
-    const name = `New ${type.capitalize()}`;
+    //const name = `New ${type.capitalize()}`;
+    const name = game.i18n.localize("DG.ItemTypes.NewPrefix") + game.i18n.localize("DG.ItemTypes." + type)
     // Prepare the item object.
     const itemData = {
       name: name,
@@ -261,22 +262,23 @@ export class DeltaGreenActorSheet extends ActorSheet {
       // check the 'data-target="something" property to determine how to grab the target for the roll
       if(rollType === "skill" || rollType === "typeskill"){
         targetVal = dataset.target;
+        label = game.i18n.localize(label).toUpperCase();
         sendPercentileTestToChat(this.actor, label, targetVal);
       }
       else if(dataset.target === "statistic.x5"){
         let stat = this.actor.data.data.statistics[key];
         targetVal = stat.x5;
+        label = game.i18n.localize("DG.Attributes." + key).toUpperCase();
         sendPercentileTestToChat(this.actor, label, targetVal);
       }
       else if(rollType === "sanity"){
         targetVal = this.actor.data.data.sanity.value;
-        //label += `, Target: ${targetVal}`;
+        label = game.i18n.localize("DG.Attributes.SAN").toUpperCase();
         sendPercentileTestToChat(this.actor, label, targetVal);
       }
       else if(rollType === "damage"){
         // damage roll, not a skill check
         label = dataset.label ? dataset.label : '';
-
         sendDamageRollToChat(this.actor, label, dataset.roll);
       }
       else if(rollType === "lethality"){

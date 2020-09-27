@@ -4,7 +4,7 @@ export function sendPercentileTestToChat(actor, skill, target){
     let isCritical = false;
     let isSuccess = false;
     let html = '';
-    let label = `Rolling ${skill.toUpperCase()} Target ${target}`;
+    let label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${skill}</b> ${game.i18n.localize("DG.Roll.Target")} ${target}`;
     let resultString = '';
     let styleOverride = '';
 
@@ -15,11 +15,11 @@ export function sendPercentileTestToChat(actor, skill, target){
     }
 
     if(isCritical){
-      resultString = 'CRITICAL ';
+      resultString = `${game.i18n.localize("DG.Roll.Critical")}　`;
     }
 
     if(isSuccess){
-      resultString += "Success";
+      resultString += `${game.i18n.localize("DG.Roll.Success")}`;
 
       if(isCritical){
         resultString = resultString.toUpperCase() + '!';
@@ -27,7 +27,7 @@ export function sendPercentileTestToChat(actor, skill, target){
       }
     }
     else{
-      resultString += "Failure";
+      resultString += `${game.i18n.localize("DG.Roll.Failure")}`;
 
       if(isCritical){
         resultString = resultString.toUpperCase() + '!';
@@ -123,17 +123,17 @@ export function sendPercentileTestToChat(actor, skill, target){
     
     let isLethal = false;
     let html = '';
-    let label = `Rolling LETHALITY for ${weaponName.toUpperCase()} Target ${target}`;
+    let label = `${game.i18n.localize("DG.Roll.Rolling")} ${game.i18n.localize("DG.Roll.Lethality").toUpperCase()} ${game.i18n.localize("DG.Roll.For")} ${weaponName.toUpperCase()} ${game.i18n.localize("DG.Roll.Target")} ${target}`;
     let resultString = '';
     let styleOverride = '';
 
     if(skillCheckTotal <= target){
       isLethal = true;
-      resultString = "LETHAL";
+      resultString = `${game.i18n.localize("DG.Roll.Lethal").toUpperCase()}`;
       styleOverride="color: red";
     }
     else{
-      resultString = "Fail";
+      resultString = `${game.i18n.localize("DG.Roll.Failure")}`;
     }
 
     html = `<div class="dice-roll">`;
@@ -143,18 +143,17 @@ export function sendPercentileTestToChat(actor, skill, target){
     html += `          <section class="tooltip-part">`;
     html += `               <div class="dice">`;
     html += `                    <p class="part-formula">`;
-    html += `                         d100 OR d10 + d10`;
+    html += `                         d100 ${game.i18n.localize("DG.Roll.Or").toUpperCase()} d10 + d10`;
     html += `                         <span class="part-total">${roll.total}</span>`;
     html += `                    </p>`;
     html += `                    <ol class="dice-rolls">`;
-    //html += `                         <li class="roll die d100">${roll.total}</li>`
     html += `                         <li class="roll die d10">${damageDie1Label}</li>`;
     html += `                         <li class="roll die d10">${damageDie2Label}</li>`;
     html += `                    </ol>`;
     html += `               </div>`;
     html += `          </section>`;
     html += `     </div>`;
-    html += `     <h4 class="dice-total">${roll.total} (${nonlethalDamage} Damage)</h4>`;
+    html += `     <h4 class="dice-total">${roll.total} (${nonlethalDamage} ${game.i18n.localize("DG.Roll.Damage")})</h4>`;
     html += `</div>`;
 
     let chatData = {
@@ -172,7 +171,7 @@ export function sendPercentileTestToChat(actor, skill, target){
   export function sendDamageRollToChat(actor, label, diceFormula){
     let roll = new Roll(diceFormula, actor.data.data);
 
-    label = `Rolling damage for ${label.toUpperCase()}`;
+    label = `${game.i18n.localize("DG.Roll.RollingDamageFor")} ${label.toUpperCase()}`;
 
     roll.roll().toMessage({
     speaker: ChatMessage.getSpeaker({ actor: actor }),

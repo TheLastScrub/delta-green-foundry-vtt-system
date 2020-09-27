@@ -78,7 +78,7 @@
             <div class="grid grid-3col">
               {{#each data.skills as |skill key|}}
                 <div class="flexrow flex-group-center">
-                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}"   for="data.skills.{{key}}.value" 
+                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{localize (concat 'DG.Skills.' key)}}"   for="data.skills.{{key}}.value" 
                       {{#if skill.proficiency}}title="Click to roll a skill check."{{/if}}
                       {{#unless skill.proficiency}}title="A skill at 0% cannot be used.  See page 28 of the Agent's Handbook."{{/unless}}
                     >
@@ -123,7 +123,7 @@
               <div class="flex-group-center">
                 <div class="horizontal-flex-column">
                   <div class="flexrow" style="padding: 5px;">
-                    <label class="rollable" data-rolltype="statistic.x5" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="Click to roll a x5 check." for="data.statistics.{{key}}.value" class="resource-label">{{toUpperCase key}}</label>
+                    <label class="rollable" data-rolltype="statistic.x5" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="Click to roll a x5 check." for="data.statistics.{{key}}.value" class="resource-label">{{localize (concat 'DG.Attributes.' key)}}</label>
                     <input type="text" name="data.statistics.{{key}}.value" value="{{statistic.value}}" data-dtype="Number"/>
                     <span >({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
                   </div>
@@ -138,11 +138,11 @@
             <div class="first-aid-received-section">
               <label class="bolded-label"
                 title="Once an agent receives first aid, they cannot benefit from it again until they are damaged again."
-              >First Aid Has Already Been Attempted: </label>
+              >{{localize 'DG.Physical.FirstAidLabel'}}</label>
               <input class="labeled-resource-checkbox" type="checkbox" name="data.physical.firstAidAttempted" {{checked data.physical.firstAidAttempted}} data-dtype="Boolean" />
             </div>
             <div>
-              <label class="bolded-label">Wounds</label>
+              <label class="bolded-label">{{localize 'DG.Physical.Wounds'}}</label>
               <input class="fill-remaining-space" type="text" name="data.physical.wounds" value="{{data.physical.wounds}}" data-dtype="String" />
             </div>
           </div>
@@ -152,16 +152,16 @@
         <div class="tab motivations" data-group="primary" data-tab="motivations">
           <div class="">
               <div class="breaking-point-grid-3col">
-                <label class="bolded-label"> Breaking Point: </label>
+                <label class="bolded-label">{{localize 'DG.Mental.BreakingPoint'}}</label>
                 <input title="The current breaking point, reset when current sanity falls to or below this value.  The starting breaking point is SAN - POW." type="text" name="data.sanity.currentBreakingPoint" value="{{data.sanity.currentBreakingPoint}}" data-dtype="Number"/>
-                <a class="btn-tiny btn-reset-breaking-point" title="Reset breaking point to be current SAN - WP.">Reset</a>
+                <a class="btn-tiny btn-reset-breaking-point" title="Reset breaking point to be current SAN - WP.">{{localize 'DG.Mental.Reset'}}</a>
               </div>
           
               <div class="">
-                <h4 class="bolded-label">Incidents of SAN Loss Without Going Insane</h4>
+                <h4 class="bolded-label">{{localize 'DG.Mental.SanityLossIncidentsLabel'}}</h4>
                 <div class="adaptation-grid-5col">
                   
-                  <Label>Violence</Label>
+                  <Label>{{localize 'DG.Mental.Violence'}}</Label>
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident1" {{checked data.sanity.adaptations.violence.incident1}} data-dtype="Boolean" />
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident2" {{checked data.sanity.adaptations.violence.incident2}} data-dtype="Boolean" />
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident3" {{checked data.sanity.adaptations.violence.incident3}} data-dtype="Boolean" />
@@ -170,11 +170,11 @@
                     title="Being adapted to violence means your Agent’s empathy suffers as they come to view violence as nothing but another tool to be wielded. He or she permanently loses 1D6 CHA and the same amount from each of their Bonds."
                   >
                   {{#if data.sanity.adaptations.violence.isAdapted}}
-                    Adapted To Violence
+                    {{localize 'DG.Mental.AdaptedToViolence'}}
                   {{/if}}
                   </label>
                   
-                  <label>Helplessness</label>
+                  <label>{{localize 'DG.Mental.Helplessness'}}</label>
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident1" {{checked data.sanity.adaptations.helplessness.incident1}} data-dtype="Boolean" />
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident2" {{checked data.sanity.adaptations.helplessness.incident2}} data-dtype="Boolean" />
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident3" {{checked data.sanity.adaptations.helplessness.incident3}} data-dtype="Boolean" />
@@ -183,7 +183,7 @@
                     title="Being adapted to helplessness means your Agent’s personal drive suffers as they pull back from the world around them. As soon as your Agent becomes adapted to helplessness, he or she permanently loses 1D6 POW."
                   >
                   {{#if data.sanity.adaptations.helplessness.isAdapted}}
-                    Adapted To Hopelessness
+                    {{localize 'DG.Mental.AdaptedToHelplessness'}}
                   {{/if}}
                   </label>
                   
@@ -195,10 +195,10 @@
             <ol class="items-list">
               
               <li class="item flexrow item-header">
-                <div class="item-name">Motivations</div>
-                <div class="item-name">Disorders</div>
+                <div class="item-name">{{localize 'DG.Mental.Motivations'}}</div>
+                <div class="item-name">{{localize 'DG.Mental.Disorders'}}</div>
                 <div class="item-controls">
-                  <a class="item-control item-create" title="Create item" data-type="motivation"><i class="fas fa-plus"></i> Add</a>
+                  <a class="item-control item-create" title="Create item" data-type="motivation"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
                 </div>
               </li>
 
@@ -233,17 +233,17 @@
         {{!-- GEAR Tab --}}
         <div class="tab items" data-group="primary" data-tab="gear">
           <div>
-            <h3>WEAPONS</h3>
+            <h3>{{localize 'DG.Gear.Weapons'}}</h3>
             <ol class="items-list">
               
               <li class="item flexrow item-header">
                 <div class="item-image"></div>
-                <div class="item-name">Name</div>
+                <div class="item-name">{{localize 'DG.Gear.Name'}}</div>
                 <!-- <div class="item-name">Skill</div> -->
-                <div class="item-name">Damage/Lethality</div>
-                <div class="item-name">Armor Piercing</div>
+                <div class="item-name">{{localize 'DG.Gear.DamageOrLethality'}}</div>
+                <div class="item-name">{{localize 'DG.Gear.ArmorPiercing'}}</div>
                 <div class="item-controls">
-                  <a class="item-control item-create" title="Create item" data-type="weapon"><i class="fas fa-plus"></i> Add</a>
+                  <a class="item-control item-create" title="Create item" data-type="weapon"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
                 </div>
               </li>
 
@@ -291,15 +291,15 @@
             </ol>
           </div>
           <div>
-            <h3>ARMOR</h3>
+            <h3>{{localize 'DG.Gear.Armor'}}</h3>
             <ol class="items-list">
               <li class="item flexrow item-header">
                 <div class="item-image"></div>
-                <div class="item-name">Name</div>
-                <div class="item-name">Armor Rating</div>
+                <div class="item-name">{{localize 'DG.Gear.Name'}}</div>
+                <div class="item-name">{{localize 'DG.Gear.ArmorRating'}}</div>
                 <div class="item-name"></div> <!-- This is for whether it's equipped or not, probably doesn't need a label. -->
                 <div class="item-controls">
-                  <a class="item-control item-create" title="Create item" data-type="armor"><i class="fas fa-plus"></i> Add</a>
+                  <a class="item-control item-create" title="Create item" data-type="armor"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
                 </div>
               </li>
 
@@ -313,7 +313,7 @@
                     
                     <span>
                     {{#if item.data.equipped}}
-                      EQUIPPED
+                      {{localize 'DG.Gear.Equipped'}}
                     {{/if}}
                     </span>
 
@@ -329,15 +329,15 @@
             </ol>
           </div>
           <div>
-            <h3>OTHER GEAR</h3>
+            <h3>{{localize 'DG.Gear.OtherGear'}}</h3>
             <ol class="items-list">
               <li class="item flexrow item-header">
                 <div class="item-image"></div>
-                <div class="item-name">Name</div>
+                <div class="item-name">{{localize 'DG.Gear.Name'}}</div>
                 <div class="item-name"></div>
                 <div class="item-name"></div> <!-- This is for whether it's equipped or not, probably doesn't need a label. -->
                 <div class="item-controls">
-                  <a class="item-control item-create" title="Create item" data-type="gear"><i class="fas fa-plus"></i> Add</a>
+                  <a class="item-control item-create" title="Create item" data-type="gear"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
                 </div>
               </li>
 
@@ -351,7 +351,7 @@
                     
                     <span>
                     {{#if item.data.equipped}}
-                      EQUIPPED
+                      {{localize 'DG.Gear.Equipped'}}
                     {{/if}}
                     </span>
 
@@ -371,29 +371,29 @@
         {{!-- Biography Tab --}}
         <div class="tab bio" data-group="primary" data-tab="bio">
           <div class="bio-grid-5col">
-              <span>Sex</span>
-              <input class="fill-remaining-space" type="text" name="data.biography.sex" value="{{data.biography.sex}}" data-dtype="String" placeholder="Sex" />
+              <span>{{localize 'DG.CV.Sex'}}</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.sex" value="{{data.biography.sex}}" data-dtype="String" placeholder="{{localize 'DG.CV.SexPlaceholder'}}" />
               <span></span>
-              <span class="bio-grid-label">Age And D.O.B</span>
-              <input class="fill-remaining-space" type="text" name="data.biography.age" value="{{data.biography.age}}" data-dtype="String" placeholder="Age & Date of Birth" />
+              <span class="bio-grid-label">{{localize 'DG.CV.AgeAndDoB'}}</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.age" value="{{data.biography.age}}" data-dtype="String" placeholder="{{localize 'DG.CV.AgeAndDoBPlaceholder'}}" />
           </div>
 
           <div class="bio-grid-2col">
             
-              <span>Employer</span>
-              <input class="fill-remaining-space" type="text" name="data.biography.employer" value="{{data.biography.employer}}" data-dtype="String" placeholder="Employer or Work History" />
+              <span>{{localize 'DG.CV.Employer'}}</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.employer" value="{{data.biography.employer}}" data-dtype="String" placeholder="{{localize 'DG.CV.EmployerPlaceholder'}}" />
             
-              <span>Nationality</span>
-              <input class="fill-remaining-space" type="text" name="data.biography.nationality" value="{{data.biography.nationality}}" data-dtype="String" placeholder="Nationality" />
+              <span>{{localize 'DG.CV.Nationality'}}</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.nationality" value="{{data.biography.nationality}}" data-dtype="String" placeholder="{{localize 'DG.CV.NationalityPlaceholder'}}" />
             
           </div>
           
           <div class="bio-grid-2col">
-              <span>Education</span>
-              <input class="fill-remaining-space" type="text" name="data.biography.education" value="{{data.biography.education}}" data-dtype="String" placeholder="Education and occupational history" />
+              <span>{{localize 'DG.CV.Education'}}</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.education" value="{{data.biography.education}}" data-dtype="String" placeholder="{{localize 'DG.CV.EducationPlaceholder'}}" />
           </div>
           <div>
-            <span style="font-weight: bold;">Physical Description/Notes</span>  
+            <span style="font-weight: bold;">{{localize 'DG.CV.PhysicalDescriptionLabel'}}</span>  
           </div>
           {{editor content=data.physicalDescription target="data.physicalDescription" button=true owner=owner editable=editable}}
         </div>
@@ -403,10 +403,10 @@
           <div>
             <ol class="items-list">
               <li class="item flexrow item-header">
-                <div class="item-name">Name</div>
-                <div class="item-name">Score</div>
+                <div class="item-name">{{localize 'DG.Bonds.Name'}}</div>
+                <div class="item-name">{{localize 'DG.Bonds.Score'}}</div>
                 <div class="item-controls">
-                  <a class="item-control item-create" title="Create item" data-type="bond"><i class="fas fa-plus"></i> Add</a>
+                  <a class="item-control item-create" title="Create item" data-type="bond"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
                 </div>
               </li>
 
