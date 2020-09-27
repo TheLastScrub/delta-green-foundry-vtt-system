@@ -18,7 +18,7 @@ The system is now largely stable and publicably available in Foundry as an offic
 # Installation Guide
 The system is now included in the list of official Foundry VTT game systems and can be installed directly from within Foundry.
 
-To manually install the system go to _Game Systems_ and click _Install System_.  Then in the _Manifest URL_ input field, paste the following link and click _Install_:
+To manually install the system go to _Game Systems_ and click _Install System_.  Then in the _Manifest URL_ input field, paste the following link and then click _Install_:
 https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/raw/master/system.json
 
 # Foundry VTT License
@@ -41,7 +41,7 @@ SPECIAL ELITE FONT
 A font used in many places is 'Special Elite' by Astigmatic (Principal Design).
 https://fonts.google.com/specimen/Special+Elite?sidebar.open&selection.family=Special+Elite#standard-styles
 
-License:  Apache Licesne, Version 2.0
+License:  Apache License, Version 2.0
 http://www.apache.org/licenses/LICENSE-2.0
 
 DIDACT GOTHIC FONT
@@ -55,38 +55,38 @@ https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 ICONS -  https://game-icons.net/
 https://creativecommons.org/licenses/by/3.0/
 
-Sawed-off shotgun icon by Delapouite under CC BY 3.0
-Crosshair icon by Delapouite under CC BY 3.0
-Two handed sword icon by Delapouite under CC BY 3.0
-Katana icon by Delapouite under CC BY 3.0
-Baseball bat icon by Delapouite under CC BY 3.0
-Hatchet icon by Delapouite under CC BY 3.0
-Wood axe icon by Delapouite under CC BY 3.0
-Brass knuckles icon by Delapouite under CC BY 3.0
-Flashlight icon by Delapouite under CC BY 3.0
-Wire icon by Delapouite under CC BY 3.0
-Gun stock icon by Delapouite under CC BY 3.0
-AK47 icon by Skoll under CC BY 3.0
-Switchblade icon by Skoll under CC BY 3.0
-Desert Eagle iconby Skoll under CC BY 3.0
-Colt M1911 icon by Skoll under CC BY 3.0
-Revolver icon by Skoll under CC BY 3.0
-Lee Enfield icon by Skoll under CC BY 3.0
-FN FAL icon by Skoll under CC BY 3.0
-Walther PPK icon by Skoll under CC BY 3.0
-Kevlar vest icon by Skoll under CC BY 3.0
-Spectre M4 icon by Skoll under CC BY 3.0
-FN Fal icon by Skoll under CC BY 3.0
-Telescopic baton icon by Skoll under CC BY 3.0
-Baton icon by Skoll under CC BY 3.0
-Bayonet icon by Skoll under CC BY 3.0
-Helmet icon by sbed under CC BY 3.0
-Kevlar icon by sbed under CC BY 3.0
-Bowie knife icon by Lorc under CC BY 3.0
-Space suit icon by Lorc under CC BY 3.0
-Grenade icon by Lorc under CC BY 3.0
-Stiletto icon by Lorc under CC BY 3.0
-Punch icon by Lorc under CC BY 3.0.
-Arrowhead icon by Lorc under CC BY 3.0
+* Sawed-off shotgun icon by Delapouite under CC BY 3.0
+* Crosshair icon by Delapouite under CC BY 3.0
+* Two handed sword icon by Delapouite under CC BY 3.0
+* Katana icon by Delapouite under CC BY 3.0
+* Baseball bat icon by Delapouite under CC BY 3.0
+* Hatchet icon by Delapouite under CC BY 3.0
+* Wood axe icon by Delapouite under CC BY 3.0
+* Brass knuckles icon by Delapouite under CC BY 3.0
+* Flashlight icon by Delapouite under CC BY 3.0
+* Wire icon by Delapouite under CC BY 3.0
+* Gun stock icon by Delapouite under CC BY 3.0
+* AK47 icon by Skoll under CC BY 3.0
+* Switchblade icon by Skoll under CC BY 3.0
+* Desert Eagle iconby Skoll under CC BY 3.0
+* Colt M1911 icon by Skoll under CC BY 3.0
+* Revolver icon by Skoll under CC BY 3.0
+* Lee Enfield icon by Skoll under CC BY 3.0
+* FN FAL icon by Skoll under CC BY 3.0
+* Walther PPK icon by Skoll under CC BY 3.0
+* Kevlar vest icon by Skoll under CC BY 3.0
+* Spectre M4 icon by Skoll under CC BY 3.0
+* FN Fal icon by Skoll under CC BY 3.0
+* Telescopic baton icon by Skoll under CC BY 3.0
+* Baton icon by Skoll under CC BY 3.0
+* Bayonet icon by Skoll under CC BY 3.0
+* Helmet icon by sbed under CC BY 3.0
+* Kevlar icon by sbed under CC BY 3.0
+* Bowie knife icon by Lorc under CC BY 3.0
+* Space suit icon by Lorc under CC BY 3.0
+* Grenade icon by Lorc under CC BY 3.0
+* Stiletto icon by Lorc under CC BY 3.0
+* Punch icon by Lorc under CC BY 3.0.
+* Arrowhead icon by Lorc under CC BY 3.0
 
 

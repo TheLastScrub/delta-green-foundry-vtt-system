@@ -1,10 +1,11 @@
 ## Release/Patch Notes
 
-### Versin 0.9.4
-Fix - Pharmacy and Surgery skills were missing.
-Fix - Accounting and Disguise base skill rating were 0%, should be 10%.
-Fix - Damage on medium pistol in compendium was wrong, also fixed some base range values that were off.
-Enhancement - Adding support for localization.  Focusing on main character sheet for now.
+### Version 0.9.4
+* Fix - Pharmacy and Surgery skills were missing.
+* Fix - Accounting and Disguise base skill rating were 0%, should be 10%.
+* Fix - Damage on medium pistol in compendium was wrong, also fixed some base range values that were off.
+* Enhancement - Adding support for localization.  Focusing on main character sheet for now.
+* Workaround - The (current alpha) 7.2 Foundry release seems to have a bug where rolls without a leading number ('d100') do not work, so updated all skill checks to roll '1d100' instead to avoid the issue.
 
 ### Version 0.9.3
 We will never speak of 0.9.1 or 0.9.2 ever again.
