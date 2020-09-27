@@ -1,5 +1,5 @@
 export function sendPercentileTestToChat(actor, skill, target){
-    let roll = new Roll('d100', actor.data.data).roll();
+    let roll = new Roll('1D100', actor.data.data).roll();
     let total = roll.total;
     let isCritical = false;
     let isSuccess = false;
@@ -82,7 +82,7 @@ export function sendPercentileTestToChat(actor, skill, target){
   }
 
   export function sendLethalityTestToChat(actor, weaponName, target){
-    let roll = new Roll('d100', actor.data.data).roll();
+    let roll = new Roll('1D100', actor.data.data).roll();
     let isCritical = false;
     let skillCheckTotal = roll.total;
     
