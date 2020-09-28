@@ -132,5 +132,20 @@
     "DG.ItemTypes.motivation": "モチベーション",
     "DG.ItemTypes.bond": "絆",
     "DG.ItemTypes.gear": "装備",
-    "DG.ItemTypes.NewPrefix": "新"
+    "DG.ItemTypes.NewPrefix": "新",
+
+    "DG.Tooltip.HP": "２HPにエージェントは気を失い、０HPに死ぬ。",
+    "DG.Tooltip.MaximumHP": "最大のヒットポイントは筋力と耐久力の平均(切り上げする)。",
+    "DG.Tooltip.WP": "WPとは精神の燃料。疲れた時と精神的に厳しい時に必要です。",
+    "DG.Tooltip.MaximumWP": "最大のWPは判断力と同じです。",
+    "DG.Tooltip.SanityLabel": "クリックと、正気を試す...",
+    "DG.Tooltip.CurrentSanityPartOne": "今の精神の安定のレベル、今のブレーキポイントは",
+    "DG.Tooltip.CurrentSanityPartTwo": "、上の正気をクリックと正気を試す。",
+    "DG.Tooltip.MaximumSanity": "最大の正気は９９－不自然のスキルです。",
+    "DG.Tooltip.SkillLabel": "スキルを試す。",
+    "DG.Tooltip.CannotRollSkillLabel": "スキルが０である場合、そのスキルはつかえません、そして試すと失敗します。",
+    "DG.Tooltip.SkillFailCheckbox": "スキルを試して、失敗する場合、そのスキルが１以上このボックスをチェックします。",
+    "DG.Tooltip.DistinguishingFeature": "特徴の説明 (スコアは１３以上それとも８以下のみ、このフィールドに説明を書きます)。",
+    "DG.Tooltip.x5AttributeLabel": "アトリビュートｘ５のテストをします",
+    "DG.Tooltip.FirstAidAttempted": "応急処置を受けたエージェントはまたダメージを受けるまでには応急処置は効きません。"
 }

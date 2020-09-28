@@ -1,10 +1,8 @@
 # System Documentation
 
-(Under construction, will expand later, for now just list some helpful notes)
-
 ## Rolling Checks
 
-Most labels can be clicked to roll a check or test of some kind.
+Most labels can be clicked to roll a check or test of some kind. If they can be clicked, they should glow red when the mouse is hovered over them.
 
 * Click on _SAN_ (label above current/max sanity) to roll a Sanity check.
 * Click on any of the skill labels (such as _Accounting_) to roll a skill test.

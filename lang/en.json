@@ -132,5 +132,20 @@
     "DG.ItemTypes.motivation": "Motivation",
     "DG.ItemTypes.bond": "Bond",
     "DG.ItemTypes.gear": "Gear",
-    "DG.ItemTypes.NewPrefix": "New "
+    "DG.ItemTypes.NewPrefix": "New ",
+
+    "DG.Tooltip.HP": "Hit points, a character becomes unconsious at 2 HP, and dies at 0 HP.",
+    "DG.Tooltip.MaximumHP": "Maximum health is the average of STR + CON, rounded UP.",
+    "DG.Tooltip.WP": "Willpower Points are mental fuel. Agents require Willpower Points to keep going despite exhaustion or mentally taxing situations.  See page 47 of the Agent's Handbook for more detail.",
+    "DG.Tooltip.MaximumWP": "Maximum WP is equal to POW.",
+    "DG.Tooltip.SanityLabel": "Click to roll a sanity check...",
+    "DG.Tooltip.CurrentSanityPartOne": "Current sanity, current breaking point is ",
+    "DG.Tooltip.CurrentSanityPartTwo": ", click the SAN label above to roll a sanity check.",
+    "DG.Tooltip.MaximumSanity": "Maximum sanity is equal to 99 - the Unnatural skill.",
+    "DG.Tooltip.SkillLabel": "Click to roll a skill check.",
+    "DG.Tooltip.CannotRollSkillLabel": "A skill at 0% cannot be used.  See page 28 of the Agent's Handbook.",
+    "DG.Tooltip.SkillFailCheckbox": "After failing a test on this skill (if proficiency is at least 1%), check this box. At the end of the session, add 1D4-1 percentage points to the skill and uncheck the box. Does not apply to the Unnatural skill.  See page 29 of the Agent's Handbook.",
+    "DG.Tooltip.DistinguishingFeature": "Distinguishing Feature (fill out if score is 12 or higher, or 8 or lower).",
+    "DG.Tooltip.x5AttributeLabel": "Click to roll a x5 check.",
+    "DG.Tooltip.FirstAidAttempted": "Once an agent receives first aid, they cannot benefit from it again until they are damaged again."
 }
