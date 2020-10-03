@@ -57,11 +57,14 @@ export function sendPercentileTestToChat(actor, skill, target){
     let chatData = {
       speaker: ChatMessage.getSpeaker({actor: actor}),
       content: html,
-      flavor: label
+      flavor: label,
+      type: CHAT_MESSAGE_TYPES.ROLL,
+      roll: roll,
+      rollMode: game.settings.get("core", "rollMode")
       };
 
     // play the dice rolling sound, like a regular in-chat roll
-	AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
+	  AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
 
     ChatMessage.create(chatData, {});
   }
@@ -159,7 +162,10 @@ export function sendPercentileTestToChat(actor, skill, target){
     let chatData = {
       speaker: ChatMessage.getSpeaker({actor: actor}),
       content: html,
-      flavor: label
+      flavor: label,
+      type: CHAT_MESSAGE_TYPES.ROLL,
+      roll: roll,
+      rollMode: game.settings.get("core", "rollMode")
       };
 
     // play the dice rolling sound, like a regular in-chat roll
@@ -175,6 +181,9 @@ export function sendPercentileTestToChat(actor, skill, target){
 
     roll.roll().toMessage({
     speaker: ChatMessage.getSpeaker({ actor: actor }),
-    flavor: label
+    flavor: label,
+    type: CHAT_MESSAGE_TYPES.ROLL,
+    roll: roll,
+    rollMode: game.settings.get("core", "rollMode")
     });
   }
