@@ -74,6 +74,11 @@
     "DG.Navigation.CV": "C.V.",
     "DG.Navigation.Contacts": "Contacts",
 
+    "DG.About.OnlineHelp": "Online System Documentation",
+    "DG.About.OnlineHelpTooltip": "Launch browser with online GitHub help.",
+    "DG.About.OnlineBugTracker": "Questions, Bug Reports or Feature Requests",
+    "DG.About.OnlineBugTrackerTooltip": "Launch browser with GitHub issue tracker.",
+
     "DG.Roll.Rolling": "Rolling",
     "DG.Roll.Target": "Target: ",
     "DG.Roll.Success": "Success",
@@ -147,5 +152,52 @@
     "DG.Tooltip.SkillFailCheckbox": "After failing a test on this skill (if proficiency is at least 1%), check this box. At the end of the session, add 1D4-1 percentage points to the skill and uncheck the box. Does not apply to the Unnatural skill.  See page 29 of the Agent's Handbook.",
     "DG.Tooltip.DistinguishingFeature": "Distinguishing Feature (fill out if score is 12 or higher, or 8 or lower).",
     "DG.Tooltip.x5AttributeLabel": "Click to roll a x5 check.",
-    "DG.Tooltip.FirstAidAttempted": "Once an agent receives first aid, they cannot benefit from it again until they are damaged again."
+    "DG.Tooltip.FirstAidAttempted": "Once an agent receives first aid, they cannot benefit from it again until they are damaged again.",
+    "DG.Tooltip.AdaptedToViolence": "Being adapted to violence means your Agent’s empathy suffers as they come to view violence as nothing but another tool to be wielded. He or she permanently loses 1D6 CHA and the same amount from each of their Bonds.",
+    "DG.Tooltip.AdaptedToHelplessness": "Being adapted to helplessness means your Agent’s personal drive suffers as they pull back from the world around them. As soon as your Agent becomes adapted to helplessness, he or she permanently loses 1D6 POW.",
+
+    "DG.Gear.Expense.Incidental": "Incidental",
+    "DG.Gear.Expense.Standard": "Standard",
+    "DG.Gear.Expense.Unusual": "Unusual",
+    "DG.Gear.Expense.Major": "Major",
+    "DG.Gear.Expense.Extreme": "Extreme",
+
+    "DG.ItemWindow.Bonds.Description": "Description/Developments",
+    "DG.ItemWindow.Bonds.ScoreTooltip": "A higher score represents a stronger relationship between the agent and the bond.",
+
+    "DG.ItemWindow.Motivations.Attributes": "Attributes",
+    "DG.ItemWindow.Motivations.Motivation": "Motivation",
+    "DG.ItemWindow.Motivations.Description": "Description/Notes",
+    "DG.ItemWindow.Motivations.Disorder": "Disorder",
+    "DG.ItemWindow.Motivations.IsDisorder": "Is Disorder",
+    "DG.ItemWindow.Motivations.MotivationNameTooltip": "Something that drives the character.",
+    "DG.ItemWindow.Motivations.DisorderNameTooltip": "A disorder replaces a motivation after hitting a break point.",
+    "DG.ItemWindow.Motivations.IsDisorderTooltip": "Check this if adding a disorder, or if an existing motivation has been lost due to gaining a disorder.",
+    "DG.ItemWindow.Motivations.DisorderHasBeenCured": "Disorder Has Been \"Cured\"",
+    "DG.ItemWindow.Motivations.DisorderHasBeenCuredTooltip": "A critical success on a therapy luck roll can cure a disorder.  It may return the next time a breaking point is hit however.",
+
+    "DG.ItemWindow.Gear.Attributes": "Attributes",
+    "DG.ItemWindow.Gear.Description": "Description",
+    "DG.ItemWindow.Gear.NamePlaceholder": "Name",
+    "DG.ItemWindow.Gear.Expense": "Expense",
+    "DG.ItemWindow.Gear.Equipped": "Equipped",
+
+    "DG.ItemWindow.Armor.Description": "Description",
+    "DG.ItemWindow.Armor.NamePlaceholder": "Name",
+    "DG.ItemWindow.Armor.ArmorRating": "Armor Rating",
+    "DG.ItemWindow.Armor.Expense": "Expense",
+    "DG.ItemWindow.Armor.Equipped": "Equipped",
+
+    "DG.ItemWindow.Weapons.Description": "Description",
+    "DG.ItemWindow.Weapons.NamePlaceholder": "Name",
+    "DG.ItemWindow.Weapons.Skill": "Skill",
+    "DG.ItemWindow.Weapons.Expense": "Expense",
+    "DG.ItemWindow.Weapons.Damage": "Damage",
+    "DG.ItemWindow.Weapons.Lethality": "Lethality",
+    "DG.ItemWindow.Weapons.LethalityTooltip": "A lethal weapon has a chance to instantly kill a target.  Roll a D100 instead of damage die.  If it is not lethal, damage is dealt instead as if the result was a 2d10 roll, with a '00' on the first d10 equaling a 10.",
+    "DG.ItemWindow.Weapons.IsLethalityTooltip": "Check this if the weapon has a lethality % associated with it.",
+    "DG.ItemWindow.Weapons.ArmorPiercing": "Armor Piercing",
+    "DG.ItemWindow.Weapons.Ammo": "Ammo (Amount/Type)",
+    "DG.ItemWindow.Weapons.Range": "Range",
+    "DG.ItemWindow.Weapons.KillRadius": "Kill Radius"
 }

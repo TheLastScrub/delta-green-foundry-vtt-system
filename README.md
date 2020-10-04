@@ -1,5 +1,5 @@
 # (Unofficial) Delta Green: The RPG Foundry System
-This is a fan made Foundry VTT system for Delta Green: The RPG, based on the Agent's Handbook from Arc Dream Publishing.  It is unaffiliated with the Delta Green Partnershipt or Arc Dream Publishing (although they did give permission to make the system).  Please consider supporting the publisher by buying a copy of the official rules book which can be done here:
+This is a fan made Foundry VTT system for Delta Green: The RPG, based on the _Agent's Handbook_ rule set from Arc Dream Publishing (_**not** the Call of Cthulu rules_).  It is unaffiliated with the Delta Green Partnershipt or Arc Dream Publishing (although they did give permission to make the system).  Please consider supporting the publisher by buying a copy of the official rule book which can be done here:
 
 https://www.drivethrurpg.com/product/181674/Delta-Green-Agents-Handbook
 

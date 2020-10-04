@@ -9,7 +9,7 @@
                 <div class="resource">
                     <label class="resource-label">Score</label>
                     <input type="text" name="data.score" value="{{data.score}}" data-dtype="Number"
-                        title="A higher score represents a stronger relationship between the agent and the bond."
+                        title="{{localize 'DG.ItemWindow.Bonds.ScoreTooltip'}}"
                     />
                 </div>
             </div>
@@ -18,7 +18,7 @@
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description/Developments</a>
+        <a class="item" data-tab="description">{{localize 'DG.ItemWindow.Bonds.Description'}}</a>
     </nav>
 
     {{!-- Sheet Body --}}

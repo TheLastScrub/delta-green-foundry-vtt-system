@@ -167,7 +167,7 @@
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident3" {{checked data.sanity.adaptations.violence.incident3}} data-dtype="Boolean" />
                   
                   <label class="adapted-label"
-                    title="Being adapted to violence means your Agent’s empathy suffers as they come to view violence as nothing but another tool to be wielded. He or she permanently loses 1D6 CHA and the same amount from each of their Bonds."
+                    title="{{localize 'DG.Tooltip.AdaptedToViolence'}}"
                   >
                   {{#if data.sanity.adaptations.violence.isAdapted}}
                     {{localize 'DG.Mental.AdaptedToViolence'}}
@@ -180,7 +180,7 @@
                   <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident3" {{checked data.sanity.adaptations.helplessness.incident3}} data-dtype="Boolean" />
                   
                   <label class="adapted-label"
-                    title="Being adapted to helplessness means your Agent’s personal drive suffers as they pull back from the world around them. As soon as your Agent becomes adapted to helplessness, he or she permanently loses 1D6 POW."
+                    title="{{localize 'DG.Tooltip.AdaptedToHelplessness'}}"
                   >
                   {{#if data.sanity.adaptations.helplessness.isAdapted}}
                     {{localize 'DG.Mental.AdaptedToHelplessness'}}
@@ -434,11 +434,22 @@
         <div class="tab items" data-group="primary" data-tab="about">
           <div class="flex horizontal-flex-column">
             <div>
-              <a class="fas fa-question-circle" title="Launch browser with help." href="https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/blob/master/documentation/home.md" >Online System Documentation</a>
+              <a class="fas fa-question-circle" 
+                title="{{localize 'DG.About.OnlineHelpTooltip'}}" 
+                href="https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/blob/master/documentation/home.md"> 
+                  {{localize 'DG.About.OnlineHelp'}}
+              </a>
+            </div>
+            <div>
+              <a class="fas fa-bug" 
+                title="{{localize 'DG.About.OnlineBugTrackerTooltip'}}" 
+                href="https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/issues"> 
+                {{localize 'DG.About.OnlineBugTracker'}}
+              </a>
             </div>
             <br>
             <div>
-              <span>This is an unofficial fan work, it is not affiliated with or endorsed by Shaney Ivey or Arc Dream Publishing.</span>
+              <span style="font-weight: bold;">This is an <span style="font-style: italic">unofficial</span> fan work, it is not affiliated with or endorsed by Shaney Ivey or Arc Dream Publishing.</span>
             </div>
             <br>
             <div>

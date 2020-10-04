@@ -2,14 +2,14 @@
     <header class="sheet-header">
         <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
         <div class="header-fields">
-            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+            <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'DG.ItemWindow.Gear.NamePlaceholder'}}"/></h1>
         </div>
     </header>
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="attributes">Attributes</a>
+        <a class="item" data-tab="description">{{localize 'DG.ItemWindow.Gear.Description'}}</a>
+        <a class="item" data-tab="attributes">{{localize 'DG.ItemWindow.Gear.Attributes'}}</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -23,17 +23,17 @@
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
            <div class="resource">
-                <label class="resource-label">Expense</label>
+                <label class="resource-label">{{localize 'DG.ItemWindow.Gear.Expense'}}</label>
                 <select name="data.expense" >
-                    <option {{#if_eq data.expense 'Incidental'}}selected{{/if_eq}} value="Incidental">Incidental</option>
-                    <option {{#if_eq data.expense 'Standard'}}selected{{/if_eq}} value="Standard">Standard</option>
-                    <option {{#if_eq data.expense 'Unusual'}}selected{{/if_eq}} value="Unusual">Unusual</option>
-                    <option {{#if_eq data.expense 'Major'}}selected{{/if_eq}} value="Major">Major</option>
-                    <option {{#if_eq data.expense 'Extreme'}}selected{{/if_eq}} value="Extreme">Extreme</option>
+                    <option {{#if_eq data.expense 'Incidental'}}selected{{/if_eq}} value="Incidental">{{localize 'DG.Gear.Expense.Incidental'}}</option>
+                    <option {{#if_eq data.expense 'Standard'}}selected{{/if_eq}} value="Standard">{{localize 'DG.Gear.Expense.Standard'}}</option>
+                    <option {{#if_eq data.expense 'Unusual'}}selected{{/if_eq}} value="Unusual">{{localize 'DG.Gear.Expense.Unusual'}}</option>
+                    <option {{#if_eq data.expense 'Major'}}selected{{/if_eq}} value="Major">{{localize 'DG.Gear.Expense.Major'}}</option>
+                    <option {{#if_eq data.expense 'Extreme'}}selected{{/if_eq}} value="Extreme">{{localize 'DG.Gear.Expense.Extreme'}}</option>
                 </select>
               </div>
               <div class="resource">
-                <label class="resource-label">Equipped</label>
+                <label class="resource-label">{{localize 'DG.ItemWindow.Gear.Equipped'}}</label>
                 <input class="labeled-resource-checkbox" type="checkbox" name="data.equipped" {{checked data.equipped}} data-dtype="Boolean" />
               </div>
         </div>
