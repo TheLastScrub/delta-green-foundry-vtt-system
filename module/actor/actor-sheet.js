@@ -68,10 +68,17 @@ export class DeltaGreenActorSheet extends ActorSheet {
   // I don't need this right now, but maybe will move the about section to the header in the future...
   _getHeaderButtons(){
     let buttons = super._getHeaderButtons();
-
+    let label = "";
+    try{
+      label = game.i18n.translations.DG.RollLuck;
+    }
+    catch{
+      label = "Roll Luck"
+    }
+    
     buttons = [
       {
-        label: game.i18n.translations.DG.RollLuck,
+        label: label,
         class: "test-extra-icon",
         icon: "fas fa-dice",
         onclick: (ev) => sendPercentileTestToChat(this.actor, "Luck", 50)
