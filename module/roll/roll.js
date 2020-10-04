@@ -91,6 +91,7 @@ export function sendPercentileTestToChat(actor, skill, target){
     
 
     // page 57 of agent's handbook
+    // For a failed lethality check, the damage on the tens die is a 10 for a roll of '0'.  E.g. '30' + '0' = 13 damage.
     // Lethality rolls do not fumble or critically succeed, but the attack roll can.
     // In this situation, the lethality threshold doubles (e.g. 20% would become 40%),
     // and if the lethality roll fails, the damage is doubled per normal.  However right now
