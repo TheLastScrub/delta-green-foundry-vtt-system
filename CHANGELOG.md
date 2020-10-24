@@ -1,6 +1,6 @@
 ## Release/Patch Notes
 
-### Version 0.9.5
+### Version 0.9.6
 * Incremented Core Compatible Version after testing against release version of Foundry 0.7.5.
 * Made the gear section a little less ugly by adding some nicer section dividers.
 * Fixed some awkward tooltip wording.
