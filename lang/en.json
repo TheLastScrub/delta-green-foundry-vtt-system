@@ -152,7 +152,7 @@
     "DG.Tooltip.SkillFailCheckbox": "After failing a test on this skill (if proficiency is at least 1%), check this box. At the end of the session, add 1D4-1 percentage points to the skill and uncheck the box. Does not apply to the Unnatural skill.  See page 29 of the Agent's Handbook.",
     "DG.Tooltip.DistinguishingFeature": "Distinguishing Feature (fill out if score is 12 or higher, or 8 or lower).",
     "DG.Tooltip.x5AttributeLabel": "Click to roll a x5 check.",
-    "DG.Tooltip.FirstAidAttempted": "Once an agent receives first aid, they cannot benefit from it again until they are damaged again.",
+    "DG.Tooltip.FirstAidAttempted": "Once an agent receives first aid, they cannot benefit from it again until they receive further damage from a different source.",
     "DG.Tooltip.AdaptedToViolence": "Being adapted to violence means your Agent’s empathy suffers as they come to view violence as nothing but another tool to be wielded. He or she permanently loses 1D6 CHA and the same amount from each of their Bonds.",
     "DG.Tooltip.AdaptedToHelplessness": "Being adapted to helplessness means your Agent’s personal drive suffers as they pull back from the world around them. As soon as your Agent becomes adapted to helplessness, he or she permanently loses 1D6 POW.",
 

@@ -251,6 +251,9 @@ div.motivation-editor-container div.editor{
 
 .deltagreen .items-list .item-header {
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .deltagreen .items-list .item {
@@ -274,6 +277,8 @@ div.motivation-editor-container div.editor{
 
 .deltagreen .items-list .item-name {
   margin: 0;
+  display: flex;
+  align-content: center;
 }
 
 .deltagreen .items-list .item-controls {
@@ -446,4 +451,19 @@ div .bottom-left-justified-resource{
 div .first-aid-received-section{
   border-bottom: 1px solid #AAA;
   margin-bottom: 10px;
+}
+
+.gear-section-header{
+  width: 100%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div .gear-section-header{
+  background: #000;
+  color: #fff;
+  margin-top: 3px;
+  padding: 2px;
 }
