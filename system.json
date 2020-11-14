@@ -4,7 +4,7 @@
   "description": "Fan-made Foundry VTT system for Delta Green: The Role Playing Game for Foundry VTT. Based on the rules in the Agent's Handbook (https://www.drivethrurpg.com/product/181674/Delta-Green-Agents-Handbook). Made with the permission of but neither affiliated with nor endorsed by Arc Dream Publishing or the Delta Green Partnership.",
   "version": "0.9.6",
   "minimumCoreVersion": "0.6.2",
-  "compatibleCoreVersion": "0.7.5",
+  "compatibleCoreVersion": "0.7.7",
   "templateVersion": 2,
   "author": "TheLastScrub (https://github.com/TheLastScrub)",
   "esmodules": ["module/deltagreen.js"],
