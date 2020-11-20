@@ -1,0 +1,61 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        
+      <div class="header-fields">
+        
+        {{!-- Name, Profession, Portrait --}}
+        <div class="flexrow">
+          <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="100"/>
+          <div class="horizontal-flex-column">
+            <div>
+              <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" title="{{localize 'DG.AgentNameFieldTooltip' }}"/></h1>
+            </div>
+            <div>
+              <h2 class="profession"><input name="data.biography.profession" type="text" value="{{data.biography.profession}}" placeholder="{{localize 'DG.FallbackText.ProfessionAndOrRank'}}"/></h1>
+            </div>
+          </div>
+        </div>
+    </header>
+
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="bio">{{localize 'DG.Navigation.CV'}}</a>
+    </nav>
+
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+        {{!-- Biography Tab --}}
+        <div class="tab bio" data-group="primary" data-tab="bio">
+          <div class="bio-grid-5col">
+              <span>{{localize 'DG.CV.Sex'}}</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.sex" value="{{data.biography.sex}}" data-dtype="String" placeholder="{{localize 'DG.CV.SexPlaceholder'}}" />
+              <span></span>
+              <span class="bio-grid-label">{{localize 'DG.CV.AgeAndDoB'}}</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.age" value="{{data.biography.age}}" data-dtype="String" placeholder="{{localize 'DG.CV.AgeAndDoBPlaceholder'}}" />
+          </div>
+
+          <div class="bio-grid-2col">
+            
+              <span>{{localize 'DG.CV.Employer'}}</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.employer" value="{{data.biography.employer}}" data-dtype="String" placeholder="{{localize 'DG.CV.EmployerPlaceholder'}}" />
+            
+              <span>{{localize 'DG.CV.Nationality'}}</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.nationality" value="{{data.biography.nationality}}" data-dtype="String" placeholder="{{localize 'DG.CV.NationalityPlaceholder'}}" />
+            
+          </div>
+          
+          <div class="bio-grid-2col">
+              <span>{{localize 'DG.CV.Education'}}</span>
+              <input class="fill-remaining-space" type="text" name="data.biography.education" value="{{data.biography.education}}" data-dtype="String" placeholder="{{localize 'DG.CV.EducationPlaceholder'}}" />
+          </div>
+          <div>
+            <span style="font-weight: bold;">{{localize 'DG.CV.PhysicalDescriptionLabel'}}</span>  
+          </div>
+          {{editor content=data.physicalDescription target="data.physicalDescription" button=true owner=owner editable=editable}}
+        </div>
+
+    </section>
+</form>
+

@@ -19,6 +19,18 @@ export class DeltaGreenActorSheet extends ActorSheet {
   /* -------------------------------------------- */
 
   /** @override */
+  get template() {
+    if ( !game.user.isGM && this.actor.limited ) {
+      return "systems/deltagreen/templates/actor/limited-sheet.html";
+    }
+    else{
+      //return `systems/deltagreen/templates/actor/${this.actor.data.type}-sheet.html`;
+      return `systems/deltagreen/templates/actor/actor-sheet.html`;
+    }
+    
+  }
+
+  /** @override */
   getData() {
     const data = super.getData();
 
@@ -84,7 +96,35 @@ export class DeltaGreenActorSheet extends ActorSheet {
         onclick: (ev) => sendPercentileTestToChat(this.actor, "Luck", 50)
       }].concat(buttons);
 
+      //buttons = [
+      //  {
+      //    label: "Active Effect",
+      //    class: "test-extra-icon",
+      //    icon: "fas fa-bolt",
+      //    onclick: (ev) => this.activeEffectTest(this)
+      //  }].concat(buttons);
+
     return buttons;
+  }
+
+  activeEffectTest(sheet){
+    console.log(sheet.actor.uuid);
+    let owner = sheet.actor;
+
+    let effect = ActiveEffect.create({
+        label: "Custom Effect",
+        tint: "#008000",
+        icon: "icons/svg/aura.svg",
+        origin: owner.uuid,
+        //duration: {"rounds": 1, "seconds": null, "startTime": null, "turns": null, "startRound": null, "startTurn": null},
+        disabled: false,
+        changes: [{
+              "key": "data.skills.firearms.proficiency", //"data.statistics.str.value", //"data.health.max",
+              "mode": 2,  // 0 = custom, 1 = multiply, 2 = add, 3 = upgrade, 4 = downgrade, 5 = override
+              "value": -20,
+              "priority": "20"
+            }]
+      }, owner).create();
   }
 
   /* -------------------------------------------- */
