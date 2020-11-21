@@ -1,5 +1,8 @@
 ## Release/Patch Notes
 
+### Version 0.9.7
+* Changed so that players with the 'Limited' permission on an actor now only see the C.V. tab of the actor's character sheet, instead of the entire sheet.  Previously the 'Limited' permission and the 'Observer' permission gave the same result.  The 'Observer' permission is unchanged and still shows a read-only view of the entire sheet.
+
 ### Version 0.9.6
 * Incremented Core Compatible Version after testing against release version of Foundry 0.7.5.
 * Made the gear section a little less ugly by adding some nicer section dividers.
