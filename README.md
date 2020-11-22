@@ -18,11 +18,13 @@ https://foundryvtt.com/
 Whatever system documentation currently exists can be found [here.](https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/blob/master/documentation/home.md)
 
 # System Status
+
 The system is now largely stable and publicably available in Foundry as an official system!  There will still be tweaks here and there, but no major changes are currently planned. 
 
 If there is specific functionality you would like incorporated in the system, please open an issue on the [Issues](https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/issues) tab in Github.
 
 # Installation Guide
+
 The system is now included in the list of official Foundry VTT game systems, and as such can be installed directly from within Foundry.
 
 If there is a need to manually install the system, go to _Game Systems_ and click _Install System_.  Then in the _Manifest URL_ input field, paste the following link and then click _Install_:
@@ -30,35 +32,50 @@ If there is a need to manually install the system, go to _Game Systems_ and clic
 https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/raw/master/system.json
 
 # Foundry VTT License
+
 This code uses the Foundry VTT and its API under the terms of the Limited License Agreement for Module Development.
 Foundry VTT is a Copyright of Foundry Gaming, LLC.
 
 # Delta Green Community License
+
 Published by arrangement with the Delta Green Partnership. The intellectual property known as Delta Green is a trademark and copyright owned by the Delta Green Partnership, who has licensed its use here. The contents of this system are licensed per the terms of the included LICENSE.TXT file, excepting those elements that are components of the Delta Green intellectual property.
 
 Some content may additionally also be covered under the terms of the OGL Open Game License v.1.0a (Copyright 2000 Wizards of the Coast, Inc.).
 
 Some weapons and armor from the Agent's Handbook are included as compendium packs.  These are *not* covered under the terms of the OGL, but have been included with permission of the Delta Green partnership.
 
-# Other Licenses, Citations and Shoutouts
+# Other Licenses, Attributions and Shoutouts
+
 This system is built upon on Matt Smith's (AKA Asacolips) excellent Boilerplate System and corresponding tutorial.
 https://gitlab.com/asacolips-projects/foundry-mods/foundryvtt-system-tutorial
 
-SPECIAL ELITE FONT
+## Fonts (Some in use, others that I would like to use at some point)
 
-A font used in many places is 'Special Elite' by Astigmatic (Principal Design).
+### MARTEL FONT
+
+By Dan Reynolds (Principal Designer)
+https://fonts.google.com/specimen/Martel?query=martel#license
+
+License: Open Font License.
+https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+
+### SPECIAL ELITE FONT
+
+By Astigmatic (Principal Design)
 https://fonts.google.com/specimen/Special+Elite?sidebar.open&selection.family=Special+Elite#standard-styles
 
 License:  Apache License, Version 2.0
 http://www.apache.org/licenses/LICENSE-2.0
 
-DIDACT GOTHIC FONT
+### DIDACT GOTHIC FONT
 
-Another font used in many places is Didact Gothic, by Daniel Johnson and Cyreal. 
+By Daniel Johnson and Cyreal
 https://fonts.google.com/specimen/Didact+Gothic?query=did#about
 
 License: Open Font License.
 https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+
+## Game Icons
 
 ICONS -  https://game-icons.net/
 https://creativecommons.org/licenses/by/3.0/
