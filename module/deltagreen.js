@@ -4,6 +4,8 @@ import { DeltaGreenActorSheet } from "./actor/actor-sheet.js";
 import { DeltaGreenItem } from "./item/item.js";
 import { DeltaGreenItemSheet } from "./item/item-sheet.js";
 
+import { preloadHandlebarsTemplates } from "./templates.js";
+
 Hooks.once('init', async function() {
 
   game.deltagreen = {
@@ -30,8 +32,11 @@ Hooks.once('init', async function() {
   Actors.registerSheet("deltagreen", DeltaGreenActorSheet, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("deltagreen", DeltaGreenItemSheet, { makeDefault: true });
+  
+  // Preload Handlebars Templates
+  preloadHandlebarsTemplates();
 
-  // Add Handlebars helpers, here are a few useful examples:
+  // Add Handlebars helpers
   Handlebars.registerHelper('concat', function() {
     var outStr = '';
     for (var arg in arguments) {

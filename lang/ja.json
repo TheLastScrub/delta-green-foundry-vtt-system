@@ -90,6 +90,7 @@
     "DG.Roll.Damage": "ダメージ",
     "DG.Roll.RollingDamageFor": "ダメージ・ロール：",
     "DG.Roll.Or": " / ",
+    "DG.Roll.Roll": "振る",
 
     "DG.Physical.Wounds": "傷",
     "DG.Physical.FirstAidLabel": "応急処置は既に施された",

@@ -154,7 +154,8 @@ export class DeltaGreenActorSheet extends ActorSheet {
     });
 
     // Rollable abilities - bind to everything with the 'Rollable' class
-    html.find('.rollable').click(this._onRoll.bind(this));
+    //html.find('.rollable').click(this._onRoll.bind(this));
+    html.find('.rollable').mousedown(this._onRoll.bind(this));
     
     // Drag events for macros.
     if (this.actor.owner) {
@@ -218,7 +219,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     htmlContent += `</div>`;
 
     new Dialog({
-      content:htmlContent,
+      content: htmlContent,
       title: game.i18n.translations.DG.Skills.AddTypedOrCustomSkill,
       buttons: {
         add:{
@@ -298,6 +299,11 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const element = event.currentTarget;
     const dataset = element.dataset;
 
+    if(event && event.which === 2){
+      // probably don't want rolls to trigger from a middle mouse click
+      return;
+    }
+
     if (dataset.roll) {
       let roll = new Roll(dataset.roll, this.actor.data.data);
       let key = dataset.label ? dataset.label : '';
@@ -305,23 +311,44 @@ export class DeltaGreenActorSheet extends ActorSheet {
       let label = dataset.label ? `${dataset.label}` : '';
       let targetVal = "";
       let rollType = dataset.rolltype ? dataset.rolltype : '';
+      
+      // if shift-click or right click, bring up roll editor dialog
+      let requestedModifyRoll = (event && event.shiftKey || event.which === 3); //(event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
 
       // check the 'data-target="something" property to determine how to grab the target for the roll
       if(rollType === "skill" || rollType === "typeskill"){
         targetVal = dataset.target;
         label = game.i18n.localize(label).toUpperCase();
-        sendPercentileTestToChat(this.actor, label, targetVal);
+        
+        if(requestedModifyRoll){
+          this._showModifyPercentileTestDialogue(this.actor, label, targetVal);
+        }
+        else{
+          sendPercentileTestToChat(this.actor, label, targetVal);
+        }
       }
       else if(dataset.target === "statistic.x5"){
         let stat = this.actor.data.data.statistics[key];
         targetVal = stat.x5;
         label = game.i18n.localize("DG.Attributes." + key).toUpperCase();
-        sendPercentileTestToChat(this.actor, label, targetVal);
+
+        if(requestedModifyRoll){
+          this._showModifyPercentileTestDialogue(this.actor, label, targetVal);
+        }
+        else{
+          sendPercentileTestToChat(this.actor, label, targetVal);
+        }
       }
       else if(rollType === "sanity"){
         targetVal = this.actor.data.data.sanity.value;
         label = game.i18n.localize("DG.Attributes.SAN").toUpperCase();
-        sendPercentileTestToChat(this.actor, label, targetVal);
+
+        if(requestedModifyRoll){
+          this._showModifyPercentileTestDialogue(this.actor, label, targetVal);
+        }
+        else{
+          sendPercentileTestToChat(this.actor, label, targetVal);
+        }
       }
       else if(rollType === "damage"){
         // damage roll, not a skill check
@@ -334,6 +361,45 @@ export class DeltaGreenActorSheet extends ActorSheet {
         sendLethalityTestToChat(this.actor, label, targetVal);
       }
     }
+  }
+
+  async _showModifyPercentileTestDialogue(actor, label, originalTarget){
+    
+    let template = "systems/deltagreen/templates/dialog/modify-percentile-roll.html";
+    let backingData = {
+      data:{
+        label: label,
+        originalTarget: originalTarget,
+        targetModifier: 20
+      },
+    };
+    
+    let html = await renderTemplate(template, backingData);
+
+    new Dialog({
+      content: html,
+      title: "Modify Roll",
+      default: "roll",
+      buttons: {
+        roll:{
+          label: game.i18n.translations.DG.Roll.Roll,
+          callback: html => { 
+            let targetModifier = html.find("[name='targetModifier']").val();
+            
+            let newTarget = parseInt(originalTarget);
+
+            try{
+              newTarget += parseInt(targetModifier);
+            }
+            catch(ex){
+              console.log(ex);
+            }
+             
+            sendPercentileTestToChat(actor, label, newTarget);
+          }
+        }
+      }
+      }).render(true);
   }
 
   _resetBreakingPoint(event){
