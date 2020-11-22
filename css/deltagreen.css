@@ -5,7 +5,7 @@
 /* Global styles */
 /* switch fonts to include "Special Elite" as option? */
 .window-app {
-  font-family: "Didact Gothic", "Roboto", sans-serif;
+  font-family: "Martel", 'Signika', sans-serif !important;
   height: auto;
 }
 
@@ -31,7 +31,7 @@
   grid-column: span 2 / span 2;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  margin: 10px 0;
+  margin: 0px 0;
   padding: 0;
 }
 
@@ -167,7 +167,7 @@
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
-  margin-bottom: 10px;
+  
 }
 
 .deltagreen .sheet-header .profile-img {
@@ -176,6 +176,10 @@
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
+}
+
+.profile-img{
+  margin-bottom: 10px;
 }
 
 .deltagreen .sheet-header .header-fields {
@@ -194,12 +198,6 @@
   width: 100%;
   height: 100%;
   margin: 0;
-}
-
-.deltagreen .sheet-tabs {
-  -webkit-box-flex: 0;
-  -ms-flex: 0;
-  flex: 0;
 }
 
 .deltagreen .sheet-body,
@@ -226,15 +224,23 @@ div.motivation-editor-container div.editor{
   text-transform: uppercase;
 }
 
+
+.sheet nav.sheet-tabs{
+  border-bottom: transparent !important;
+  border-top: transparent !important;
+}
+
 .deltagreen .tabs {
   height: 40px;
-  border-top: 1px solid #AAA;
-  border-bottom: 1px solid #AAA;
+  
+  text-align: center;
+  vertical-align: middle;
 }
 
 .deltagreen .tabs .item {
-  line-height: 40px;
   font-weight: bold;
+  vertical-align: middle !important;
+  line-height: inherit;
 }
 
 .deltagreen .tabs .item.active {
@@ -376,30 +382,44 @@ div span.bio-grid-label{
   display: grid;
   grid-template-columns: 100px auto;
   align-items: center;
+  padding-bottom: 10px;
+  row-gap: 10px;
 } 
+
+.bio-grid-top-border{
+  border-top: 1px solid #AAA;
+  padding-top: 10px;
+}
 
 .bio-grid-5col{
   display: grid;
-  grid-template-columns: 100px auto 20px 100px auto;
+  grid-template-columns: 100px 100px 20px 120px auto;
   align-items: center;
+  padding-bottom: 10px;
 } 
 
 .bonds-grid-3col{
   display: grid;
   grid-template-columns: auto 50px max-content;
   align-items: center;
+  padding-bottom: 10px;
 } 
+
+.centered-input-value{
+  text-align: center !important;
+}
 
 .breaking-point-grid-3col{
   display: grid;
   grid-template-columns: 100px 70px 65px;
-  margin-top: 10px;
+  border-top: 1px solid #AAA;
   margin-bottom: 10px;
+  border-bottom: 1px solid #AAA;
   align-content: center;
   justify-content: left;
   align-items: center;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #AAA;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .adaptation-grid-5col{
@@ -455,7 +475,6 @@ div .first-aid-received-section{
 
 .gear-section-header{
   width: 100%;
-  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -464,6 +483,14 @@ div .first-aid-received-section{
 div .gear-section-header{
   background: #000;
   color: #fff;
-  margin-top: 3px;
   padding: 2px;
+}
+
+.bonds-section-header{
+  border-top: 1px solid #AAA;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
 }
