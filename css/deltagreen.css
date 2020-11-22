@@ -494,3 +494,12 @@ div .gear-section-header{
   align-items: center;
   margin-bottom: 5px;
 }
+
+.about-section-header{
+  border-top: 1px solid #AAA;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
