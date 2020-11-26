@@ -1,0 +1,26 @@
+<div class="bio-grid-5col bio-grid-top-border">
+    <span>{{localize 'DG.CV.Sex'}}</span>
+    <input class="fill-remaining-space" type="text" name="data.biography.sex" value="{{data.biography.sex}}" data-dtype="String" placeholder="{{localize 'DG.CV.SexPlaceholder'}}" />
+    <span></span>
+    <span class="bio-grid-label">{{localize 'DG.CV.AgeAndDoB'}}</span>
+    <input class="fill-remaining-space" type="text" name="data.biography.age" value="{{data.biography.age}}" data-dtype="String" placeholder="{{localize 'DG.CV.AgeAndDoBPlaceholder'}}" />
+</div>
+
+<div class="bio-grid-2col">
+  
+    <span>{{localize 'DG.CV.Employer'}}</span>
+    <input class="fill-remaining-space" type="text" name="data.biography.employer" value="{{data.biography.employer}}" data-dtype="String" placeholder="{{localize 'DG.CV.EmployerPlaceholder'}}" />
+  
+    <span>{{localize 'DG.CV.Nationality'}}</span>
+    <input class="fill-remaining-space" type="text" name="data.biography.nationality" value="{{data.biography.nationality}}" data-dtype="String" placeholder="{{localize 'DG.CV.NationalityPlaceholder'}}" />
+  
+</div>
+
+<div class="bio-grid-2col">
+    <span>{{localize 'DG.CV.Education'}}</span>
+    <input class="fill-remaining-space" type="text" name="data.biography.education" value="{{data.biography.education}}" data-dtype="String" placeholder="{{localize 'DG.CV.EducationPlaceholder'}}" />
+</div>
+<div>
+  <span style="font-weight: bold;">{{localize 'DG.CV.PhysicalDescriptionLabel'}}</span>  
+</div>
+{{editor content=data.physicalDescription target="data.physicalDescription" button=true owner=owner editable=editable}}

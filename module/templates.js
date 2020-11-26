@@ -7,6 +7,7 @@
 export const preloadHandlebarsTemplates = async function() {
     return loadTemplates([
       "systems/deltagreen/templates/actor/actor-sheet.html",
+      "systems/deltagreen/templates/actor/cv-partial.html",
       "systems/deltagreen/templates/dialog/modify-percentile-roll.html"
     ]);
   };
