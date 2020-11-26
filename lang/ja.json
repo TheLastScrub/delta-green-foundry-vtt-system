@@ -195,6 +195,7 @@
     "DG.ItemWindow.Weapons.Expense": "費用",
     "DG.ItemWindow.Weapons.Damage": "ダメージ",
     "DG.ItemWindow.Weapons.Lethality": "致命率",
+    "DG.ItemWindow.Weapons.IsLethality": "致命的",
     "DG.ItemWindow.Weapons.LethalityTooltip": "",
     "DG.ItemWindow.Weapons.IsLethalityTooltip": "致命率のある武器なら、このボックスをチェックする",
     "DG.ItemWindow.Weapons.ArmorPiercing": "武具貫通",
@@ -205,5 +206,6 @@
     "DG.ModifySkillRollDialogue.Title": "ロールの変更",
     "DG.ModifySkillRollDialogue.Test": "テスト:",
     "DG.ModifySkillRollDialogue.OriginalTarget": "元のターゲット:",
-    "DG.ModifySkillRollDialogue.TargetModifier": "変換:"
+    "DG.ModifySkillRollDialogue.TargetModifier": "変換:",
+    "DG.ModifySkillRollDialogue.ModifierTooltip": "スキルチェックのターゲットに加算/減算します。"
 }
