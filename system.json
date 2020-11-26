@@ -8,7 +8,7 @@
   "templateVersion": 2,
   "author": "TheLastScrub (https://github.com/TheLastScrub)",
   "esmodules": ["module/deltagreen.js"],
-  "styles": ["css/deltagreen.css"],
+  "styles": ["css/deltagreen.css", "css/dialogue.css"],
   "scripts": [],
   "packs": [
     {

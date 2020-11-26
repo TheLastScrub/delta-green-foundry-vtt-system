@@ -1,0 +1,14 @@
+.skill-modify-grid{
+    display: grid;
+    grid-template-columns: auto auto;
+    align-content: left;
+    justify-content: left;
+    align-items: left;
+    padding: 10px;
+    grid-gap: 10px 15px;
+  }
+
+  .numeric-label-field{
+      width: 50px !important;
+      text-align: center !important;
+  }

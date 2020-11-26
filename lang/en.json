@@ -200,5 +200,10 @@
     "DG.ItemWindow.Weapons.ArmorPiercing": "Armor Piercing",
     "DG.ItemWindow.Weapons.Ammo": "Ammo (Amount/Type)",
     "DG.ItemWindow.Weapons.Range": "Range",
-    "DG.ItemWindow.Weapons.KillRadius": "Kill Radius"
+    "DG.ItemWindow.Weapons.KillRadius": "Kill Radius",
+
+    "DG.ModifySkillRollDialogue.Title": "Modify Roll",
+    "DG.ModifySkillRollDialogue.Test": "Test:",
+    "DG.ModifySkillRollDialogue.OriginalTarget": "Original Target:",
+    "DG.ModifySkillRollDialogue.TargetModifier": "Modify Target:"
 }

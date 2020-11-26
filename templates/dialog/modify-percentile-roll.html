@@ -1,11 +1,12 @@
 <form>
-    <div>
-        <div>
-            <p>Skill: {{data.label}}</p>
-        </div>
-        <br>
-        <label>Original Target: {{data.originalTarget}}</label>
-        <label>Modify Target<label>
-        <input id="test" type="number" name="targetModifier" value="{{data.targetModifier}}" />
+    <div class="skill-modify-grid">
+        <span>{{localize 'DG.ModifySkillRollDialogue.Test'}}</span>
+        <span>{{data.label}}</span>
+        
+        <span>{{localize 'DG.ModifySkillRollDialogue.OriginalTarget'}}</span>
+        <input class="numeric-label-field" disabled value="{{data.originalTarget}}" />
+
+        <span>{{localize 'DG.ModifySkillRollDialogue.TargetModifier'}}</span>
+        <input class="numeric-label-field" type="number" name="targetModifier" value="{{data.targetModifier}}" />
     </div>
 </form>

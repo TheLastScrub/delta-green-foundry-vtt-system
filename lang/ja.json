@@ -200,5 +200,10 @@
     "DG.ItemWindow.Weapons.ArmorPiercing": "武具貫通",
     "DG.ItemWindow.Weapons.Ammo": "弾 （量／種類／など）",
     "DG.ItemWindow.Weapons.Range": "距離",
-    "DG.ItemWindow.Weapons.KillRadius": "致命の半径"
+    "DG.ItemWindow.Weapons.KillRadius": "致命の半径",
+
+    "DG.ModifySkillRollDialogue.Title": "ロールの変更",
+    "DG.ModifySkillRollDialogue.Test": "テスト:",
+    "DG.ModifySkillRollDialogue.OriginalTarget": "元のターゲット:",
+    "DG.ModifySkillRollDialogue.TargetModifier": "変換:"
 }

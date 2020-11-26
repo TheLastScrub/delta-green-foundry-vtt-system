@@ -188,3 +188,49 @@ export function sendPercentileTestToChat(actor, skill, target){
     rollMode: game.settings.get("core", "rollMode")
     });
   }
+
+  export async function showModifyPercentileTestDialogue(actor, label, originalTarget, isLethalityTest){
+    
+    let template = "systems/deltagreen/templates/dialog/modify-percentile-roll.html";
+    let backingData = {
+      data:{
+        label: label,
+        originalTarget: originalTarget,
+        targetModifier: 20
+      },
+    };
+    
+    let html = await renderTemplate(template, backingData);
+
+    new Dialog({
+      content: html,
+      title: game.i18n.localize("DG.ModifySkillRollDialogue.Title"),
+      default: "roll",
+      buttons: {
+        roll:{
+          label: game.i18n.translations.DG.Roll.Roll,
+
+          callback: html => { 
+            try{
+              let targetModifier = html.find("[name='targetModifier']").val();  // this is text as a heads up
+            
+              let newTarget = parseInt(originalTarget); // this should be an int, but technically the incoming value is text, so parse it just to be safe
+
+              newTarget += parseInt(targetModifier);
+              
+              if(isLethalityTest){
+                sendLethalityTestToChat(actor, label, newTarget);
+              }
+              else{
+                sendPercentileTestToChat(actor, label, newTarget);
+              }
+            }
+            catch(ex){
+              console.log(ex);
+            }
+          }
+        }
+      }
+      }
+    ).render(true);
+  }

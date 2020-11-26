@@ -1,4 +1,4 @@
-import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat } from "../roll/roll.js"
+import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat, showModifyPercentileTestDialogue } from "../roll/roll.js"
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -300,17 +300,19 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const dataset = element.dataset;
 
     if(event && event.which === 2){
-      // probably don't want rolls to trigger from a middle mouse click
+      // probably don't want rolls to trigger from a middle mouse click so just kill it here
       return;
     }
 
     if (dataset.roll) {
-      let roll = new Roll(dataset.roll, this.actor.data.data);
+      //let roll = new Roll(dataset.roll, this.actor.data.data);
       let key = dataset.label ? dataset.label : '';
-      //let label = dataset.label ? `Rolling ${dataset.label.toUpperCase()}` : '';
       let label = dataset.label ? `${dataset.label}` : '';
       let targetVal = "";
       let rollType = dataset.rolltype ? dataset.rolltype : '';
+      
+      let isDamageRoll = false;
+      let isLethalityRoll = false;
       
       // if shift-click or right click, bring up roll editor dialog
       let requestedModifyRoll = (event && event.shiftKey || event.which === 3); //(event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
@@ -319,87 +321,51 @@ export class DeltaGreenActorSheet extends ActorSheet {
       if(rollType === "skill" || rollType === "typeskill"){
         targetVal = dataset.target;
         label = game.i18n.localize(label).toUpperCase();
-        
-        if(requestedModifyRoll){
-          this._showModifyPercentileTestDialogue(this.actor, label, targetVal);
-        }
-        else{
-          sendPercentileTestToChat(this.actor, label, targetVal);
-        }
       }
       else if(dataset.target === "statistic.x5"){
         let stat = this.actor.data.data.statistics[key];
         targetVal = stat.x5;
         label = game.i18n.localize("DG.Attributes." + key).toUpperCase();
-
-        if(requestedModifyRoll){
-          this._showModifyPercentileTestDialogue(this.actor, label, targetVal);
-        }
-        else{
-          sendPercentileTestToChat(this.actor, label, targetVal);
-        }
       }
       else if(rollType === "sanity"){
         targetVal = this.actor.data.data.sanity.value;
         label = game.i18n.localize("DG.Attributes.SAN").toUpperCase();
-
-        if(requestedModifyRoll){
-          this._showModifyPercentileTestDialogue(this.actor, label, targetVal);
-        }
-        else{
-          sendPercentileTestToChat(this.actor, label, targetVal);
-        }
       }
       else if(rollType === "damage"){
         // damage roll, not a skill check
+        isDamageRoll = true;
         label = dataset.label ? dataset.label : '';
-        sendDamageRollToChat(this.actor, label, dataset.roll);
       }
       else if(rollType === "lethality"){
         // a lethality roll
+        isLethalityRoll = true;
         targetVal = dataset.target;
-        sendLethalityTestToChat(this.actor, label, targetVal);
       }
-    }
-  }
 
-  async _showModifyPercentileTestDialogue(actor, label, originalTarget){
-    
-    let template = "systems/deltagreen/templates/dialog/modify-percentile-roll.html";
-    let backingData = {
-      data:{
-        label: label,
-        originalTarget: originalTarget,
-        targetModifier: 20
-      },
-    };
-    
-    let html = await renderTemplate(template, backingData);
-
-    new Dialog({
-      content: html,
-      title: "Modify Roll",
-      default: "roll",
-      buttons: {
-        roll:{
-          label: game.i18n.translations.DG.Roll.Roll,
-          callback: html => { 
-            let targetModifier = html.find("[name='targetModifier']").val();
-            
-            let newTarget = parseInt(originalTarget);
-
-            try{
-              newTarget += parseInt(targetModifier);
-            }
-            catch(ex){
-              console.log(ex);
-            }
-             
-            sendPercentileTestToChat(actor, label, newTarget);
-          }
+      if(isDamageRoll){
+        if(requestedModifyRoll){
+          // TO DO: Damage roll modifier dialogue
+        }
+        else{
+          sendDamageRollToChat(this.actor, label, dataset.roll);
         }
       }
-      }).render(true);
+      else{
+        if(requestedModifyRoll){
+          showModifyPercentileTestDialogue(this.actor, label, targetVal, isLethalityRoll);
+        }
+        else{
+          if(isLethalityRoll)
+          {
+            sendLethalityTestToChat(this.actor, label, targetVal);
+          }
+          else{
+            sendPercentileTestToChat(this.actor, label, targetVal);
+          }
+          
+        }
+      }
+    }
   }
 
   _resetBreakingPoint(event){
