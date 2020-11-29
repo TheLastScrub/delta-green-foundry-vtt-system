@@ -170,7 +170,7 @@ export function sendPercentileTestToChat(actor, skill, target){
       };
 
     // play the dice rolling sound, like a regular in-chat roll
-	AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
+	  AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
 
     ChatMessage.create(chatData, {});
   }
