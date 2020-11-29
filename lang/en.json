@@ -156,6 +156,7 @@
     "DG.Tooltip.FirstAidAttempted": "Once an agent receives first aid, they cannot benefit from it again until they receive further damage from a different source.",
     "DG.Tooltip.AdaptedToViolence": "Being adapted to violence means your Agent’s empathy suffers as they come to view violence as nothing but another tool to be wielded. He or she permanently loses 1D6 CHA and the same amount from each of their Bonds.",
     "DG.Tooltip.AdaptedToHelplessness": "Being adapted to helplessness means your Agent’s personal drive suffers as they pull back from the world around them. As soon as your Agent becomes adapted to helplessness, he or she permanently loses 1D6 POW.",
+    "DG.Tooltip.ToggleEquippedState": "Click to toggle whether this item is equipped or not.",
 
     "DG.Gear.Expense.Incidental": "Incidental",
     "DG.Gear.Expense.Standard": "Standard",

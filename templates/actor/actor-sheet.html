@@ -317,7 +317,7 @@
                     <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
                     <span class="centered-item-property">{{item.data.protection}}</span>
                     
-                    <span class="equipped-item centered-item-property" data-id="{{item._id}}">
+                    <span class="equipped-item centered-item-property" data-id="{{item._id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}">
                       {{#if item.data.equipped}}
                         <span class="fas fa-check"></span>
                       {{else}}
@@ -362,7 +362,7 @@
 
                     <span></span> <!-- This is just here to get things to align nicely with the other sections-->
                     
-                    <span class="equipped-item centered-item-property" data-id="{{item._id}}" >
+                    <span class="equipped-item centered-item-property" data-id="{{item._id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}} >
                       
                       {{#if item.data.equipped}}
                         <span class="fas fa-check"></span>
