@@ -242,10 +242,9 @@
               
               <li class="item flexrow item-header">
                 <div class="item-image"></div>
-                <div class="item-name"><span>{{localize 'DG.Gear.Name'}}</span></div>
-                <!-- <div class="item-name">Skill</div> -->
-                <div class="item-name">{{localize 'DG.Gear.DamageOrLethality'}}</div>
-                <div class="item-name">{{localize 'DG.Gear.ArmorPiercing'}}</div>
+                <span class="">{{localize 'DG.Gear.Name'}}</span>
+                <span class="centered-item-property">{{localize 'DG.Gear.DamageOrLethality'}}</span>
+                <span class="centered-item-property">{{localize 'DG.Gear.ArmorPiercing'}}</span>
                 <div class="item-controls">
                   <a class="item-control item-create" title="Create item" data-type="weapon"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
                 </div>
@@ -270,18 +269,17 @@
                     </h4>
 
                     {{#unless item.data.isLethal}}
-                    <span class="rollable" data-rolltype="damage" data-target="damage" data-label="{{toUpperCase item.name}}" data-roll="{{toUpperCase item.data.damage}}">
-                      {{toUpperCase item.data.damage}}
-                      </span>
+                    <span class="rollable centered-item-property" data-rolltype="damage" data-target="damage" data-label="{{toUpperCase item.name}}" data-roll="{{toUpperCase item.data.damage}}">
+                      {{toUpperCase item.data.damage}}</span>
                     {{/unless}}
 
                     {{#if item.data.isLethal}}
-                    <span class="rollable" data-rolltype="lethality" data-target="{{item.data.lethality}}" data-label="{{item.name}}" data-roll="d100"
-                      title="A lethal weapon has a chance to instantly kill a target.  Roll a D100 instead of damage die.  If it is not lethal, damage is dealt instead as if the result was a 2d10 roll, with a '00' on the first d10 equaling a 10."
+                    <span class="rollable  centered-item-property" data-rolltype="lethality" data-target="{{item.data.lethality}}" data-label="{{item.name}}" data-roll="d100"
+                      title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}"
                       >{{formatLethality item.data.lethality}}</span>
                     {{/if}}
 
-                    <span >{{item.data.armorPiercing}}</span>
+                    <span class="centered-item-property">{{item.data.armorPiercing}}</span>
 
                     <div class="item-controls">
                         <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
@@ -304,7 +302,7 @@
               <li class="item flexrow item-header">
                 <div class="item-image"></div>
                 <div class="item-name">{{localize 'DG.Gear.Name'}}</div>
-                <div class="item-name">{{localize 'DG.Gear.ArmorRating'}}</div>
+                <span class="centered-item-property">{{localize 'DG.Gear.ArmorRating'}}</span>
                 <div class="item-name"></div> <!-- This is for whether it's equipped or not, probably doesn't need a label. -->
                 <div class="item-controls">
                   <a class="item-control item-create" title="Create item" data-type="armor"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
@@ -317,9 +315,9 @@
                   <li class="item flexrow" data-item-id="{{item._id}}">
                     <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
                     <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
-                    <span>{{item.data.protection}}</span>
+                    <span class="centered-item-property">{{item.data.protection}}</span>
                     
-                    <span>
+                    <span class="centered-item-property">
                     {{#if item.data.equipped}}
                       {{localize 'DG.Gear.Equipped'}}
                     {{/if}}
@@ -359,9 +357,10 @@
                   <li class="item flexrow" data-item-id="{{item._id}}">
                     <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
                     <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
-                    <span></span>
                     
-                    <span>
+                    <span></span> <!-- This is just here to get things to align nicely with the other sections-->
+                    
+                    <span class="centered-item-property">
                     {{#if item.data.equipped}}
                       {{localize 'DG.Gear.Equipped'}}
                     {{/if}}

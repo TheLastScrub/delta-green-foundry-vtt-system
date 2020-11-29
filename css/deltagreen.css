@@ -232,7 +232,6 @@ div.motivation-editor-container div.editor{
 
 .deltagreen .tabs {
   height: 40px;
-  
   text-align: center;
   vertical-align: middle;
 }
@@ -250,7 +249,7 @@ div.motivation-editor-container div.editor{
 
 .deltagreen .items-list {
   list-style: none;
-  margin: 7px 0;
+  /*margin: 7px 0; */
   padding: 0;
   overflow-y: auto;
 }
@@ -263,7 +262,6 @@ div.motivation-editor-container div.editor{
 }
 
 .deltagreen .items-list .item {
-  /* height: 30px; */
   min-height: 30px;
   line-height: 24px;
   padding: 3px 0;
@@ -448,6 +446,10 @@ div span.bio-grid-label{
   align-items: flex-end;
   padding: 0px;
   column-gap: 4%;
+}
+
+.centered-item-property{
+  text-align: center;
 }
 
 .bolded-label{
