@@ -215,7 +215,7 @@ export function sendPercentileTestToChat(actor, skill, target){
               let targetModifier = html.find("[name='targetModifier']").val();  // this is text as a heads up
             
               let newTarget = parseInt(originalTarget); // this should be an int, but technically the incoming value is text, so parse it just to be safe
-              if(targetModifier.trim() != ""){
+              if(targetModifier.trim() != "" && !isNaN(targetModifier)){
                 newTarget += parseInt(targetModifier);
               }
               
