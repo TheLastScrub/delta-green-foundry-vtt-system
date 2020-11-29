@@ -1,4 +1,4 @@
-import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat, showModifyPercentileTestDialogue } from "../roll/roll.js"
+import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat, showModifyPercentileTestDialogue, showModifyDamageRollDialogue } from "../roll/roll.js"
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -344,7 +344,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
       if(isDamageRoll){
         if(requestedModifyRoll){
-          // TO DO: Damage roll modifier dialogue
+          showModifyDamageRollDialogue(this.actor, label, dataset.roll);
         }
         else{
           sendDamageRollToChat(this.actor, label, dataset.roll);
@@ -362,7 +362,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
           else{
             sendPercentileTestToChat(this.actor, label, targetVal);
           }
-          
         }
       }
     }

@@ -234,3 +234,55 @@ export function sendPercentileTestToChat(actor, skill, target){
       }
     ).render(true);
   }
+
+  export async function showModifyDamageRollDialogue(actor, label, originalFormula){
+    
+    let template = "systems/deltagreen/templates/dialog/modify-damage-roll.html";
+    let backingData = {
+      data:{
+        label: label,
+        originalFormula: originalFormula,
+        outerModifier: "2 * ",
+        innerModifier: "+ 0" 
+      },
+    };
+    
+    let html = await renderTemplate(template, backingData);
+
+    new Dialog({
+      content: html,
+      title: game.i18n.localize("DG.ModifySkillRollDialogue.Title"),
+      default: "roll",
+      buttons: {
+        roll:{
+          label: game.i18n.translations.DG.Roll.Roll,
+
+          callback: html => { 
+            try{
+              let outerModifier = html.find("[name='outerModifier']").val();  // this is text as a heads up
+              let innerModifier = html.find("[name='innerModifier']").val();  // this is text as a heads up
+              let modifiedBaseRoll = html.find("[name='originalFormula']").val();  // this is text as a heads up
+              
+              if(innerModifier.replace(" ", "") === "+0"){
+                innerModifier = "";
+              }
+
+              let newRoll = "";
+              if(outerModifier.trim() != ""){
+                newRoll += outerModifier + "(" + modifiedBaseRoll + innerModifier.trim() + ")";
+              }
+              else{
+                newRoll += modifiedBaseRoll + innerModifier.trim();
+              }
+              
+              sendDamageRollToChat(actor, label, newRoll);
+            }
+            catch(ex){
+              console.log(ex);
+            }
+          }
+        }
+      }
+      }
+    ).render(true);
+  }

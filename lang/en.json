@@ -207,5 +207,9 @@
     "DG.ModifySkillRollDialogue.Test": "Test:",
     "DG.ModifySkillRollDialogue.OriginalTarget": "Original Target:",
     "DG.ModifySkillRollDialogue.TargetModifier": "Modify Target:",
-    "DG.ModifySkillRollDialogue.ModifierTooltip": "Give a positive or negative modifier here to add/subtract from the target for the skill check."
+    "DG.ModifySkillRollDialogue.ModifierTooltip": "Give a positive or negative modifier here to add/subtract from the target for the skill check.",
+
+    "DG.ModifyDamageRollDialogue.Weapon": "Weapon:",
+    "DG.ModifyDamageRollDialogue.OuterModifierTooltip": "Use this field to modify the outer part of the formula, such as to double the result.",
+    "DG.ModifyDamageRollDialogue.InnerModifierTooltip": "Use this field to add a flat modifier such as '+1' or another dice term such as '+1d4'."
 }

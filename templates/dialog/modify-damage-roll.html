@@ -1,0 +1,13 @@
+<form>
+    <div class="damage-modify-label-grid">
+        <span>{{localize 'DG.ModifyDamageRollDialogue.Weapon'}}</span>
+        <span>{{data.label}}</span>
+    </div>
+    <div class="damage-modify-formula-modify-grid">
+        <input class="damage-roll-formula-part" type="text" name="outerModifier" value="{{data.outerModifier}}" title="{{localize 'DG.ModifyDamageRollDialogue.OuterModifierTooltip'}}" />
+        <span>(</span>
+        <input class="damage-roll-formula-part" type="text" name="originalFormula" value="{{data.originalFormula}}" />
+        <input class="damage-roll-formula-part" type="text" name="innerModifier" value="{{data.innerModifier}}" title="{{localize 'DG.ModifyDamageRollDialogue.InnerModifierTooltip'}}" />
+        <span>)</span>
+    </div>
+</form>
