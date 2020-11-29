@@ -1,7 +1,20 @@
 ## Release/Patch Notes
 
 ### Version 0.9.7
-* Changed so that players with the 'Limited' permission on an actor now only see the C.V. tab of the actor's character sheet, instead of the entire sheet.  Previously the 'Limited' permission and the 'Observer' permission gave the same result.  The 'Observer' permission is unchanged and still shows a read-only view of the entire sheet.
+* Enhancement - Can now click on the icon for armor/other gear to equip or unequip it.
+* Enhancement - Changed so that players with the 'Limited' permission on an actor now only see the C.V. tab of the actor's character sheet, instead of the entire sheet.  Previously the 'Limited' permission and the 'Observer' permission gave the same result.  The 'Observer' permission is unchanged and still shows a read-only view of the entire sheet.
+* Enhancement - Added ability to formula for damage rolls by either __right clicking__ *or* __holding shift and left clicking__.
+* Enhancement - Added ability to alter targets for tests by either __right clicking__ *or* __holding shift and left clicking__.  Applies to the following rolls.
+  * Skill tests 
+  * Attribute tests 
+  * Lethality tests
+* Improved CSS on actor sheet in a few places.
+  *  New Font (was previously in style sheet, but not actually applied).
+  *  Nav bar alignment/border consistent across tabs for a cleaner look moving between sections.
+  *  Gear sheet alignment cleaner with certain fields now being centered.
+  *  CV sheet now has some padding on fields so things aren't so cramped looking.
+* Fix - Thanks to @Hrunh for submitting update to localization in item sheet
+* Fix - typo in Alertness skill (English locale), thanks to roestrei for report
 
 ### Version 0.9.6
 * Incremented Core Compatible Version after testing against release version of Foundry 0.7.5.
