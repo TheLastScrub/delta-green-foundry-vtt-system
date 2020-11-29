@@ -74,9 +74,9 @@
     "DG.Navigation.CV": "C.V.",
     "DG.Navigation.Contacts": "Contacts",
 
-    "DG.About.OnlineHelp": "Online System Documentation",
+    "DG.About.OnlineHelp": "Open System Documentation on (ONLINE)",
     "DG.About.OnlineHelpTooltip": "Launch browser with online GitHub help.",
-    "DG.About.OnlineBugTracker": "Questions, Bug Reports or Feature Requests",
+    "DG.About.OnlineBugTracker": "Questions, Bug Reports or Feature Requests (ONLINE)",
     "DG.About.OnlineBugTrackerTooltip": "Launch browser with GitHub issue tracker.",
 
     "DG.Roll.Rolling": "Rolling",
