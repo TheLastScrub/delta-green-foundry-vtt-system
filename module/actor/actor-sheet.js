@@ -156,7 +156,10 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Rollable abilities - bind to everything with the 'Rollable' class
     //html.find('.rollable').click(this._onRoll.bind(this));
     html.find('.rollable').mousedown(this._onRoll.bind(this));
-    
+
+    // Macro for toggling an item's equipped state
+    html.find('.equipped-item').mousedown(this._onEquippedStatusChange.bind(this));
+
     // Drag events for macros.
     if (this.actor.owner) {
       let handler = ev => this._onDragItemStart(ev);
@@ -382,4 +385,19 @@ export class DeltaGreenActorSheet extends ActorSheet {
     this.actor.update({"data": updatedData});
   }
 
+  _onEquippedStatusChange(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+
+    try{
+      const item = this.actor.getOwnedItem(dataset.id);
+      var isEquipped = item.data.data.equipped;
+      isEquipped = !isEquipped;
+      item.update({data:{equipped: isEquipped}});
+    }
+    catch(ex){
+      console.log(ex);
+    }
+  }
 }

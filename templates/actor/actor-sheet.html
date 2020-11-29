@@ -317,10 +317,12 @@
                     <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
                     <span class="centered-item-property">{{item.data.protection}}</span>
                     
-                    <span class="centered-item-property">
-                    {{#if item.data.equipped}}
-                      {{localize 'DG.Gear.Equipped'}}
-                    {{/if}}
+                    <span class="equipped-item centered-item-property" data-id="{{item._id}}">
+                      {{#if item.data.equipped}}
+                        <span class="fas fa-check"></span>
+                      {{else}}
+                        <span class="fas fa-times"></span>
+                      {{/if}}
                     </span>
 
                     <div class="item-controls">
@@ -357,13 +359,17 @@
                   <li class="item flexrow" data-item-id="{{item._id}}">
                     <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
                     <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
-                    
+
                     <span></span> <!-- This is just here to get things to align nicely with the other sections-->
                     
-                    <span class="centered-item-property">
-                    {{#if item.data.equipped}}
-                      {{localize 'DG.Gear.Equipped'}}
-                    {{/if}}
+                    <span class="equipped-item centered-item-property" data-id="{{item._id}}" >
+                      
+                      {{#if item.data.equipped}}
+                        <span class="fas fa-check"></span>
+                      {{else}}
+                        <span class="fas fa-times"></span>
+                      {{/if}}
+                    
                     </span>
 
                     <div class="item-controls">
