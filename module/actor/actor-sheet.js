@@ -203,29 +203,29 @@ export class DeltaGreenActorSheet extends ActorSheet {
     let htmlContent = "";
 
     htmlContent += `<div>`;
-    htmlContent += `     <label>${game.i18n.translations.DG.Skills.SkillGroup}:</label>`;
+    htmlContent += `     <label>${game.i18n.translations.DG?.Skills?.SkillGroup ?? "Skill Group"}:</label>`;
     htmlContent += `     <select name="new-type-skill-group" />`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Art}</option>`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Craft}</option>`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.ForeignLanguage}</option>`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.MilitaryScience}</option>`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Pilot}</option>`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Science}</option>`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Other}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Art ?? "Art"}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Craft ?? "Craft"}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.ForeignLanguage ?? "Foreign Language"}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.MilitaryScience ?? "Military Science"}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Pilot ?? "Pilot"}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Science ?? "Science"}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Other ?? "Other"}</option>`;
     htmlContent += `     </select>`;
     htmlContent += `</div>`;
 
     htmlContent += `<div>`;
-    htmlContent += `     <label>${game.i18n.translations.DG.Skills.SkillName}</label>`;
+    htmlContent += `     <label>${game.i18n.translations.DG?.Skills.SkillName ?? "Skill Name"}</label>`;
     htmlContent += `     <input type="text" name="new-type-skill-label" />`;
     htmlContent += `</div>`;
 
     new Dialog({
       content: htmlContent,
-      title: game.i18n.translations.DG.Skills.AddTypedOrCustomSkill,
+      title: game.i18n.translations.DG?.Skills?.AddTypedOrCustomSkill ?? "Add Typed or Custom Skill",
       buttons: {
         add:{
-          label: game.i18n.translations.DG.Skills.AddSkill,
+          label: game.i18n.translations.DG?.Skills?.AddSkill ?? "Add Skill",
           callback: btn =>{
             let newTypeSkillLabel = btn.find("[name='new-type-skill-label']").val();
             let newTypeSkillGroup = btn.find("[name='new-type-skill-group']").val();
