@@ -15,7 +15,7 @@ export function sendPercentileTestToChat(actor, skill, target){
     }
 
     if(isCritical){
-      resultString = `${game.i18n.localize("DG.Roll.Critical")}　`;
+      resultString = `${game.i18n.localize("DG.Roll.Critical")} `;
     }
 
     if(isSuccess){
