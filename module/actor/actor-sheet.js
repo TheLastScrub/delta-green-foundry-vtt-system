@@ -77,7 +77,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
   }
   
   // Can add extra buttons to form header here if necessary
-  // I don't need this right now, but maybe will move the about section to the header in the future...
   _getHeaderButtons(){
     let buttons = super._getHeaderButtons();
     let label = "";
