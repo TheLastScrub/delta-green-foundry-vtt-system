@@ -1,4 +1,4 @@
-export function sendPercentileTestToChat(actor, skill, target){
+export function sendPercentileTestToChat(actor, skill, target, inhuman_flag=false){       // flag check if the stat is above 20
     let roll = new Roll('1D100', actor.data.data).roll();
     let total = roll.total;
     let isCritical = false;
@@ -8,11 +8,24 @@ export function sendPercentileTestToChat(actor, skill, target){
     let resultString = '';
     let styleOverride = '';
 
-    isCritical = skillCheckResultIsCritical(total);
-
-    if(total <= target){
-      isSuccess = true;
-    }
+    isCritical = skillCheckResultIsCritical(total);     // up to this point everything works as intended
+	
+	if (inhuman_flag){ // pag 188 of the Handler guide: inhuman stats
+	//an entity with a stat at 20 or higher succeeds at any stat test except with a roll of 100, which fails
+	//and fumbles. It gets a critical success on any success with matching digits, and with any roll equal
+	//to or less than the stat’s value.
+		
+		if(total <= 99){
+			isSuccess = true;
+			if(total <= target){
+				isCritical = true;
+			}
+		}
+	}else{  // general case
+		if(total <= target){
+		  isSuccess = true;
+		}
+	}
 
     if(isCritical){
       resultString = `${game.i18n.localize("DG.Roll.Critical")} `;
@@ -189,7 +202,7 @@ export function sendPercentileTestToChat(actor, skill, target){
     });
   }
 
-  export async function showModifyPercentileTestDialogue(actor, label, originalTarget, isLethalityTest){
+  export async function showModifyPercentileTestDialogue(actor, label, originalTarget, isLethalityTest,inhuman_flag=false){
     
     let template = "systems/deltagreen/templates/dialog/modify-percentile-roll.html";
     let backingData = {
@@ -223,7 +236,7 @@ export function sendPercentileTestToChat(actor, skill, target){
                 sendLethalityTestToChat(actor, label, newTarget);
               }
               else{
-                sendPercentileTestToChat(actor, label, newTarget);
+                sendPercentileTestToChat(actor, label, newTarget,inhuman_flag);   //take care of inhuman stat, by default the value is false
               }
             }
             catch(ex){
