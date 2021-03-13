@@ -79,12 +79,14 @@ export class DeltaGreenActorSheet extends ActorSheet {
   // Can add extra buttons to form header here if necessary
   _getHeaderButtons(){
     let buttons = super._getHeaderButtons();
-    let label = "";
+    let label = "Roll Luck";
+    let label2 = "Luck";
     try{
       label = game.i18n.translations.DG.RollLuck;
+      label2 = game.i18n.translations.DG.Luck;
     }
     catch{
-      label = "Roll Luck"
+      ui.notifications.warn('Missing translation key for either DG.RollLuck or DG.Luck key.')
     }
     
     buttons = [
@@ -92,7 +94,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
         label: label,
         class: "test-extra-icon",
         icon: "fas fa-dice",
-        onclick: (ev) => sendPercentileTestToChat(this.actor, "Luck", 50)
+        onclick: (ev) => sendPercentileTestToChat(this.actor, label2, 50)
       }].concat(buttons);
 
       //buttons = [
