@@ -161,7 +161,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
     // Drag events for macros.
     if (this.actor.owner) {
-      let handler = ev => this._onDragItemStart(ev);
+      let handler = ev => this._onDragStart(ev);
       html.find('li.item').each((i, li) => {
         if (li.classList.contains("inventory-header")) return;
         li.setAttribute("draggable", true);
@@ -398,5 +398,34 @@ export class DeltaGreenActorSheet extends ActorSheet {
     catch(ex){
       console.log(ex);
     }
+  }
+
+  _onDragStart(event) {
+    const li = event.currentTarget;
+    if ( event.target.classList.contains("entity-link") ) return;
+
+    // Create drag data
+    const dragData = {
+      actorId: this.actor.id,
+      sceneId: this.actor.isToken ? canvas.scene?.id : null,
+      tokenId: this.actor.isToken ? this.actor.token.id : null
+    };
+
+    // Owned Items
+    if ( li.dataset.itemId ) {
+      const item = this.actor.items.get(li.dataset.itemId);
+      dragData.type = "Item";
+      dragData.data = item.data;
+    }
+
+    // Active Effect
+    if ( li.dataset.effectId ) {
+      const effect = this.actor.effects.get(li.dataset.effectId);
+      dragData.type = "ActiveEffect";
+      dragData.data = effect.data;
+    }
+
+    // Set data transfer
+    event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
   }
 }
