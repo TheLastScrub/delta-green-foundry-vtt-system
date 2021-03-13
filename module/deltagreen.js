@@ -13,6 +13,7 @@ Hooks.once('init', async function() {
     DeltaGreenActor,
     DeltaGreenItem,
     rollItemMacro,
+    rollItemSkillCheckMacro,
     rollSkillMacro
   };
 
@@ -155,6 +156,9 @@ function rollItemMacro(itemName) {
   let actor;
   if (speaker.token) actor = game.actors.tokens[speaker.token];
   if (!actor) actor = game.actors.get(speaker.actor);
+  
+  if(!actor) return ui.notifications.warn('Must have an Actor selected first.');
+
   const item = actor ? actor.items.find(i => i.name === itemName) : null;
   if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
 
@@ -162,6 +166,31 @@ function rollItemMacro(itemName) {
   return item.roll();
 }
 
+function rollItemSkillCheckMacro(itemName) {
+  const speaker = ChatMessage.getSpeaker();
+  let actor;
+  if (speaker.token) actor = game.actors.tokens[speaker.token];
+  if (!actor) actor = game.actors.get(speaker.actor);
+
+  if(!actor) return ui.notifications.warn('Must have an Actor selected first.');
+
+  const item = actor ? actor.items.find(i => i.name === itemName) : null;
+  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
+
+  let skillName = item.data.data.skill.toString();
+
+  let skill = actor.data.data.skills[skillName];
+  let translatedSkillLabel = "";
+
+  try{
+    translatedSkillLabel = game.i18n.localize("DG.Skills." + skillName)
+  }
+  catch{
+    translatedSkillLabel = skillName;
+  }
+
+  sendPercentileTestToChat(actor, translatedSkillLabel, skill.proficiency);
+}
 
 function rollSkillMacro(skillName) {
   const speaker = ChatMessage.getSpeaker();
@@ -175,5 +204,14 @@ function rollSkillMacro(skillName) {
 
   if(!skill) return ui.notifications.warn('Bad skill name passed to macro.');
 
-  sendPercentileTestToChat(actor, skill.label, skill.proficiency);
+  let translatedSkillLabel = "";
+
+  try{
+    translatedSkillLabel = game.i18n.localize("DG.Skills." + skillName)
+  }
+  catch{
+    translatedSkillLabel = skillName;
+  }
+
+  sendPercentileTestToChat(actor, translatedSkillLabel, skill.proficiency);
 }
