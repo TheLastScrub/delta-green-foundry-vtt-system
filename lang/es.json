@@ -58,7 +58,7 @@
     "DG.TypeSkills.Other": "Otra",
 
     "DG.Attributes.HP": "PV",
-    "DG.Attributes.WP": "PV",
+    "DG.Attributes.WP": "PVOL",
     "DG.Attributes.SAN": "COR",
     "DG.Attributes.str": "FUE",
     "DG.Attributes.con": "CON",
