@@ -207,7 +207,7 @@
     "DG.ModifySkillRollDialogue.Title": "ロールの変更",
     "DG.ModifySkillRollDialogue.Test": "テスト:",
     "DG.ModifySkillRollDialogue.OriginalTarget": "元のターゲット:",
-    "DG.ModifySkillRollDialogue.TargetModifier": "変換:",
+    "DG.ModifySkillRollDialogue.TargetModifier": "変換(+/-):",
     "DG.ModifySkillRollDialogue.ModifierTooltip": "スキルチェックのターゲットに加算/減算します。",
 
     "DG.ModifyDamageRollDialogue.Weapon": "武器:",

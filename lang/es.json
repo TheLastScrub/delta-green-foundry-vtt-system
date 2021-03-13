@@ -207,7 +207,7 @@
     "DG.ModifySkillRollDialogue.Title": "Modificar Tirada",
     "DG.ModifySkillRollDialogue.Test": "Test:",
     "DG.ModifySkillRollDialogue.OriginalTarget": "Objetivo Original:",
-    "DG.ModifySkillRollDialogue.TargetModifier": "Modificar Objetivo:",
+    "DG.ModifySkillRollDialogue.TargetModifier": "Modificar Objetivo (+/-):",
     "DG.ModifySkillRollDialogue.ModifierTooltip": "Dar un modificador positivo o negativo aquí para sumar o restar al objetivo en la chequeo de habilidades.",
 
     "DG.ModifyDamageRollDialogue.Weapon": "Arma:",
