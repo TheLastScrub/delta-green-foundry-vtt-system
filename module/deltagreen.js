@@ -3,6 +3,7 @@ import { DeltaGreenActor } from "./actor/actor.js";
 import { DeltaGreenActorSheet } from "./actor/actor-sheet.js";
 import { DeltaGreenItem } from "./item/item.js";
 import { DeltaGreenItemSheet } from "./item/item-sheet.js";
+import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat } from "./roll/roll.js";
 
 import { preloadHandlebarsTemplates } from "./templates.js";
 
@@ -11,7 +12,8 @@ Hooks.once('init', async function() {
   game.deltagreen = {
     DeltaGreenActor,
     DeltaGreenItem,
-    rollItemMacro
+    rollItemMacro,
+    rollSkillMacro
   };
 
   /**
@@ -158,4 +160,20 @@ function rollItemMacro(itemName) {
 
   // Trigger the item roll
   return item.roll();
+}
+
+
+function rollSkillMacro(skillName) {
+  const speaker = ChatMessage.getSpeaker();
+  let actor;
+  if (speaker.token) actor = game.actors.tokens[speaker.token];
+  if (!actor) actor = game.actors.get(speaker.actor);
+  
+  if(!actor) return ui.notifications.warn('Must have an Actor selected first.');
+
+  let skill = actor.data.data.skills[skillName];
+
+  if(!skill) return ui.notifications.warn('Bad skill name passed to macro.');
+
+  sendPercentileTestToChat(actor, skill.label, skill.proficiency);
 }
