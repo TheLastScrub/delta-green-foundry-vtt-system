@@ -212,5 +212,7 @@
 
     "DG.ModifyDamageRollDialogue.Weapon": "Weapon:",
     "DG.ModifyDamageRollDialogue.OuterModifierTooltip": "Use this field to modify the outer part of the formula, such as to double the result.",
-    "DG.ModifyDamageRollDialogue.InnerModifierTooltip": "Use this field to add a flat modifier such as '+1' or another dice term such as '+1d4'."
+    "DG.ModifyDamageRollDialogue.InnerModifierTooltip": "Use this field to add a flat modifier such as '+1' or another dice term such as '+1d4'.",
+
+    "DG.Roll.Inhuman": "Inhuman"
 }

@@ -212,5 +212,7 @@
 
     "DG.ModifyDamageRollDialogue.Weapon": "武器:",
     "DG.ModifyDamageRollDialogue.OuterModifierTooltip": "ここでダイスの式の外を変えられる、結果を二倍にするために使われる。",
-    "DG.ModifyDamageRollDialogue.InnerModifierTooltip": "ここでダイスの式の内側を変えられる、結果を「＋１」とか、「＋１ｄ４」とかにするために使われる。"
+    "DG.ModifyDamageRollDialogue.InnerModifierTooltip": "ここでダイスの式の内側を変えられる、結果を「＋１」とか、「＋１ｄ４」とかにするために使われる。",
+
+    "DG.Roll.Inhuman": "人ならざるもの"
 }

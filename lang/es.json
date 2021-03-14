@@ -212,5 +212,7 @@
 
     "DG.ModifyDamageRollDialogue.Weapon": "Arma:",
     "DG.ModifyDamageRollDialogue.OuterModifierTooltip": "Utilice este campo para modificar la fórmula, como duplicar el resultado.",
-    "DG.ModifyDamageRollDialogue.InnerModifierTooltip": "Utilice este campo para añadir un modificador como '+1' u otro término como '+1d4'."
+    "DG.ModifyDamageRollDialogue.InnerModifierTooltip": "Utilice este campo para añadir un modificador como '+1' u otro término como '+1d4'.",
+
+    "DG.Roll.Inhuman": "Inhuman"
 }
