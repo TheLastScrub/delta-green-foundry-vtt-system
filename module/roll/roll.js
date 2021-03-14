@@ -1,18 +1,31 @@
-export function sendPercentileTestToChat(actor, skill, target){
-  let roll = new Roll('1D100', actor.data.data).roll();
-  let total = roll.total;
-  let isCritical = false;
-  let isSuccess = false;
-  let html = '';
-  let label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${skill}</b> ${game.i18n.localize("DG.Roll.Target")} ${target}`;
-  let resultString = '';
-  let styleOverride = '';
+export function sendPercentileTestToChat(actor, skill, target, inhuman_flag=false){       // flag check if the stat is above 20
+    let roll = new Roll('1D100', actor.data.data).roll();
+    let total = roll.total;
+    let isCritical = false;
+    let isSuccess = false;
+    let html = '';
+    let label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${skill}</b> ${game.i18n.localize("DG.Roll.Target")} ${target}`;
+    let resultString = '';
+    let styleOverride = '';
 
-  isCritical = skillCheckResultIsCritical(total);
-
-  if(total <= target){
-    isSuccess = true;
-  }
+    isCritical = skillCheckResultIsCritical(total);     // up to this point everything works as intended
+	
+	if (inhuman_flag){ // pag 188 of the Handler guide: inhuman stats
+	//an entity with a stat at 20 or higher succeeds at any stat test except with a roll of 100, which fails
+	//and fumbles. It gets a critical success on any success with matching digits, and with any roll equal
+	//to or less than the stat’s value.
+		
+		if(total <= 99){
+			isSuccess = true;
+			if(total <= target){
+				isCritical = true;
+			}
+		}
+	}else{  // general case
+		if(total <= target){
+		  isSuccess = true;
+		}
+	}
 
   if(isCritical){
     resultString = `${game.i18n.localize("DG.Roll.Critical")} `;
@@ -167,6 +180,18 @@ export function sendLethalityTestToChat(actor, weaponName, target){
     type: CHAT_MESSAGE_TYPES.ROLL,
     roll: roll,
     rollMode: game.settings.get("core", "rollMode")
+    });
+  }
+
+  export async function showModifyPercentileTestDialogue(actor, label, originalTarget, isLethalityTest,inhuman_flag=false){
+    
+    let template = "systems/deltagreen/templates/dialog/modify-percentile-roll.html";
+    let backingData = {
+      data:{
+        label: label,
+        originalTarget: originalTarget,
+        targetModifier: 20
+      },
     };
 
   // play the dice rolling sound, like a regular in-chat roll
@@ -223,7 +248,17 @@ export async function showModifyPercentileTestDialogue(actor, label, originalTar
             if(targetModifier.trim() != "" && !isNaN(targetModifier)){
               newTarget += parseInt(targetModifier);
             }
-            
+              let newTarget = parseInt(originalTarget); // this should be an int, but technically the incoming value is text, so parse it just to be safe
+              if(targetModifier.trim() != "" && !isNaN(targetModifier)){
+                newTarget += parseInt(targetModifier);
+              }
+              
+              if(isLethalityTest){
+                sendLethalityTestToChat(actor, label, newTarget);
+              }
+              else{
+                sendPercentileTestToChat(actor, label, newTarget,inhuman_flag);   //take care of inhuman stat, by default the value is false
+              }
             if(isLethalityTest){
               sendLethalityTestToChat(actor, label, newTarget);
             }
