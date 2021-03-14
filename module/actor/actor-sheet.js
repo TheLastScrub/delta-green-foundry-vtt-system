@@ -322,19 +322,13 @@ export class DeltaGreenActorSheet extends ActorSheet {
       let requestedModifyRoll = (event && event.shiftKey || event.which === 3); //(event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
 
       // check the 'data-target="something" property to determine how to grab the target for the roll
-	  let inhuman_flag = false;    // inhuman_flag to be used for stats above 20
       if(rollType === "skill" || rollType === "typeskill"){
         targetVal = dataset.target;
         label = game.i18n.localize(label).toUpperCase();
       }
       else if(dataset.target === "statistic.x5"){
         let stat = this.actor.data.data.statistics[key];
-		if (stat.value>=20){
-			targetVal = stat.value;
-			inhuman_flag = true;    // you use the value instead of the x5 but you set the inhuman_flag to true
-		}else{
-			targetVal = stat.x5;
-		}
+        targetVal = stat.x5;
         label = game.i18n.localize("DG.Attributes." + key).toUpperCase();
       }
       else if(rollType === "sanity"){
@@ -362,7 +356,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       }
       else{
         if(requestedModifyRoll){
-          showModifyPercentileTestDialogue(this.actor, label, targetVal, isLethalityRoll,inhuman_flag);
+          showModifyPercentileTestDialogue(this.actor, label, targetVal, isLethalityRoll);
         }
         else{
           if(isLethalityRoll)
@@ -370,7 +364,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
             sendLethalityTestToChat(this.actor, label, targetVal);
           }
           else{
-            sendPercentileTestToChat(this.actor, label, targetVal,inhuman_flag);
+            sendPercentileTestToChat(this.actor, label, targetVal);
           }
         }
       }
