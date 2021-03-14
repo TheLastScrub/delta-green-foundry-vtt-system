@@ -262,8 +262,8 @@
                       data-roll="d100"
                       data-rolltype="skill" 
                       data-target="{{getActorSkillProp ../data item.data.skill 'proficiency'}}"
-                      data-label="{{getActorSkillProp ../data item.data.skill 'label'}}"
-                      title="Click to roll {{getActorSkillProp ../data item.data.skill 'label'}}"
+                      data-label="{{localize (concat 'DG.Skills.' item.data.skill)}}"
+                      title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localize (concat 'DG.Skills.' item.data.skill)}})"
                       >
                         {{item.name}}
                     </h4>

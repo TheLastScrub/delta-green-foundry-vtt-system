@@ -79,12 +79,14 @@ export class DeltaGreenActorSheet extends ActorSheet {
   // Can add extra buttons to form header here if necessary
   _getHeaderButtons(){
     let buttons = super._getHeaderButtons();
-    let label = "";
+    let label = "Roll Luck";
+    let label2 = "Luck";
     try{
       label = game.i18n.translations.DG.RollLuck;
+      label2 = game.i18n.translations.DG.Luck;
     }
     catch{
-      label = "Roll Luck"
+      ui.notifications.warn('Missing translation key for either DG.RollLuck or DG.Luck key.')
     }
     
     buttons = [
@@ -92,7 +94,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
         label: label,
         class: "test-extra-icon",
         icon: "fas fa-dice",
-        onclick: (ev) => sendPercentileTestToChat(this.actor, "Luck", 50)
+        onclick: (ev) => sendPercentileTestToChat(this.actor, label2, 50)
       }].concat(buttons);
 
       //buttons = [
@@ -161,7 +163,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
     // Drag events for macros.
     if (this.actor.owner) {
-      let handler = ev => this._onDragItemStart(ev);
+      let handler = ev => this._onDragStart(ev);
       html.find('li.item').each((i, li) => {
         if (li.classList.contains("inventory-header")) return;
         li.setAttribute("draggable", true);
@@ -203,29 +205,29 @@ export class DeltaGreenActorSheet extends ActorSheet {
     let htmlContent = "";
 
     htmlContent += `<div>`;
-    htmlContent += `     <label>${game.i18n.translations.DG.Skills.SkillGroup}:</label>`;
+    htmlContent += `     <label>${game.i18n.translations.DG?.Skills?.SkillGroup ?? "Skill Group"}:</label>`;
     htmlContent += `     <select name="new-type-skill-group" />`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Art}</option>`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Craft}</option>`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.ForeignLanguage}</option>`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.MilitaryScience}</option>`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Pilot}</option>`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Science}</option>`;
-    htmlContent += `          <option>${game.i18n.translations.DG.TypeSkills.Other}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Art ?? "Art"}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Craft ?? "Craft"}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.ForeignLanguage ?? "Foreign Language"}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.MilitaryScience ?? "Military Science"}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Pilot ?? "Pilot"}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Science ?? "Science"}</option>`;
+    htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Other ?? "Other"}</option>`;
     htmlContent += `     </select>`;
     htmlContent += `</div>`;
 
     htmlContent += `<div>`;
-    htmlContent += `     <label>${game.i18n.translations.DG.Skills.SkillName}</label>`;
+    htmlContent += `     <label>${game.i18n.translations.DG?.Skills.SkillName ?? "Skill Name"}</label>`;
     htmlContent += `     <input type="text" name="new-type-skill-label" />`;
     htmlContent += `</div>`;
 
     new Dialog({
       content: htmlContent,
-      title: game.i18n.translations.DG.Skills.AddTypedOrCustomSkill,
+      title: game.i18n.translations.DG?.Skills?.AddTypedOrCustomSkill ?? "Add Typed or Custom Skill",
       buttons: {
         add:{
-          label: game.i18n.translations.DG.Skills.AddSkill,
+          label: game.i18n.translations.DG?.Skills?.AddSkill ?? "Add Skill",
           callback: btn =>{
             let newTypeSkillLabel = btn.find("[name='new-type-skill-label']").val();
             let newTypeSkillGroup = btn.find("[name='new-type-skill-group']").val();
@@ -404,5 +406,34 @@ export class DeltaGreenActorSheet extends ActorSheet {
     catch(ex){
       console.log(ex);
     }
+  }
+
+  _onDragStart(event) {
+    const li = event.currentTarget;
+    if ( event.target.classList.contains("entity-link") ) return;
+
+    // Create drag data
+    const dragData = {
+      actorId: this.actor.id,
+      sceneId: this.actor.isToken ? canvas.scene?.id : null,
+      tokenId: this.actor.isToken ? this.actor.token.id : null
+    };
+
+    // Owned Items
+    if ( li.dataset.itemId ) {
+      const item = this.actor.items.get(li.dataset.itemId);
+      dragData.type = "Item";
+      dragData.data = item.data;
+    }
+
+    // Active Effect
+    if ( li.dataset.effectId ) {
+      const effect = this.actor.effects.get(li.dataset.effectId);
+      dragData.type = "ActiveEffect";
+      dragData.data = effect.data;
+    }
+
+    // Set data transfer
+    event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
   }
 }
