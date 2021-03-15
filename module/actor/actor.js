@@ -60,6 +60,9 @@ export class DeltaGreenActor extends Actor {
       else if(key === 'luck'){
         skill.cannotBeImprovedByFailure = true;
       }
+      else if(key === 'ritual'){
+        skill.cannotBeImprovedByFailure = true;
+      }
       else{
         skill.cannotBeImprovedByFailure = false;
       }
