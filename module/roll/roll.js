@@ -247,11 +247,11 @@ export async function showModifyPercentileTestDialogue(actor, label, originalTar
 
   new Dialog({
     content: html,
-    title: game.i18n.localize("DG.ModifySkillRollDialogue.Title"),
+    title: localizeWithFallback("DG.ModifySkillRollDialogue.Title", "Modify Roll"),
     default: "roll",
     buttons: {
       roll:{
-        label: game.i18n.translations.DG.Roll.Roll,
+        label: localizeWithFallback("DG.Roll.Roll", "Roll"),
 
         callback: html => { 
           try{
