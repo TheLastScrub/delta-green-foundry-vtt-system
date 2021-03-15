@@ -224,7 +224,6 @@ div.motivation-editor-container div.editor{
   text-transform: uppercase;
 }
 
-
 .sheet nav.sheet-tabs{
   border-bottom: transparent !important;
   border-top: transparent !important;
@@ -458,6 +457,10 @@ div span.bio-grid-label{
 
 .resource .labeled-resource-checkbox{
   vertical-align: middle;
+}
+
+.resource .first-aid-label{
+  vertical-align: bottom;
 }
 
 div .motivation-section{
