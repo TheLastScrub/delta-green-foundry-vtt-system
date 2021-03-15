@@ -34,6 +34,20 @@ export class DeltaGreenActor extends Actor {
       statistic.x5 = statistic.value * 5;
     }
     
+    actorData.data.skills.ritual = {
+      label: "Ritual",
+      proficiency: 99 - actorData.data.sanity.value,
+      cannotBeImprovedByFailure: true,
+      failure: false
+    };
+
+    if(actorData.data.skills.ritual.proficiency > 99){
+      actorData.data.skills.ritual.proficiency = 99
+    }
+    else if(actorData.data.skills.ritual.proficiency < 1){
+      actorData.data.skills.ritual.proficiency = 1
+    }
+
     // The unnatural skill is sort of special
     // It cannot be improved via failure, so add in a special property to reflect this
     // Mostly to make it easy to deactivate the failure checkbox in the GUI
@@ -41,13 +55,22 @@ export class DeltaGreenActor extends Actor {
       if(key === 'unnatural'){
         skill.cannotBeImprovedByFailure = true;
       }
-      else if(key==='luck'){
+      else if(key === 'luck'){
         skill.cannotBeImprovedByFailure = true;
       }
       else{
         skill.cannotBeImprovedByFailure = false;
       }
+
+      // For ritual skill, it's calculated, so add some logic to turn off changing that entirely.
+      if(key === 'ritual'){
+        skill.isCalculatedValue = true;
+      }
+      else{
+        skill.isCalculatedValue = false;
+      }
     }
+
     actorData.data.wp.max = actorData.data.statistics.pow.value;
 
     actorData.data.health.max = Math.ceil((actorData.data.statistics.con.value + actorData.data.statistics.str.value) / 2);

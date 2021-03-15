@@ -216,5 +216,6 @@
 
     "DG.Roll.Inhuman": "人ならざるもの",
     "DG.Tooltip.BreakPoint": "現在のブレーキポイント。初めの数値は「正気　ー　判断力」。",
-    "DG.Tooltip.BreakPointReset": "ブレーキポイントをレセットする。新しい数値は「正気　ー　判断力」。"
+    "DG.Tooltip.BreakPointReset": "ブレーキポイントをレセットする。新しい数値は「正気　ー　判断力」。",
+    "DG.Skills.ritual": "秘儀"
 }

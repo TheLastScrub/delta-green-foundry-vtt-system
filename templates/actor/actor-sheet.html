@@ -84,7 +84,7 @@
                     >
                     {{ localize (concat "DG.Skills." key) }}
                   </label>
-                  <input class="percentile-skill-input" type="text" name="data.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
+                  <input class="percentile-skill-input" type="text" name="data.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number" {{#if skill.isCalculatedValue}} disabled {{/if}}/>
                   <input type="checkbox" name="data.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} 
                     title="{{localize 'DG.Tooltip.SkillFailCheckbox'}}"
                     />

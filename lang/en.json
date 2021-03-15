@@ -216,5 +216,6 @@
 
     "DG.Roll.Inhuman": "Inhuman",
     "DG.Tooltip.BreakPoint": "The current breaking point, reset when current sanity falls to or below this value.  The starting breaking point is SAN - POW.",
-    "DG.Tooltip.BreakPointReset": "Reset breaking point to be current SAN - WP."
+    "DG.Tooltip.BreakPointReset": "Reset breaking point to be current SAN - WP.",
+    "DG.Skills.ritual": "Ritual"
 }
