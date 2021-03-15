@@ -214,7 +214,7 @@
     "DG.ModifyDamageRollDialogue.OuterModifierTooltip": "Utilice este campo para modificar la fórmula, como duplicar el resultado.",
     "DG.ModifyDamageRollDialogue.InnerModifierTooltip": "Utilice este campo para añadir un modificador como '+1' u otro término como '+1d4'.",
 
-    "DG.Roll.Inhuman": "Inhuman",
+    "DG.Roll.Inhuman": "Inhumano",
     "DG.Tooltip.BreakPoint": "The current breaking point, reset when current sanity falls to or below this value.  The starting breaking point is SAN - POW.",
     "DG.Tooltip.BreakPointReset": "Reset breaking point to be current SAN - WP."
 }
