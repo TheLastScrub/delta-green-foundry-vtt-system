@@ -16,10 +16,10 @@ export function sendPercentileTestToChat(actor, skill, target){
   // For an inhuman check, the roll succeeds except on a roll of 100 which fails AND fumbles.
   // If the roll is a matching digit roll, it is a critical as normal.
   // Also, if the roll is below the regular (non-x5) value of the stat, it is a critical.  E.g. a CON of 25, a d100 roll of 21 would be a critical.
-  if(target > 99){
+  if(target > 99 && skillIsStatTest(skill)){
     inhumanCriticalThreshold = Math.floor(target / 5);
 
-    label = `<span style="font-style: italic;" title="test">[${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</span> ${game.i18n.localize("DG.Roll.Rolling")} <b>${skill}</b> Critical Target: ${inhumanCriticalThreshold}`;
+    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${skill} [${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${Math.floor(target / 5)}`;
 
     if(total === 100){
       // only possible fail criteria, and also a fumble.
@@ -329,4 +329,33 @@ export async function showModifyDamageRollDialogue(actor, label, originalFormula
     }
     }
   ).render(true);
+}
+
+export function skillIsStatTest(skillName){
+  try{
+    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.str").toUpperCase()){
+      return true;
+    }
+    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.con").toUpperCase()){
+      return true;
+    }
+    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.dex").toUpperCase()){
+      return true;
+    }
+    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.int").toUpperCase()){
+      return true;
+    }
+    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.pow").toUpperCase()){
+      return true;
+    }
+    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.cha").toUpperCase()){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  catch(ex){
+    return false;
+  }
 }
