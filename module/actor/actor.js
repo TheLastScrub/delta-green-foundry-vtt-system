@@ -34,6 +34,8 @@ export class DeltaGreenActor extends Actor {
       statistic.x5 = statistic.value * 5;
     }
     
+    // The ritual skill is from the Handler's Guide, it is for activating a ritual and is always equal to 99 - current sanity.
+    // The rules can be found on page 166, under 'Ritual Activation'.
     actorData.data.skills.ritual = {
       label: "Ritual",
       proficiency: 99 - actorData.data.sanity.value,
