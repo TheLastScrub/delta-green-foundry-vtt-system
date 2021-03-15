@@ -11,7 +11,7 @@
 
         <div class="tab attributes" data-group="primary" data-tab="attributes">
             
-            <div class="motivation-section">
+            <div class="motivation-section resource">
                 <label class="resource-label">{{localize 'DG.ItemWindow.Motivations.IsDisorder'}}: </label>
                 <input class="labeled-resource-checkbox" type="checkbox" name="data.crossedOut" {{checked data.crossedOut}} data-dtype="Boolean" 
                     title="{{localize 'DG.ItemWindow.Motivations.IsDisorderTooltip'}}"
@@ -42,9 +42,9 @@
                     title="{{localize 'DG.ItemWindow.Motivations.DisorderNameTooltip'}}"
                 />
             </div>
-            <div class="motivation-section">
+            <div class="motivation-section resource">
                 <label class="resource-label">{{localize 'DG.ItemWindow.Motivations.DisorderHasBeenCured'}}: </label>
-                <input class="" type="checkbox" name="data.disorderCured" {{checked data.disorderCured}} data-dtype="Boolean" 
+                <input class="labeled-resource-checkbox" type="checkbox" name="data.disorderCured" {{checked data.disorderCured}} data-dtype="Boolean" 
                     title="{{localize 'DG.ItemWindow.Motivations.DisorderHasBeenCuredTooltip'}}"
                 />
             </div>
