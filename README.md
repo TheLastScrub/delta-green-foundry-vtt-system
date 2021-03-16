@@ -75,6 +75,18 @@ https://fonts.google.com/specimen/Didact+Gothic?query=did#about
 License: Open Font License.
 https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 
+### TYPEWRITER CONDENSED FONT
+
+By Volker Busse - F25 Digital Typeface Design
+License: None given
+https://www.dafont.com/typewriter-condensed.font
+
+### ANOTHER TYPEWRITER Font
+
+By Johan Holmdahl
+License: None given
+https://www.dafont.com/another-typewriter.font
+
 ## Game Icons
 
 ICONS -  https://game-icons.net/

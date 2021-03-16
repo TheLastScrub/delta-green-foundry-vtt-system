@@ -2,11 +2,57 @@
 @import url("https://fonts.googleapis.com/css2?family=Didact+Gothic");
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
+@font-face {
+  font-family: 'atwriter';
+  src: url('../assets/font/another-typewriter/atwriter.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+} 
+
+@font-face {
+  font-family: TypeWriterCondensed;
+  src: url("../assets/font/typewriter-condensed/typewcond_regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: TypeWriterCondensed;
+  font-weight: bold;
+  src: url("../assets/font/typewriter-condensed/typewcond_bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: TypeWriterCondensed;
+  font-weight: 600;
+  src: url("../assets/font/typewriter-condensed/typewcond_demi.otf") format("opentype");
+}
+
 /* Global styles */
-/* switch fonts to include "Special Elite" as option? */
+
+/*
 .window-app {
-  font-family: "Martel", 'Signika', sans-serif !important;
+  font-family: "TypeWriterCondensed", "atwriter", "Martel", 'Signika', sans-serif !important;
   height: auto;
+}
+*/
+
+/*
+section.window-content{
+  background: url("../assets/img/old_paper.jpg") !important;
+}
+*/
+
+.typewriter-condensed-font{
+  font-family: "TypeWriterCondensed", sans-serif !important;
+}
+
+.martel-font{
+  font-family: "Martel", sans-serif !important;
+}
+
+.signika-font{
+  font-family: "Signika", sans-serif !important;
+}
+
+.atwriter-font{
+  font-family: "atwriter", sans-serif !important;
 }
 
 .rollable:hover, .rollable:focus {
@@ -141,15 +187,6 @@
   text-align: left;
 }
 
-/* Styles limited to delta green sheets */
-.deltagreen {
-  font-family: "Didact Gothic", "Roboto", sans-serif;
-}
-
-.deltagreen .item-form {
-  font-family: "Didact Gothic", "Roboto", sans-serif;
-}
-
 .deltagreen .sheet-header {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 400px;
@@ -167,7 +204,6 @@
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
-  
 }
 
 .deltagreen .sheet-header .profile-img {

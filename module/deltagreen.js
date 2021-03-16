@@ -4,7 +4,7 @@ import { DeltaGreenActorSheet } from "./actor/actor-sheet.js";
 import { DeltaGreenItem } from "./item/item.js";
 import { DeltaGreenItemSheet } from "./item/item-sheet.js";
 import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat } from "./roll/roll.js";
-
+import { registerSystemSettings } from "./settings.js"
 import { preloadHandlebarsTemplates } from "./templates.js";
 
 Hooks.once('init', async function() {
@@ -25,6 +25,9 @@ Hooks.once('init', async function() {
     formula: "@statistics.dex.value",
     decimals: 0
   };
+
+  // Register System Settings
+  registerSystemSettings();
 
   // Define custom Entity classes
   CONFIG.Actor.entityClass = DeltaGreenActor;
@@ -105,6 +108,29 @@ Hooks.once('init', async function() {
     else{
       return "";
     }
+  });
+
+  // looks at system setting for what font to use and returns the class that is then used in the handlebars template that 
+  // generates the character sheet.
+  Handlebars.registerHelper('getFontFamilySystemSettingClass', function() {
+    let setting = game.settings.get("deltagreen", "characterSheetFont");
+    
+    if(setting === "TypeWriterCondensed"){
+      return "typewriter-condensed-font";
+    }
+    else if(setting === "Martel"){
+      return "martel-font";
+    }
+    else if(setting === "Signika"){
+      return "signika-font";
+    }
+    else if(setting === "atwriter"){
+      return "atwriter-font";
+    }
+    else{
+      return "martel-font";
+    }
+    
   });
 });
 
