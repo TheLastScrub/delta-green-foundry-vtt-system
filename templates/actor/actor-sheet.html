@@ -22,7 +22,7 @@
 
           {{!-- HP --}}
           <div class="resource flex-group-center">
-              <label for="data.health.value" class="resource-label" title="{{localize 'DG.Tooltip.HP'}}">{{localize 'DG.Attributes.HP' }}</label>
+              <label for="data.health.value" class="resource-label" title="{{localize 'DG.Tooltip.HP'}}">{{localize 'DG.Attributes.HP' }} (<span>{{data.health.protection}} <i class="fas fa-shield-alt"></i></span>)</label>
               <div class="resource-content flexrow flex-center flex-between">
                 <input type="text" name="data.health.value" value="{{data.health.value}}" data-dtype="Number"/>
                 <span> / </span>
