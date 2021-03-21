@@ -16,20 +16,21 @@ export class DeltaGreenActor extends Actor {
 
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
-    if (actorData.type === 'agent') this._prepareAgentData(actorData);
+    if (actorData.type === 'agent') this._prepareAgentData(this);
   }
 
   /**
    * Prepare Agent type specific data
    */
-  _prepareAgentData(actorData) {
+  _prepareAgentData(agent) {
+
+    let actorData = agent.data;
     const data = actorData.data;
 
     // Make modifications to data here. For example:
 
     // Loop through ability scores, and add their modifiers to our sheet output.
     for (let [key, statistic] of Object.entries(data.statistics)) {
-      
       // the x5 is just whatever the raw statistic is x 5 to turn it into a d100 percentile
       statistic.x5 = statistic.value * 5;
     }
@@ -105,8 +106,20 @@ export class DeltaGreenActor extends Actor {
     else{
       actorData.data.sanity.adaptations.helplessness.isAdapted = false;
     }
+
+    // calculate total armor rating
+    let protection = 0;
+    for (let i of agent.items) {
+      if (i.type === 'armor') {
+        if(i.data.data.equipped === true){
+          protection += i.data.data.protection;
+        }
+      }
+    }
+
+    actorData.data.health.protection = protection;
     
-    console.log(actorData);
+    console.log(agent);
   }
 
   /** @override */

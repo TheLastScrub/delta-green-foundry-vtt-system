@@ -56,6 +56,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const armor = [];
     const weapons = [];
 
+    // total armor rating
+    let armorRating = 0;
+
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
     for (let i of sheetData.items) {
@@ -65,7 +68,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       if (i.type === 'armor') {
         armor.push(i);
       }
-      // Append to features.
+      // Append to weapons.
       else if (i.type === 'weapon') {
         weapons.push(i);
       }
