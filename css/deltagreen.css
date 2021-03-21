@@ -39,6 +39,13 @@ section.window-content{
 }
 */
 
+.old-paper-background{
+  background: url("../assets/img/old_paper.jpg") !important;
+}
+.default-parchment-background{
+  background: url("/ui/parchment.jpg") repeat !important;
+}
+
 .typewriter-condensed-font{
   font-family: "TypeWriterCondensed", sans-serif !important;
 }

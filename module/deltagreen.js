@@ -35,8 +35,8 @@ Hooks.once('init', async function() {
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("deltagreen", DeltaGreenActorSheet, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
+  Actors.registerSheet("deltagreen", DeltaGreenActorSheet, { makeDefault: true });
   Items.registerSheet("deltagreen", DeltaGreenItemSheet, { makeDefault: true });
   
   // Preload Handlebars Templates
@@ -137,6 +137,35 @@ Hooks.once('init', async function() {
 Hooks.once("ready", async function() {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => createDeltaGreenMacro(data, slot));
+});
+
+Hooks.on("ready", ()=> {
+  
+  let backgroundImageSetting = game.settings.get("deltagreen", "characterSheetBackgroundImageSetting");
+
+  let customCss = "";
+
+  let customStyle = document.createElement("style");
+  customStyle.id = "dg-custom-css";
+
+  if(backgroundImageSetting === "OldPaper1"){
+    customCss += `section.window-content{
+          background: url("systems/deltagreen/assets/img/old_paper.jpg") !important;
+    }`;
+  }
+  else if(backgroundImageSetting === "IvoryPaper"){
+    customCss += `section.window-content{
+          background: url("systems/deltagreen/assets/img/ivory-off-white-paper-texture.jpg") !important;
+          background-size: 100% !important;
+    }`;
+  }
+
+  customStyle.innerHTML = customCss;
+
+  if(customCss != ""){
+    document.querySelector("head").appendChild(customStyle);
+  }
+  
 });
 
 /* -------------------------------------------- */
