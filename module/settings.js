@@ -29,7 +29,7 @@ export const registerSystemSettings = function() {
         "IvoryPaper": "Ivory White Paper (Good with Martel Font)",
         "DefaultParchment": "Default Parchment (Good with Signika Font)"
       },
-      default: "IvoryPaper",        // The default value for the setting
+      default: "OldPaper1",        // The default value for the setting
       onChange: value => { // A callback function which triggers when the setting is changed
         //console.log(value)
       }
