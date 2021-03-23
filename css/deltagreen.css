@@ -486,6 +486,7 @@ div span.bio-grid-label{
 .adapted-label{
   font-weight: bold;
   font-style: italic;
+  color: rgb(139, 0, 0);
 }
 
 .weapon-grid-2col{
