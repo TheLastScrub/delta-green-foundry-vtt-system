@@ -8,11 +8,11 @@
         {{!-- Name, Profession, Portrait --}}
         <div class="flexrow">
           <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="100"/>
-          <div class="horizontal-flex-column">
-            <div>
+          <div>
+            <div class="test111">
               <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" title="{{localize 'DG.AgentNameFieldTooltip' }}"/></h1>
             </div>
-            <div>
+            <div class="">
               <h2 class="profession"><input name="data.biography.profession" type="text" value="{{data.biography.profession}}" placeholder="{{localize 'DG.FallbackText.ProfessionAndOrRank'}}"/></h1>
             </div>
           </div>
@@ -21,38 +21,42 @@
         <div class="resources grid grid-3col">
 
           {{!-- HP --}}
-          <div class="resource flex-group-center">
+          <div class="resource-outer-grid-1col">
               <label for="data.health.value" class="resource-label" title="{{localize 'DG.Tooltip.HP'}}">{{localize 'DG.Attributes.HP' }} (<span>{{data.health.protection}} <i class="fas fa-shield-alt"></i></span>)</label>
-              <div class="resource-content flexrow flex-center flex-between">
+              <div class="resource-inner-grid-3col">
                 <input type="text" name="data.health.value" value="{{data.health.value}}" data-dtype="Number"/>
                 <span> / </span>
-                <span title="{{localize 'DG.Tooltip.MaximumHP'}}" class="max-attribute-value-label">{{numberFormat data.health.max decimals=0 sign=false}}</span>
+                <!-- <span title="{{localize 'DG.Tooltip.MaximumHP'}}" class="max-attribute-value-label">{{numberFormat data.health.max decimals=0 sign=false}}</span> -->
+                <div class="max-resource-value" title="{{localize 'DG.Tooltip.MaximumHP'}}">
+                  <div>{{numberFormat data.health.max decimals=0 sign=false}}</div>
+                </div>
               </div>
           </div>
 
           {{!-- WP --}}
-          <div class="resource flex-group-center">
-              <label for="data.wp.value" class="resource-label" 
-                title="{{localize 'DG.Tooltip.WP'}}"
-                >{{localize 'DG.Attributes.WP' }}</label>
-              <div class="resource-content flexrow flex-center flex-between">
+          <div class="resource-outer-grid-1col">
+              <label for="data.wp.value" class="resource-label" title="{{localize 'DG.Tooltip.WP'}}">{{localize 'DG.Attributes.WP' }}</label>
+              <div class="resource-inner-grid-3col">
                 <input type="text" name="data.wp.value" value="{{data.wp.value}}" data-dtype="Number"/>
                 <span> / </span>
-                <span class="max-attribute-value-label" title="{{localize 'DG.Tooltip.MaximumWP'}}">{{numberFormat data.wp.max decimals=0 sign=false}}</span>
+                <!-- <span class="max-attribute-value-label" title="{{localize 'DG.Tooltip.MaximumWP'}}">{{numberFormat data.wp.max decimals=0 sign=false}}</span> -->
+                <div class="max-resource-value" title="{{localize 'DG.Tooltip.MaximumWP'}}">
+                  <div>{{numberFormat data.wp.max decimals=0 sign=false}}</div>
+                </div>
               </div>
           </div>
 
           {{!-- Sanity --}}
-          <div class="resource flex-group-center">
+          <div class="resource-outer-grid-1col">
               <label for="data.wp.value" class="resource-label rollable"
                 data-rolltype="sanity" data-roll="d100" data-target="sanity" data-label="SAN" title="{{localize 'DG.Tooltip.SanityLabel'}}"
               >{{localize 'DG.Attributes.SAN' }}</label>
-              <div class="resource-content flexrow flex-center flex-between">
-                <input type="text" name="data.sanity.value" value="{{data.sanity.value}}" data-dtype="Number"
-                  title="{{localize 'DG.Tooltip.CurrentSanityPartOne'}}{{data.sanity.currentBreakingPoint}}{{localize 'DG.Tooltip.CurrentSanityPartTwo'}}"
-                />
+              <div class="resource-inner-grid-3col">
+                <input type="text" name="data.sanity.value" value="{{data.sanity.value}}" data-dtype="Number" title="{{localize 'DG.Tooltip.CurrentSanityPartOne'}}{{data.sanity.currentBreakingPoint}}{{localize 'DG.Tooltip.CurrentSanityPartTwo'}}" />
                 <span> / </span>
-                <span title="{{localize 'DG.Tooltip.MaximumSanity'}}" class="max-attribute-value-label">{{numberFormat data.sanity.max decimals=0 sign=false}}</span>
+                <div class="max-resource-value" title="{{localize 'DG.Tooltip.MaximumSanity'}}">
+                  <div>{{numberFormat data.sanity.max decimals=0 sign=false}}</div>
+                </div>
               </div>
           </div>
         </div>

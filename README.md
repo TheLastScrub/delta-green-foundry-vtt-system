@@ -81,7 +81,7 @@ By Volker Busse - F25 Digital Typeface Design
 License: None given
 https://www.dafont.com/typewriter-condensed.font
 
-### ANOTHER TYPEWRITER Font
+### ANOTHER TYPEWRITER FONT
 
 By Johan Holmdahl
 License: None given

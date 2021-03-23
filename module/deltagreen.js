@@ -127,6 +127,9 @@ Hooks.once('init', async function() {
     else if(setting === "atwriter"){
       return "atwriter-font";
     }
+    else if(setting === "SpecialElite"){
+      return "special-elite-font";
+    }
     else{
       return "martel-font";
     }

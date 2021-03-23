@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Martel:wght@400;800&family=Roboto:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Didact+Gothic");
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
 @font-face {
   font-family: 'atwriter';
@@ -23,6 +22,11 @@
   font-weight: 600;
   src: url("../assets/font/typewriter-condensed/typewcond_demi.otf") format("opentype");
 }
+
+@font-face {
+  font-family: 'SpecialElite';
+  src: url('../assets/font/special_elite/SpecialElite-Regular.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+} 
 
 /* Global styles */
 
@@ -60,6 +64,10 @@ section.window-content{
 
 .atwriter-font{
   font-family: "atwriter", sans-serif !important;
+}
+
+.special-elite-font{
+  font-family: "SpecialElite", sans-serif !important;
 }
 
 .rollable:hover, .rollable:focus {
@@ -363,10 +371,11 @@ span.left-aligned-label{
 span.max-attribute-value-label{
   border: 1px solid rgb(122, 121, 113);
   border-radius: 3px;
-  padding-top: 1px;
+  padding-top: 3px;
   padding-bottom: 1px;
   padding-left: 3px;
   padding-right: 3px;
+  height: 26px;
 }
 
 .deltagreen .skill-label{
@@ -398,7 +407,7 @@ input.percentile-skill-input{
 
 .deltagreen .sheet-header h2.profession input {
   width: 100%;
-  height: 100%;
+  height: 35px;
   margin: 0;
 }
 
@@ -550,4 +559,35 @@ div .gear-section-header{
   justify-content: center;
   align-items: center;
   margin-bottom: 5px;
+}
+
+textarea.wounds{
+  resize: none;
+}
+
+.resource-inner-grid-3col{
+  display: grid;
+  grid-template-columns: 35% 30% 35%;
+  align-items: center;
+  text-align: center;
+}
+
+.resource-outer-grid-1col{
+  display: grid;
+  grid-template-columns: 100%;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #999;
+  padding: 5px;
+  grid-gap: 3px;
+  text-align: center;
+}
+
+div.max-resource-value{
+  border: 1px solid rgb(122, 121, 113);
+  border-radius: 3px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
