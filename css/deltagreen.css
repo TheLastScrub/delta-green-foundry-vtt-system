@@ -531,19 +531,6 @@ div .first-aid-received-section{
   margin-bottom: 10px;
 }
 
-.gear-section-header{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-div .gear-section-header{
-  background: #000;
-  color: #fff;
-  padding: 2px;
-}
-
 .bonds-section-header{
   border-top: 1px solid #AAA;
   width: 100%;
@@ -592,3 +579,26 @@ div.max-resource-value{
   justify-content: center;
   align-items: center;
 }
+
+.physical-stats-outer-grid-3col{
+  display: grid;
+  grid-template-columns: 33% 34% 33%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5px;
+  grid-gap: 5px;
+}
+
+div.gear-section-header{
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background: #000;
+  color: #fff;
+  height: 30px;
+}
+
