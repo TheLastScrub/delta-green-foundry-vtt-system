@@ -35,10 +35,11 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const data = super.getData();
 
     // Prepare items.
-    if (this.actor.data.type == 'character') {
+    if (this.actor.data.type == 'agent') {
       this._prepareCharacterItems(data);
     }
-
+    //console.log(data);
+    //return data.data;
     return data;
   }
 
@@ -55,9 +56,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Initialize containers.
     const armor = [];
     const weapons = [];
-
-    // total armor rating
-    let armorRating = 0;
 
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
@@ -146,14 +144,19 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Update Inventory Item
     html.find('.item-edit').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
-      const item = this.actor.getOwnedItem(li.data("itemId"));
+      //const item = this.actor.getOwnedItem(li.data("itemId"));
+      const item = this.actor.items.get(li.data("itemId"));
       item.sheet.render(true);
     });
 
     // Delete Inventory Item
     html.find('.item-delete').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
-      this.actor.deleteOwnedItem(li.data("itemId"));
+
+      //this.actor.deleteOwnedItem(li.data("itemId"));
+      let options = {};
+      this.actor.deleteEmbeddedDocuments("Item", [li.data("itemId")], options);
+
       li.slideUp(200, () => this.render(false));
     });
 
@@ -165,7 +168,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     html.find('.equipped-item').mousedown(this._onEquippedStatusChange.bind(this));
 
     // Drag events for macros.
-    if (this.actor.owner) {
+    if (this.actor.isOwner) {
       let handler = ev => this._onDragStart(ev);
       html.find('li.item').each((i, li) => {
         if (li.classList.contains("inventory-header")) return;
@@ -277,6 +280,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       type: type,
       data: data
     };
+
     // Remove the type from the dataset since it's in the itemData.type prop.
     delete itemData.data["type"];
 
@@ -293,7 +297,8 @@ export class DeltaGreenActorSheet extends ActorSheet {
     }
     
     // Finally, create the item!
-    return this.actor.createOwnedItem(itemData);
+    //return this.actor.createOwnedItem(itemData);
+    return this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
   /**
@@ -395,7 +400,8 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const dataset = element.dataset;
 
     try{
-      const item = this.actor.getOwnedItem(dataset.id);
+      //const item = this.actor.getOwnedItem(dataset.id);
+      const item = this.actor.items.get(dataset.id);
       var isEquipped = item.data.data.equipped;
       isEquipped = !isEquipped;
       item.update({data:{equipped: isEquipped}});

@@ -151,7 +151,7 @@
     "DG.Tooltip.SkillLabel": "Click para hacer una tirada de habilidad.",
     "DG.Tooltip.CannotRollSkillLabel": "No se puede usar una habilidad al 0%.  Consulte la página 28 del Manual del Agente.",
     "DG.Tooltip.SkillFailCheckbox": "Después de fallar una prueba sobre esta habilidad (si el dominio es de al menos 1%), marque esta casilla. Al final de la sesión, agregue puntos porcentuales 1D4-1 a la habilidad y desmarque la casilla. No se aplica a la habilidad Antinatural.  Consulte la página 29 del Manual del Agente.",
-    "DG.Tooltip.DistinguishingFeature": "Característica Distintiva (rellene si la puntuación es 12 o superior, u 8 o inferior).",
+    "DG.Tooltip.DistinguishingFeature": "Característica Distintiva (rellene si la puntuación es 13 o superior, u 8 o inferior).",
     "DG.Tooltip.x5AttributeLabel": "Click para una tirada x5.",
     "DG.Tooltip.FirstAidAttempted": "Una vez que un agente recibe primeros auxilios, no puede beneficiarse de él de nuevo hasta que reciba más daños de una fuente diferente.",
     "DG.Tooltip.AdaptedToViolence": "Adaptarse a la violencia significa que la empatía de su agente sufre al ser testigo de tanta violencia. Pierde permanentemente 1D6 CAR y la misma cantidad de cada uno de sus vínculos.",

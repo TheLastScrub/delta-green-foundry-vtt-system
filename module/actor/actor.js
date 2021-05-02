@@ -14,9 +14,14 @@ export class DeltaGreenActor extends Actor {
     const data = actorData.data;
     const flags = actorData.flags;
 
+    //console.log('actor.js prepareData');
+    //console.log(this);
+
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
-    if (actorData.type === 'agent') this._prepareAgentData(this);
+    if (actorData.type === 'agent'){
+      this._prepareAgentData(this);
+    } 
   }
 
   /**

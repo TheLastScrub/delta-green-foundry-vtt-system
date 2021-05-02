@@ -151,7 +151,7 @@
     "DG.Tooltip.SkillLabel": "Click to roll a skill check.",
     "DG.Tooltip.CannotRollSkillLabel": "A skill at 0% cannot be used.  See page 28 of the Agent's Handbook.",
     "DG.Tooltip.SkillFailCheckbox": "After failing a test on this skill (if proficiency is at least 1%), check this box. At the end of the session, add 1D4 percentage points to the skill and uncheck the box. Does not apply to the Unnatural or Ritual skill.  See page 29 of the Agent's Handbook.",
-    "DG.Tooltip.DistinguishingFeature": "Distinguishing Feature (fill out if score is 12 or higher, or 8 or lower).",
+    "DG.Tooltip.DistinguishingFeature": "Distinguishing Feature (fill out if score is 13 or higher, or 8 or lower).",
     "DG.Tooltip.x5AttributeLabel": "Click to roll a x5 check.",
     "DG.Tooltip.FirstAidAttempted": "Once an agent receives first aid, they cannot benefit from it again until they receive further damage from a different source.",
     "DG.Tooltip.AdaptedToViolence": "Being adapted to violence means your Agent’s empathy suffers as they come to view violence as nothing but another tool to be wielded. He or she permanently loses 1D6 CHA and the same amount from each of their Bonds.",

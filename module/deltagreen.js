@@ -99,15 +99,22 @@ Hooks.once('init', async function() {
   });
 
   Handlebars.registerHelper('getActorSkillProp', function(actorData, skillName, prop) {
-    if(skillName != "" && prop != ""){
-      let skills = actorData.skills;
-      let skill = skills[skillName];
-      let propVal = skill[prop];
-      return propVal;
+    try{
+      if(skillName != "" && prop != ""){
+        let skills = actorData.data.skills;
+        let skill = skills[skillName];
+        let propVal = skill[prop];
+        return propVal;
+      }
+      else{
+        return "";
+      }
     }
-    else{
+    catch(ex){
+      console.log(ex);
       return "";
     }
+    
   });
 
   // looks at system setting for what font to use and returns the class that is then used in the handlebars template that 

@@ -8,7 +8,7 @@
                 </div>
                 <div class="resource">
                     <label class="resource-label">Score</label>
-                    <input type="text" name="data.score" value="{{data.score}}" data-dtype="Number"
+                    <input type="text" name="data.score" value="{{data.data.score}}" data-dtype="Number"
                         title="{{localize 'DG.ItemWindow.Bonds.ScoreTooltip'}}"
                     />
                 </div>
@@ -26,7 +26,7 @@
 
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
         </div>
     </section>
 </form>

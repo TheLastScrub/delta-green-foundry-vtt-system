@@ -1,7 +1,7 @@
 import {localizeWithFallback} from "../other/utility-functions.js"
 
 export function sendPercentileTestToChat(actor, skill, target){
-  let roll = new Roll('1D100', actor.data.data).roll();
+  let roll = new Roll('1D100', actor.data.data).evaluate(false);
   let total = roll.total;
   let isCritical = false;
   let isSuccess = false;
@@ -96,7 +96,7 @@ export function sendPercentileTestToChat(actor, skill, target){
     speaker: ChatMessage.getSpeaker({actor: actor}),
     content: html,
     flavor: label,
-    type: CHAT_MESSAGE_TYPES.ROLL,
+    type: 5, //CHAT_MESSAGE_TYPES.ROLL,
     roll: roll,
     rollMode: game.settings.get("core", "rollMode")
     };
@@ -123,7 +123,7 @@ export function skillCheckResultIsCritical(rollResult){
 }
 
 export function sendLethalityTestToChat(actor, weaponName, target){
-  let roll = new Roll('1D100', actor.data.data).roll();
+  let roll = new Roll('1D100', actor.data.data).evaluate(false);
   let isCritical = false;
   let skillCheckTotal = roll.total;
   
@@ -202,7 +202,7 @@ export function sendLethalityTestToChat(actor, weaponName, target){
     speaker: ChatMessage.getSpeaker({actor: actor}),
     content: html,
     flavor: label,
-    type: CHAT_MESSAGE_TYPES.ROLL,
+    type: 5, //CHAT_MESSAGE_TYPES.ROLL,
     roll: roll,
     rollMode: game.settings.get("core", "rollMode")
     };
@@ -223,10 +223,10 @@ export function sendDamageRollToChat(actor, label, diceFormula){
     label = `Rolling <b>DAMAGE</b> for <b>${label.toUpperCase()}</b>`
   }
   
-  roll.roll().toMessage({
+  roll.evaluate(false).toMessage({
   speaker: ChatMessage.getSpeaker({ actor: actor }),
   flavor: label,
-  type: CHAT_MESSAGE_TYPES.ROLL,
+  type: 5, //CHAT_MESSAGE_TYPES.ROLL,
   roll: roll,
   rollMode: game.settings.get("core", "rollMode")
   });

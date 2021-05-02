@@ -1,26 +1,27 @@
 <form class="{{cssClass}} {{getFontFamilySystemSettingClass}}" autocomplete="off">
     <header class="sheet-header">
+      
         <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}"/>
         <div class="header-fields">
             <h1 class="charname"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'DG.ItemWindow.Armor.NamePlaceholder'}}"/></h1>
             <div class="grid grid-2col">
               <div class="resource">
                 <label class="resource-label">{{localize 'DG.ItemWindow.Armor.ArmorRating'}}</label>
-                <input type="text" name="data.protection" value="{{data.protection}}" data-dtype="Number"/>
+                <input type="text" name="data.protection" value="{{data.data.protection}}" data-dtype="Number"/>
               </div>
               <div class="resource">
                 <label class="resource-label">{{localize 'DG.ItemWindow.Armor.Expense'}}</label>
                 <select name="data.expense" >
-                  <option {{#if_eq data.expense 'Incidental'}}selected{{/if_eq}} value="Incidental">{{localize 'DG.Gear.Expense.Incidental'}}</option>
-                  <option {{#if_eq data.expense 'Standard'}}selected{{/if_eq}} value="Standard">{{localize 'DG.Gear.Expense.Standard'}}</option>
-                  <option {{#if_eq data.expense 'Unusual'}}selected{{/if_eq}} value="Unusual">{{localize 'DG.Gear.Expense.Unusual'}}</option>
-                  <option {{#if_eq data.expense 'Major'}}selected{{/if_eq}} value="Major">{{localize 'DG.Gear.Expense.Major'}}</option>
-                  <option {{#if_eq data.expense 'Extreme'}}selected{{/if_eq}} value="Extreme">{{localize 'DG.Gear.Expense.Extreme'}}</option>
+                  <option {{#if_eq data.data.expense 'Incidental'}}selected{{/if_eq}} value="Incidental">{{localize 'DG.Gear.Expense.Incidental'}}</option>
+                  <option {{#if_eq data.data.expense 'Standard'}}selected{{/if_eq}} value="Standard">{{localize 'DG.Gear.Expense.Standard'}}</option>
+                  <option {{#if_eq data.data.expense 'Unusual'}}selected{{/if_eq}} value="Unusual">{{localize 'DG.Gear.Expense.Unusual'}}</option>
+                  <option {{#if_eq data.data.expense 'Major'}}selected{{/if_eq}} value="Major">{{localize 'DG.Gear.Expense.Major'}}</option>
+                  <option {{#if_eq data.data.expense 'Extreme'}}selected{{/if_eq}} value="Extreme">{{localize 'DG.Gear.Expense.Extreme'}}</option>
                 </select>
               </div>
               <div class="resource">
                 <label class="resource-label">{{localize 'DG.ItemWindow.Armor.Equipped'}}</label>
-                <input class="labeled-resource-checkbox" type="checkbox" name="data.equipped" {{checked data.equipped}} data-dtype="Boolean" />
+                <input class="labeled-resource-checkbox" type="checkbox" name="data.equipped" {{checked data.data.equipped}} data-dtype="Boolean" />
               </div>
             </div>
         </div>
@@ -36,7 +37,7 @@
 
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
         </div>
     </section>
 </form>
