@@ -257,19 +257,6 @@ section.window-content{
   height: 100%;
 }
 
-div.motivation-editor-container div.editor{
-  height: 400px;
-  min-height: 100% !important;
-}
-
-.deltagreen .tox .tox-editor-container {
-  background: #fff;
-}
-
-.deltagreen .tox .tox-edit-area {
-  padding: 0 8px;
-}
-
 .deltagreen .resource-label {
   font-weight: bold;
   text-transform: uppercase;
@@ -602,3 +589,43 @@ div.gear-section-header{
   height: 30px;
 }
 
+.physical-description-label{
+  font-weight: bold;
+}
+
+div.motivation-editor-container div.editor{
+  height: 400px;
+  min-height: 100% !important;
+}
+
+.editor-host .tox .tox-editor-container {
+  background: url("../assets/img/old_paper.jpg") !important;
+}
+
+.deltagreen .tox .tox-editor-container {
+  background: #fff;
+}
+
+.deltagreen .tox .tox-edit-area {
+  padding: 0 8px;
+}
+
+.deltagreen .editor-host .editor {
+  min-height: 35px;
+}
+
+.deltagreen .editor-host .tox {
+  height:100% !important;
+  display:block;
+}
+
+.deltagreen .editor-host .tox-tinymce {
+  height:100% !important;
+  display:block;
+}
+
+.deltagreen .editor-host .tox .tox-edit-area {
+  position: inherit;
+  min-height: 20px;
+  height: 300px;
+}

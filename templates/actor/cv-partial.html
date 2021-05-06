@@ -20,11 +20,10 @@
     <span>{{localize 'DG.CV.Education'}}</span>
     <input class="fill-remaining-space" type="text" name="data.biography.education" value="{{actor.data.data.biography.education}}" data-dtype="String" placeholder="{{localize 'DG.CV.EducationPlaceholder'}}" />
 </div>
-<div>
-  <span style="font-weight: bold;">{{localize 'DG.CV.PhysicalDescriptionLabel'}}</span>  
+<div style="padding: 2px; margin-bottom: 5px;">
+  <span class="physical-description-label">{{localize 'DG.CV.PhysicalDescriptionLabel'}}</span>  
 </div>
 
-<!-- This isn't showing up anymore...-->
-<div style="height: 400px;">
+<div class="editor-host">
     {{editor content=actor.data.data.physicalDescription target="data.physicalDescription" button=true owner=owner editable=editable}}
 </div>
