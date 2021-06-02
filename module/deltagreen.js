@@ -161,27 +161,12 @@ Hooks.on("ready", ()=> {
   if(backgroundImageSetting === "OldPaper1"){
     customCss += `section.window-content{
           background: url("systems/deltagreen/assets/img/old_paper.jpg") !important;
-    }
-    .editor-host .tox .tox-editor-container {
-      background: url("../assets/img/old_paper.jpg") !important;
-      font-family: "SpecialElite", sans-serif !important;
     }`;
   }
   else if(backgroundImageSetting === "IvoryPaper"){
     customCss += `section.window-content{
-          background: url("systems/deltagreen/assets/img/ivory-off-white-paper-texture.jpg") !important;
           background-size: 100% !important;
-    }
-    .editor-host .tox .tox-editor-container {
-      background: url("systems/deltagreen/assets/img/ivory-off-white-paper-texture.jpg") !important;
-      background-size: 100% !important;
     }`;
-  }
-  else{
-    customCss += `.editor-host .tox .tox-editor-container {
-        background: url("/ui/parchment.jpg") !important;
-        background-size: 100% !important;
-      }`;
   }
 
   customStyle.innerHTML = customCss;

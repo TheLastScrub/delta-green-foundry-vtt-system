@@ -439,4 +439,10 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Set data transfer
     event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
   }
+  
+  activateEditor(target, editorOptions, initialContent) {
+    editorOptions.content_css = "./systems/deltagreen/css/editor.css";
+    return super.activateEditor(target, editorOptions, initialContent);
+  };
 }
+

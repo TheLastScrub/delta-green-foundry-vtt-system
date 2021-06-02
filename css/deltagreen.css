@@ -599,11 +599,12 @@ div.motivation-editor-container div.editor{
 }
 
 .editor-host .tox .tox-editor-container {
-  background: url("../assets/img/old_paper.jpg") !important;
+  background: none !important;
 }
 
-.deltagreen .tox .tox-editor-container {
-  background: #fff;
+
+.deltagreen .tox-editor-header {
+  background: none !important;
 }
 
 .deltagreen .tox .tox-edit-area {

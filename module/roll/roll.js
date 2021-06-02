@@ -359,3 +359,14 @@ export function skillIsStatTest(skillName){
     return false;
   }
 }
+
+/* rollMode Options -> CONFIG.Dice.rollModes
+
+  game.i18n.localize("CHAT.RollBlind") -> "Blind GM Roll"
+  {{selectOptions rollModes selected=defaultRollMode localize=true}}
+  
+  roll -> 'Public Roll'
+  gmroll -> 'Private GM Roll'
+  blindroll -> 'Blind GM Roll'
+  selfroll -> 'Self Roll'
+ */
