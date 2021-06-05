@@ -1,23 +1,21 @@
 <form class="{{cssClass}} {{getFontFamilySystemSettingClass}}" autocomplete="off">
     <header class="sheet-header">
-        <div class="flexrow">
+        <div class="bond-sheet-grid-2col">
             <img class="profile-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" />
-            <div class="horizontal-flex-column">
-                <div>
-                    <h1 class="charname"> <input name="name" type="text" value="{{item.name}}" placeholder="Name" /> </h1>
-                </div>
-                <div class="resource">
-                    <label class="resource-label">Score</label>
-                    <input type="text" name="data.score" value="{{data.data.score}}" data-dtype="Number"
-                        title="{{localize 'DG.ItemWindow.Bonds.ScoreTooltip'}}"
-                    />
-                </div>
-                <div class="resource">
-                    <label class="resource-label">Relationship</label>
-                    <input type="text" name="data.relationship" value="{{data.data.relationship}}" data-dtype="String"
-                        
-                    />
-                </div>
+            <div class="bond-sheet-horizontal-grid-2col">
+
+                <span>{{localize 'DG.Bonds.Name'}}:</span>
+                <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'DG.Bonds.Name'}}" />
+                                
+                <!-- <label class="resource-label">{{localize 'DG.Bonds.Score'}}</label> -->
+                <span>{{localize 'DG.Bonds.Score'}}:</span>
+                <input type="text" name="data.score" value="{{data.data.score}}" data-dtype="Number"
+                    title="{{localize 'DG.ItemWindow.Bonds.ScoreTooltip'}}"
+                />            
+            
+                <span>{{localize 'DG.Bonds.Relationship'}}:</span>
+                <input type="text" name="data.relationship" value="{{data.data.relationship}}" data-dtype="String" />
+                
             </div>
         </div>
     </header>
