@@ -30,8 +30,8 @@ Hooks.once('init', async function() {
   registerSystemSettings();
 
   // Define custom Entity classes
-  CONFIG.Actor.entityClass = DeltaGreenActor;
-  CONFIG.Item.entityClass = DeltaGreenItem;
+  CONFIG.Actor.documentClass = DeltaGreenActor;
+  CONFIG.Item.documentClass = DeltaGreenItem;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
@@ -115,6 +115,22 @@ Hooks.once('init', async function() {
       return "";
     }
     
+  });
+
+  Handlebars.registerHelper('getAvailableRollModes', function() {
+    try {
+      return CONFIG.Dice.rollModes;
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  Handlebars.registerHelper('getDefaultRollMode', function() {
+    try {
+      return game.settings.get("core", "rollMode");
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   // looks at system setting for what font to use and returns the class that is then used in the handlebars template that 

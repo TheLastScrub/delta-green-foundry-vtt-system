@@ -359,7 +359,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
           showModifyDamageRollDialogue(this.actor, label, dataset.roll);
         }
         else{
-          sendDamageRollToChat(this.actor, label, dataset.roll);
+          sendDamageRollToChat(this.actor, label, dataset.roll, game.settings.get("core", "rollMode"));
         }
       }
       else{
@@ -369,10 +369,10 @@ export class DeltaGreenActorSheet extends ActorSheet {
         else{
           if(isLethalityRoll)
           {
-            sendLethalityTestToChat(this.actor, label, targetVal);
+            sendLethalityTestToChat(this.actor, label, targetVal, game.settings.get("core", "rollMode"));
           }
           else{
-            sendPercentileTestToChat(this.actor, label, targetVal);
+            sendPercentileTestToChat(this.actor, label, targetVal, game.settings.get("core", "rollMode"));
           }
         }
       }

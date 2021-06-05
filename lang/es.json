@@ -217,5 +217,8 @@
     "DG.Roll.Inhuman": "Inhumano",
     "DG.Tooltip.BreakPoint": "El Punto de Ruptura actual, actualizar cuando la Cordura actual sea igual o inferior a este valor. El Punto de Ruptura inicial es COR - POD.",
     "DG.Tooltip.BreakPointReset": "Actualizar el Punto de Ruptura al valor actual de COR - PVOL.",
-    "DG.Skills.ritual": "Ritual"
+    "DG.Skills.ritual": "Ritual",
+
+    "DG.RollMode": "Modo rollo",
+    "DG.Bonds.Relationship": "Relación"
 }

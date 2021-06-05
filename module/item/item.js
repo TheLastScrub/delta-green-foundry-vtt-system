@@ -30,7 +30,7 @@ export class DeltaGreenItem extends Item {
     const itemData = item.data;
 
     if(item.data.isLethal){
-      sendLethalityTestToChat(this.actor, item.name, item.data.lethality)
+      sendLethalityTestToChat(this.actor, item.name, item.data.lethality, game.settings.get("core", "rollMode"))
     }
     else{
       // regular damage roll

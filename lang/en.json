@@ -154,8 +154,8 @@
     "DG.Tooltip.DistinguishingFeature": "Distinguishing Feature (fill out if score is 13 or higher, or 8 or lower).",
     "DG.Tooltip.x5AttributeLabel": "Click to roll a x5 check.",
     "DG.Tooltip.FirstAidAttempted": "Once an agent receives first aid, they cannot benefit from it again until they receive further damage from a different source.",
-    "DG.Tooltip.AdaptedToViolence": "Being adapted to violence means your Agent’s empathy suffers as they come to view violence as nothing but another tool to be wielded. He or she permanently loses 1D6 CHA and the same amount from each of their Bonds.",
-    "DG.Tooltip.AdaptedToHelplessness": "Being adapted to helplessness means your Agent’s personal drive suffers as they pull back from the world around them. As soon as your Agent becomes adapted to helplessness, he or she permanently loses 1D6 POW.",
+    "DG.Tooltip.AdaptedToViolence": "Being adapted to violence means your Agent’s empathy suffers as they come to view violence as nothing but another tool to be wielded. Agent permanently loses 1D6 CHA and the same amount from each of their Bonds.",
+    "DG.Tooltip.AdaptedToHelplessness": "Being adapted to helplessness means your Agent’s personal drive suffers as they pull back from the world around them. As soon as your Agent becomes adapted to helplessness, agent permanently loses 1D6 POW.",
     "DG.Tooltip.ToggleEquippedState": "Click to toggle whether this item is equipped or not.",
 
     "DG.Gear.Expense.Incidental": "Incidental",
@@ -217,5 +217,8 @@
     "DG.Roll.Inhuman": "Inhuman",
     "DG.Tooltip.BreakPoint": "The current breaking point, reset when current sanity falls to or below this value.  The starting breaking point is SAN - POW.",
     "DG.Tooltip.BreakPointReset": "Reset breaking point to be current SAN - WP.",
-    "DG.Skills.ritual": "Ritual"
+    "DG.Skills.ritual": "Ritual",
+
+    "DG.RollMode": "Roll Mode",
+    "DG.Bonds.Relationship": "Relationship"
 }

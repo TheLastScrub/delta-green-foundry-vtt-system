@@ -1,5 +1,12 @@
 ## Release/Patch Notes
 
+### Verion 1.0.0 - 2021-06-03 [BREAKING CHANGE: COMPATIBILE WITH FOUNDRY 0.8.6 OR HIGHER ONLY!]
+
+ * Changes to support 0.8.x Foundry
+  * Revamped data model for actor sheet.
+  * Rolls asynchronous now
+* Enhancement - Added option to choose roll mode in the roll modifier dialogue for both percentile/lethality tests and damage rolls.
+
 ### Version 0.9.9 - 2021-03-27
 
   * Fix - [GitHub #23] - Localization mistake, had two spaces in between "Critical" and "Success" or "Failure" in chat cards.

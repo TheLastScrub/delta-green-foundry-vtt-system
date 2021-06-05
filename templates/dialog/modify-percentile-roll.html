@@ -8,5 +8,10 @@
 
         <span>{{localize 'DG.ModifySkillRollDialogue.TargetModifier'}}</span>
         <input class="numeric-label-field" type="number" name="targetModifier" value="{{data.targetModifier}}" title="{{localize 'DG.ModifySkillRollDialogue.ModifierTooltip'}}" />
+
+        <label for="targetRollMode">{{ localize "DG.RollMode" }}:</label>
+        <select name="targetRollMode">
+            {{selectOptions (getAvailableRollModes) selected=(getDefaultRollMode) localize=true}}
+        </select>
     </div>
 </form>
