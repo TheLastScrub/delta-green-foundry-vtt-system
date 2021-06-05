@@ -816,4 +816,5 @@ input.item-sheet-short-input{
   justify-content: left;
   text-align: left;
   grid-gap: 5px;
+  padding-right: 5px;
 }
