@@ -669,3 +669,53 @@ div.motivation-editor-container div.editor{
   padding-left: 5px;
   grid-gap: 5px;
 }
+
+/*
+  Armor Item Sheet
+*/
+
+.armor-sheet-grid-2col{
+  display: grid;
+  grid-template-columns: 25% 75%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-left: 5px;
+  grid-gap: 5px;
+}
+
+.armor-sheet-horizontal-grid-2col{
+  display: grid;
+  grid-template-columns: 100px auto;
+  align-items: center;
+  text-align: left;
+  padding-bottom: 10px;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding-right: 5px;
+}
+
+/*
+  Gear Item Sheet
+*/
+
+.gear-sheet-grid-2col{
+  display: grid;
+  grid-template-columns: 25% 75%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-left: 5px;
+  grid-gap: 5px;
+}
+
+.gear-sheet-horizontal-grid-2col{
+  display: grid;
+  grid-template-columns: 100px auto;
+  align-items: center;
+  text-align: left;
+  padding-bottom: 10px;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding-right: 5px;
+}
