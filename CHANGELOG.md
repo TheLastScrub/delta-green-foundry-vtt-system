@@ -2,7 +2,7 @@
 
 ### Verion 1.0.0 - 2021-06-03 [BREAKING CHANGE: COMPATIBILE WITH FOUNDRY 0.8.6 OR HIGHER ONLY!]
 
-* Changes to support 0.8.x Foundry
+* Changes to support 0.8.6+ Foundry
  * Revamped data model for actor sheet. Note due to the changes, the new system is not backwards compatible with older versions of Foundry now.
  * Rolls all asynchronous now.  Should allow less work to be required in future versions when asynchronous rolls are required.
 * Enhancement - Added option to choose roll mode in the roll modifier dialogue for both percentile/lethality tests and damage rolls.

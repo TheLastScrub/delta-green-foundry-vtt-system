@@ -8,8 +8,8 @@
 
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">{{localize 'DG.ItemWindow.Gear.Description'}}</a>
         <a class="item" data-tab="attributes">{{localize 'DG.ItemWindow.Gear.Attributes'}}</a>
+        <a class="item" data-tab="description">{{localize 'DG.ItemWindow.Gear.Description'}}</a>        
     </nav>
 
     {{!-- Sheet Body --}}
@@ -23,7 +23,7 @@
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
            <div class="resource">
-                <label class="resource-label">{{localize 'DG.ItemWindow.Gear.Expense'}}</label>
+                <label class="resource-label">{{localize 'DG.ItemWindow.Gear.Expense'}}:</label>
                 <select name="data.expense" >
                     <option {{#if_eq data.data.expense 'Incidental'}}selected{{/if_eq}} value="Incidental">{{localize 'DG.Gear.Expense.Incidental'}}</option>
                     <option {{#if_eq data.data.expense 'Standard'}}selected{{/if_eq}} value="Standard">{{localize 'DG.Gear.Expense.Standard'}}</option>
@@ -33,7 +33,7 @@
                 </select>
               </div>
               <div class="resource">
-                <label class="resource-label">{{localize 'DG.ItemWindow.Gear.Equipped'}}</label>
+                <label class="resource-label">{{localize 'DG.ItemWindow.Gear.Equipped'}}:</label>
                 <input class="labeled-resource-checkbox" type="checkbox" name="data.equipped" {{checked data.data.equipped}} data-dtype="Boolean" />
               </div>
         </div>
