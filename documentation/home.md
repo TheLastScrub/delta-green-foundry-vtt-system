@@ -40,7 +40,7 @@ It is under the _Mental_ tab, as are the boxes to tick for _Incidents of Sanity 
 
 Per the rules in the Handler's Guide, if a creature has a physical attribute that is 20 or above (giving a x5 of 100% or higher), it is considered "inhuman" and all rolls that are not a 100 automatically succeed.  Furthermore, any roll that is **below the attribute score** is a critical (on top of the normal critical rules).  For example, if a monster had a strength of 25, giving a x5 of 125, that monster could score a critical not only by rolling a 33, but also by rolling anything 25 or under.
 
-## What is the Ritual Skill
+## What is the Ritual Skill?
 
 Per the rules in the Handler's Guide, the ritual skill is used (primarily) to activate rituals. It is calculated as 100 - SAN.  E.g., the lower one's sanity, the easier ritual activation becomes.  Like Unnatural, it cannot be improved through failure like other skills.
 
