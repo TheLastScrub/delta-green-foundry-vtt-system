@@ -653,4 +653,19 @@ div.motivation-editor-container div.editor{
   padding-bottom: 10px;
   column-gap: 10px;
   row-gap: 10px;
+  padding-right: 5px;
+}
+
+/*
+  Motivation Item Sheet
+*/
+
+.motivation-sheet-horizontal-grid-2col{
+  display: grid;
+  grid-template-columns:50% 50%;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  padding-left: 5px;
+  grid-gap: 5px;
 }
