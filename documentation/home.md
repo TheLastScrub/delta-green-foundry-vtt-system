@@ -2,7 +2,9 @@
 
 ## Rolling Checks
 
-Most labels can be clicked to roll a check or test of some kind. If they can be clicked, they should glow red when the mouse is hovered over them.  
+Most labels can be clicked to roll a check or test of some kind. If they can be clicked, they should glow red when the mouse is hovered over them.
+
+![Sanity Roll](./images/sanity_roll.png)
 
 * Click on _SAN_ (label above current/max sanity) to roll a Sanity check.
 * Click on any of the skill labels (such as _Accounting_) to roll a skill test.
@@ -52,4 +54,19 @@ In the example below, the vest is equipped but the helmet is not.  As such total
 
 ![Armor Calculation](./images/equipped_armor.png)
 
+## Item Macros
 
+Currently there are two built-in item macros, that allow rolling the associated skill check or damage roll for a weapon.  Dragging a weapon (try clicking on 'Armor Piercing' to avoid rolling) onto the macro bar results in a macro like this that will roll damage:
+
+```javascript
+game.deltagreen.rollItemMacro("Combat Dagger");
+```
+
+![Armor Calculation](./images/item_damage_macro.png)
+
+You can get a macro that rolls the appropriate skill check instead however with this command:
+
+```javascript
+game.deltagreen.rollItemSkillCheckMacro("Combat Dagger");
+```
+Note that both of these macros search **the currently selected token** for the first instance of an item matching the indicated name passed to the function.
