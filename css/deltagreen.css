@@ -632,6 +632,25 @@ div.motivation-editor-container div.editor{
 }
 
 /*
+  Item Sheet Common CSS
+*/
+
+.item-img {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 100px;
+  flex: 0 0 100px;
+  height: 100px;
+  border: 0px solid black;
+}
+
+input.item-sheet-short-input{
+  width: 75px;
+  margin-right: 5px;
+  margin-left: 5px;
+  text-align: center !important;
+}
+
+/*
   Bonds Item Sheet
 */
 
@@ -680,8 +699,9 @@ div.motivation-editor-container div.editor{
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding-left: 5px;
   grid-gap: 5px;
+  padding-bottom: 10px;
+  padding-left: 5px;
 }
 
 .armor-sheet-horizontal-grid-2col{
@@ -689,10 +709,20 @@ div.motivation-editor-container div.editor{
   grid-template-columns: 100px auto;
   align-items: center;
   text-align: left;
-  padding-bottom: 10px;
   column-gap: 10px;
   row-gap: 10px;
+  padding-bottom: 10px;
   padding-right: 5px;
+}
+
+.armor-sheet-secondary-grid-2col{
+  display: grid;
+  grid-template-columns: 25% 75%;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  grid-gap: 5px;
+  padding-bottom: 10px;
 }
 
 /*
@@ -705,8 +735,8 @@ div.motivation-editor-container div.editor{
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding-left: 5px;
   grid-gap: 5px;
+  padding-left: 5px;
 }
 
 .gear-sheet-horizontal-grid-2col{
@@ -714,9 +744,9 @@ div.motivation-editor-container div.editor{
   grid-template-columns: 100px auto;
   align-items: center;
   text-align: left;
-  padding-bottom: 10px;
   column-gap: 10px;
   row-gap: 10px;
+  padding-bottom: 10px;
   padding-right: 5px;
 }
 
@@ -724,15 +754,25 @@ div.motivation-editor-container div.editor{
   Weapon Item Sheet
 */
 
-.weapon-sheet-header-grid-3col{
+.weapon-sheet-grid-2col{
   display: grid;
-  grid-template-columns: 25% 15% 60%;
+  grid-template-columns: 25% 75%;
   align-items: center;
-  justify-content: left;
-  text-align: left;
-  padding-left: 5px;
+  justify-content: center;
+  text-align: center;
   grid-gap: 5px;
-  padding-right: 10px;
+  padding-left: 5px;
+}
+
+.weapon-sheet-horizontal-grid-2col{
+  display: grid;
+  grid-template-columns: 100px auto;
+  align-items: center;
+  text-align: left;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding-bottom: 10px;
+  padding-right: 5px;
 }
 
 .weapon-sheet-outer-grid-2col{
@@ -743,7 +783,8 @@ div.motivation-editor-container div.editor{
   text-align: center;
   padding-left: 5px;
   padding-right: 5px;
-  grid-gap: 5px;
+  column-gap: 10px;
+  row-gap: 5px;
 }
 
 .weapon-sheet-horizontal-grid-left-2col{
@@ -766,4 +807,13 @@ div.motivation-editor-container div.editor{
   column-gap: 10px;
   row-gap: 10px;
   padding-right: 10px;
+}
+
+.weapon-sheet-secondary-grid-2col{
+  display: grid;
+  grid-template-columns: 40% 60%;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  grid-gap: 5px;
 }
