@@ -296,8 +296,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
       itemData.data.score = this.object.data.data.statistics.cha.value; // Can vary, but at character creation starting bond score is usually agent's charisma
       itemData.img = "icons/svg/mystery-man.svg"
     }
-
-    console.log(itemData);
     
     // Finally, create the item!
     //return this.actor.createOwnedItem(itemData);
