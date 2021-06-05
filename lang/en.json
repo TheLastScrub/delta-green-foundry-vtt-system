@@ -176,7 +176,7 @@
     "DG.ItemWindow.Motivations.DisorderNameTooltip": "A disorder replaces a motivation after hitting a break point.",
     "DG.ItemWindow.Motivations.IsDisorderTooltip": "Check this if adding a disorder, or if an existing motivation has been lost due to gaining a disorder.",
     "DG.ItemWindow.Motivations.DisorderHasBeenCured": "Disorder Has Been \"Cured\"",
-    "DG.ItemWindow.Motivations.DisorderHasBeenCuredTooltip": "A critical success on a therapy luck roll can cure a disorder.  It may return the next time a breaking point is hit however.",
+    "DG.ItemWindow.Motivations.DisorderHasBeenCuredTooltip": "A critical success on a therapy luck roll can 'cure' a disorder.  It may return the next time a breaking point is hit however. See the Therapy section on pages 78-79 of the Agent's Handbook.",
 
     "DG.ItemWindow.Gear.Attributes": "Attributes",
     "DG.ItemWindow.Gear.Description": "Description",
