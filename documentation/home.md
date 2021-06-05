@@ -22,6 +22,8 @@ Only one 'Typed' skill is shown for an Agent by default, that being Art (Paintin
 
 This allows adding any number of skills as needed, without having dead space for unused skills.
 
+![Type Skills Section](./images/type_skill_example.png)
+
 ## Why Does the 'Lethality' Roll Show Damage Even on a Success?
 
 For Lethality, the D100 test against the target lethality threshold is evaluated like a normal skill test. But regardless of the outcome, the damage associated with a non-lethal roll (2D10) is also displayed in paretheses as lethality does not affect some creatures.
@@ -39,3 +41,15 @@ Per the rules in the Handler's Guide, if a creature has a physical attribute tha
 ## What is the Ritual Skill
 
 Per the rules in the Handler's Guide, the ritual skill is used (primarily) to activate rituals. It is calculated as 100 - SAN.  E.g., the lower one's sanity, the easier ritual activation becomes.  Like Unnatural, it cannot be improved through failure like other skills.
+
+## What is the Shield Icon by Health?
+
+This represents the total protection value of all equipped armor (click on the x or checkmark to toggle if armor is equipped or not).  This is how much damage should be subtracted from incoming attacks, assuming the incoming damage has no armor penetration.
+
+Note there are a few limitations of this calculation.  For instance the system is unaware of certain pieces that should not stack, such as wearing multiple helmets.  Or wearing a kevlar helmet with armor that includes a helmet already (such as a bomb suit).
+
+In the example below, the vest is equipped but the helmet is not.  As such total armor is only 4 rather than 5. Note that currently only 'Armor' type items can increase the calculated protection value.
+
+![Armor Calculation](./images/equipped_armor.png)
+
+
