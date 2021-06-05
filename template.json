@@ -302,7 +302,8 @@
             "isLethal": false,
             "killRadius": "N/A",
             "ammo": "",
-            "expense": "Standard"
+            "expense": "Standard",
+            "equipped": true
         },
         "armor": {
             "templates": [
