@@ -231,6 +231,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     new Dialog({
       content: htmlContent,
       title: game.i18n.translations.DG?.Skills?.AddTypedOrCustomSkill ?? "Add Typed or Custom Skill",
+      default: "add",
       buttons: {
         add:{
           label: game.i18n.translations.DG?.Skills?.AddSkill ?? "Add Skill",
@@ -394,7 +395,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     let updatedData = duplicate(this.actor.data.data);
 
     updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
-    
+
     this.actor.update({"data": updatedData});
   }
 
