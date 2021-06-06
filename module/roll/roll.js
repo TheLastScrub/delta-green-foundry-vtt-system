@@ -290,10 +290,19 @@ export async function showModifyPercentileTestDialogue(actor, label, originalTar
             let targetModifier = html.find("[name='targetModifier']").val();  // this is text as a heads up
 
             let rollMode = html.find("[name='targetRollMode']").val();
-          
+
+            let plusMinus = html.find("[name='plusOrMinus']").val();
+                    
             let newTarget = parseInt(originalTarget); // this should be an int, but technically the incoming value is text, so parse it just to be safe
+
             if(targetModifier.trim() != "" && !isNaN(targetModifier)){
-              newTarget += parseInt(targetModifier);
+              let numericTargetModifier = Math.abs(parseInt(targetModifier));
+              
+              if(plusMinus === "-"){
+                numericTargetModifier = -1 * numericTargetModifier;
+              }
+
+              newTarget += numericTargetModifier;
             }
             
             if(isLethalityTest){
@@ -309,8 +318,7 @@ export async function showModifyPercentileTestDialogue(actor, label, originalTar
         }
       }
     }
-    }
-  ).render(true);
+  }).render(true);
 }
 
 export async function showModifyDamageRollDialogue(actor, label, originalFormula){
