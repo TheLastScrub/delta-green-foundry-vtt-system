@@ -82,6 +82,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     let buttons = super._getHeaderButtons();
     let label = "Roll Luck";
     let label2 = "Luck";
+
     try{
       label = game.i18n.translations.DG.RollLuck;
       label2 = game.i18n.translations.DG.Luck;
@@ -90,23 +91,33 @@ export class DeltaGreenActorSheet extends ActorSheet {
       ui.notifications.warn('Missing translation key for either DG.RollLuck or DG.Luck key.')
     }
     
-    buttons = [
-      {
-        label: label,
-        class: "test-extra-icon",
-        icon: "fas fa-dice",
-        onclick: (ev) => sendPercentileTestToChat(this.actor, label2, 50)
-      }].concat(buttons);
-
-      //buttons = [
-      //  {
-      //    label: "Active Effect",
-      //    class: "test-extra-icon",
-      //    icon: "fas fa-bolt",
-      //    onclick: (ev) => this.activeEffectTest(this)
-      //  }].concat(buttons);
+    buttons = [{
+      label: label,
+      class: "test-extra-icon",
+      icon: "fas fa-dice",
+      onclick: (ev) => this.luckRollOnClick(ev, this.actor, label2)
+    }].concat(buttons);
 
     return buttons;
+  }
+
+  // This only exists to give a chance to activate the modifier dialogue if desired
+  // Cannot seem to trigger the event on a right-click, so unfortunately only applies to a shift-click currently.
+  luckRollOnClick(event, actor, label){
+    if(event && event.which === 2){
+      // probably don't want rolls to trigger from a middle mouse click so just kill it here
+      return;
+    }
+
+    let requestedModifyRoll = (event && event.shiftKey || event.which === 3);
+    let target = 50;
+
+    if(requestedModifyRoll){
+      showModifyPercentileTestDialogue(actor, label, target, false);
+    }
+    else{      
+      sendPercentileTestToChat(actor, label, target, game.settings.get("core", "rollMode"));
+    }    
   }
 
   activeEffectTest(sheet){

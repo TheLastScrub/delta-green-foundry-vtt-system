@@ -1,14 +1,16 @@
 ## Release/Patch Notes
 
-### Verion 1.0.0 - 2021-06-03 [BREAKING CHANGE: COMPATIBILE WITH FOUNDRY 0.8.6 OR HIGHER ONLY!]
+### Verion 1.0.0 - 2021-06-03 [BREAKING CHANGE: THIS VERSION FORWARD COMPATIBILE WITH FOUNDRY 0.8.6 OR HIGHER ONLY!!!]
 
 * Changes to support 0.8.6+ Foundry
  * Revamped data model for actor sheet. Note due to the changes, the new system is not backwards compatible with older versions of Foundry now.
  * Rolls all asynchronous now.  Should allow less work to be required in future versions when asynchronous rolls are required.
 * Enhancement - Added option to choose roll mode in the roll modifier dialogue for both percentile/lethality tests and damage rolls.
+* Enhancement - Based on a character's strength, formula will automatically adjust for Melee and Unarmed damage rolls per the rules on page 55 of the Agent's Handbook (+1 for 13-16 STR, etc...).  Some adjustment to damage formulas on existing weapons may need to be made if it was manually added already.
 * Enhancement - Changed d100 Roll Modifier dialogue to have a +/- dropdown instead of needing to type it into the box.
-* Enhancement - Added a descriptor field, 'Relationship' to bonds, so you can give a name, and then the relationship as two separate fields.
-* Enhancement - More CSS Improvements
+* Enhancement - Can now SHIFT+CLICK to get the Roll Modifier Dialogue for LUCK rolls.  Cannot seem to make it feasible to get the right-click option to work on the menu currently.
+* Enhancement - Added a descriptor field, 'Relationship' to bonds, so you can give a name, and then the relationship as two separate fields.  Makes discerning who is who on the bonds sheet easier at a glance.
+* Enhancement - More CSS Improvements, mostly to Item Sheets.
  * Cleaned up layout on bonds, armor, weapons, gear item sheets
  * Made weapons, armor and gear Item Sheets slightly more uniform in how the same fields are laid out.
 
