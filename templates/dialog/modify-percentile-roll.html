@@ -7,6 +7,17 @@
         <input class="numeric-label-field" disabled value="{{data.originalTarget}}" />
 
         <span>{{localize 'DG.ModifySkillRollDialogue.TargetModifier'}}</span>
-        <input class="numeric-label-field" type="number" name="targetModifier" value="{{data.targetModifier}}" title="{{localize 'DG.ModifySkillRollDialogue.ModifierTooltip'}}" />
+        <div>
+            <select name="plusOrMinus">
+                <option value="+" selected>+</option>
+                <option value="-">-</option>
+            </select>
+            <input class="numeric-label-field" type="number" name="targetModifier" value="{{data.targetModifier}}" title="{{localize 'DG.ModifySkillRollDialogue.ModifierTooltip'}}" />
+        </div>
+        
+        <label for="targetRollMode">{{ localize "DG.RollMode" }}:</label>
+        <select name="targetRollMode">
+            {{selectOptions (getAvailableRollModes) selected=(getDefaultRollMode) localize=true}}
+        </select>
     </div>
 </form>

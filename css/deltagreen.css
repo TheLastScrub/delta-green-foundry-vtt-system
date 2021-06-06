@@ -257,19 +257,6 @@ section.window-content{
   height: 100%;
 }
 
-div.motivation-editor-container div.editor{
-  height: 400px;
-  min-height: 100% !important;
-}
-
-.deltagreen .tox .tox-editor-container {
-  background: #fff;
-}
-
-.deltagreen .tox .tox-edit-area {
-  padding: 0 8px;
-}
-
 .deltagreen .resource-label {
   font-weight: bold;
   text-transform: uppercase;
@@ -602,3 +589,232 @@ div.gear-section-header{
   height: 30px;
 }
 
+.physical-description-label{
+  font-weight: bold;
+}
+
+div.motivation-editor-container div.editor{
+  height: 400px;
+  min-height: 100% !important;
+}
+
+.editor-host .tox .tox-editor-container {
+  background: none !important;
+}
+
+
+.deltagreen .tox-editor-header {
+  background: none !important;
+}
+
+.deltagreen .tox .tox-edit-area {
+  padding: 0 8px;
+}
+
+.deltagreen .editor-host .editor {
+  min-height: 35px;
+}
+
+.deltagreen .editor-host .tox {
+  height:100% !important;
+  display:block;
+}
+
+.deltagreen .editor-host .tox-tinymce {
+  height:100% !important;
+  display:block;
+}
+
+.deltagreen .editor-host .tox .tox-edit-area {
+  position: inherit;
+  min-height: 20px;
+  height: 300px;
+}
+
+/*
+  Item Sheet Common CSS
+*/
+
+.item-img {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 100px;
+  flex: 0 0 100px;
+  height: 100px;
+  border: 0px solid black;
+}
+
+input.item-sheet-short-input{
+  width: 75px;
+  margin-right: 5px;
+  margin-left: 5px;
+  text-align: center !important;
+}
+
+/*
+  Bonds Item Sheet
+*/
+
+.bond-sheet-grid-2col{
+  display: grid;
+  grid-template-columns: 25% 75%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-left: 5px;
+  grid-gap: 5px;
+}
+
+.bond-sheet-horizontal-grid-2col{
+  display: grid;
+  grid-template-columns: 100px auto;
+  align-items: center;
+  text-align: left;
+  padding-bottom: 10px;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding-right: 5px;
+}
+
+/*
+  Motivation Item Sheet
+*/
+
+.motivation-sheet-horizontal-grid-2col{
+  display: grid;
+  grid-template-columns:50% 50%;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  padding-left: 5px;
+  grid-gap: 5px;
+}
+
+/*
+  Armor Item Sheet
+*/
+
+.armor-sheet-grid-2col{
+  display: grid;
+  grid-template-columns: 25% 75%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  grid-gap: 5px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+}
+
+.armor-sheet-horizontal-grid-2col{
+  display: grid;
+  grid-template-columns: 100px auto;
+  align-items: center;
+  text-align: left;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding-bottom: 10px;
+  padding-right: 5px;
+}
+
+.armor-sheet-secondary-grid-2col{
+  display: grid;
+  grid-template-columns: 25% 75%;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  grid-gap: 5px;
+  padding-bottom: 10px;
+}
+
+/*
+  Gear Item Sheet
+*/
+
+.gear-sheet-grid-2col{
+  display: grid;
+  grid-template-columns: 25% 75%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  grid-gap: 5px;
+  padding-left: 5px;
+}
+
+.gear-sheet-horizontal-grid-2col{
+  display: grid;
+  grid-template-columns: 100px auto;
+  align-items: center;
+  text-align: left;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding-bottom: 10px;
+  padding-right: 5px;
+}
+
+/*
+  Weapon Item Sheet
+*/
+
+.weapon-sheet-grid-2col{
+  display: grid;
+  grid-template-columns: 25% 75%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  grid-gap: 5px;
+  padding-left: 5px;
+}
+
+.weapon-sheet-horizontal-grid-2col{
+  display: grid;
+  grid-template-columns: 100px auto;
+  align-items: center;
+  text-align: left;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding-bottom: 10px;
+  padding-right: 5px;
+}
+
+.weapon-sheet-outer-grid-2col{
+  display: grid;
+  grid-template-columns: 60% 40% ;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  column-gap: 10px;
+  row-gap: 5px;
+}
+
+.weapon-sheet-horizontal-grid-left-2col{
+  display: grid;
+  grid-template-columns: 40% 60%;
+  align-items: center;
+  text-align: left;
+  padding-bottom: 10px;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding-right: 10px;
+}
+
+.weapon-sheet-horizontal-grid-right-2col{
+  display: grid;
+  grid-template-columns: 60% 40%;
+  align-items: center;
+  text-align: left;
+  padding-bottom: 10px;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding-right: 10px;
+}
+
+.weapon-sheet-secondary-grid-2col{
+  display: grid;
+  grid-template-columns: 40% 60%;
+  align-items: center;
+  justify-content: left;
+  text-align: left;
+  grid-gap: 5px;
+  padding-right: 5px;
+}

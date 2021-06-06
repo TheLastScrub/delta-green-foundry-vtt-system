@@ -1,7 +1,11 @@
 import {localizeWithFallback} from "../other/utility-functions.js"
 
-export function sendPercentileTestToChat(actor, skill, target){
-  let roll = new Roll('1D100', actor.data.data).roll();
+export async function sendPercentileTestToChat(actor, skill, target, rollMode){
+  //let roll = new Roll('1D100', actor.data.data).evaluate(false);
+  let roll = new Roll('1D100', actor.data.data)
+  
+  await roll.evaluate({async: true});
+
   let total = roll.total;
   let isCritical = false;
   let isSuccess = false;
@@ -10,6 +14,10 @@ export function sendPercentileTestToChat(actor, skill, target){
   let resultString = '';
   let styleOverride = '';
   let inhumanCriticalThreshold = 0;
+
+  if(rollMode == null || rollMode === ""){
+    rollMode = game.settings.get("core", "rollMode");
+  }
 
   // "Inhuman" stat being rolled, logic is different per page 188 of the Handler's Guide.
   // Note - originally implemented by Uriele, but my attempt at merging conficts went poorly, so re-implementing.
@@ -96,14 +104,14 @@ export function sendPercentileTestToChat(actor, skill, target){
     speaker: ChatMessage.getSpeaker({actor: actor}),
     content: html,
     flavor: label,
-    type: CHAT_MESSAGE_TYPES.ROLL,
+    type: 5, //CHAT_MESSAGE_TYPES.ROLL,
     roll: roll,
-    rollMode: game.settings.get("core", "rollMode")
+    rollMode: rollMode
     };
 
   // play the dice rolling sound, like a regular in-chat roll
   AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
-
+  
   ChatMessage.create(chatData, {});
 }
 
@@ -122,11 +130,19 @@ export function skillCheckResultIsCritical(rollResult){
   return isCritical;
 }
 
-export function sendLethalityTestToChat(actor, weaponName, target){
-  let roll = new Roll('1D100', actor.data.data).roll();
+export async function sendLethalityTestToChat(actor, weaponName, target, rollMode){
+  //let roll = new Roll('1D100', actor.data.data).evaluate(false);
+
+  let roll = new Roll('1D100', actor.data.data);
+
+  await roll.evaluate({async: true});
+
   let isCritical = false;
   let skillCheckTotal = roll.total;
   
+  if(rollMode == null || rollMode === ""){
+    rollMode = game.settings.get("core", "rollMode");
+  }
 
   // page 57 of agent's handbook
   // For a failed lethality check, the damage on the tens die is a 10 for a roll of '0'.  E.g. '30' + '0' = 13 damage.
@@ -202,9 +218,9 @@ export function sendLethalityTestToChat(actor, weaponName, target){
     speaker: ChatMessage.getSpeaker({actor: actor}),
     content: html,
     flavor: label,
-    type: CHAT_MESSAGE_TYPES.ROLL,
+    type: 5, //CHAT_MESSAGE_TYPES.ROLL,
     roll: roll,
-    rollMode: game.settings.get("core", "rollMode")
+    rollMode: rollMode
     };
 
   // play the dice rolling sound, like a regular in-chat roll
@@ -213,8 +229,17 @@ export function sendLethalityTestToChat(actor, weaponName, target){
   ChatMessage.create(chatData, {});
 }
 
-export function sendDamageRollToChat(actor, label, diceFormula){
+export async function sendDamageRollToChat(actor, label, diceFormula, rollMode){
+  
+  if(rollMode == null || rollMode === ""){
+    rollMode = game.settings.get("core", "rollMode");
+  }
+
+  //diceFormula += actor.data.data.statistics.str.meleeDamageBonusFormula;
+
   let roll = new Roll(diceFormula, actor.data.data);
+
+  await roll.evaluate({async: true});
   
   try{
     label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${game.i18n.localize("DG.Roll.Damage").toUpperCase()}</b> ${game.i18n.localize("DG.Roll.For")} <b>${label.toUpperCase()}</b>`;
@@ -222,14 +247,21 @@ export function sendDamageRollToChat(actor, label, diceFormula){
   catch{
     label = `Rolling <b>DAMAGE</b> for <b>${label.toUpperCase()}</b>`
   }
-  
-  roll.roll().toMessage({
-  speaker: ChatMessage.getSpeaker({ actor: actor }),
-  flavor: label,
-  type: CHAT_MESSAGE_TYPES.ROLL,
-  roll: roll,
-  rollMode: game.settings.get("core", "rollMode")
-  });
+
+  let chatData = {
+    speaker: ChatMessage.getSpeaker({actor: actor}),
+    content: roll.total,
+    flavor: label,
+    type: 5, //CHAT_MESSAGE_TYPES.ROLL,
+    roll: roll,
+    rollMode: rollMode
+    };
+
+  // play the dice rolling sound, like a regular in-chat roll
+  AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
+
+  ChatMessage.create(chatData, {});
+
 }
 
 export async function showModifyPercentileTestDialogue(actor, label, originalTarget, isLethalityTest){
@@ -256,17 +288,28 @@ export async function showModifyPercentileTestDialogue(actor, label, originalTar
         callback: html => { 
           try{
             let targetModifier = html.find("[name='targetModifier']").val();  // this is text as a heads up
-          
+
+            let rollMode = html.find("[name='targetRollMode']").val();
+
+            let plusMinus = html.find("[name='plusOrMinus']").val();
+                    
             let newTarget = parseInt(originalTarget); // this should be an int, but technically the incoming value is text, so parse it just to be safe
+
             if(targetModifier.trim() != "" && !isNaN(targetModifier)){
-              newTarget += parseInt(targetModifier);
+              let numericTargetModifier = Math.abs(parseInt(targetModifier));
+              
+              if(plusMinus === "-"){
+                numericTargetModifier = -1 * numericTargetModifier;
+              }
+
+              newTarget += numericTargetModifier;
             }
             
             if(isLethalityTest){
-              sendLethalityTestToChat(actor, label, newTarget);
+              sendLethalityTestToChat(actor, label, newTarget, rollMode);
             }
             else{
-              sendPercentileTestToChat(actor, label, newTarget);
+              sendPercentileTestToChat(actor, label, newTarget, rollMode);
             }
           }
           catch(ex){
@@ -275,8 +318,7 @@ export async function showModifyPercentileTestDialogue(actor, label, originalTar
         }
       }
     }
-    }
-  ).render(true);
+  }).render(true);
 }
 
 export async function showModifyDamageRollDialogue(actor, label, originalFormula){
@@ -306,6 +348,7 @@ export async function showModifyDamageRollDialogue(actor, label, originalFormula
             let outerModifier = html.find("[name='outerModifier']").val();  // this is text as a heads up
             let innerModifier = html.find("[name='innerModifier']").val();  // this is text as a heads up
             let modifiedBaseRoll = html.find("[name='originalFormula']").val();  // this is text as a heads up
+            let rollMode = html.find("[name='targetRollMode']").val();
             
             if(innerModifier.replace(" ", "") === "+0"){
               innerModifier = "";
@@ -319,7 +362,7 @@ export async function showModifyDamageRollDialogue(actor, label, originalFormula
               newRoll += modifiedBaseRoll + innerModifier.trim();
             }
             
-            sendDamageRollToChat(actor, label, newRoll);
+            sendDamageRollToChat(actor, label, newRoll, rollMode);
           }
           catch(ex){
             console.log(ex);

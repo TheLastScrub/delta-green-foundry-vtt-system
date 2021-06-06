@@ -1,5 +1,5 @@
 # (Unofficial) Delta Green: The RPG Foundry System
-This is a fan made Foundry VTT system for Delta Green: The RPG, based on the _Agent's Handbook_ rule set from Arc Dream Publishing (_**not** the Call of Cthulu rules_).  
+This is a fan made rules implementation (system) for [Foundry Virtual Tabletop](https://foundryvtt.com/) system for Delta Green: The RPG, based on the _Agent's Handbook_ rule set from Arc Dream Publishing (_**not** the Call of Cthulu rules_).  
 
 This system is _unaffiliated_ with the Delta Green Partnership or Arc Dream Publishing (although they did give permission to make the system).  Please consider supporting the publisher by buying a copy of the official rule book, which can be done here:
 
@@ -9,13 +9,25 @@ More details on Delta Green can be found here:
 
 http://www.delta-green.com/
 
-More information on Foundry VTT:
+# System Overview
 
-https://foundryvtt.com/
-
-![Character Sheet Screenshot](/documentation/images/agent_sheet_skills_tab.png)
+See samples of all tabs in the main agent character sheet [here](./documentation/images/agent_sheet_sample.md).
 
 Whatever system documentation currently exists can be found [here.](https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/blob/master/documentation/home.md)
+
+![Character Sheet Skills Section Screenshot](./documentation/images/agent_sheet_skills_tab.png)
+
+The system automates most of the calculations on the sheet such as maximum HP/WP/SAN.  Recalculating break points can be done by clicking a button.  Clicking on labels for skills, sanity, x5 skill tests or weapon damage/lethality will automatically roll those tests or damage.
+
+![Example Rolls In Chat Window](./documentation/images/chat_rolls.png)
+
+Likewise, right-clicking or shift-clicking on a field will bring up a dialogue to modify that roll (default: +20).
+
+![Modify Roll Window](./documentation/images/modify_roll_dialogue.png)
+
+There are also some compendiums currently available with some of the more commonly used items that can be dragged directly onto a character sheet (and then modified as necessary).
+
+![Available Compendium Items](./documentation/images/compendiums.jpg)
 
 # System Status
 

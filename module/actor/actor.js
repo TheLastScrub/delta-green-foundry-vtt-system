@@ -14,9 +14,14 @@ export class DeltaGreenActor extends Actor {
     const data = actorData.data;
     const flags = actorData.flags;
 
+    //console.log('actor.js prepareData');
+    //console.log(this);
+
     // Make separate methods for each Actor type (character, npc, etc.) to keep
     // things organized.
-    if (actorData.type === 'agent') this._prepareAgentData(this);
+    if (actorData.type === 'agent'){
+      this._prepareAgentData(this);
+    } 
   }
 
   /**
@@ -118,7 +123,32 @@ export class DeltaGreenActor extends Actor {
     }
 
     actorData.data.health.protection = protection;
+
+    // Damage Bonus/Malus From Strength in Hand-to-hand Combat (melee/unarmed)
+    let bonus = 0;
+    let sbonus = "";
+    let strength = actorData.data.statistics.str;
+
+    if(strength.value < 5){
+      sbonus = "-2";
+      bonus = -2;
+    }
+    else if(strength.value < 9){
+      sbonus = "-1";
+      bonus = -1;
+    }
+    else if(strength.value > 12 && strength.value < 17){
+      sbonus = "+1";
+      bonus = 1;
+    }
+    else if(strength.value > 16){
+      sbonus = "+2";
+      bonus = 2;
+    }
     
+    actorData.data.statistics.str.meleeDamageBonus = bonus;
+    actorData.data.statistics.str.meleeDamageBonusFormula = sbonus;
+
     console.log(agent);
   }
 

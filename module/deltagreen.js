@@ -30,8 +30,8 @@ Hooks.once('init', async function() {
   registerSystemSettings();
 
   // Define custom Entity classes
-  CONFIG.Actor.entityClass = DeltaGreenActor;
-  CONFIG.Item.entityClass = DeltaGreenItem;
+  CONFIG.Actor.documentClass = DeltaGreenActor;
+  CONFIG.Item.documentClass = DeltaGreenItem;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
@@ -99,14 +99,61 @@ Hooks.once('init', async function() {
   });
 
   Handlebars.registerHelper('getActorSkillProp', function(actorData, skillName, prop) {
-    if(skillName != "" && prop != ""){
-      let skills = actorData.skills;
-      let skill = skills[skillName];
-      let propVal = skill[prop];
-      return propVal;
+    try{
+      if(skillName != "" && prop != ""){
+        let skills = actorData.data.skills;
+        let skill = skills[skillName];
+        let propVal = skill[prop];
+        return propVal;
+      }
+      else{
+        return "";
+      }
     }
-    else{
+    catch(ex){
+      console.log(ex);
       return "";
+    }
+    
+  });
+
+  Handlebars.registerHelper('getAvailableRollModes', function() {
+    try {
+      return CONFIG.Dice.rollModes;
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  Handlebars.registerHelper('getDefaultRollMode', function() {
+    try {
+      return game.settings.get("core", "rollMode");
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  Handlebars.registerHelper('calculateHandToHandCombatDamageFormulaBonus', function(strength) {
+    try {
+      let bonus = "";
+
+      if(strength.value < 5){
+        bonus = " - 2";
+      }
+      else if(strength.value < 9){
+        bonus = " - 1";
+      }
+      else if(strength.value > 12 && strength < 17){
+        bonus = " + 1";
+      }
+      else if(strength.value > 16){
+        bonus = " + 2";
+      }
+      
+      return bonus;
+
+    } catch (error) {
+      console.log(error);
     }
   });
 
@@ -158,7 +205,6 @@ Hooks.on("ready", ()=> {
   }
   else if(backgroundImageSetting === "IvoryPaper"){
     customCss += `section.window-content{
-          background: url("systems/deltagreen/assets/img/ivory-off-white-paper-texture.jpg") !important;
           background-size: 100% !important;
     }`;
   }
@@ -199,6 +245,7 @@ async function createDeltaGreenMacro(data, slot) {
       flags: { "deltagreen.itemMacro": true }
     });
   }
+
   game.user.assignHotbarMacro(macro, slot);
   return false;
 }

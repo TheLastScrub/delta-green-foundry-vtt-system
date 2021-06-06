@@ -10,4 +10,10 @@
         <input class="damage-roll-formula-part" type="text" name="innerModifier" value="{{data.innerModifier}}" title="{{localize 'DG.ModifyDamageRollDialogue.InnerModifierTooltip'}}" />
         <span>)</span>
     </div>
+    <div class="damage-modify-roll-mode">
+        <label for="targetRollMode">{{ localize "DG.RollMode" }}:</label>
+        <select name="targetRollMode">
+            {{selectOptions (getAvailableRollModes) selected=(getDefaultRollMode) localize=true}}
+        </select>
+    </div>
 </form>

@@ -35,10 +35,11 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const data = super.getData();
 
     // Prepare items.
-    if (this.actor.data.type == 'character') {
+    if (this.actor.data.type == 'agent') {
       this._prepareCharacterItems(data);
     }
-
+    //console.log(data);
+    //return data.data;
     return data;
   }
 
@@ -55,9 +56,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Initialize containers.
     const armor = [];
     const weapons = [];
-
-    // total armor rating
-    let armorRating = 0;
 
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
@@ -84,6 +82,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     let buttons = super._getHeaderButtons();
     let label = "Roll Luck";
     let label2 = "Luck";
+
     try{
       label = game.i18n.translations.DG.RollLuck;
       label2 = game.i18n.translations.DG.Luck;
@@ -92,23 +91,33 @@ export class DeltaGreenActorSheet extends ActorSheet {
       ui.notifications.warn('Missing translation key for either DG.RollLuck or DG.Luck key.')
     }
     
-    buttons = [
-      {
-        label: label,
-        class: "test-extra-icon",
-        icon: "fas fa-dice",
-        onclick: (ev) => sendPercentileTestToChat(this.actor, label2, 50)
-      }].concat(buttons);
-
-      //buttons = [
-      //  {
-      //    label: "Active Effect",
-      //    class: "test-extra-icon",
-      //    icon: "fas fa-bolt",
-      //    onclick: (ev) => this.activeEffectTest(this)
-      //  }].concat(buttons);
+    buttons = [{
+      label: label,
+      class: "test-extra-icon",
+      icon: "fas fa-dice",
+      onclick: (ev) => this.luckRollOnClick(ev, this.actor, label2)
+    }].concat(buttons);
 
     return buttons;
+  }
+
+  // This only exists to give a chance to activate the modifier dialogue if desired
+  // Cannot seem to trigger the event on a right-click, so unfortunately only applies to a shift-click currently.
+  luckRollOnClick(event, actor, label){
+    if(event && event.which === 2){
+      // probably don't want rolls to trigger from a middle mouse click so just kill it here
+      return;
+    }
+
+    let requestedModifyRoll = (event && event.shiftKey || event.which === 3);
+    let target = 50;
+
+    if(requestedModifyRoll){
+      showModifyPercentileTestDialogue(actor, label, target, false);
+    }
+    else{      
+      sendPercentileTestToChat(actor, label, target, game.settings.get("core", "rollMode"));
+    }    
   }
 
   activeEffectTest(sheet){
@@ -146,14 +155,19 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Update Inventory Item
     html.find('.item-edit').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
-      const item = this.actor.getOwnedItem(li.data("itemId"));
+      //const item = this.actor.getOwnedItem(li.data("itemId"));
+      const item = this.actor.items.get(li.data("itemId"));
       item.sheet.render(true);
     });
 
     // Delete Inventory Item
     html.find('.item-delete').click(ev => {
       const li = $(ev.currentTarget).parents(".item");
-      this.actor.deleteOwnedItem(li.data("itemId"));
+
+      //this.actor.deleteOwnedItem(li.data("itemId"));
+      let options = {};
+      this.actor.deleteEmbeddedDocuments("Item", [li.data("itemId")], options);
+
       li.slideUp(200, () => this.render(false));
     });
 
@@ -165,7 +179,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     html.find('.equipped-item').mousedown(this._onEquippedStatusChange.bind(this));
 
     // Drag events for macros.
-    if (this.actor.owner) {
+    if (this.actor.isOwner) {
       let handler = ev => this._onDragStart(ev);
       html.find('li.item').each((i, li) => {
         if (li.classList.contains("inventory-header")) return;
@@ -228,6 +242,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     new Dialog({
       content: htmlContent,
       title: game.i18n.translations.DG?.Skills?.AddTypedOrCustomSkill ?? "Add Typed or Custom Skill",
+      default: "add",
       buttons: {
         add:{
           label: game.i18n.translations.DG?.Skills?.AddSkill ?? "Add Skill",
@@ -277,6 +292,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       type: type,
       data: data
     };
+
     // Remove the type from the dataset since it's in the itemData.type prop.
     delete itemData.data["type"];
 
@@ -290,10 +306,12 @@ export class DeltaGreenActorSheet extends ActorSheet {
     }
     else if(type == "bond"){
       itemData.data.score = this.object.data.data.statistics.cha.value; // Can vary, but at character creation starting bond score is usually agent's charisma
+      itemData.img = "icons/svg/mystery-man.svg"
     }
     
     // Finally, create the item!
-    return this.actor.createOwnedItem(itemData);
+    //return this.actor.createOwnedItem(itemData);
+    return this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
   /**
@@ -312,7 +330,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     }
 
     if (dataset.roll) {
-      //let roll = new Roll(dataset.roll, this.actor.data.data);
+      
       let key = dataset.label ? dataset.label : '';
       let label = dataset.label ? `${dataset.label}` : '';
       let targetVal = "";
@@ -350,11 +368,19 @@ export class DeltaGreenActorSheet extends ActorSheet {
       }
 
       if(isDamageRoll){
+
+        let diceFormula = dataset.roll;
+        let skillType = dataset.skill ? dataset.skill : '';
+
+        if(skillType === 'unarmed_combat' || skillType === 'melee_weapons'){
+          diceFormula += this.actor.data.data.statistics.str.meleeDamageBonusFormula;
+        }
+        
         if(requestedModifyRoll){
-          showModifyDamageRollDialogue(this.actor, label, dataset.roll);
+          showModifyDamageRollDialogue(this.actor, label, diceFormula);
         }
         else{
-          sendDamageRollToChat(this.actor, label, dataset.roll);
+          sendDamageRollToChat(this.actor, label, diceFormula, game.settings.get("core", "rollMode"));
         }
       }
       else{
@@ -364,10 +390,10 @@ export class DeltaGreenActorSheet extends ActorSheet {
         else{
           if(isLethalityRoll)
           {
-            sendLethalityTestToChat(this.actor, label, targetVal);
+            sendLethalityTestToChat(this.actor, label, targetVal, game.settings.get("core", "rollMode"));
           }
           else{
-            sendPercentileTestToChat(this.actor, label, targetVal);
+            sendPercentileTestToChat(this.actor, label, targetVal, game.settings.get("core", "rollMode"));
           }
         }
       }
@@ -376,6 +402,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
   _resetBreakingPoint(event){
     event.preventDefault();
+
     let currentBreakingPoint = 0;
     
     currentBreakingPoint = this.actor.data.data.sanity.value - this.actor.data.data.statistics.pow.value;
@@ -385,7 +412,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
     }
     
     let updatedData = duplicate(this.actor.data.data);
+
     updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
+
     this.actor.update({"data": updatedData});
   }
 
@@ -395,7 +424,8 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const dataset = element.dataset;
 
     try{
-      const item = this.actor.getOwnedItem(dataset.id);
+      //const item = this.actor.getOwnedItem(dataset.id);
+      const item = this.actor.items.get(dataset.id);
       var isEquipped = item.data.data.equipped;
       isEquipped = !isEquipped;
       item.update({data:{equipped: isEquipped}});
@@ -433,4 +463,10 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Set data transfer
     event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
   }
+  
+  activateEditor(target, editorOptions, initialContent) {
+    editorOptions.content_css = "./systems/deltagreen/css/editor.css";
+    return super.activateEditor(target, editorOptions, initialContent);
+  };
 }
+

@@ -13,22 +13,22 @@
               <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" title="{{localize 'DG.AgentNameFieldTooltip' }}"/></h1>
             </div>
             <div class="">
-              <h2 class="profession"><input name="data.biography.profession" type="text" value="{{data.biography.profession}}" placeholder="{{localize 'DG.FallbackText.ProfessionAndOrRank'}}"/></h1>
+              <h2 class="profession"><input name="data.biography.profession" type="text" value="{{actor.data.data.biography.profession}}" placeholder="{{localize 'DG.FallbackText.ProfessionAndOrRank'}}"/></h1>
             </div>
           </div>
         </div>
       
         <div class="resources grid grid-3col">
-
+          
           {{!-- HP --}}
           <div class="resource-outer-grid-1col">
-              <label for="data.health.value" class="resource-label" title="{{localize 'DG.Tooltip.HP'}}">{{localize 'DG.Attributes.HP' }} (<span>{{data.health.protection}} <i class="fas fa-shield-alt"></i></span>)</label>
+              <label for="actor.data.data.health.value" class="resource-label" title="{{localize 'DG.Tooltip.HP'}}">{{localize 'DG.Attributes.HP' }} (<span>{{actor.data.data.health.protection}} <i class="fas fa-shield-alt"></i></span>)</label>
               <div class="resource-inner-grid-3col">
-                <input type="text" name="data.health.value" value="{{data.health.value}}" data-dtype="Number"/>
+                <input type="text" name="data.health.value" value="{{actor.data.data.health.value}}" data-dtype="Number"/>
                 <span> / </span>
                 <!-- <span title="{{localize 'DG.Tooltip.MaximumHP'}}" class="max-attribute-value-label">{{numberFormat data.health.max decimals=0 sign=false}}</span> -->
                 <div class="max-resource-value" title="{{localize 'DG.Tooltip.MaximumHP'}}">
-                  <div>{{numberFormat data.health.max decimals=0 sign=false}}</div>
+                  <div>{{numberFormat actor.data.data.health.max decimals=0 sign=false}}</div>
                 </div>
               </div>
           </div>
@@ -37,11 +37,11 @@
           <div class="resource-outer-grid-1col">
               <label for="data.wp.value" class="resource-label" title="{{localize 'DG.Tooltip.WP'}}">{{localize 'DG.Attributes.WP' }}</label>
               <div class="resource-inner-grid-3col">
-                <input type="text" name="data.wp.value" value="{{data.wp.value}}" data-dtype="Number"/>
+                <input type="text" name="data.wp.value" value="{{actor.data.data.wp.value}}" data-dtype="Number"/>
                 <span> / </span>
                 <!-- <span class="max-attribute-value-label" title="{{localize 'DG.Tooltip.MaximumWP'}}">{{numberFormat data.wp.max decimals=0 sign=false}}</span> -->
                 <div class="max-resource-value" title="{{localize 'DG.Tooltip.MaximumWP'}}">
-                  <div>{{numberFormat data.wp.max decimals=0 sign=false}}</div>
+                  <div>{{numberFormat actor.data.data.wp.max decimals=0 sign=false}}</div>
                 </div>
               </div>
           </div>
@@ -52,10 +52,10 @@
                 data-rolltype="sanity" data-roll="d100" data-target="sanity" data-label="SAN" title="{{localize 'DG.Tooltip.SanityLabel'}}"
               >{{localize 'DG.Attributes.SAN' }}</label>
               <div class="resource-inner-grid-3col">
-                <input type="text" name="data.sanity.value" value="{{data.sanity.value}}" data-dtype="Number" title="{{localize 'DG.Tooltip.CurrentSanityPartOne'}}{{data.sanity.currentBreakingPoint}}{{localize 'DG.Tooltip.CurrentSanityPartTwo'}}" />
+                <input type="text" name="data.sanity.value" value="{{actor.data.data.sanity.value}}" data-dtype="Number" title="{{localize 'DG.Tooltip.CurrentSanityPartOne'}}{{data.sanity.currentBreakingPoint}}{{localize 'DG.Tooltip.CurrentSanityPartTwo'}}" />
                 <span> / </span>
                 <div class="max-resource-value" title="{{localize 'DG.Tooltip.MaximumSanity'}}">
-                  <div>{{numberFormat data.sanity.max decimals=0 sign=false}}</div>
+                  <div>{{numberFormat actor.data.data.sanity.max decimals=0 sign=false}}</div>
                 </div>
               </div>
           </div>
@@ -80,7 +80,7 @@
         {{!-- Skills Tab --}}
         <div class="tab skills" data-group="primary" data-tab="skills">
             <div class="grid grid-3col">
-              {{#each data.skills as |skill key|}}
+              {{#each actor.data.data.skills as |skill key|}}
                 <div class="flexrow flex-group-center">
                   <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{localize (concat 'DG.Skills.' key)}}" for="data.skills.{{key}}.value" 
                       {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
@@ -101,7 +101,7 @@
               <a class="item-control typed-skill-add"><i class="fas fa-plus"></i>{{localize 'DG.Skills.AddTypedOrCustomSkill'}}</a>
             </div>
             <div class="grid-2col">
-              {{#each data.typedSkills as |skill key|}}
+              {{#each actor.data.data.typedSkills as |skill key|}}
                 <div class="item flexrow flex-group-center">
                   <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" 
                       {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
@@ -123,7 +123,7 @@
         {{!-- Physical Statistics like STR, CON, etc. --}}
         <div class="tab physical" data-group="primary" data-tab="physical">
           <div class="grid grid-3col">
-            {{#each data.statistics as |statistic key|}}
+            {{#each actor.data.data.statistics as |statistic key|}}
               <div class="flex-group-center">
                 <div class="">
                   <div class="physical-stats-outer-grid-3col">
@@ -143,12 +143,13 @@
               <label class="bolded-label first-aid-label"
                 title="{{localize 'DG.Tooltip.FirstAidAttempted'}}"
               >{{localize 'DG.Physical.FirstAidLabel'}}</label>
-              <input class="labeled-resource-checkbox" type="checkbox" name="data.physical.firstAidAttempted" {{checked data.physical.firstAidAttempted}} data-dtype="Boolean" title="{{localize 'DG.Tooltip.FirstAidAttempted'}}" />
+              <input class="labeled-resource-checkbox" type="checkbox" name="data.physical.firstAidAttempted" {{checked actor.data.data.physical.firstAidAttempted}} data-dtype="Boolean" title="{{localize 'DG.Tooltip.FirstAidAttempted'}}" />
             </div>
             <div>
               <label class="bolded-label">{{localize 'DG.Physical.Wounds'}}</label>
               <!--<input class="fill-remaining-space" type="text" name="data.physical.wounds" value="{{data.physical.wounds}}" data-dtype="String" /> -->
-              <textarea class="wounds" rows="10" cols="10" name="data.physical.wounds">{{data.physical.wounds}}</textarea>
+              <!-- This seems to save values, but not retrieve them... -->
+              <textarea class="wounds" rows="10" cols="10" name="data.physical.wounds">{{actor.data.data.physical.wounds}}</textarea>
             </div>
           </div>
         </div>
@@ -158,7 +159,7 @@
           <div class="">
               <div class="breaking-point-grid-3col">
                 <label class="bolded-label">{{localize 'DG.Mental.BreakingPoint'}}</label>
-                <input class="centered-input-value" title="{{localize 'DG.Tooltip.BreakPoint'}}" type="text" name="data.sanity.currentBreakingPoint" value="{{data.sanity.currentBreakingPoint}}" data-dtype="Number"/>
+                <input class="centered-input-value" title="{{localize 'DG.Tooltip.BreakPoint'}}" type="text" name="data.sanity.currentBreakingPoint" value="{{actor.data.data.sanity.currentBreakingPoint}}" data-dtype="Number"/>
                 <a class="btn-tiny btn-reset-breaking-point" title="Reset breaking point to be current SAN - WP.">{{localize 'DG.Mental.Reset'}}</a>
               </div>
           
@@ -167,27 +168,27 @@
                 <div class="adaptation-grid-5col">
                   
                   <Label>{{localize 'DG.Mental.Violence'}}</Label>
-                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident1" {{checked data.sanity.adaptations.violence.incident1}} data-dtype="Boolean" />
-                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident2" {{checked data.sanity.adaptations.violence.incident2}} data-dtype="Boolean" />
-                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident3" {{checked data.sanity.adaptations.violence.incident3}} data-dtype="Boolean" />
+                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident1" {{checked actor.data.data.sanity.adaptations.violence.incident1}} data-dtype="Boolean" />
+                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident2" {{checked actor.data.data.sanity.adaptations.violence.incident2}} data-dtype="Boolean" />
+                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.violence.incident3" {{checked actor.data.data.sanity.adaptations.violence.incident3}} data-dtype="Boolean" />
                   
                   <label class="adapted-label"
                     title="{{localize 'DG.Tooltip.AdaptedToViolence'}}"
                   >
-                  {{#if data.sanity.adaptations.violence.isAdapted}}
+                  {{#if actor.data.data.sanity.adaptations.violence.isAdapted}}
                     {{localize 'DG.Mental.AdaptedToViolence'}}
                   {{/if}}
                   </label>
                   
                   <label>{{localize 'DG.Mental.Helplessness'}}</label>
-                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident1" {{checked data.sanity.adaptations.helplessness.incident1}} data-dtype="Boolean" />
-                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident2" {{checked data.sanity.adaptations.helplessness.incident2}} data-dtype="Boolean" />
-                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident3" {{checked data.sanity.adaptations.helplessness.incident3}} data-dtype="Boolean" />
+                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident1" {{checked actor.data.data.sanity.adaptations.helplessness.incident1}} data-dtype="Boolean" />
+                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident2" {{checked actor.data.data.sanity.adaptations.helplessness.incident2}} data-dtype="Boolean" />
+                  <input class="labeled-resource-checkbox" type="checkbox" name="data.sanity.adaptations.helplessness.incident3" {{checked actor.data.data.sanity.adaptations.helplessness.incident3}} data-dtype="Boolean" />
                   
                   <label class="adapted-label"
                     title="{{localize 'DG.Tooltip.AdaptedToHelplessness'}}"
                   >
-                  {{#if data.sanity.adaptations.helplessness.isAdapted}}
+                  {{#if actor.data.data.sanity.adaptations.helplessness.isAdapted}}
                     {{localize 'DG.Mental.AdaptedToHelplessness'}}
                   {{/if}}
                   </label>
@@ -210,17 +211,17 @@
               {{#each actor.items as |item id|}}
                 {{#if_eq item.type 'motivation'}}
 
-                  <li class="item flexrow" data-item-id="{{item._id}}">
+                  <li class="item flexrow" data-item-id="{{item.id}}">
                     <h4 class="item-name"
-                      {{#if item.data.crossedOut}}
+                      {{#if item.data.data.crossedOut}}
                         style="text-decoration: line-through;"
                       {{/if}}
                       >
                       {{item.name}}
                     </h4>
 
-                    {{#if item.data.crossedOut}}
-                      <h4 class="item-name">{{item.data.disorder}}</h4>
+                    {{#if item.data.data.crossedOut}}
+                      <h4 class="item-name">{{item.data.data.disorder}}</h4>
                     {{/if}}
 
                     <div class="item-controls">
@@ -257,8 +258,8 @@
 
               {{#each actor.items as |item id|}}
                 {{#if_eq item.type 'weapon'}}
-
-                  <li class="item flexrow" data-item-id="{{item._id}}">
+                  
+                  <li class="item flexrow" data-item-id="{{item.id}}">
                     <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
                     
                     <h4 style="word-wrap: break-word;" 
@@ -266,25 +267,32 @@
                       class="item-name rollable" 
                       data-roll="d100"
                       data-rolltype="skill" 
-                      data-target="{{getActorSkillProp ../data item.data.skill 'proficiency'}}"
-                      data-label="{{localize (concat 'DG.Skills.' item.data.skill)}}"
-                      title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localize (concat 'DG.Skills.' item.data.skill)}})"
+                      data-target="{{getActorSkillProp ../data item.data.data.skill 'proficiency'}}"
+                      data-label="{{localize (concat 'DG.Skills.' item.data.data.skill)}}"
+                      title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localize (concat 'DG.Skills.' item.data.data.skill)}})"
                       >
                         {{item.name}}
                     </h4>
 
-                    {{#unless item.data.isLethal}}
-                    <span class="rollable centered-item-property" data-rolltype="damage" data-target="damage" data-label="{{toUpperCase item.name}}" data-roll="{{toUpperCase item.data.damage}}">
-                      {{toUpperCase item.data.damage}}</span>
+                    {{#unless item.data.data.isLethal}}
+                    <span class="rollable centered-item-property" 
+                      
+                      data-rolltype="damage" 
+                      data-target="damage" 
+                      data-label="{{toUpperCase item.name}}" 
+                      data-roll="{{toUpperCase item.data.data.damage}}"
+                      data-skill="{{item.data.data.skill}}"
+                      >                      
+                      {{toUpperCase item.data.data.damage}}{{#if_eq item.data.data.skill 'unarmed_combat'}}{{actor.data.data.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}{{#if_eq item.data.data.skill 'melee_weapons'}}{{actor.data.data.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}</span>
                     {{/unless}}
 
-                    {{#if item.data.isLethal}}
-                    <span class="rollable  centered-item-property" data-rolltype="lethality" data-target="{{item.data.lethality}}" data-label="{{item.name}}" data-roll="d100"
+                    {{#if item.data.data.isLethal}}
+                    <span class="rollable  centered-item-property" data-rolltype="lethality" data-target="{{item.data.data.lethality}}" data-label="{{item.name}}" data-roll="d100"
                       title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}"
-                      >{{formatLethality item.data.lethality}}</span>
+                      >{{formatLethality item.data.data.lethality}}</span>
                     {{/if}}
 
-                    <span class="centered-item-property">{{item.data.armorPiercing}}</span>
+                    <span class="centered-item-property">{{item.data.data.armorPiercing}}</span>
 
                     <div class="item-controls">
                         <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
@@ -317,13 +325,13 @@
               {{#each actor.items as |item id|}}
                 {{#if_eq item.type 'armor'}}
 
-                  <li class="item flexrow" data-item-id="{{item._id}}">
+                  <li class="item flexrow" data-item-id="{{item.id}}">
                     <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
                     <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
-                    <span class="centered-item-property">{{item.data.protection}}</span>
+                    <span class="centered-item-property">{{item.data.data.protection}}</span>
                     
-                    <span class="equipped-item centered-item-property" data-id="{{item._id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}">
-                      {{#if item.data.equipped}}
+                    <span class="equipped-item centered-item-property" data-id="{{item.id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}">
+                      {{#if item.data.data.equipped}}
                         <span class="fas fa-check"></span>
                       {{else}}
                         <span class="fas fa-times"></span>
@@ -361,15 +369,15 @@
               {{#each actor.items as |item id|}}
                 {{#if_eq item.type 'gear'}}
 
-                  <li class="item flexrow" data-item-id="{{item._id}}">
+                  <li class="item flexrow" data-item-id="{{item.id}}">
                     <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
                     <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
 
                     <span></span> <!-- This is just here to get things to align nicely with the other sections-->
                     
-                    <span class="equipped-item centered-item-property" data-id="{{item._id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}" >
+                    <span class="equipped-item centered-item-property" data-id="{{item.id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}" >
                       
-                      {{#if item.data.equipped}}
+                      {{#if item.data.data.equipped}}
                         <span class="fas fa-check"></span>
                       {{else}}
                         <span class="fas fa-times"></span>
@@ -404,7 +412,8 @@
             <ol class="items-list">
               <li class="item flexrow item-header">
                 <div class="item-name">{{localize 'DG.Bonds.Name'}}</div>
-                <div class="item-name">{{localize 'DG.Bonds.Score'}}</div>
+                <div class="item-name">{{localize 'DG.Bonds.Relationship'}}</div>
+                <div class="item-name">{{localize 'DG.Bonds.Score'}}</div>                
                 <div class="item-controls">
                   <a class="item-control item-create" title="Create item" data-type="bond"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
                 </div>
@@ -413,10 +422,11 @@
               {{#each actor.items as |item id|}}
                 {{#if_eq item.type 'bond'}}
 
-                  <li class="item flexrow" data-item-id="{{item._id}}">
+                  <li class="item flexrow" data-item-id="{{item.id}}">
                     
                     <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
-                    <span>{{item.data.score}}</span>
+                    <span>{{item.data.data.relationship}}</span>
+                    <span>{{item.data.data.score}}</span>                    
                     <div class="item-controls">
                         <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
                         <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>

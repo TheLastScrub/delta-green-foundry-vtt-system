@@ -151,11 +151,11 @@
     "DG.Tooltip.SkillLabel": "Click to roll a skill check.",
     "DG.Tooltip.CannotRollSkillLabel": "A skill at 0% cannot be used.  See page 28 of the Agent's Handbook.",
     "DG.Tooltip.SkillFailCheckbox": "After failing a test on this skill (if proficiency is at least 1%), check this box. At the end of the session, add 1D4 percentage points to the skill and uncheck the box. Does not apply to the Unnatural or Ritual skill.  See page 29 of the Agent's Handbook.",
-    "DG.Tooltip.DistinguishingFeature": "Distinguishing Feature (fill out if score is 12 or higher, or 8 or lower).",
+    "DG.Tooltip.DistinguishingFeature": "Distinguishing Feature (fill out if score is 13 or higher, or 8 or lower).",
     "DG.Tooltip.x5AttributeLabel": "Click to roll a x5 check.",
     "DG.Tooltip.FirstAidAttempted": "Once an agent receives first aid, they cannot benefit from it again until they receive further damage from a different source.",
-    "DG.Tooltip.AdaptedToViolence": "Being adapted to violence means your Agent’s empathy suffers as they come to view violence as nothing but another tool to be wielded. He or she permanently loses 1D6 CHA and the same amount from each of their Bonds.",
-    "DG.Tooltip.AdaptedToHelplessness": "Being adapted to helplessness means your Agent’s personal drive suffers as they pull back from the world around them. As soon as your Agent becomes adapted to helplessness, he or she permanently loses 1D6 POW.",
+    "DG.Tooltip.AdaptedToViolence": "Being adapted to violence means your Agent’s empathy suffers as they come to view violence as nothing but another tool to be wielded. Agent permanently loses 1D6 CHA and the same amount from each of their Bonds.",
+    "DG.Tooltip.AdaptedToHelplessness": "Being adapted to helplessness means your Agent’s personal drive suffers as they pull back from the world around them. As soon as your Agent becomes adapted to helplessness, agent permanently loses 1D6 POW.",
     "DG.Tooltip.ToggleEquippedState": "Click to toggle whether this item is equipped or not.",
 
     "DG.Gear.Expense.Incidental": "Incidental",
@@ -176,7 +176,7 @@
     "DG.ItemWindow.Motivations.DisorderNameTooltip": "A disorder replaces a motivation after hitting a break point.",
     "DG.ItemWindow.Motivations.IsDisorderTooltip": "Check this if adding a disorder, or if an existing motivation has been lost due to gaining a disorder.",
     "DG.ItemWindow.Motivations.DisorderHasBeenCured": "Disorder Has Been \"Cured\"",
-    "DG.ItemWindow.Motivations.DisorderHasBeenCuredTooltip": "A critical success on a therapy luck roll can cure a disorder.  It may return the next time a breaking point is hit however.",
+    "DG.ItemWindow.Motivations.DisorderHasBeenCuredTooltip": "A critical success on a therapy luck roll can 'cure' a disorder.  It may return the next time a breaking point is hit however. See the Therapy section on pages 78-79 of the Agent's Handbook.",
 
     "DG.ItemWindow.Gear.Attributes": "Attributes",
     "DG.ItemWindow.Gear.Description": "Description",
@@ -217,5 +217,8 @@
     "DG.Roll.Inhuman": "Inhuman",
     "DG.Tooltip.BreakPoint": "The current breaking point, reset when current sanity falls to or below this value.  The starting breaking point is SAN - POW.",
     "DG.Tooltip.BreakPointReset": "Reset breaking point to be current SAN - WP.",
-    "DG.Skills.ritual": "Ritual"
+    "DG.Skills.ritual": "Ritual",
+
+    "DG.RollMode": "Roll Mode",
+    "DG.Bonds.Relationship": "Relationship"
 }
