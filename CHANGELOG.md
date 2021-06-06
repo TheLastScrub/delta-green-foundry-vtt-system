@@ -6,9 +6,11 @@
  * Revamped data model for actor sheet. Note due to the changes, the new system is not backwards compatible with older versions of Foundry now.
  * Rolls all asynchronous now.  Should allow less work to be required in future versions when asynchronous rolls are required.
 * Enhancement - Added option to choose roll mode in the roll modifier dialogue for both percentile/lethality tests and damage rolls.
+* Enhancement - Changed d100 Roll Modifier dialogue to have a +/- dropdown instead of needing to type it into the box.
 * Enhancement - Added a descriptor field, 'Relationship' to bonds, so you can give a name, and then the relationship as two separate fields.
 * Enhancement - More CSS Improvements
- * Cleaned up layout on bonds item sheet
+ * Cleaned up layout on bonds, armor, weapons, gear item sheets
+ * Made weapons, armor and gear Item Sheets slightly more uniform in how the same fields are laid out.
 
 ### Version 0.9.9 - 2021-03-27
 

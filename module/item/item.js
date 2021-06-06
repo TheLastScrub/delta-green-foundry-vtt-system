@@ -34,7 +34,15 @@ export class DeltaGreenItem extends Item {
     }
     else{
       // regular damage roll
-      sendDamageRollToChat(this.actor, item.name, item.data.damage);
+
+      let diceFormula = item.data.damage;
+      let skillType = item.data.skill;
+
+      if(skillType === 'unarmed_combat' || skillType === 'melee_weapons'){
+        diceFormula += this.actor.data.data.statistics.str.meleeDamageBonusFormula;
+      }
+
+      sendDamageRollToChat(this.actor, item.name, diceFormula);
     }
   }
 }

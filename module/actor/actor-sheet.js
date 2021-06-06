@@ -357,11 +357,19 @@ export class DeltaGreenActorSheet extends ActorSheet {
       }
 
       if(isDamageRoll){
+
+        let diceFormula = dataset.roll;
+        let skillType = dataset.skill ? dataset.skill : '';
+
+        if(skillType === 'unarmed_combat' || skillType === 'melee_weapons'){
+          diceFormula += this.actor.data.data.statistics.str.meleeDamageBonusFormula;
+        }
+        
         if(requestedModifyRoll){
-          showModifyDamageRollDialogue(this.actor, label, dataset.roll);
+          showModifyDamageRollDialogue(this.actor, label, diceFormula);
         }
         else{
-          sendDamageRollToChat(this.actor, label, dataset.roll, game.settings.get("core", "rollMode"));
+          sendDamageRollToChat(this.actor, label, diceFormula, game.settings.get("core", "rollMode"));
         }
       }
       else{
