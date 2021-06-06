@@ -235,6 +235,8 @@ export async function sendDamageRollToChat(actor, label, diceFormula, rollMode){
     rollMode = game.settings.get("core", "rollMode");
   }
 
+  diceFormula += actor.data.data.statistics.str.meleeDamageBonusFormula;
+
   let roll = new Roll(diceFormula, actor.data.data);
 
   await roll.evaluate({async: true});

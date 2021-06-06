@@ -318,7 +318,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     }
 
     if (dataset.roll) {
-      //let roll = new Roll(dataset.roll, this.actor.data.data);
+      
       let key = dataset.label ? dataset.label : '';
       let label = dataset.label ? `${dataset.label}` : '';
       let targetVal = "";
@@ -382,6 +382,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
   _resetBreakingPoint(event){
     event.preventDefault();
+
     let currentBreakingPoint = 0;
     
     currentBreakingPoint = this.actor.data.data.sanity.value - this.actor.data.data.statistics.pow.value;
@@ -391,7 +392,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
     }
     
     let updatedData = duplicate(this.actor.data.data);
+
     updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
+    
     this.actor.update({"data": updatedData});
   }
 

@@ -133,6 +133,30 @@ Hooks.once('init', async function() {
     }
   });
 
+  Handlebars.registerHelper('calculateHandToHandCombatDamageFormulaBonus', function(strength) {
+    try {
+      let bonus = "";
+
+      if(strength.value < 5){
+        bonus = " - 2";
+      }
+      else if(strength.value < 9){
+        bonus = " - 1";
+      }
+      else if(strength.value > 12 && strength < 17){
+        bonus = " + 1";
+      }
+      else if(strength.value > 16){
+        bonus = " + 2";
+      }
+      
+      return bonus;
+
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
   // looks at system setting for what font to use and returns the class that is then used in the handlebars template that 
   // generates the character sheet.
   Handlebars.registerHelper('getFontFamilySystemSettingClass', function() {
@@ -221,6 +245,7 @@ async function createDeltaGreenMacro(data, slot) {
       flags: { "deltagreen.itemMacro": true }
     });
   }
+
   game.user.assignHotbarMacro(macro, slot);
   return false;
 }

@@ -275,8 +275,13 @@
                     </h4>
 
                     {{#unless item.data.data.isLethal}}
-                    <span class="rollable centered-item-property" data-rolltype="damage" data-target="damage" data-label="{{toUpperCase item.name}}" data-roll="{{toUpperCase item.data.data.damage}}">
-                      {{toUpperCase item.data.data.damage}}</span>
+                    <span class="rollable centered-item-property" 
+                      
+                      data-rolltype="damage" 
+                      data-target="damage" 
+                      data-label="{{toUpperCase item.name}}" 
+                      data-roll="{{toUpperCase item.data.data.damage}}">
+                      {{toUpperCase item.data.data.damage}}{{#if_eq item.data.data.skill 'unarmed_combat'}}{{actor.data.data.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}{{#if_eq item.data.data.skill 'melee_weapons'}}{{actor.data.data.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}</span>
                     {{/unless}}
 
                     {{#if item.data.data.isLethal}}
