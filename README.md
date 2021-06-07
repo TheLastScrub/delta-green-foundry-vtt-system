@@ -11,7 +11,7 @@ http://www.delta-green.com/
 
 # System Overview
 
-See samples of all tabs in the main agent character sheet [here](./documentation/images/agent_sheet_sample.md).
+See samples of all tabs in the main agent character sheet [here](./documentation/agent_sheet_sample.md).
 
 Whatever system documentation currently exists can be found [here.](https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/blob/master/documentation/home.md)
 
