@@ -1,6 +1,11 @@
 # System Documentation
 
-## Rolling Checks
+## Table of Contents
+1. [Rolling Checks](#rolling-checks)
+2. [Modifying Rolls on the Fly](#modifying-rolls)
+
+<a name="rolling=checks"></a>
+## Rolling Checks 
 
 Most labels can be clicked to roll a check or test of some kind. If they can be clicked, they should glow red when the mouse is hovered over them.
 
@@ -12,7 +17,8 @@ Most labels can be clicked to roll a check or test of some kind. If they can be 
 * Click on a weapon name (on the _Gear_ tab) to roll the skill test associated with it (e.g. _Firearms_).
 * Click on the Damage/Lethality associated with a weapon to roll it.
 
-## Modifying Rolls On the Fly
+<a name="modifying-rolls"></a>
+## Modifying Rolls on the Fly
 
 Shift-clicking or right-clicking will bring up a dialogue to allow modifying the roll.
 
@@ -32,9 +38,9 @@ For Lethality, the D100 test against the target lethality threshold is evaluated
 
 Note - the Lethality roll does not currently take into account the changes that rolling a critical on the associated attack roll involves.  For example, on a critical _Firearms_ check with a weapon with a lethality of 10%, the threshold doubles to 20%, and if that check fails the resulting damage doubles as well.
 
-## Where is The Breaking Point Shown?
+## Where is an Agent's Breaking Point Shown?
 
-It is under the _Mental_ tab, as are the boxes to tick for _Incidents of Sanity Loss Without Going Insane_ and an Agents _Motivations_ and _Disorders_.
+It is under the _Mental_ tab, as are the boxes to tick for _Incidents of Sanity Loss Without Going Insane_ and an Agents _Motivations_ and _Disorders_.  Clicking the _Reset_ button will automatically change it to current SAN - POW.
 
 ## "Inhuman Rules" - Why are Results for x5 Tests Different for Creatures with a x5 that is Greater than 100%?
 
