@@ -220,5 +220,7 @@
     "DG.Skills.ritual": "Ritual",
 
     "DG.RollMode": "Roll Mode",
-    "DG.Bonds.Relationship": "Relationship"
+    "DG.Bonds.Relationship": "Relationship",
+
+    "DG.TypeSkills.Subskills.Painting": "Painting"
 }
