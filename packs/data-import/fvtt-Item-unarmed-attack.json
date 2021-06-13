@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Unarmed Attack",
+    "type": "weapon",
+    "img": "systems/deltagreen/assets/icons/punch.svg",
+    "data": {
+      "name": "",
+      "description": "",
+      "skill": "melee_weapons",
+      "range": "0M",
+      "damage": "1D4-1",
+      "armorPiercing": 0,
+      "lethality": 0,
+      "isLethal": false,
+      "killRadius": "N/A",
+      "ammo": "",
+      "expense": "Standard",
+      "equipped": true
+    },
+    "effects": [],
+    "sort": 0,
+    "flags": {
+      "core": {
+        "sourceId": "Compendium.deltagreen.hand-to-hand-weapons.JQEMyFfCHx38gupS"
+      },
+      "exportSource": {
+        "world": "dgtest",
+        "system": "deltagreen",
+        "coreVersion": "0.8.6",
+        "systemVersion": "1.0.0"
+      }
+    }
+  }
+]

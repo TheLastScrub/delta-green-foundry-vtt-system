@@ -1,0 +1,87 @@
+{
+  "agents": [
+  {
+    "name": "pregen-actor1",
+    "type": "agent",
+    "img": "icons/svg/mystery-man.svg",
+    "data": {
+      "statistics": {
+        "str": {
+          "value": 10,
+          "distinguishing_feature": "test"
+        },
+        "con": {
+          "value": 11,
+          "distinguishing_feature": "hello"
+        },
+        "dex": {
+          "value": 12,
+          "distinguishing_feature": ""
+        },
+        "int": {
+          "value": 13,
+          "distinguishing_feature": ""
+        },
+        "pow": {
+          "value": 14,
+          "distinguishing_feature": ""
+        },
+        "cha": {
+          "value": 15,
+          "distinguishing_feature": ""
+        }
+      },
+      
+      "biography": {
+        "profession": "",
+        "employer": "Federal Goverment",
+        "nationality": "",
+        "sex": "M",
+        "age": "44",
+        "education": ""
+      }
+    }
+  },
+  {
+    "name": "pregen-actor2",
+    "type": "agent",
+    "img": "icons/svg/mystery-man.svg",
+    "data": {
+      "statistics": {
+        "str": {
+          "value": 15,
+          "distinguishing_feature": "strong"
+        },
+        "con": {
+          "value": 14,
+          "distinguishing_feature": "hearty"
+        },
+        "dex": {
+          "value": 13,
+          "distinguishing_feature": ""
+        },
+        "int": {
+          "value": 12,
+          "distinguishing_feature": ""
+        },
+        "pow": {
+          "value": 11,
+          "distinguishing_feature": ""
+        },
+        "cha": {
+          "value": 10,
+          "distinguishing_feature": ""
+        }
+      },
+      
+      "biography": {
+        "profession": "Astronomer",
+        "employer": "",
+        "nationality": "",
+        "sex": "F",
+        "age": "23",
+        "education": ""
+      }
+    }
+  }
+]}

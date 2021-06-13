@@ -1,0 +1,23 @@
+[
+  {
+    "name": "New Bond",
+    "type": "bond",
+    "img": "icons/svg/mystery-man.svg",
+    "data": {
+      "name": "",
+      "description": "",
+      "score": 10,
+      "relationship": ""
+    },
+    "effects": [],
+    "sort": 0,
+    "flags": {
+      "exportSource": {
+        "world": "dgtest",
+        "system": "deltagreen",
+        "coreVersion": "0.8.6",
+        "systemVersion": "1.0.0"
+      }
+    }
+  }
+]
