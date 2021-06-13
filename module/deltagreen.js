@@ -234,7 +234,10 @@ async function createDeltaGreenMacro(data, slot) {
   const item = data.data;
 
   // Create the macro command
-  const command = `game.deltagreen.rollItemMacro("${item.name}");`;
+  let command = '// Uncomment line below to also roll skill check if desired.'
+  command += '\n' + `//game.deltagreen.rollItemSkillCheckMacro("${item.name}");`;
+  command += '\n' + `game.deltagreen.rollItemMacro("${item.name}");`;
+
   let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
   if (!macro) {
     macro = await Macro.create({
