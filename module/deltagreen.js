@@ -217,6 +217,37 @@ Hooks.on("ready", ()=> {
   
 });
 
+// Note - this event is fired on ALL connected clients...
+Hooks.on('createActor', async function(actor, options, userId){
+  try{
+    
+    // user this to trap on if this hook is firing for the same user that triggered the create
+    // can put logic specific to a particular user session below
+    if (userId != game.user.id) { return; };
+
+
+    if(actor.data.type === 'agent'){
+      // update the default type skill of Art - Painting's labels to try to be localized
+      // since I really backed myself into a corner on this with my implementation of it...
+      let artLabel = game.i18n.translations.DG?.TypeSkills?.Art ?? "Art";
+      let paintingLabel = game.i18n.translations.DG?.TypeSkills?.Subskills?.Painting ?? "Painting";
+
+      let updatedData = duplicate(actor.data.data);
+      updatedData.typedSkills.tskill_01.group = artLabel;
+      updatedData.typedSkills.tskill_01.label = paintingLabel;
+      
+      actor.update({"data": updatedData});
+      
+      // throw on an unarmed strike item for convenience
+      actor.AddUnarmedAttackItemIfMissing();
+    }
+    
+  }
+  catch(ex){
+    console.log(ex);
+  }
+});
+
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
 /* -------------------------------------------- */

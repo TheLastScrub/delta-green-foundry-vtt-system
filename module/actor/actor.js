@@ -163,4 +163,49 @@ export class DeltaGreenActor extends Actor {
     return super.create(data, options);
   }
 
+  async AddUnarmedAttackItemIfMissing(){
+    try{
+      
+      let alreadyAdded = false;
+
+      for(let item of this.data.items){
+        
+        let flag = await item.getFlag('deltagreen', 'SystemName');
+
+        if(flag === 'unarmed-attack'){
+          alreadyAdded = true;
+        }
+
+      }
+
+      if(alreadyAdded === true){ return; };
+
+      let handToHandPack = await game.packs.get('deltagreen.hand-to-hand-weapons');
+      let itemIndex = await handToHandPack.getIndex();            
+      let toAdd = []; // createEmbeddedDocument expects an array
+
+      for(let idx of itemIndex){
+        let _temp = await handToHandPack.getDocument(idx._id);
+        
+        if(_temp.name === 'Unarmed Attack'){
+          toAdd.push(_temp.data);
+        }        
+      }
+
+      let newItems = await this.createEmbeddedDocuments("Item", toAdd);
+      
+      for(let item of newItems){
+        await item.setFlag('deltagreen','AutoAdded', true);
+
+        if(item.name === 'Unarmed Attack'){
+          await item.setFlag('deltagreen','SystemName', 'unarmed-attack');
+        }
+      }
+    }
+    catch(ex){
+      console.log('Error adding unarmed strike item to Actor.')
+      console.log(ex);
+    }
+  } 
+
 }
