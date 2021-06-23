@@ -37,9 +37,8 @@
               <option {{#if_eq data.data.skill 'athletics'}}selected{{/if_eq}} value="athletics">{{localize 'DG.Skills.athletics'}}</option>
               <option {{#if_eq data.data.skill 'demolitions'}}selected{{/if_eq}} value="demolitions">{{localize 'DG.Skills.demolitions'}}</option>
               <option {{#if_eq data.data.skill 'artillery'}}selected{{/if_eq}} value="artillery">{{localize 'DG.Skills.artillery'}}</option>
-          </select>                    
-
-          
+              <option {{#if_eq data.data.skill 'dex'}}selected{{/if_eq}} value="dex">{{localize 'DG.Attributes.dex'}}</option>
+          </select>                              
 
           <span class="resource-label">{{localize 'DG.ItemWindow.Weapons.IsLethality'}}:</span>
           <input class="labeled-resource-checkbox" type="checkbox" name="data.isLethal" {{checked data.data.isLethal}} data-dtype="Boolean" 

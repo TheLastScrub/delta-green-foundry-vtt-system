@@ -157,6 +157,24 @@ Hooks.once('init', async function() {
     }
   });
 
+  Handlebars.registerHelper('localizeWeaponSkill', function(skill) {
+    let label = skill;
+
+    try {
+      
+      if(skill === 'dex'){
+        label = game.i18n.localize("DG.Attributes.dex");
+      }
+      else{
+        label = game.i18n.localize("DG.Skills." + skill);
+      }      
+    } catch (error) {
+      console.log(error);
+    }
+
+    return label;
+  });
+
   // looks at system setting for what font to use and returns the class that is then used in the handlebars template that 
   // generates the character sheet.
   Handlebars.registerHelper('getFontFamilySystemSettingClass', function() {

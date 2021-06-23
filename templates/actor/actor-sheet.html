@@ -266,10 +266,10 @@
                       
                       class="item-name rollable" 
                       data-roll="d100"
-                      data-rolltype="skill" 
-                      data-target="{{getActorSkillProp ../data item.data.data.skill 'proficiency'}}"
-                      data-label="{{localize (concat 'DG.Skills.' item.data.data.skill)}}"
-                      title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localize (concat 'DG.Skills.' item.data.data.skill)}})"
+                      data-rolltype="weaponskill" 
+                      data-target="{{item.data.data.skill}}"                         
+                      data-label="{{localizeWeaponSkill item.data.data.skill}}"
+                      title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.data.data.skill}})"
                       >
                         {{item.name}}
                     </h4>

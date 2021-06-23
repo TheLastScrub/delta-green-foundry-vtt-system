@@ -347,6 +347,20 @@ export class DeltaGreenActorSheet extends ActorSheet {
         targetVal = dataset.target;
         label = game.i18n.localize(label).toUpperCase();
       }
+      else if(rollType === "weaponskill"){
+        targetVal = dataset.target;        
+
+        // some weapons randomly can just use dexterity x5, so try to trap on that
+        // otherwise roll a regular skill test
+        if(targetVal === "dex"){
+          label = game.i18n.localize("DG.Attributes.dex");
+          targetVal = this.actor.data.data.statistics.dex.x5;
+        }
+        else{
+          label = game.i18n.localize("DG.Skills." + targetVal);          
+          targetVal = this.actor.data.data.skills[targetVal].proficiency;                    
+        }
+      }
       else if(dataset.target === "statistic.x5"){
         let stat = this.actor.data.data.statistics[key];
         targetVal = stat.x5;
