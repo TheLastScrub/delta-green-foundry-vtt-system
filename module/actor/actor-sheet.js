@@ -353,11 +353,11 @@ export class DeltaGreenActorSheet extends ActorSheet {
         // some weapons randomly can just use dexterity x5, so try to trap on that
         // otherwise roll a regular skill test
         if(targetVal === "dex"){
-          label = game.i18n.localize("DG.Attributes.dex");
+          label = game.i18n.localize("DG.Attributes.dex").toUpperCase();
           targetVal = this.actor.data.data.statistics.dex.x5;
         }
         else{
-          label = game.i18n.localize("DG.Skills." + targetVal);          
+          label = game.i18n.localize("DG.Skills." + targetVal).toUpperCase();          
           targetVal = this.actor.data.data.skills[targetVal].proficiency;                    
         }
       }
