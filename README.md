@@ -129,6 +129,7 @@ https://creativecommons.org/licenses/by/3.0/
 * Telescopic baton icon by Skoll under CC BY 3.0
 * Baton icon by Skoll under CC BY 3.0
 * Bayonet icon by Skoll under CC BY 3.0
+* Jaws icon by Skoll under CC BY 3.0
 * Helmet icon by sbed under CC BY 3.0
 * Kevlar icon by sbed under CC BY 3.0
 * Bowie knife icon by Lorc under CC BY 3.0
@@ -137,5 +138,9 @@ https://creativecommons.org/licenses/by/3.0/
 * Stiletto icon by Lorc under CC BY 3.0
 * Punch icon by Lorc under CC BY 3.0.
 * Arrowhead icon by Lorc under CC BY 3.0
+* Claw Slashes icon by Lorc under CC BY 3.0
+* Magic Hand icon by Lorc under CC BY 3.0
+* Magic Shield icon by Lorc under CC BY 3.0
+* Sly icon by Lorc under CC BY 3.0
 
 
