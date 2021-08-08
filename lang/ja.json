@@ -222,5 +222,12 @@
     "DG.RollMode": "ロールモード",
     "DG.Bonds.Relationship": "関係",
 
-    "DG.TypeSkills.Subskills.Painting": "ペインティング"
+    "DG.TypeSkills.Subskills.Painting": "ペインティング",
+
+    "DG.UnnaturalSheet.HideUntrainedSkillsLabel": "持たないスキルを表示しない",
+    "DG.UnnaturalSheet.NotesLabel": "ノート",
+    "DG.UnnaturalSheet.ShortDescriptionFallbackText": "外見・種類・など",
+    "DG.UnnaturalSheet.Tabs.NotesTabLabel": "スキル/ノート",
+    "DG.UnnaturalSheet.Tabs.ItemsTabLabel": "攻撃・能力",
+    "DG.NPCSheet.BreakPointAbbreviation": "BP"
 }

@@ -175,6 +175,30 @@ Hooks.once('init', async function() {
     return label;
   });
 
+  Handlebars.registerHelper('hideSkillBasedOnProficiencyAndUserChoice', function(hideUntrainedSkills, proficiency) {
+    let showValue = true;
+
+    try {
+      
+      if(hideUntrainedSkills === false){
+        showValue = true;
+      }
+      else{
+        if(proficiency > 0){
+          showValue = true;
+        }
+        else{
+          showValue = false;
+        }
+      }      
+    } catch (error) {
+      console.log(error);
+    }
+
+    return showValue;
+
+  });
+
   // looks at system setting for what font to use and returns the class that is then used in the handlebars template that 
   // generates the character sheet.
   Handlebars.registerHelper('getFontFamilySystemSettingClass', function() {
@@ -258,6 +282,9 @@ Hooks.on('createActor', async function(actor, options, userId){
       
       // throw on an unarmed strike item for convenience
       actor.AddUnarmedAttackItemIfMissing();
+    }
+    else if(actor.data.type === 'unnatural'){
+      
     }
     
   }

@@ -20,14 +20,30 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
   /** @override */
   get template() {
-    if ( !game.user.isGM && this.actor.limited ) {
-      return "systems/deltagreen/templates/actor/limited-sheet.html";
+    
+    if(this.actor !== null){
+      if(this.actor.data.type === 'agent'){
+        if ( !game.user.isGM && this.actor.limited ) {
+          return "systems/deltagreen/templates/actor/limited-sheet.html";
+        }
+        else{
+          //return `systems/deltagreen/templates/actor/${this.actor.data.type}-sheet.html`;
+          return `systems/deltagreen/templates/actor/actor-sheet.html`;
+        }
+      }
+      else if(this.actor.data.type === 'unnatural'){
+        return `systems/deltagreen/templates/actor/unnatural-sheet.html`;
+      }
+      else if(this.actor.data.type === 'npc'){
+        return `systems/deltagreen/templates/actor/npc-sheet.html`;
+      }
+      else{
+        return "systems/deltagreen/templates/actor/limited-sheet.html";
+      }
     }
     else{
-      //return `systems/deltagreen/templates/actor/${this.actor.data.type}-sheet.html`;
-      return `systems/deltagreen/templates/actor/actor-sheet.html`;
+      return "systems/deltagreen/templates/actor/limited-sheet.html";
     }
-    
   }
 
   /** @override */
@@ -38,8 +54,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     if (this.actor.data.type == 'agent') {
       this._prepareCharacterItems(data);
     }
-    //console.log(data);
-    //return data.data;
+    
     return data;
   }
 
@@ -264,7 +279,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
     let newSkillPropertyName = d.getFullYear().toString() + (d.getMonth() + 1).toString() + d.getDate().toString() + d.getHours().toString() + d.getMinutes().toString() + d.getSeconds().toString();
     console.log(newSkillPropertyName);
-    typedSkills[newSkillPropertyName] = {"label": newSkillLabel, "group": newSkillGroup, "proficiency": 0, "failure": false};
+    typedSkills[newSkillPropertyName] = {"label": newSkillLabel, "group": newSkillGroup, "proficiency": 10, "failure": false};
 
     updatedData.typedSkills = typedSkills;
 
@@ -386,7 +401,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
         let diceFormula = dataset.roll;
         let skillType = dataset.skill ? dataset.skill : '';
 
-        if(skillType === 'unarmed_combat' || skillType === 'melee_weapons'){
+        if(this.actor.type === 'agent' && (skillType === 'unarmed_combat' || skillType === 'melee_weapons')){
           diceFormula += this.actor.data.data.statistics.str.meleeDamageBonusFormula;
         }
         

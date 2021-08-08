@@ -21,7 +21,93 @@ export class DeltaGreenActor extends Actor {
     // things organized.
     if (actorData.type === 'agent'){
       this._prepareAgentData(this);
-    } 
+    }
+    else if(actorData.type === 'unnatural'){
+      this._prepareUnnaturalData(this);
+    }
+    else if(actorData.type === 'npc'){
+      this._prepareNpcData(this);
+    }
+  }
+
+  /**
+   * 
+   * @param {*} agent 
+   */
+ _prepareNpcData(actor){
+  let actorData = actor.data;
+  const data = actorData.data;
+
+  // Loop through ability scores, and add their modifiers to our sheet output.
+  for (let [key, statistic] of Object.entries(data.statistics)) {
+    // the x5 is just whatever the raw statistic is x 5 to turn it into a d100 percentile
+    statistic.x5 = statistic.value * 5;
+  }
+
+  // initialize sanity, don't set these afterwards, as they need to be manually edited
+  if(actorData.data.sanity.value >= 100){
+    actorData.data.sanity.value = actorData.data.statistics.pow.x5
+    actorData.data.sanity.currentBreakingPoint = actorData.data.sanity.value - actorData.data.statistics.pow.value;
+  };
+
+  actorData.data.sanity.max = 99 - actorData.data.skills.unnatural.proficiency;
+
+  actorData.data.skills.ritual = {
+    label: "Ritual",
+    proficiency: 99 - actorData.data.sanity.value,
+    cannotBeImprovedByFailure: true,
+    failure: false
+  };
+
+  if(actorData.data.skills.ritual.proficiency > 99){
+    actorData.data.skills.ritual.proficiency = 99
+  }
+  else if(actorData.data.skills.ritual.proficiency < 1){
+    actorData.data.skills.ritual.proficiency = 1
+  }
+
+  // calculate total armor rating
+  let protection = 0;
+  for (let i of actor.items) {
+    if (i.type === 'armor') {
+      if(i.data.data.equipped === true){
+        protection += i.data.data.protection;
+      }
+    }
+  }
+
+  actorData.data.health.protection = protection;
+
+  console.log(actor);
+}
+
+  /**
+   * 
+   * @param {*} agent 
+   */
+  _prepareUnnaturalData(actor){
+    let actorData = actor.data;
+    const data = actorData.data;
+
+    // Loop through ability scores, and add their modifiers to our sheet output.
+    for (let [key, statistic] of Object.entries(data.statistics)) {
+      // the x5 is just whatever the raw statistic is x 5 to turn it into a d100 percentile
+      statistic.x5 = statistic.value * 5;
+    }
+
+    // calculate total armor rating
+    let protection = 0;
+    for (let i of actor.items) {
+      if (i.type === 'armor') {
+        if(i.data.data.equipped === true){
+          protection += i.data.data.protection;
+        }
+      }
+    }
+
+    actorData.data.health.protection = protection;
+
+    console.log(actor);
   }
 
   /**

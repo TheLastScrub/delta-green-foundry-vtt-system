@@ -220,5 +220,14 @@
     "DG.Skills.ritual": "Ritual",
 
     "DG.RollMode": "Modo rollo",
-    "DG.Bonds.Relationship": "Relació"
+    "DG.Bonds.Relationship": "Relació",
+
+    "DG.TypeSkills.Subskills.Painting": "Painting",
+
+    "DG.UnnaturalSheet.HideUntrainedSkillsLabel": "Hide Untrained Skills",
+    "DG.UnnaturalSheet.NotesLabel": "Notes",
+    "DG.UnnaturalSheet.ShortDescriptionFallbackText": "Description of creature or creature type",
+    "DG.UnnaturalSheet.Tabs.NotesTabLabel": "Skills & Notes",
+    "DG.UnnaturalSheet.Tabs.ItemsTabLabel": "Attacks & Abilities",
+    "DG.NPCSheet.BreakPointAbbreviation": "BP"
 }

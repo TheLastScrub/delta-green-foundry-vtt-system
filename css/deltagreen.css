@@ -818,3 +818,18 @@ input.item-sheet-short-input{
   grid-gap: 5px;
   padding-right: 5px;
 }
+
+/*
+  Unnatural Character Sheet Specific Classes
+*/
+
+.unnatural-notes-section{
+  display: grid;
+  grid-template-columns: 100%;
+  align-items: left;
+  justify-content: left;
+  border: 1px solid #999;
+  padding: 5px;
+  grid-gap: 3px;
+  text-align: left;
+}

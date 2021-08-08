@@ -222,5 +222,12 @@
     "DG.RollMode": "Modo rollo",
     "DG.Bonds.Relationship": "Relación",
 
-    "DG.TypeSkills.Subskills.Painting": "Cuadro"
+    "DG.TypeSkills.Subskills.Painting": "Cuadro",
+
+    "DG.UnnaturalSheet.HideUntrainedSkillsLabel": "Hide Untrained Skills",
+    "DG.UnnaturalSheet.NotesLabel": "Notes",
+    "DG.UnnaturalSheet.ShortDescriptionFallbackText": "Description of creature or creature type",
+    "DG.UnnaturalSheet.Tabs.NotesTabLabel": "Skills & Notes",
+    "DG.UnnaturalSheet.Tabs.ItemsTabLabel": "Attacks & Abilities",
+    "DG.NPCSheet.BreakPointAbbreviation": "BP"
 }
