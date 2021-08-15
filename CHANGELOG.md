@@ -1,6 +1,15 @@
 ## Release/Patch Notes
 
-### Verion 1.0.0 - 2021-06-05 [BREAKING CHANGE: THIS VERSION FORWARD COMPATIBILE WITH FOUNDRY 0.8.6 OR HIGHER ONLY!!!]
+### Version 1.0.1 - 2021-08-14
+* Fix [GitHub #31] - Default Type Skill of Art-Painting that is added automatically when making a new agent should be localizable now.
+* Enhancement - Added a separate Actor type and sheet for _Unnatural_ creatures.
+* Enhancement - The system will try to automatically add an 'Unarmed Attack' item to a new agent when they are created to make it more obvious how this is handled within the system.
+* Enhancement - DEX x5 is now selectable as an option to roll for a weapon's skill test, which is useful for items like hand grenade that are rolled or thrown.
+* Enhancement - Eduard Cot (trombonecot) submitted a Catalan language pack for the system.
+* Enhancement - Added list of Pregen Agents (originaly from Reddit user u/jets_or_chasm, AKA jimstorch) as a compendium pack to allow a player to jump back in quickly after a death, or to make playing for the first time easier by presenting a list of agents of 24 professions.  See https://github.com/jimstorch/DGGen for more information.
+* Enhancement - Added some roll tables that allow making Fall of Delta Green-style Operation Code names (e.g. 'Operation Able Archer').  These tables are based on roll tables created by Reddit user u/Travern.  Note - there is also a compendium with a macro that will randomly pick a combination of the tables, then draw from those tables to make a random 2-part operation name to send to the chat.
+
+### Version 1.0.0 - 2021-06-05 [BREAKING CHANGE: THIS VERSION FORWARD COMPATIBILE WITH FOUNDRY 0.8.6 OR HIGHER ONLY!!!]
 
 * Changes to support 0.8.6+ Foundry
   * Revamped data model for actor sheet. Note due to the changes, the new system is not backwards compatible with older versions of Foundry now.

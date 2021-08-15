@@ -2,39 +2,21 @@
   "name": "deltagreen",
   "title": "Delta Green (Unofficial)",
   "description": "Fan-made Foundry VTT system for Delta Green: The Role Playing Game for Foundry VTT. Based on the rules in the Agent's Handbook (https://www.drivethrurpg.com/product/181674/Delta-Green-Agents-Handbook) [*NOT* Call of Cthulu]. Made with the permission of but neither affiliated with nor endorsed by Arc Dream Publishing or the Delta Green Partnership.",
-  "version": "1.0.0",
-  "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "0.8.6",
-  "templateVersion": 2,
   "author": "TheLastScrub (https://github.com/TheLastScrub)",
-  "esmodules": ["module/deltagreen.js"],
-  "styles": ["css/deltagreen.css", "css/dialogue.css"],
+  "authors": [],
+  "url": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial",
+  "license": "LICENSE.txt",
+  "flags": {},
+  "version": "1.0.1",
+  "minimumCoreVersion": "0.8.6",
+  "compatibleCoreVersion": "0.8.8",
   "scripts": [],
-  "packs": [
-    {
-      "name": "firearms",
-      "label": "Firearms",
-      "system": "deltagreen",
-      "module": "deltagreen",
-      "path": "./packs/firearms.db",
-      "entity": "Item"
-    },
-    {
-      "name": "armor",
-      "label": "Armor",
-      "system": "deltagreen",
-      "module": "deltagreen",
-      "path": "./packs/armor.db",
-      "entity": "Item"
-    },
-    {
-      "name": "hand-to-hand-weapons",
-      "label": "Hand-to-Hand Weapons",
-      "system": "deltagreen",
-      "module": "deltagreen",
-      "path": "./packs/hand-to-hand-weapons.db",
-      "entity": "Item"
-    }
+  "esmodules": [
+    "module/deltagreen.js"
+  ],
+  "styles": [
+    "css/deltagreen.css",
+    "css/dialogue.css"
   ],
   "languages": [
     {
@@ -53,12 +35,70 @@
       "path": "lang/es.json"
     }
   ],
+  "packs": [
+    {
+      "name": "firearms",
+      "label": "Firearms",
+      "system": "deltagreen",
+      "module": "deltagreen",
+      "path": "./packs/firearms.db",
+      "entity": "Item",
+      "private": false
+    },
+    {
+      "name": "armor",
+      "label": "Armor",
+      "system": "deltagreen",
+      "module": "deltagreen",
+      "path": "./packs/armor.db",
+      "entity": "Item",
+      "private": false
+    },
+    {
+      "name": "hand-to-hand-weapons",
+      "label": "Hand-to-Hand Weapons",
+      "system": "deltagreen",
+      "module": "deltagreen",
+      "path": "./packs/hand-to-hand-weapons.db",
+      "entity": "Item",
+      "private": false
+    },
+    {
+      "name": "agent-pregens",
+      "label": "Agent Pregens",
+      "system": "deltagreen",
+      "module": "deltagreen",
+      "path": "./packs/pregens.db",
+      "entity": "Actor",
+      "private": false
+    },
+    {
+      "name": "operation-code-name-generator-tables",
+      "label": "Operation Code Name Generator Tables",
+      "system": "deltagreen",
+      "module": "deltagreen",
+      "path": "./packs/operation-code-name-generator.db",
+      "entity": "RollTable",
+      "private": false
+    },
+    {
+      "name": "operation-code-name-generator-macro",
+      "label": "Operation Code Name Generator Macro",
+      "system": "deltagreen",
+      "module": "deltagreen",
+      "path": "./packs/operation-code-name-generator-macro.db",
+      "entity": "Macro",
+      "private": false
+    }
+  ],
+  "system": [],
+  "dependencies": [],
+  "socket": false,
+  "manifest": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/raw/master/system.json",
+  "download": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/archive/v1.0.1.zip",
+  "protected": false,
   "gridDistance": 1,
   "gridUnits": "m",
   "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": "wp",
-  "url": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial",
-  "manifest": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/raw/master/system.json",
-  "download": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/archive/v1.0.0.zip",
-  "license": "LICENSE.txt"
+  "secondaryTokenAttribute": "wp"
 }

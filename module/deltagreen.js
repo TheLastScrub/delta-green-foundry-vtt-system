@@ -267,10 +267,13 @@ Hooks.on('createActor', async function(actor, options, userId){
     // can put logic specific to a particular user session below
     if (userId != game.user.id) { return; };
 
+    return;
 
-    if(actor.data.type === 'agent'){
+    if(actor != null && actor.data != null && actor.data.type === 'agent'){
       // update the default type skill of Art - Painting's labels to try to be localized
       // since I really backed myself into a corner on this with my implementation of it...
+      console.log('createActor Hook');
+
       let artLabel = game.i18n.translations.DG?.TypeSkills?.Art ?? "Art";
       let paintingLabel = game.i18n.translations.DG?.TypeSkills?.Subskills?.Painting ?? "Painting";
 

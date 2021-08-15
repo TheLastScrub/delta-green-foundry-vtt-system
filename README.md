@@ -58,8 +58,18 @@ Some weapons and armor from the Agent's Handbook are included as compendium pack
 
 # Other Licenses, Attributions and Shoutouts
 
+## System Template
+
 This system is built upon on Matt Smith's (AKA Asacolips) excellent Boilerplate System and corresponding tutorial.
 https://gitlab.com/asacolips-projects/foundry-mods/foundryvtt-system-tutorial
+
+## Delta Green Agent Pregen List
+
+Comes from a character generator created by jimstorch, who graciously posted the results on Reddit for all to use.  See the GitHub page for more information:  https://github.com/jimstorch/DGGen
+
+## Operation Code Name Generator
+
+The roll tables added to generate operation code names comes from Reddit user /u/Travern.
 
 ## Fonts (Some in use, others that I would like to use at some point)
 
