@@ -3,7 +3,7 @@
 ### Version 1.0.1 - 2021-08-14
 * Fix [GitHub #31] - Default Type Skill of Art-Painting that is added automatically when making a new agent should be localizable now.
 * Enhancement - Added a separate Actor type and sheet for _Unnatural_ creatures and a similar sheet that for non-agent NPC characters.
-* Enhancement - The system will try to automatically add an 'Unarmed Attack' item to a new agent when they are created to make it more obvious how this is handled within the system.
+* Enhancement - The system will try to automatically add an 'Unarmed Attack' item to a new agent when they are created to make it more obvious how this is handled within the system. [Update - accidentally had this disabled in logic when packaging system, will re-add later...]
 * Enhancement - DEX x5 is now selectable as an option to roll for a weapon's skill test, which is useful for items like hand grenades that are rolled or thrown.
 * Enhancement - Eduard Cot (trombonecot) submitted a Catalan language pack for the system.
 * Enhancement - Added list of Pregen Agents (originaly from Reddit user u/jets_or_chasm, AKA jimstorch) as a compendium pack to allow a player to jump back in quickly after a death, or to make playing for the first time easier by presenting a list of agents of 24 professions.  See https://github.com/jimstorch/DGGen for more information.
