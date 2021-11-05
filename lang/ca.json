@@ -222,12 +222,12 @@
     "DG.RollMode": "Modo rollo",
     "DG.Bonds.Relationship": "Relació",
 
-    "DG.TypeSkills.Subskills.Painting": "Painting",
+    "DG.TypeSkills.Subskills.Painting": "Pintar",
 
-    "DG.UnnaturalSheet.HideUntrainedSkillsLabel": "Hide Untrained Skills",
+    "DG.UnnaturalSheet.HideUntrainedSkillsLabel": "Amagar habilitats no entrenades",
     "DG.UnnaturalSheet.NotesLabel": "Notes",
-    "DG.UnnaturalSheet.ShortDescriptionFallbackText": "Description of creature or creature type",
-    "DG.UnnaturalSheet.Tabs.NotesTabLabel": "Skills & Notes",
-    "DG.UnnaturalSheet.Tabs.ItemsTabLabel": "Attacks & Abilities",
-    "DG.NPCSheet.BreakPointAbbreviation": "BP"
+    "DG.UnnaturalSheet.ShortDescriptionFallbackText": "Descripció de la criatura o tipus de criatura",
+    "DG.UnnaturalSheet.Tabs.NotesTabLabel": "Habilitats i notes",
+    "DG.UnnaturalSheet.Tabs.ItemsTabLabel": "Atacs i equipament",
+    "DG.NPCSheet.BreakPointAbbreviation": "PT"
 }
