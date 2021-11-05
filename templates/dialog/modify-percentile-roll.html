@@ -1,10 +1,19 @@
 <form>
     <div class="skill-modify-grid">
         <span>{{localize 'DG.ModifySkillRollDialogue.Test'}}</span>
+
         <span>{{data.label}}</span>
         
         <span>{{localize 'DG.ModifySkillRollDialogue.OriginalTarget'}}</span>
+
+        {{#if data.hideTarget}}
+        <input class="numeric-label-field" disabled value="??" />
+        {{/if}}
+
+        {{#unless data.hideTarget}}
         <input class="numeric-label-field" disabled value="{{data.originalTarget}}" />
+        {{/unless}}
+        
 
         <span>{{localize 'DG.ModifySkillRollDialogue.TargetModifier'}}</span>
         <div>

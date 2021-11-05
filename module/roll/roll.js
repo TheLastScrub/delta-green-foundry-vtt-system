@@ -13,10 +13,18 @@ export async function sendPercentileTestToChat(actor, skill, target, rollMode){
   let label = '';
   let resultString = '';
   let styleOverride = '';
-  let inhumanCriticalThreshold = 0;
 
   if(rollMode == null || rollMode === ""){
-    rollMode = game.settings.get("core", "rollMode");
+    rollMode = game.settings.get("core", "rollMode"); 
+  }
+
+  // if using private san rolls, must hide any SAN role unless user is a GM
+  let setting = false;
+
+  setting = game.settings.get("deltagreen", "keepSanityPrivate");
+
+  if(setting === true && skill === 'SAN' && !game.user.isGM){
+    rollMode = 'blindroll';
   }
 
   // "Inhuman" stat being rolled, logic is different per page 188 of the Handler's Guide.
@@ -25,7 +33,6 @@ export async function sendPercentileTestToChat(actor, skill, target, rollMode){
   // If the roll is a matching digit roll, it is a critical as normal.
   // Also, if the roll is below the regular (non-x5) value of the stat, it is a critical.  E.g. a CON of 25, a d100 roll of 21 would be a critical.
   if(target > 99 && skillIsStatTest(skill)){
-    inhumanCriticalThreshold = Math.floor(target / 5);
 
     label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${skill} [${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${Math.floor(target / 5)}`;
 
@@ -267,11 +274,28 @@ export async function sendDamageRollToChat(actor, label, diceFormula, rollMode){
 export async function showModifyPercentileTestDialogue(actor, label, originalTarget, isLethalityTest){
   
   let template = "systems/deltagreen/templates/dialog/modify-percentile-roll.html";
+
+  let isSanCheck = false;
+  let hideSanTarget = false;
+
+  if(label === 'SAN'){
+
+    isSanCheck = true;
+
+    hideSanTarget = game.settings.get("deltagreen", "keepSanityPrivate");
+
+    if(game.user.isGM){
+      hideSanTarget = false;
+    }
+  }
+
   let backingData = {
     data:{
       label: label,
       originalTarget: originalTarget,
-      targetModifier: 20
+      targetModifier: 20,
+      isSanCheck: isSanCheck,
+      hideTarget: hideSanTarget
     },
   };
   

@@ -52,11 +52,24 @@
                 data-rolltype="sanity" data-roll="d100" data-target="sanity" data-label="SAN" title="{{localize 'DG.Tooltip.SanityLabel'}}"
               >{{localize 'DG.Attributes.SAN' }}</label>
               <div class="resource-inner-grid-3col">
-                <input type="text" name="data.sanity.value" value="{{actor.data.data.sanity.value}}" data-dtype="Number" title="{{localize 'DG.Tooltip.CurrentSanityPartOne'}}{{data.sanity.currentBreakingPoint}}{{localize 'DG.Tooltip.CurrentSanityPartTwo'}}" />
-                <span> / </span>
-                <div class="max-resource-value" title="{{localize 'DG.Tooltip.MaximumSanity'}}">
-                  <div>{{numberFormat actor.data.data.sanity.max decimals=0 sign=false}}</div>
-                </div>
+
+                {{#if (keepSanityPrivate)}}
+                  <input type="text" value="??" disabled title="{{localize 'DG.Tooltip.CurrentSanityPartOne'}}{{data.sanity.currentBreakingPoint}}{{localize 'DG.Tooltip.CurrentSanityPartTwo'}}" />
+                  <span> / </span>
+                  <div class="max-resource-value" title="{{localize 'DG.Tooltip.MaximumSanity'}}">
+                    <div>{{numberFormat actor.data.data.sanity.max decimals=0 sign=false}}</div>
+                  </div>
+                {{/if}}
+
+                {{#unless (keepSanityPrivate)}}
+ 
+                  <input type="text" name="data.sanity.value" value="{{actor.data.data.sanity.value}}" data-dtype="Number" title="{{localize 'DG.Tooltip.CurrentSanityPartOne'}}{{data.sanity.currentBreakingPoint}}{{localize 'DG.Tooltip.CurrentSanityPartTwo'}}" />
+                  <span> / </span>
+                  <div class="max-resource-value" title="{{localize 'DG.Tooltip.MaximumSanity'}}">
+                    <div>{{numberFormat actor.data.data.sanity.max decimals=0 sign=false}}</div>
+                  </div>
+
+                {{/unless}}
               </div>
           </div>
         </div>

@@ -1,5 +1,10 @@
 ## Release/Patch Notes
 
+### Version 1.0.2 - 2021-11-
+* Fix - Pregen Agents were getting duplicated Unarmed Strike items added on creation.
+* Fix - Unarmed Strike item in the compendium was using 'Melee Combat' instead of 'Unarmed Combat' as its skill.
+* Enhancment - Added system option for a world to make SAN target and skill rolls hidden from non-GM players. SAN tests change to blind rolls for players who are not GM.
+
 ### Version 1.0.1 - 2021-08-14
 * Fix [GitHub #31] - Default Type Skill of Art-Painting that is added automatically when making a new agent should be localizable now.
 * Enhancement - Added a separate Actor type and sheet for _Unnatural_ creatures and a similar sheet that for non-agent NPC characters.

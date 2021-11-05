@@ -34,4 +34,14 @@ export const registerSystemSettings = function() {
         //console.log(value)
       }
   });
+
+  game.settings.register('deltagreen', 'keepSanityPrivate', {
+    name: "Keep Sanity Private",
+    hint: "Hide sanity from players on both character sheet and rolls.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false
+  });
+
 }

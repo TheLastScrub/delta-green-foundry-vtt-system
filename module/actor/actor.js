@@ -258,8 +258,9 @@ export class DeltaGreenActor extends Actor {
         
         let flag = await item.getFlag('deltagreen', 'SystemName');
 
-        if(flag === 'unarmed-attack'){
+        if(flag === 'unarmed-attack' || item.name === 'Unarmed Attack'){
           alreadyAdded = true;
+          break;
         }
 
       }

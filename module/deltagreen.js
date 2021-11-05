@@ -224,6 +224,25 @@ Hooks.once('init', async function() {
     }
     
   });
+
+  Handlebars.registerHelper('keepSanityPrivate', function() {
+
+    let setting = false;
+
+    try{
+      setting = game.settings.get("deltagreen", "keepSanityPrivate");
+
+      if(game.user.isGM){
+        setting = false;
+      }
+
+    }
+    catch(ex){
+      setting = false;
+    }
+
+    return setting;
+  });
 });
 
 Hooks.once("ready", async function() {
