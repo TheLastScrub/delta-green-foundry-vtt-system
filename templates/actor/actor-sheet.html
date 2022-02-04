@@ -93,7 +93,9 @@
         {{!-- Skills Tab --}}
         <div class="tab skills" data-group="primary" data-tab="skills">
             <div class="grid grid-3col">
+
               {{#each actor.data.data.skills as |skill key|}}
+
                 <div class="flexrow flex-group-center">
                   <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{localize (concat 'DG.Skills.' key)}}" for="data.skills.{{key}}.value" 
                       {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
@@ -101,10 +103,32 @@
                     >
                     {{ localize (concat "DG.Skills." key) }}
                   </label>
-                  <input class="percentile-skill-input" type="text" name="data.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number" {{#if skill.isCalculatedValue}} disabled {{/if}}/>
-                  <input type="checkbox" name="data.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} 
-                    title="{{localize 'DG.Tooltip.SkillFailCheckbox'}}"
-                    />
+
+                  {{#if_eq key 'ritual' }}
+
+                    {{#if (keepSanityPrivate)}}
+                      <input class="percentile-skill-input" type="text" name="data.skills.{{key}}.proficiency" value="??" data-dtype="Number" {{#if skill.isCalculatedValue}} disabled {{/if}}/>
+                      <input type="checkbox" name="data.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} 
+                        title="{{localize 'DG.Tooltip.SkillFailCheckbox'}}"
+                        />
+                    {{/if}}
+
+                    {{#unless (keepSanityPrivate)}}
+                      <input class="percentile-skill-input" type="text" name="data.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number" {{#if skill.isCalculatedValue}} disabled {{/if}}/>
+                      <input type="checkbox" name="data.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} 
+                        title="{{localize 'DG.Tooltip.SkillFailCheckbox'}}"
+                        />
+                    {{/unless}}
+                    
+                  {{/if_eq}}
+
+                  {{#if_not_eq key 'ritual' }}
+                    <input class="percentile-skill-input" type="text" name="data.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number" {{#if skill.isCalculatedValue}} disabled {{/if}}/>
+                    <input type="checkbox" name="data.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} 
+                      title="{{localize 'DG.Tooltip.SkillFailCheckbox'}}"
+                      />
+                  {{/if_not_eq}}
+
                 </div>
               {{/each}}
           </div>

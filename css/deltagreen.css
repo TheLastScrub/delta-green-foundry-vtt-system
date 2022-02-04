@@ -255,6 +255,7 @@ section.window-content{
 .deltagreen .sheet-body .tab,
 .deltagreen .sheet-body .tab .editor {
   height: 100%;
+  flex: auto;
 }
 
 .deltagreen .resource-label {

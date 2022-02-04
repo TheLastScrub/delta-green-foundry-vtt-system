@@ -23,7 +23,7 @@ export async function sendPercentileTestToChat(actor, skill, target, rollMode){
 
   setting = game.settings.get("deltagreen", "keepSanityPrivate");
 
-  if(setting === true && skill === 'SAN' && !game.user.isGM){
+  if(setting === true && (skill === 'SAN' || skill === 'RITUAL') && !game.user.isGM){
     rollMode = 'blindroll';
   }
 
@@ -278,7 +278,7 @@ export async function showModifyPercentileTestDialogue(actor, label, originalTar
   let isSanCheck = false;
   let hideSanTarget = false;
 
-  if(label === 'SAN'){
+  if(label === 'SAN' || label === 'RITUAL'){
 
     isSanCheck = true;
 

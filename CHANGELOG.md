@@ -1,6 +1,11 @@
 ## Release/Patch Notes
 
-### Version 1.0.2 - 2021-11-
+### Version 1.0.3 - 2022-02-04
+* Other - Update compatible version to v9
+* Fix - The new system option to hide SAN score was not also hiding Ritual proficiency, making it trivial to back-calculate the SAN score for players that know the formula for the Ritual skill.
+* Fix - In Foundry v9, seems like the sections below the nav were anchored to the bottom of the window, so as the window got bigger the section would float away from the nav leaving a big gap. Attempted to fix CSS for this.
+
+### Version 1.0.2 - 2021-11-04
 * Fix - Pregen Agents were getting duplicated Unarmed Strike items added on creation.
 * Fix - Unarmed Strike item in the compendium was using 'Melee Combat' instead of 'Unarmed Combat' as its skill.
 * Enhancment - Added system option for a world to make SAN target and skill rolls hidden from non-GM players. SAN tests change to blind rolls for players who are not GM.
