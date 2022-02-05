@@ -1,9 +1,14 @@
 ## Release/Patch Notes
 
+### Version 1.0.4 - ????
+
+* Fix [GitHub #50] - The custom background images used on the Actor sheets was also showing up for other free-floating windows, such as when the encounter tracker is undocked. Because of the bright background, it was hard to read the text or see buttons, so have changed the CSS to try to exclude these windows from the custom background image.
+* Fix [GitHub #43] - Bond Scores on Agent Pregens from u/jets_or_chasm fixed to correctly match charisma score of the agent.  Also re-created the compendium using a newer version of the pregen sheet that has more 
+
 ### Version 1.0.3 - 2022-02-04
-* Other - Update compatible version to v9
-* Fix - The new system option to hide SAN score was not also hiding Ritual proficiency, making it trivial to back-calculate the SAN score for players that know the formula for the Ritual skill.
-* Fix - In Foundry v9, seems like the sections below the nav were anchored to the bottom of the window, so as the window got bigger the section would float away from the nav leaving a big gap. Attempted to fix CSS for this.
+* Other - Update compatible version to v9 (Note - this update could potentially have some effects on older Foundry versions)
+* Fix [GitHub #48] - The new system option to hide SAN score was not also hiding Ritual proficiency, making it trivial to back-calculate the SAN score for players that know the formula for the Ritual skill.
+* Fix [GitHub #50] - In Foundry v9, seems like the sections below the nav were anchored to the bottom of the window, so as the window got bigger the section would float away from the nav leaving a big gap. Attempted to fix CSS for this by setting how the grid should flex more specifically.
 
 ### Version 1.0.2 - 2021-11-04
 * Fix - Pregen Agents were getting duplicated Unarmed Strike items added on creation.
