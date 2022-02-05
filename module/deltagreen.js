@@ -265,12 +265,12 @@ Hooks.on("ready", ()=> {
   customStyle.id = "dg-custom-css";
 
   if(backgroundImageSetting === "OldPaper1"){
-    customCss += `section.window-content{
+    customCss += `div.deltagreen.sheet.actor section.window-content{
           background: url("systems/deltagreen/assets/img/old_paper.jpg") !important;
     }`;
   }
   else if(backgroundImageSetting === "IvoryPaper"){
-    customCss += `section.window-content{
+    customCss += `div.deltagreen.sheet.actor section.window-content{
           background-size: 100% !important;
     }`;
   }
