@@ -46,6 +46,8 @@
 
     "DG.Skills.AddTypedOrCustomSkill": "Añadir Tipo o Habilidad Personalizada",
     "DG.Skills.AddSkill": "Añadir Habilidad",
+    "DG.Skills.EditTypedOrCustomSkill": "Edit Typed or Custom Skill",
+    "DG.Skills.EditSkill": "Edit Skill",
     "DG.Skills.SkillGroup": "Habilidad Grupal",
     "DG.Skills.SkillName": "Nombre de la Habilidad",
 
@@ -229,5 +231,12 @@
     "DG.UnnaturalSheet.ShortDescriptionFallbackText": "Description of creature or creature type",
     "DG.UnnaturalSheet.Tabs.NotesTabLabel": "Skills & Notes",
     "DG.UnnaturalSheet.Tabs.ItemsTabLabel": "Attacks & Abilities",
-    "DG.NPCSheet.BreakPointAbbreviation": "BP"
+    "DG.NPCSheet.BreakPointAbbreviation": "BP",
+
+    "DG.ImpossibleLanscapes.IHaveSeenThe": "I HAVE SEEN THE",
+    "DG.ImpossibleLanscapes.YellowSign": "YELLOW SIGN",
+    "DG.ImpossibleLanscapes.CorruptionFirstHalf": "Corrup",
+    "DG.ImpossibleLanscapes.CorruptionSecondHalf": "tion",
+    "DG.ImpossibleLanscapes.Gift": "Gift",
+    "DG.ImpossibleLanscapes.Insight": "Insight"
 }

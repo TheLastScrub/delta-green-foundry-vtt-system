@@ -46,6 +46,8 @@
 
     "DG.Skills.AddTypedOrCustomSkill": "スキルを加える",
     "DG.Skills.AddSkill": "スキルを加える",
+    "DG.Skills.EditTypedOrCustomSkill": "スキルを編集",
+    "DG.Skills.EditSkill": "スキルを編集",
     "DG.Skills.SkillGroup": "スキルのグループ",
     "DG.Skills.SkillName": "スキルの名前",
 
@@ -229,5 +231,12 @@
     "DG.UnnaturalSheet.ShortDescriptionFallbackText": "外見・種類・など",
     "DG.UnnaturalSheet.Tabs.NotesTabLabel": "スキル/ノート",
     "DG.UnnaturalSheet.Tabs.ItemsTabLabel": "攻撃・能力",
-    "DG.NPCSheet.BreakPointAbbreviation": "BP"
+    "DG.NPCSheet.BreakPointAbbreviation": "BP",
+
+    "DG.ImpossibleLanscapes.IHaveSeenThe": "見えてしまった",
+    "DG.ImpossibleLanscapes.YellowSign": "YELLOW SIGNを",
+    "DG.ImpossibleLanscapes.CorruptionFirstHalf": "腐",
+    "DG.ImpossibleLanscapes.CorruptionSecondHalf": "敗",
+    "DG.ImpossibleLanscapes.Gift": "ギフト",
+    "DG.ImpossibleLanscapes.Insight": "インサイト"
 }

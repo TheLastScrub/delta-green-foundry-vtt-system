@@ -46,6 +46,8 @@
 
     "DG.Skills.AddTypedOrCustomSkill": "Afegir tipus o habilitat personalitzada",
     "DG.Skills.AddSkill": "Afegir habilitat",
+    "DG.Skills.EditTypedOrCustomSkill": "Edit Typed or Custom Skill",
+    "DG.Skills.EditSkill": "Edit Skill",
     "DG.Skills.SkillGroup": "Habilitat grupal",
     "DG.Skills.SkillName": "Nom de l'habilitat",
 
@@ -229,5 +231,12 @@
     "DG.UnnaturalSheet.ShortDescriptionFallbackText": "Descripció de la criatura o tipus de criatura",
     "DG.UnnaturalSheet.Tabs.NotesTabLabel": "Habilitats i notes",
     "DG.UnnaturalSheet.Tabs.ItemsTabLabel": "Atacs i equipament",
-    "DG.NPCSheet.BreakPointAbbreviation": "PT"
+    "DG.NPCSheet.BreakPointAbbreviation": "PT",
+
+    "DG.ImpossibleLanscapes.IHaveSeenThe": "I HAVE SEEN THE",
+    "DG.ImpossibleLanscapes.YellowSign": "YELLOW SIGN",
+    "DG.ImpossibleLanscapes.CorruptionFirstHalf": "Corrup",
+    "DG.ImpossibleLanscapes.CorruptionSecondHalf": "tion",
+    "DG.ImpossibleLanscapes.Gift": "Gift",
+    "DG.ImpossibleLanscapes.Insight": "Insight"
 }
