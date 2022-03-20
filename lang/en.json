@@ -146,7 +146,7 @@
     "DG.Tooltip.MaximumHP": "Maximum health is the average of STR + CON, rounded UP.",
     "DG.Tooltip.WP": "Willpower Points are mental fuel. Agents require Willpower Points to keep going despite exhaustion or mentally taxing situations.  See page 47 of the Agent's Handbook for more detail.",
     "DG.Tooltip.MaximumWP": "Maximum WP is equal to POW.",
-    "DG.Tooltip.SanityLabel": "Click to roll a sanity check...",
+    "DG.Tooltip.SanityLabel": "Click to roll a SAN test...",
     "DG.Tooltip.CurrentSanityPartOne": "Current sanity, current breaking point is ",
     "DG.Tooltip.CurrentSanityPartTwo": ", click the SAN label above to roll a sanity check.",
     "DG.Tooltip.MaximumSanity": "Maximum sanity is equal to 99 - the Unnatural skill.",
@@ -231,5 +231,12 @@
     "DG.UnnaturalSheet.ShortDescriptionFallbackText": "Description of creature or creature type",
     "DG.UnnaturalSheet.Tabs.NotesTabLabel": "Skills & Notes",
     "DG.UnnaturalSheet.Tabs.ItemsTabLabel": "Attacks & Abilities",
-    "DG.NPCSheet.BreakPointAbbreviation": "BP"
+    "DG.NPCSheet.BreakPointAbbreviation": "BP",
+
+    "DG.ImpossibleLanscapes.IHaveSeenThe": "I HAVE SEEN THE",
+    "DG.ImpossibleLanscapes.YellowSign": "YELLOW SIGN",
+    "DG.ImpossibleLanscapes.CorruptionFirstHalf": "Corrup",
+    "DG.ImpossibleLanscapes.CorruptionSecondHalf": "tion",
+    "DG.ImpossibleLanscapes.Gift": "Gift",
+    "DG.ImpossibleLanscapes.Insight": "Insight"
 }

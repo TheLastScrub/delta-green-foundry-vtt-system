@@ -20,6 +20,31 @@
     <span>{{localize 'DG.CV.Education'}}</span>
     <input class="fill-remaining-space" type="text" name="data.biography.education" value="{{actor.data.data.biography.education}}" data-dtype="String" placeholder="{{localize 'DG.CV.EducationPlaceholder'}}" />
 </div>
+
+{{#if (playerHasGamemasterPrivileges)}}
+
+<div class="yellow-king yellow-king-grid-9col">
+    <span class="yellow-king yellow-king-rotate2">{{localize 'DG.ImpossibleLanscapes.IHaveSeenThe'}}</span>
+    <span></span>
+    <span class="yellow-king yellow-sign">{{localize 'DG.ImpossibleLanscapes.YellowSign'}}</span>
+    <input type="checkbox" name="data.corruption.haveSeenTheYellowSign" {{checked actor.data.data.corruption.haveSeenTheYellowSign}} data-dtype="Boolean" />
+    <span></span>
+    <span class="yellow-king yellow-king-rotate1">{{localize 'DG.ImpossibleLanscapes.CorruptionFirstHalf'}}</span>
+    <span class="yellow-king yellow-king-rotate4">{{localize 'DG.ImpossibleLanscapes.CorruptionSecondHalf'}}</span>
+    <span></span>
+    <input class="yellow-king" type="number" placeholder="0" name="data.corruption.value" value="{{actor.data.data.corruption.value}}" />
+</div>
+
+<div class="yellow-king yellow-king-grid-5col">
+    <span>{{localize 'DG.ImpossibleLanscapes.Gift'}}</span>
+    <input class="fill-remaining-space" type="text" name="data.corruption.gift" value="{{actor.data.data.corruption.gift}}" data-dtype="String" />
+    <span></span>
+    <span>{{localize 'DG.ImpossibleLanscapes.Insight'}}</span>
+    <input class="fill-remaining-space" type="text" name="data.corruption.insight" value="{{actor.data.data.corruption.insight}}" data-dtype="String" />
+</div>
+
+{{/if}}
+
 <div style="padding: 2px; margin-bottom: 5px;">
   <span class="physical-description-label">{{localize 'DG.CV.PhysicalDescriptionLabel'}}</span>  
 </div>

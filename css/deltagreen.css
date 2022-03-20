@@ -846,3 +846,55 @@ input.item-sheet-short-input{
 .add-typed-skill-button{
   margin: 10px;
 }
+
+.yellow-king{
+  color: #a0912f;
+}
+
+.yellow-sign{
+  font-weight: bold;
+  text-shadow: 1px 1px #313a00;
+}
+
+.yellow-king-rotate1{
+  transform: rotate(3deg);
+}
+
+.yellow-king-rotate4{
+  transform: rotate(4deg);
+}
+
+.yellow-king-rotate2{
+  transform: rotate(-1deg);
+}
+
+.yellow-king-rotate3{
+  transform: rotate(5deg);
+}
+
+.yellow-king-grid-9col{
+  display: grid;
+  grid-template-columns: max-content 5px max-content max-content 20px max-content max-content 10px 35px;
+  align-items: center;
+  padding-bottom: 10px;
+} 
+
+.yellow-king-grid-5col{
+  display: grid;
+  grid-template-columns: min-content 275px 20px min-content auto;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.yellow-king span{
+  margin-right: 10px;
+}
+
+.yellow-king input, .yellow-king select, .yellow-king textarea{
+  color: #a0912f;
+  font-weight: bold;
+}
+
+.yellow-king textarea:focus, .yellow-king input:focus{
+  color: #a0912f;
+}

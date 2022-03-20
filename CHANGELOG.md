@@ -7,6 +7,7 @@
 * Enhancement - Added some buttons to the gear tab of the Agent's sheet that allow opening the compendiums for weapons or armor directly from the sheet.
 * Enhancement - Made tabs in nav bar, look a little bit more obviously like tabs.
 * Enhancement - Made it so that existing type skills are more editable now, to make using the pregens that have craft/language/science skills easier.
+* Enhancement - Added some GM-only fields to the CV section of the Agent and NPC sheets that supports values recording in Impossible Landscapes
 
 ### Version 1.0.4 - 2022-02-05
 
