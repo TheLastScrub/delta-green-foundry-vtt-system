@@ -287,7 +287,7 @@ Hooks.on("ready", ()=> {
 Hooks.on('createActor', async function(actor, options, userId){
   try{
     
-    // user this to trap on if this hook is firing for the same user that triggered the create
+    // use this to trap on if this hook is firing for the same user that triggered the create
     // can put logic specific to a particular user session below
     if (userId != game.user.id) { return; };
 

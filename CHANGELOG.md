@@ -1,6 +1,14 @@
 ## Release/Patch Notes
 
-### Version 1.0.4 - ????
+### Version 1.0.5 - 2022-03-20
+
+* Enhancement [GitHub #53] - Added all physical attributes (on top of DEX) as options for the test for a weapon, to accomodate a special weapon in the Jack Frost module.
+* Enhancement - Put a little dice icon next to the SAN label to make it more obvious that is how you roll a SAN test on the Agent's sheet.
+* Enhancement - Added some buttons to the gear tab of the Agent's sheet that allow opening the compendiums for weapons or armor directly from the sheet.
+* Enhancement - Made tabs in nav bar, look a little bit more obviously like tabs.
+* Enhancement - Made it so that existing type skills are more editable now, to make using the pregens that have craft/language/science skills easier.
+
+### Version 1.0.4 - 2022-02-05
 
 * Fix [GitHub #50] - The custom background images used on the Actor sheets was also showing up for other free-floating windows, such as when the encounter tracker is undocked. Because of the bright background, it was hard to read the text or see buttons, so have changed the CSS to try to exclude these windows from the custom background image.
 * Fix [GitHub #43] - Bond Scores on Agent Pregens from u/jets_or_chasm fixed to correctly match charisma score of the agent.  Also re-created the compendium using a newer version of the pregen sheet that has more 

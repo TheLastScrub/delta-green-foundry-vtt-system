@@ -46,6 +46,8 @@
 
     "DG.Skills.AddTypedOrCustomSkill": "Add Typed or Custom Skill",
     "DG.Skills.AddSkill": "Add Skill",
+    "DG.Skills.EditTypedOrCustomSkill": "Edit Typed or Custom Skill",
+    "DG.Skills.EditSkill": "Edit Skill",
     "DG.Skills.SkillGroup": "Skill Group",
     "DG.Skills.SkillName": "Skill Name",
 

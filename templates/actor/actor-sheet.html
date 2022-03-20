@@ -48,9 +48,9 @@
 
           {{!-- Sanity --}}
           <div class="resource-outer-grid-1col">
-              <label for="data.wp.value" class="resource-label rollable"
+              <label for="data.san.value" class="resource-label rollable"
                 data-rolltype="sanity" data-roll="d100" data-target="sanity" data-label="SAN" title="{{localize 'DG.Tooltip.SanityLabel'}}"
-              >{{localize 'DG.Attributes.SAN' }}</label>
+              >{{localize 'DG.Attributes.SAN' }} <i class="fas fa-dice"></i></label>
               <div class="resource-inner-grid-3col">
 
                 {{#if (keepSanityPrivate)}}
@@ -134,7 +134,7 @@
           </div>
 
           <div>
-            <div class="item-controls">
+            <div class="item-controls add-typed-skill-button">
               <a class="item-control typed-skill-add"><i class="fas fa-plus"></i>{{localize 'DG.Skills.AddTypedOrCustomSkill'}}</a>
             </div>
             <div class="grid-2col">
@@ -149,6 +149,7 @@
                   <input class="percentile-skill-input" type="text" name="data.typedSkills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
                   <input type="checkbox" name="data.typedSkills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} />
                   <div class="item-controls">
+                      <a class="item-control typed-skill-edit" title="Edit Skill"><i class="fas fa-edit" data-typedskill="{{key}}" ></i></a>
                       <a class="item-control typed-skill-delete" title="Delete Skill"><i class="fas fa-trash" data-typedskill="{{key}}" ></i></a>
                   </div>
                 </div>
@@ -285,11 +286,11 @@
               
               <li class="item flexrow item-header">
                 <div class="item-image"></div>
-                <span class="">{{localize 'DG.Gear.Name'}}</span>
+                <span class="">{{localize 'DG.Gear.Name'}} <a><i class="weapon-browse fas fa-search"></i></a></span>
                 <span class="centered-item-property">{{localize 'DG.Gear.DamageOrLethality'}}</span>
                 <span class="centered-item-property">{{localize 'DG.Gear.ArmorPiercing'}}</span>
                 <div class="item-controls">
-                  <a class="item-control item-create" title="Create item" data-type="weapon"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
+                  <a class="item-control item-create" title="Create item" data-type="weapon"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>                  
                 </div>
               </li>
 
@@ -351,7 +352,7 @@
             <ol class="items-list">
               <li class="item flexrow item-header">
                 <div class="item-image"></div>
-                <div class="item-name">{{localize 'DG.Gear.Name'}}</div>
+                <div class="item-name"><span>{{localize 'DG.Gear.Name'}} <a><i class="armor-browse fas fa-search"></i></a></span></div>
                 <span class="centered-item-property">{{localize 'DG.Gear.ArmorRating'}}</span>
                 <span class="centered-item-property">{{localize 'DG.Gear.Equipped'}}</span>
                 <div class="item-controls">

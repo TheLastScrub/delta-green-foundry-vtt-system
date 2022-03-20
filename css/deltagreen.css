@@ -269,20 +269,28 @@ section.window-content{
 }
 
 .deltagreen .tabs {
-  height: 40px;
+  height: auto;
   text-align: center;
   vertical-align: middle;
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
 }
 
 .deltagreen .tabs .item {
   font-weight: bold;
   vertical-align: middle !important;
   line-height: inherit;
+  padding: 10px 15px 5px 15px;
+  border-radius: 5px 5px 0px 0px;
+  border-color: #000;
 }
 
 .deltagreen .tabs .item.active {
-  text-decoration: underline;
   text-shadow: none;
+  font-style: italic;
+  border: #000;
+  border-width: 1px 1px 0px 1px;
+  border-style: solid;
 }
 
 .deltagreen .items-list {
@@ -833,4 +841,8 @@ input.item-sheet-short-input{
   padding: 5px;
   grid-gap: 3px;
   text-align: left;
+}
+
+.add-typed-skill-button{
+  margin: 10px;
 }

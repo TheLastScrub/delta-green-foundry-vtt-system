@@ -223,14 +223,138 @@ export class DeltaGreenActorSheet extends ActorSheet {
       this._showNewTypeSkillDialog(targetskill);
     });
 
+    html.find('.typed-skill-edit').click(event => {
+
+      event.preventDefault();
+      let targetskill = event.target.getAttribute("data-typedskill");
+      let existingLabel = this.actor.data.data.typedSkills[targetskill].label;
+      let existingGroup = this.actor.data.data.typedSkills[targetskill].group;
+
+      //this.actor.update({[`data.typedSkills.${targetskill}.label`]: 'test'});
+
+      this._showNewEditTypeSkillDialog(targetskill, existingLabel, existingGroup);
+
+    });
+
     html.find('.typed-skill-delete').click(event => {
+      
       event.preventDefault();
       let targetskill = event.target.getAttribute("data-typedskill");
 
       // many bothans died to bring us this information on how to delete a property on an entity
       this.actor.update({[`data.typedSkills.-=${targetskill}`]: null});
+
+    });
+
+    // Browse Weapon Compendiums
+    html.find('.weapon-browse').click(ev => {
+      const dialog = new Dialog({
+        title: "Select Compendium",
+        buttons:{
+          firearms: {
+            icon: '<i class="fas fa-crosshairs"></i>',
+            callback: () => game.packs.find(k=>k.collection==="deltagreen.firearms").render(true)
+          },
+          melee: {
+            icon: '<i class="far fa-hand-rock"></i>',
+            callback: () => game.packs.find(k=>k.collection==="deltagreen.hand-to-hand-weapons").render(true)
+          }
+        }
+      });
+
+      dialog.render(true);
+    });
+
+    html.find('.armor-browse').click(ev => {
+      game.packs.find(k=>k.collection==="deltagreen.armor").render(true);
+    });
+
+    html.find('.gear-browse').click(ev => {
+      //game.packs.find(k=>k.collection==="deltagreen.firearms").render(true);
     });
     
+  }
+
+  _showNewEditTypeSkillDialog(targetSkill, currentLabel, currentGroup){
+
+    // TO DO: BUILD DIALOG TO CAPTURE UPDATED DATA
+
+    let htmlContent = `<div>`;
+    htmlContent += `     <label>${game.i18n.translations.DG?.Skills?.SkillGroup ?? "Skill Group"}:</label>`;
+    htmlContent += `     <select name="new-type-skill-group" />`;
+
+    if(currentGroup === game.i18n.translations.DG?.TypeSkills?.Art ?? "Art"){
+      htmlContent += `          <option selected>${game.i18n.translations.DG?.TypeSkills?.Art ?? "Art"}</option>`;
+    }
+    else{
+      htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Art ?? "Art"}</option>`;
+    }
+    
+    if(currentGroup === game.i18n.translations.DG?.TypeSkills?.Craft ?? "Craft"){
+      htmlContent += `          <option selected>${game.i18n.translations.DG?.TypeSkills?.Craft ?? "Craft"}</option>`;
+    }
+    else{
+      htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Craft ?? "Craft"}</option>`;
+    }
+    
+    if(currentGroup === game.i18n.translations.DG?.TypeSkills?.ForeignLanguage ?? "Foreign Language"){
+      htmlContent += `          <option selected>${game.i18n.translations.DG?.TypeSkills?.ForeignLanguage ?? "Foreign Language"}</option>`;
+    }
+    else{
+      htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.ForeignLanguage ?? "Foreign Language"}</option>`;
+    }
+    
+    if(currentGroup === game.i18n.translations.DG?.TypeSkills?.MilitaryScience ?? "Military Science"){
+      htmlContent += `          <option selected>${game.i18n.translations.DG?.TypeSkills?.MilitaryScience ?? "Military Science"}</option>`;
+    }
+    else{
+      htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.MilitaryScience ?? "Military Science"}</option>`;
+    }
+    
+    if(currentGroup === game.i18n.translations.DG?.TypeSkills?.Pilot ?? "Pilot"){
+      htmlContent += `          <option selected>${game.i18n.translations.DG?.TypeSkills?.Pilot ?? "Pilot"}</option>`;
+    }
+    else{
+      htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Pilot ?? "Pilot"}</option>`;
+    }
+    
+    if(currentGroup === game.i18n.translations.DG?.TypeSkills?.Science ?? "Science"){
+      htmlContent += `          <option selected>${game.i18n.translations.DG?.TypeSkills?.Science ?? "Science"}</option>`;
+    }
+    else{
+      htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Science ?? "Science"}</option>`;
+    }
+    
+    if(currentGroup === game.i18n.translations.DG?.TypeSkills?.Other ?? "Other"){
+      htmlContent += `          <option selected>${game.i18n.translations.DG?.TypeSkills?.Other ?? "Other"}</option>`;
+    }
+    else{
+      htmlContent += `          <option>${game.i18n.translations.DG?.TypeSkills?.Other ?? "Other"}</option>`;
+    }
+    
+    htmlContent += `     </select>`;
+    htmlContent += `</div>`;
+
+    htmlContent += `<div>`;
+    htmlContent += `     <label>${game.i18n.translations.DG?.Skills.SkillName ?? "Skill Name"}</label>`;
+    htmlContent += `     <input type="text" name="new-type-skill-label" value="${currentLabel}" />`;
+    htmlContent += `</div>`;
+
+    new Dialog({
+      content: htmlContent,
+      title: game.i18n.translations.DG?.Skills?.EditTypedOrCustomSkill ?? "Edit Typed or Custom Skill",
+      default: "add",
+      buttons: {
+        add:{
+          label: game.i18n.translations.DG?.Skills?.EditSkill ?? "Edit Skill",
+          callback: btn =>{
+            let newTypeSkillLabel = btn.find("[name='new-type-skill-label']").val();
+            let newTypeSkillGroup = btn.find("[name='new-type-skill-group']").val();
+            this._updateTypedSkill(targetSkill, newTypeSkillLabel, newTypeSkillGroup);
+          }
+        }
+      }
+    }).render(true);
   }
 
   _showNewTypeSkillDialog(targetskill){
@@ -284,6 +408,19 @@ export class DeltaGreenActorSheet extends ActorSheet {
     updatedData.typedSkills = typedSkills;
 
     this.actor.update({"data": updatedData});
+  }
+
+  _updateTypedSkill(targetSkill, newSkillLabel, newSkillGroup){
+
+    if(newSkillLabel !== null && newSkillLabel !== "" && newSkillGroup !== null & newSkillGroup !== ""){
+      let updatedData = duplicate(this.actor.data.data);
+    
+      updatedData.typedSkills[targetSkill].label = newSkillLabel;
+      updatedData.typedSkills[targetSkill].group = newSkillGroup;
+  
+      this.actor.update({"data": updatedData});
+    }
+    
   }
 
   /**
@@ -368,11 +505,31 @@ export class DeltaGreenActorSheet extends ActorSheet {
         // some weapons randomly can just use dexterity x5, so try to trap on that
         // otherwise roll a regular skill test
         if(targetVal === "dex"){
-          label = game.i18n.localize("DG.Attributes.dex").toUpperCase();
+          label = game.i18n.localize("DG.Attributes.dex").toUpperCase() + "x5";
           targetVal = this.actor.data.data.statistics.dex.x5;
         }
+        else if(targetVal === "int"){
+          label = game.i18n.localize("DG.Attributes.int").toUpperCase() + "x5";
+          targetVal = this.actor.data.data.statistics.int.x5;
+        }
+        else if(targetVal === "str"){
+          label = game.i18n.localize("DG.Attributes.str").toUpperCase() + "x5";
+          targetVal = this.actor.data.data.statistics.str.x5;
+        }
+        else if(targetVal === "con"){
+          label = game.i18n.localize("DG.Attributes.con").toUpperCase() + "x5";
+          targetVal = this.actor.data.data.statistics.con.x5;
+        }
+        else if(targetVal === "pow"){
+          label = game.i18n.localize("DG.Attributes.pow").toUpperCase() + "x5";
+          targetVal = this.actor.data.data.statistics.pow.x5;
+        }
+        else if(targetVal === "cha"){
+          label = game.i18n.localize("DG.Attributes.cha").toUpperCase() + "x5";
+          targetVal = this.actor.data.data.statistics.cha.x5;
+        }
         else{
-          label = game.i18n.localize("DG.Skills." + targetVal).toUpperCase();          
+          label = game.i18n.localize("DG.Skills." + targetVal).toUpperCase() + "x5";          
           targetVal = this.actor.data.data.skills[targetVal].proficiency;                    
         }
       }
