@@ -1,5 +1,9 @@
 ## Release/Patch Notes
 
+### Version 1.0.6 - 2022-05-26
+
+* Enhancement - IgorAK25 has submitted a Portuguese translation for the system.
+
 ### Version 1.0.5 - 2022-03-20
 
 * Enhancement [GitHub #53] - Added all physical attributes (on top of DEX) as options for the test for a weapon, to accomodate a special weapon in the Jack Frost module.
