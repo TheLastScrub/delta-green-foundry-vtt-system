@@ -134,8 +134,9 @@
           </div>
 
           <div>
-            <div class="item-controls add-typed-skill-button">
-              <a class="item-control typed-skill-add"><i class="fas fa-plus"></i>{{localize 'DG.Skills.AddTypedOrCustomSkill'}}</a>
+            <div class="item-controls skill-buttons">
+              <a class="item-control typed-skill-add"><i class="fas fa-plus"></i>{{localize 'DG.Skills.AddTypedOrCustomSkill'}}</a> 
+              <a class="item-control apply-skill-improvements">{{localize 'DG.Skills.ApplySkillImprovements'}}<i class="fas fa-plus"></i></a>
             </div>
             <div class="grid-2col">
               {{#each actor.data.data.typedSkills as |skill key|}}

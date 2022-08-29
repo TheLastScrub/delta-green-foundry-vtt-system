@@ -46,6 +46,12 @@
 
     "DG.Skills.AddTypedOrCustomSkill": "Add Typed or Custom Skill",
     "DG.Skills.AddSkill": "Add Skill",
+    "DG.Skills.Apply": "Apply",
+    "DG.Skills.ApplySkillImprovements": "Apply Skill Improvements",
+    "DG.Skills.ApplySkillImprovementsChatFlavor": "Improved the following skills by",
+    "DG.Skills.ApplySkillImprovementsDialogLabel": "Improve skills by the following formula:",
+    "DG.Skills.ApplySkillImprovementsDialogEffectsFollowing": "Effects the following skills:",
+    "DG.Skills.ApplySkillImprovementsWarning": "No failed skills to improve.",
     "DG.Skills.EditTypedOrCustomSkill": "Edit Typed or Custom Skill",
     "DG.Skills.EditSkill": "Edit Skill",
     "DG.Skills.SkillGroup": "Skill Group",
