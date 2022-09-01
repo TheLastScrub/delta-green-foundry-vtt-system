@@ -321,7 +321,19 @@ export class DeltaGreenActorSheet extends ActorSheet {
     html.find('.gear-browse').click(ev => {
       //game.packs.find(k=>k.collection==="deltagreen.firearms").render(true);
     });
+
+    html.find('.toggle-lethality').click(event => {
+      this._toggleLethality(event);
+    });
     
+  }
+
+  _toggleLethality(event) {
+    const itemId = event.target.getAttribute("item-id");
+    const isLethal = event.target.getAttribute("is-lethal") === "true";
+    const item = this.actor.data.items.find((i) => i.id === itemId);
+    item.update({"data.isLethal": !isLethal});
+
   }
 
   _showNewEditTypeSkillDialog(targetSkill, currentLabel, currentGroup){
