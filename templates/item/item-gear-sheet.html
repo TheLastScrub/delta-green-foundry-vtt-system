@@ -12,15 +12,15 @@
                 
                 <span class="resource-label">{{localize 'DG.ItemWindow.Gear.Expense'}}:</span>
                 <select name="system.expense" >
-                    <option {{#if_eq system.expense 'Incidental'}}selected{{/if_eq}} value="Incidental">{{localize 'DG.Gear.Expense.Incidental'}}</option>
-                    <option {{#if_eq system.expense 'Standard'}}selected{{/if_eq}} value="Standard">{{localize 'DG.Gear.Expense.Standard'}}</option>
-                    <option {{#if_eq system.expense 'Unusual'}}selected{{/if_eq}} value="Unusual">{{localize 'DG.Gear.Expense.Unusual'}}</option>
-                    <option {{#if_eq system.expense 'Major'}}selected{{/if_eq}} value="Major">{{localize 'DG.Gear.Expense.Major'}}</option>
-                    <option {{#if_eq system.expense 'Extreme'}}selected{{/if_eq}} value="Extreme">{{localize 'DG.Gear.Expense.Extreme'}}</option>
+                    <option {{#if_eq item.system.expense 'Incidental'}}selected{{/if_eq}} value="Incidental">{{localize 'DG.Gear.Expense.Incidental'}}</option>
+                    <option {{#if_eq item.system.expense 'Standard'}}selected{{/if_eq}} value="Standard">{{localize 'DG.Gear.Expense.Standard'}}</option>
+                    <option {{#if_eq item.system.expense 'Unusual'}}selected{{/if_eq}} value="Unusual">{{localize 'DG.Gear.Expense.Unusual'}}</option>
+                    <option {{#if_eq item.system.expense 'Major'}}selected{{/if_eq}} value="Major">{{localize 'DG.Gear.Expense.Major'}}</option>
+                    <option {{#if_eq item.system.expense 'Extreme'}}selected{{/if_eq}} value="Extreme">{{localize 'DG.Gear.Expense.Extreme'}}</option>
                 </select>
                     
                 <span class="resource-label">{{localize 'DG.ItemWindow.Gear.Equipped'}}:</span>
-                <input class="labeled-resource-checkbox" type="checkbox" name="system.equipped" {{checked system.equipped}} data-dtype="Boolean" />
+                <input class="labeled-resource-checkbox" type="checkbox" name="system.equipped" {{checked item.system.equipped}} data-dtype="Boolean" />
                                     
             </div>
         </div>
@@ -38,7 +38,7 @@
 
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            {{editor system.description target="system.description" button=true owner=owner editable=editable}}
+            {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
         </div>
         
     </section>

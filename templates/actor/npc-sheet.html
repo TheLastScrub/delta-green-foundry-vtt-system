@@ -1,5 +1,4 @@
 <form class="{{cssClass}} {{getFontFamilySystemSettingClass}} flexcol" autocomplete="off">
-
   {{!-- Sheet Header --}}
   <header class="sheet-header">
       
@@ -91,7 +90,7 @@
       {{!-- Checkbox to hide/show skills that are at zero --}}
       <div>
         <span class="resource-label" for="system.showUntrainedSkills">{{localize 'DG.UnnaturalSheet.HideUntrainedSkillsLabel'}}:</label>
-        <input class="labeled-resource-checkbox" type="checkbox" name="system.showUntrainedSkills" {{checked system.showUntrainedSkills}} data-dtype="Boolean" />
+        <input class="labeled-resource-checkbox" type="checkbox" name="system.showUntrainedSkills" {{checked actor.system.showUntrainedSkills}} data-dtype="Boolean" />
       </div>
 
       <div class="grid grid-3col">
@@ -143,7 +142,7 @@
       </div>
       <div class="unnatural-notes-section">
         <div class="editor-host">
-          {{editor actor.system.notes target="system.notes" button=true owner=owner editable=editable}}
+          {{editor enrichedDescription target="system.notes" button=true owner=owner editable=editable}}
         </div>
       </div>
       

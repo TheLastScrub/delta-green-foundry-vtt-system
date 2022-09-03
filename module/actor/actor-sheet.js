@@ -47,12 +47,23 @@ export class DeltaGreenActorSheet extends ActorSheet {
   }
 
   /** @override */
-  getData() {
+  async getData() {
     const data = super.getData();
 
     // Prepare items.
     if (this.actor.type == 'agent') {
       this._prepareCharacterItems(data);
+    }
+
+    switch (this.actor.type) {
+      case "agent":
+        data.enrichedDescription = await TextEditor.enrichHTML(this.object.system.physicalDescription, {async: true});
+        break;
+      case "npc":
+      case "unnatural":
+        data.enrichedDescription = await TextEditor.enrichHTML(this.object.system.notes, {async: true});
+        break;
+      default:
     }
     
     return data;
