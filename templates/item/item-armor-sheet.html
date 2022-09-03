@@ -10,23 +10,23 @@
           <input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'DG.ItemWindow.Armor.NamePlaceholder'}}"/></h1>
                         
           <span class="resource-label">{{localize 'DG.ItemWindow.Armor.Expense'}}:</span>
-          <select name="data.expense" >
-            <option {{#if_eq data.data.expense 'Incidental'}}selected{{/if_eq}} value="Incidental">{{localize 'DG.Gear.Expense.Incidental'}}</option>
-            <option {{#if_eq data.data.expense 'Standard'}}selected{{/if_eq}} value="Standard">{{localize 'DG.Gear.Expense.Standard'}}</option>
-            <option {{#if_eq data.data.expense 'Unusual'}}selected{{/if_eq}} value="Unusual">{{localize 'DG.Gear.Expense.Unusual'}}</option>
-            <option {{#if_eq data.data.expense 'Major'}}selected{{/if_eq}} value="Major">{{localize 'DG.Gear.Expense.Major'}}</option>
-            <option {{#if_eq data.data.expense 'Extreme'}}selected{{/if_eq}} value="Extreme">{{localize 'DG.Gear.Expense.Extreme'}}</option>
+          <select name="system.expense" >
+            <option {{#if_eq system.expense 'Incidental'}}selected{{/if_eq}} value="Incidental">{{localize 'DG.Gear.Expense.Incidental'}}</option>
+            <option {{#if_eq system.expense 'Standard'}}selected{{/if_eq}} value="Standard">{{localize 'DG.Gear.Expense.Standard'}}</option>
+            <option {{#if_eq system.expense 'Unusual'}}selected{{/if_eq}} value="Unusual">{{localize 'DG.Gear.Expense.Unusual'}}</option>
+            <option {{#if_eq system.expense 'Major'}}selected{{/if_eq}} value="Major">{{localize 'DG.Gear.Expense.Major'}}</option>
+            <option {{#if_eq system.expense 'Extreme'}}selected{{/if_eq}} value="Extreme">{{localize 'DG.Gear.Expense.Extreme'}}</option>
           </select>
         
           <span class="resource-label">{{localize 'DG.ItemWindow.Armor.Equipped'}}:</span>
-          <input class="labeled-resource-checkbox" type="checkbox" name="data.equipped" {{checked data.data.equipped}} data-dtype="Boolean" />          
+          <input class="labeled-resource-checkbox" type="checkbox" name="system.equipped" {{checked system.equipped}} data-dtype="Boolean" />          
               
         </div>
       </div>
       
       <div class="armor-sheet-secondary-grid-2col">
         <span class="resource-label">{{localize 'DG.ItemWindow.Armor.ArmorRating'}}:</span>
-        <input class="item-sheet-short-input" type="text" name="data.protection" value="{{data.data.protection}}" data-dtype="Number"/>
+        <input class="item-sheet-short-input" type="text" name="system.protection" value="{{system.protection}}" data-dtype="Number"/>
       </div>
       
     </header>
@@ -41,7 +41,7 @@
 
         {{!-- Description Tab --}}
         <div class="tab" data-group="primary" data-tab="description">
-            {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+            {{editor system.description target="system.description" button=true owner=owner editable=editable}}
         </div>
     </section>
 </form>
