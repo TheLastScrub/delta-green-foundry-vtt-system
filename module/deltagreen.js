@@ -103,7 +103,9 @@ Hooks.once('init', async function() {
     }
   });
 
-  Handlebars.registerHelper('getActorSkillProp', function(actorData, skillName, prop) { // Is this used anywhere?
+
+  // Is this used anywhere?
+  Handlebars.registerHelper('getActorSkillProp', function(actorData, skillName, prop) {
     try{
       if(skillName != "" && prop != ""){
         let skills = actorData.data.skills;
