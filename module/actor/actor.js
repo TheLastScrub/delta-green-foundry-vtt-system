@@ -10,8 +10,8 @@ export class DeltaGreenActor extends Actor {
   prepareData() {
     super.prepareData();
 
-    const actorData = this.data;
-    const data = actorData.data;
+    const actorData = this;
+    const system = actorData.system;
     const flags = actorData.flags;
 
     //console.log('actor.js prepareData');
@@ -35,48 +35,47 @@ export class DeltaGreenActor extends Actor {
    * @param {*} agent 
    */
  _prepareNpcData(actor){
-  let actorData = actor.data;
-  const data = actorData.data;
+  const { system } = actor;
 
   // Loop through ability scores, and add their modifiers to our sheet output.
-  for (let [key, statistic] of Object.entries(data.statistics)) {
+  for (let [key, statistic] of Object.entries(system.statistics)) {
     // the x5 is just whatever the raw statistic is x 5 to turn it into a d100 percentile
     statistic.x5 = statistic.value * 5;
   }
 
   // initialize sanity, don't set these afterwards, as they need to be manually edited
-  if(actorData.data.sanity.value >= 100){
-    actorData.data.sanity.value = actorData.data.statistics.pow.x5
-    actorData.data.sanity.currentBreakingPoint = actorData.data.sanity.value - actorData.data.statistics.pow.value;
+  if(system.sanity.value >= 100){
+    system.sanity.value = system.statistics.pow.x5
+    system.sanity.currentBreakingPoint = system.sanity.value - system.statistics.pow.value;
   };
 
-  actorData.data.sanity.max = 99 - actorData.data.skills.unnatural.proficiency;
+  system.sanity.max = 99 - system.skills.unnatural.proficiency;
 
-  actorData.data.skills.ritual = {
+  system.skills.ritual = {
     label: "Ritual",
-    proficiency: 99 - actorData.data.sanity.value,
+    proficiency: 99 - system.sanity.value,
     cannotBeImprovedByFailure: true,
     failure: false
   };
 
-  if(actorData.data.skills.ritual.proficiency > 99){
-    actorData.data.skills.ritual.proficiency = 99
+  if(system.skills.ritual.proficiency > 99){
+    system.skills.ritual.proficiency = 99
   }
-  else if(actorData.data.skills.ritual.proficiency < 1){
-    actorData.data.skills.ritual.proficiency = 1
+  else if(system.skills.ritual.proficiency < 1){
+    system.skills.ritual.proficiency = 1
   }
 
   // calculate total armor rating
   let protection = 0;
   for (let i of actor.items) {
     if (i.type === 'armor') {
-      if(i.data.data.equipped === true){
-        protection += i.data.data.protection;
+      if(i.system.equipped === true){
+        protection += i.system.protection;
       }
     }
   }
 
-  actorData.data.health.protection = protection;
+  system.health.protection = protection;
 
   console.log(actor);
 }
@@ -86,11 +85,10 @@ export class DeltaGreenActor extends Actor {
    * @param {*} agent 
    */
   _prepareUnnaturalData(actor){
-    let actorData = actor.data;
-    const data = actorData.data;
+    const { system } = actor;
 
     // Loop through ability scores, and add their modifiers to our sheet output.
-    for (let [key, statistic] of Object.entries(data.statistics)) {
+    for (let [key, statistic] of Object.entries(system.statistics)) {
       // the x5 is just whatever the raw statistic is x 5 to turn it into a d100 percentile
       statistic.x5 = statistic.value * 5;
     }
@@ -99,13 +97,13 @@ export class DeltaGreenActor extends Actor {
     let protection = 0;
     for (let i of actor.items) {
       if (i.type === 'armor') {
-        if(i.data.data.equipped === true){
-          protection += i.data.data.protection;
+        if(i.system.equipped === true){
+          protection += i.system.protection;
         }
       }
     }
 
-    actorData.data.health.protection = protection;
+    system.health.protection = protection;
 
     console.log(actor);
   }
@@ -115,37 +113,36 @@ export class DeltaGreenActor extends Actor {
    */
   _prepareAgentData(agent) {
 
-    let actorData = agent.data;
-    const data = actorData.data;
+    const { system } = agent;
 
     // Make modifications to data here. For example:
 
     // Loop through ability scores, and add their modifiers to our sheet output.
-    for (let [key, statistic] of Object.entries(data.statistics)) {
+    for (let [key, statistic] of Object.entries(system.statistics)) {
       // the x5 is just whatever the raw statistic is x 5 to turn it into a d100 percentile
       statistic.x5 = statistic.value * 5;
     }
     
     // The ritual skill is from the Handler's Guide, it is for activating a ritual and is always equal to 99 - current sanity.
     // The rules can be found on page 166, under 'Ritual Activation'.
-    actorData.data.skills.ritual = {
+    system.skills.ritual = {
       label: "Ritual",
-      proficiency: 99 - actorData.data.sanity.value,
+      proficiency: 99 - system.sanity.value,
       cannotBeImprovedByFailure: true,
       failure: false
     };
 
-    if(actorData.data.skills.ritual.proficiency > 99){
-      actorData.data.skills.ritual.proficiency = 99
+    if(system.skills.ritual.proficiency > 99){
+      system.skills.ritual.proficiency = 99
     }
-    else if(actorData.data.skills.ritual.proficiency < 1){
-      actorData.data.skills.ritual.proficiency = 1
+    else if(system.skills.ritual.proficiency < 1){
+      system.skills.ritual.proficiency = 1
     }
 
     // The unnatural skill is sort of special
     // It cannot be improved via failure, so add in a special property to reflect this
     // Mostly to make it easy to deactivate the failure checkbox in the GUI
-    for (let [key, skill] of Object.entries(data.skills)){
+    for (let [key, skill] of Object.entries(system.skills)){
       if(key === 'unnatural'){
         skill.cannotBeImprovedByFailure = true;
       }
@@ -168,52 +165,52 @@ export class DeltaGreenActor extends Actor {
       }
     }
 
-    actorData.data.wp.max = actorData.data.statistics.pow.value;
+    system.wp.max = system.statistics.pow.value;
 
-    actorData.data.health.max = Math.ceil((actorData.data.statistics.con.value + actorData.data.statistics.str.value) / 2);
+    system.health.max = Math.ceil((system.statistics.con.value + system.statistics.str.value) / 2);
 
     // initialize sanity, don't set these afterwards, as they need to be manually edited
-    if(actorData.data.sanity.value >= 100){
-      actorData.data.sanity.value = actorData.data.statistics.pow.x5
-      actorData.data.sanity.currentBreakingPoint = actorData.data.sanity.value - actorData.data.statistics.pow.value;
+    if(system.sanity.value >= 100){
+      system.sanity.value = system.statistics.pow.x5
+      system.sanity.currentBreakingPoint = system.sanity.value - system.statistics.pow.value;
     };
 
-    actorData.data.sanity.max = 99 - actorData.data.skills.unnatural.proficiency;
+    system.sanity.max = 99 - system.skills.unnatural.proficiency;
 
 
     // Sanity Loss Adaptations Logic
-    let adaptations = actorData.data.sanity.adaptations;
+    let adaptations = system.sanity.adaptations;
 
     if (adaptations.violence.incident1 && adaptations.violence.incident2 && adaptations.violence.incident3){
-      actorData.data.sanity.adaptations.violence.isAdapted = true;
+      system.sanity.adaptations.violence.isAdapted = true;
     }
     else{
-      actorData.data.sanity.adaptations.violence.isAdapted = false;
+      system.sanity.adaptations.violence.isAdapted = false;
     }
 
     if (adaptations.helplessness.incident1 && adaptations.helplessness.incident2 && adaptations.helplessness.incident3){
-      actorData.data.sanity.adaptations.helplessness.isAdapted = true;
+      system.sanity.adaptations.helplessness.isAdapted = true;
     }
     else{
-      actorData.data.sanity.adaptations.helplessness.isAdapted = false;
+      system.sanity.adaptations.helplessness.isAdapted = false;
     }
 
     // calculate total armor rating
     let protection = 0;
     for (let i of agent.items) {
       if (i.type === 'armor') {
-        if(i.data.data.equipped === true){
-          protection += i.data.data.protection;
+        if(i.system.equipped === true){
+          protection += i.system.protection;
         }
       }
     }
 
-    actorData.data.health.protection = protection;
+    system.health.protection = protection;
 
     // Damage Bonus/Malus From Strength in Hand-to-hand Combat (melee/unarmed)
     let bonus = 0;
     let sbonus = "";
-    let strength = actorData.data.statistics.str;
+    let strength = system.statistics.str;
 
     if(strength.value < 5){
       sbonus = "-2";
@@ -232,8 +229,8 @@ export class DeltaGreenActor extends Actor {
       bonus = 2;
     }
     
-    actorData.data.statistics.str.meleeDamageBonus = bonus;
-    actorData.data.statistics.str.meleeDamageBonusFormula = sbonus;
+    system.statistics.str.meleeDamageBonus = bonus;
+    system.statistics.str.meleeDamageBonusFormula = sbonus;
 
     console.log(agent);
   }
@@ -254,7 +251,7 @@ export class DeltaGreenActor extends Actor {
       
       let alreadyAdded = false;
 
-      for(let item of this.data.items){
+      for(let item of this.items){
         
         let flag = await item.getFlag('deltagreen', 'SystemName');
 
@@ -275,7 +272,7 @@ export class DeltaGreenActor extends Actor {
         let _temp = await handToHandPack.getDocument(idx._id);
         
         if(_temp.name === 'Unarmed Attack'){
-          toAdd.push(_temp.data);
+          toAdd.push(_temp);
         }        
       }
 

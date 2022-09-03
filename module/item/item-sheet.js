@@ -19,7 +19,7 @@ export class DeltaGreenItemSheet extends ItemSheet {
     const path = "systems/deltagreen/templates/item";
     
     // unique item sheet by type, like `weapon-sheet.html`.
-    return `${path}/item-${this.item.data.type}-sheet.html`;
+    return `${path}/item-${this.item.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */

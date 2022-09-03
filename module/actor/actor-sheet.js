@@ -22,7 +22,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
   get template() {
     
     if(this.actor !== null){
-      if(this.actor.data.type === 'agent'){
+      if(this.actor.type === 'agent'){
         if ( !game.user.isGM && this.actor.limited ) {
           return "systems/deltagreen/templates/actor/limited-sheet.html";
         }
@@ -31,10 +31,10 @@ export class DeltaGreenActorSheet extends ActorSheet {
           return `systems/deltagreen/templates/actor/actor-sheet.html`;
         }
       }
-      else if(this.actor.data.type === 'unnatural'){
+      else if(this.actor.type === 'unnatural'){
         return `systems/deltagreen/templates/actor/unnatural-sheet.html`;
       }
-      else if(this.actor.data.type === 'npc'){
+      else if(this.actor.type === 'npc'){
         return `systems/deltagreen/templates/actor/npc-sheet.html`;
       }
       else{
@@ -51,7 +51,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const data = super.getData();
 
     // Prepare items.
-    if (this.actor.data.type == 'agent') {
+    if (this.actor.type == 'agent') {
       this._prepareCharacterItems(data);
     }
     
@@ -75,7 +75,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
     for (let i of sheetData.items) {
-      let item = i.data;
+      let item = i;
       i.img = i.img || DEFAULT_TOKEN;
       // Append to armor.
       if (i.type === 'armor') {
@@ -208,9 +208,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
       event.preventDefault();
       let currentBreakingPoint = 0;
     
-      currentBreakingPoint = this.actor.data.data.sanity.value - this.actor.data.data.statistics.pow.value;
+      currentBreakingPoint = this.actor.system.sanity.value - this.actor.system.statistics.pow.value;
       
-      let updatedData = duplicate(this.actor.data.data);
+      let updatedData = duplicate(this.actor.system);
       updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
       this.actor.update({"data": updatedData});
     });
@@ -227,8 +227,8 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
       event.preventDefault();
       let targetskill = event.target.getAttribute("data-typedskill");
-      let existingLabel = this.actor.data.data.typedSkills[targetskill].label;
-      let existingGroup = this.actor.data.data.typedSkills[targetskill].group;
+      let existingLabel = this.actor.system.typedSkills[targetskill].label;
+      let existingGroup = this.actor.system.typedSkills[targetskill].group;
 
       //this.actor.update({[`data.typedSkills.${targetskill}.label`]: 'test'});
 
@@ -242,7 +242,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       let targetskill = event.target.getAttribute("data-typedskill");
 
       // many bothans died to bring us this information on how to delete a property on an entity
-      this.actor.update({[`data.typedSkills.-=${targetskill}`]: null});
+      this.actor.update({[`system.typedSkills.-=${targetskill}`]: null});
 
     });
 
@@ -396,7 +396,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
   }
 
   _addNewTypedSkill(newSkillLabel, newSkillGroup){
-    let updatedData = duplicate(this.actor.data.data);
+    let updatedData = duplicate(this.actor.system);
     let typedSkills = updatedData.typedSkills;
 
     let d = new Date();
@@ -413,7 +413,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
   _updateTypedSkill(targetSkill, newSkillLabel, newSkillGroup){
 
     if(newSkillLabel !== null && newSkillLabel !== "" && newSkillGroup !== null & newSkillGroup !== ""){
-      let updatedData = duplicate(this.actor.data.data);
+      let updatedData = duplicate(this.actor.system);
     
       updatedData.typedSkills[targetSkill].label = newSkillLabel;
       updatedData.typedSkills[targetSkill].group = newSkillGroup;
@@ -433,8 +433,10 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const header = event.currentTarget;
     // Get the type of item to create.
     const type = header.dataset.type;
+    
     // Grab any data associated with this control.
-    const data = duplicate(header.dataset);
+    //const system = duplicate(header.dataset); Not really sure what this was doing here. Seems unnecessary.
+    
     // Initialize a default name.
     //const name = `New ${type.capitalize()}`;
     const name = game.i18n.localize("DG.ItemTypes.NewPrefix") + game.i18n.localize("DG.ItemTypes." + type)
@@ -442,22 +444,22 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const itemData = {
       name: name,
       type: type,
-      data: data
+      system: {}
     };
 
     // Remove the type from the dataset since it's in the itemData.type prop.
-    delete itemData.data["type"];
+    // delete itemData.data["type"];
 
     if(type == "weapon"){
-      itemData.data.skill = "firearms"; //default skill to firearms, since that will be most common
-      itemData.data.expense = "Standard";
+      itemData.system.skill = "firearms"; //default skill to firearms, since that will be most common
+      itemData.system.expense = "Standard";
     }
     else if(type == "armor"){
-      itemData.data.armor = 3;
-      itemData.data.expense = "Standard";
+      itemData.system.armor = 3;
+      itemData.system.expense = "Standard";
     }
     else if(type == "bond"){
-      itemData.data.score = this.object.data.data.statistics.cha.value; // Can vary, but at character creation starting bond score is usually agent's charisma
+      itemData.system.score = this.object.system.statistics.cha.value; // Can vary, but at character creation starting bond score is usually agent's charisma
       itemData.img = "icons/svg/mystery-man.svg"
     }
     
@@ -506,40 +508,40 @@ export class DeltaGreenActorSheet extends ActorSheet {
         // otherwise roll a regular skill test
         if(targetVal === "dex"){
           label = game.i18n.localize("DG.Attributes.dex").toUpperCase() + "x5";
-          targetVal = this.actor.data.data.statistics.dex.x5;
+          targetVal = this.actor.system.statistics.dex.x5;
         }
         else if(targetVal === "int"){
           label = game.i18n.localize("DG.Attributes.int").toUpperCase() + "x5";
-          targetVal = this.actor.data.data.statistics.int.x5;
+          targetVal = this.actor.system.statistics.int.x5;
         }
         else if(targetVal === "str"){
           label = game.i18n.localize("DG.Attributes.str").toUpperCase() + "x5";
-          targetVal = this.actor.data.data.statistics.str.x5;
+          targetVal = this.actor.system.statistics.str.x5;
         }
         else if(targetVal === "con"){
           label = game.i18n.localize("DG.Attributes.con").toUpperCase() + "x5";
-          targetVal = this.actor.data.data.statistics.con.x5;
+          targetVal = this.actor.system.statistics.con.x5;
         }
         else if(targetVal === "pow"){
           label = game.i18n.localize("DG.Attributes.pow").toUpperCase() + "x5";
-          targetVal = this.actor.data.data.statistics.pow.x5;
+          targetVal = this.actor.system.statistics.pow.x5;
         }
         else if(targetVal === "cha"){
           label = game.i18n.localize("DG.Attributes.cha").toUpperCase() + "x5";
-          targetVal = this.actor.data.data.statistics.cha.x5;
+          targetVal = this.actor.system.statistics.cha.x5;
         }
         else{
           label = game.i18n.localize("DG.Skills." + targetVal).toUpperCase() + "x5";          
-          targetVal = this.actor.data.data.skills[targetVal].proficiency;                    
+          targetVal = this.actor.system.skills[targetVal].proficiency;                    
         }
       }
       else if(dataset.target === "statistic.x5"){
-        let stat = this.actor.data.data.statistics[key];
+        let stat = this.actor.system.statistics[key];
         targetVal = stat.x5;
         label = game.i18n.localize("DG.Attributes." + key).toUpperCase();
       }
       else if(rollType === "sanity"){
-        targetVal = this.actor.data.data.sanity.value;
+        targetVal = this.actor.system.sanity.value;
         label = game.i18n.localize("DG.Attributes.SAN").toUpperCase();
       }
       else if(rollType === "damage"){
@@ -559,7 +561,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
         let skillType = dataset.skill ? dataset.skill : '';
 
         if(this.actor.type === 'agent' && (skillType === 'unarmed_combat' || skillType === 'melee_weapons')){
-          diceFormula += this.actor.data.data.statistics.str.meleeDamageBonusFormula;
+          diceFormula += this.actor.system.statistics.str.meleeDamageBonusFormula;
         }
         
         if(requestedModifyRoll){
@@ -591,13 +593,13 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
     let currentBreakingPoint = 0;
     
-    currentBreakingPoint = this.actor.data.data.sanity.value - this.actor.data.data.statistics.pow.value;
+    currentBreakingPoint = this.actor.system.sanity.value - this.actor.system.statistics.pow.value;
 
     if(currentBreakingPoint < 0){
       currentBreakingPoint = 0;
     }
     
-    let updatedData = duplicate(this.actor.data.data);
+    let updatedData = duplicate(this.actor.system);
 
     updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
 
@@ -612,7 +614,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     try{
       //const item = this.actor.getOwnedItem(dataset.id);
       const item = this.actor.items.get(dataset.id);
-      var isEquipped = item.data.data.equipped;
+      var isEquipped = item.system.equipped;
       isEquipped = !isEquipped;
       item.update({data:{equipped: isEquipped}});
     }
@@ -636,14 +638,14 @@ export class DeltaGreenActorSheet extends ActorSheet {
     if ( li.dataset.itemId ) {
       const item = this.actor.items.get(li.dataset.itemId);
       dragData.type = "Item";
-      dragData.data = item.data;
+      dragData = item;
     }
 
     // Active Effect
     if ( li.dataset.effectId ) {
       const effect = this.actor.effects.get(li.dataset.effectId);
       dragData.type = "ActiveEffect";
-      dragData.data = effect.data;
+      dragData = effect;
     }
 
     // Set data transfer
