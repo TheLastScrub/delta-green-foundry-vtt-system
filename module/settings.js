@@ -33,15 +33,35 @@ export const registerSystemSettings = function() {
       onChange: value => { // A callback function which triggers when the setting is changed
         //console.log(value)
       }
-  });
+    });
 
-  game.settings.register('deltagreen', 'keepSanityPrivate', {
-    name: "Keep Sanity Private",
-    hint: "Hide sanity from players on both character sheet and rolls.",
-    scope: "world",
-    config: true,
-    type: Boolean,
-    default: false
-  });
+    game.settings.register('deltagreen', 'keepSanityPrivate', {
+      name: "Keep Sanity Private",
+      hint: "Hide sanity from players on both character sheet and rolls.",
+      scope: "world",
+      config: true,
+      type: Boolean,
+      default: false
+    });
+
+    game.settings.register('deltagreen', 'skillImprovementFormula', {
+      name: "Default Skill Improvement Roll",
+      hint: " Default 1d4. There have been multiple errata on this, choose which fits best for the pace of your game.",
+      scope: "world",     // This specifies a world-stored setting
+      config: true,        // This specifies that the setting appears in the configuration view
+      type: String,
+      choices: {           // If choices are defined, the resulting setting will be a select menu
+        "1": "Flat +1",
+        "1d3": "+1D3%",
+        "1d4": "+1D4%",
+        "1d4-1": "+1D4-1%"
+      },
+      default: "1d4",        // The default value for the setting, per the most recent errata.
+      onChange: value => { // A callback function which triggers when the setting is changed
+        //console.log(value)
+      }
+    });
+
+  
 
 }

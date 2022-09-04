@@ -263,6 +263,55 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
     });
 
+    html.find('.apply-skill-improvements').click(event => {
+      
+      event.preventDefault();
+
+      const failures = Object.entries(this.actor.data.data.skills).filter((skill) => skill[1].failure);
+      if (failures.length === 0) {
+        ui.notifications.warn('No Skills to Increase')
+        return;
+      }
+
+      let htmlContent = "";
+      let failedSkillNames = "";
+      failures.forEach(([skill], value) => {
+        if (value === 0) {
+          failedSkillNames += (game.i18n.localize("DG.Skills." + skill));
+        } else {
+          failedSkillNames += `, ${(game.i18n.localize("DG.Skills." + skill))}`;
+        }
+      })
+
+      htmlContent += `<div>`;
+      htmlContent += `     <label>${game.i18n.localize("DG.Skills.ApplySkillImprovementsDialogLabel")}</label>`;
+      htmlContent += `     <select name="roll-formula" />`;
+      htmlContent += `          <option${game.settings.get("deltagreen", "skillImprovementFormula") === "1" ? " selected" : ""} value = "1">Flat +1%</option>`;
+      htmlContent += `          <option${game.settings.get("deltagreen", "skillImprovementFormula") === "1d3" ? " selected" : ""} value = "1d3">+1D3%</option>`;
+      htmlContent += `          <option${game.settings.get("deltagreen", "skillImprovementFormula") === "1d4" ? " selected" : ""} value = "1d4">+1D4%</option>`;
+      htmlContent += `          <option${game.settings.get("deltagreen", "skillImprovementFormula") === "1d4-1" ? " selected" : ""} value = "1d4-1">+1D4-1%</option>`;
+      htmlContent += `     </select>`;
+      htmlContent += `     <hr>`;
+      htmlContent += `     <span> ${game.i18n.localize("DG.Skills.ApplySkillImprovementsDialogEffectsFollowing")} <b>${failedSkillNames}</b> </span>`;
+      htmlContent += `</div>`;
+  
+      new Dialog({
+        content: htmlContent,
+        title: game.i18n.translations.DG?.Skills?.ApplySkillImprovements ?? "Apply Skill Improvements",
+        default: "add",
+        buttons: {
+          apply:{
+            label: game.i18n.translations.DG?.Skills?.Apply ?? "Apply",
+            callback: btn =>{
+              const baseRollForumla = btn.find("[name='roll-formula']").val();
+              this._applySkillImprovements(baseRollForumla, failures);            
+            },
+          }
+        }
+      }).render(true);
+
+    });
+
     // Browse Weapon Compendiums
     html.find('.weapon-browse').click(ev => {
       const dialog = new Dialog({
@@ -406,7 +455,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
             let newTypeSkillLabel = btn.find("[name='new-type-skill-label']").val();
             let newTypeSkillGroup = btn.find("[name='new-type-skill-group']").val();
             this._addNewTypedSkill(newTypeSkillLabel, newTypeSkillGroup);
-          }
+          },
         }
       }
     }).render(true);
@@ -638,6 +687,63 @@ export class DeltaGreenActorSheet extends ActorSheet {
     catch(ex){
       console.log(ex);
     }
+  }
+
+  _applySkillImprovements(baseRollFormula, failures) {
+    const actorData = this.actor.data.data;
+    const resultList = [];
+    let rollFormula;
+    
+    switch (baseRollFormula) {
+      case "1":
+        rollFormula = 1;
+        break;
+      case "1d3":
+        rollFormula = `${failures.length}d3`;
+        break;
+      case "1d4":
+      case "1d4-1":
+        rollFormula = `${failures.length}d4`;
+        break;
+      default:
+    }
+
+    let roll;
+    if (rollFormula !== 1) {
+      roll = new Roll(rollFormula, actorData);
+      roll.evaluate({async: true});
+      roll.terms[0].results.forEach((result) => resultList.push(baseRollFormula === "1d4-1" ? result.result - 1 : result.result));
+    }
+
+    let updatedSkills = "";
+    
+    failures.forEach(([skill], value) => {
+      const updatedData = duplicate(actorData);
+      updatedData.skills[skill].proficiency += resultList[value] ?? 1;
+      updatedData.skills[skill].failure = false;
+      this.actor.update({"data": updatedData});
+
+      // So we can record the skills and how much they were increased by in chat.
+      if (updatedSkills === "") {
+        updatedSkills += `${game.i18n.localize("DG.Skills." + skill)}: +${resultList[value] ?? 1}%`;
+      } else {
+        updatedSkills += `, ${game.i18n.localize("DG.Skills." + skill)}: +${resultList[value] ?? 1}%`;
+      }
+    })
+
+    const chatData = {
+      speaker: ChatMessage.getSpeaker({actor: this.actor, token: this.token, alias: this.actor.data.name}),
+      content: updatedSkills,
+      flavor: `${game.i18n.localize("DG.Skills.ApplySkillImprovementsChatFlavor")} +${baseRollFormula}%:`,
+      type: baseRollFormula === "1" ? 0 : 5, // 0 = CHAT_MESSAGE_TYPES.OTHER, 5 = CHAT_MESSAGE_TYPES.ROLL
+      roll: baseRollFormula === "1" ? null : roll, // If adding flat +1, there is no roll.
+      rollMode: game.settings.get("core", "rollMode")
+      };
+  
+    // play the dice rolling sound, like a regular in-chat roll
+    if (roll) AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
+  
+    ChatMessage.create(chatData, {});
   }
 
   _onDragStart(event) {
