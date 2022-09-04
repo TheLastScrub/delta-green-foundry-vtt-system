@@ -2,7 +2,7 @@ import {localizeWithFallback} from "../other/utility-functions.js"
 
 export async function sendPercentileTestToChat(actor, skill, target, rollMode){
   //let roll = new Roll('1D100', actor.data.data).evaluate(false);
-  let roll = new Roll('1D100', actor.data.data)
+  let roll = new Roll('1D100', actor.system)
   
   await roll.evaluate({async: true});
 
@@ -140,7 +140,7 @@ export function skillCheckResultIsCritical(rollResult){
 export async function sendLethalityTestToChat(actor, weaponName, target, rollMode){
   //let roll = new Roll('1D100', actor.data.data).evaluate(false);
 
-  let roll = new Roll('1D100', actor.data.data);
+  let roll = new Roll('1D100', actor.system);
 
   await roll.evaluate({async: true});
 
@@ -244,7 +244,7 @@ export async function sendDamageRollToChat(actor, label, diceFormula, rollMode){
 
   //diceFormula += actor.data.data.statistics.str.meleeDamageBonusFormula;
 
-  let roll = new Roll(diceFormula, actor.data.data);
+  let roll = new Roll(diceFormula, actor.system);
 
   await roll.evaluate({async: true});
   

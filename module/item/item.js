@@ -12,9 +12,9 @@ export class DeltaGreenItem extends Item {
     super.prepareData();
 
     // Get the Item's data
-    const itemData = this.data;
-    const actorData = this.actor ? this.actor.data : {};
-    const data = itemData.data;
+    const itemData = this;
+    const actorData = this.actor || {};
+    const system = itemData.system;
   }
 
   /**
@@ -25,21 +25,21 @@ export class DeltaGreenItem extends Item {
   async roll() {
     // Basic template rendering data
     const token = this.actor.token;
-    const item = this.data;
-    const actorData = this.actor ? this.actor.data.data : {};
-    const itemData = item.data;
+    const itemData = this;
+    const actorSystemData = this.actor.system || {};
+    const { system } = itemData;
 
-    if(item.data.isLethal){
-      sendLethalityTestToChat(this.actor, item.name, item.data.lethality, game.settings.get("core", "rollMode"))
+    if(system.isLethal){
+      sendLethalityTestToChat(this.actor, item.name, system.lethality, game.settings.get("core", "rollMode"))
     }
     else{
       // regular damage roll
 
-      let diceFormula = item.data.damage;
-      let skillType = item.data.skill;
+      let diceFormula = system.damage;
+      let skillType = system.skill;
 
       if(skillType === 'unarmed_combat' || skillType === 'melee_weapons'){
-        diceFormula += this.actor.data.data.statistics.str.meleeDamageBonusFormula;
+        diceFormula += actorSystemData.statistics.str.meleeDamageBonusFormula;
       }
 
       sendDamageRollToChat(this.actor, item.name, diceFormula);
