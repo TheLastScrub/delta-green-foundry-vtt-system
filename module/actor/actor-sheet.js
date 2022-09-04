@@ -62,6 +62,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
       case "agent":
         data.enrichedDescription = await TextEditor.enrichHTML(this.object.system.physicalDescription, {async: true});
         break;
+      case "vehicle":
+        data.enrichedDescription = await TextEditor.enrichHTML(this.object.system.description, {async: true});
+        break;
       case "npc":
       case "unnatural":
         data.enrichedDescription = await TextEditor.enrichHTML(this.object.system.notes, {async: true});
