@@ -37,6 +37,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
       else if(this.actor.type === 'npc'){
         return `systems/deltagreen/templates/actor/npc-sheet.html`;
       }
+      else if(this.actor.type === 'vehicle'){
+        return `systems/deltagreen/templates/actor/vehicle-sheet.html`;
+      }
       else{
         return "systems/deltagreen/templates/actor/limited-sheet.html";
       }
