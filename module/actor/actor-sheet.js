@@ -267,7 +267,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       
       event.preventDefault();
 
-      const failures = Object.entries(this.actor.data.data.skills).filter((skill) => skill[1].failure);
+      const failures = Object.entries(this.actor.system.skills).filter((skill) => skill[1].failure);
       if (failures.length === 0) {
         ui.notifications.warn('No Skills to Increase')
         return;
@@ -690,7 +690,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
   }
 
   _applySkillImprovements(baseRollFormula, failures) {
-    const actorData = this.actor.data.data;
+    const actorData = this.actor.system;
     const resultList = [];
     let rollFormula;
     
@@ -721,7 +721,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       const updatedData = duplicate(actorData);
       updatedData.skills[skill].proficiency += resultList[value] ?? 1;
       updatedData.skills[skill].failure = false;
-      this.actor.update({"data": updatedData});
+      this.actor.update({"system": updatedData});
 
       // So we can record the skills and how much they were increased by in chat.
       if (updatedSkills === "") {
