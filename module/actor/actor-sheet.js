@@ -22,7 +22,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
   get template() {
     
     if(this.actor !== null){
-      if(this.actor.data.type === 'agent'){
+      if(this.actor.type === 'agent'){
         if ( !game.user.isGM && this.actor.limited ) {
           return "systems/deltagreen/templates/actor/limited-sheet.html";
         }
@@ -31,11 +31,14 @@ export class DeltaGreenActorSheet extends ActorSheet {
           return `systems/deltagreen/templates/actor/actor-sheet.html`;
         }
       }
-      else if(this.actor.data.type === 'unnatural'){
+      else if(this.actor.type === 'unnatural'){
         return `systems/deltagreen/templates/actor/unnatural-sheet.html`;
       }
-      else if(this.actor.data.type === 'npc'){
+      else if(this.actor.type === 'npc'){
         return `systems/deltagreen/templates/actor/npc-sheet.html`;
+      }
+      else if(this.actor.type === 'vehicle'){
+        return `systems/deltagreen/templates/actor/vehicle-sheet.html`;
       }
       else{
         return "systems/deltagreen/templates/actor/limited-sheet.html";
@@ -51,7 +54,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const data = super.getData();
 
     // Prepare items.
-    if (this.actor.data.type == 'agent') {
+    if (this.actor.type == 'agent') {
       this._prepareCharacterItems(data);
     }
     

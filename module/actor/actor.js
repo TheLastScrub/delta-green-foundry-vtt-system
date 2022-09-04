@@ -10,9 +10,10 @@ export class DeltaGreenActor extends Actor {
   prepareData() {
     super.prepareData();
 
-    const actorData = this.data;
-    const data = actorData.data;
-    const flags = actorData.flags;
+    const actorData = this;
+    //const actorData = this.data;
+    //const data = actorData.data;
+    //const flags = actorData.flags;
 
     //console.log('actor.js prepareData');
     //console.log(this);
@@ -28,12 +29,35 @@ export class DeltaGreenActor extends Actor {
     else if(actorData.type === 'npc'){
       this._prepareNpcData(this);
     }
+    else if(actorData.type === 'vehicle'){
+      this._prepareVehicleData(this);
+    }
   }
 
   /**
    * 
    * @param {*} agent 
    */
+
+  _prepareVehicleData(actor){
+    let actorData = actor;
+    //const data = actorData.data;
+
+     // calculate total armor rating
+    let protection = 0;
+    for (let i of actor.items) {
+      if (i.type === 'armor') {
+        if(i.data.data.equipped === true){
+          protection += i.data.data.protection;
+        }
+      }
+    }
+
+    actorData.system.health.protection = protection;
+
+    console.log(actor);
+  }
+
  _prepareNpcData(actor){
   let actorData = actor.data;
   const data = actorData.data;
