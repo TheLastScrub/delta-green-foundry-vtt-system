@@ -625,7 +625,7 @@ div.motivation-editor-container div.editor{
 }
 
 .deltagreen .editor-host .editor {
-  min-height: 35px;
+  min-height: 50px;
 }
 
 .deltagreen .editor-host .tox {
@@ -905,4 +905,11 @@ input.item-sheet-short-input{
 
 .yellow-king textarea:focus, .yellow-king input:focus{
   color: #a0912f;
+}
+
+.top-div-border{
+  border-top: 1px solid #AAA;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }

@@ -238,5 +238,10 @@
     "DG.ImpossibleLanscapes.CorruptionFirstHalf": "Corrup",
     "DG.ImpossibleLanscapes.CorruptionSecondHalf": "tion",
     "DG.ImpossibleLanscapes.Gift": "Gift",
-    "DG.ImpossibleLanscapes.Insight": "Insight"
+    "DG.ImpossibleLanscapes.Insight": "Insight",
+
+    "DG.VehicleSheet.NotesTabName": "Notes",
+    "DG.VehicleSheet.GearTabName": "Gear",
+    "DG.VehicleSheet.NotesLabel": "NOTES",
+    "DG.VehicleSheet.DescriptionPlaceHolder": "Vehicle Description"
 }
