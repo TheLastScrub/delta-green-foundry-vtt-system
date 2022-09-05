@@ -1,5 +1,10 @@
 ## Release/Patch Notes
 
+### Version 1.0.7 - ??? [BREAKING CHANGE: THIS VERSION FORWARD COMPATIBLE WITH FOUNDRY V10 OR HIGHER ONLY!]
+
+* Enhancement - Update to new data model for Foundry V10
+* Enhancement [GitHub #56] - Added an actor sheet for Vehicles
+
 ### Version 1.0.6 - 2022-05-26
 
 * Enhancement - IgorAK25 has submitted a Portuguese translation for the system.

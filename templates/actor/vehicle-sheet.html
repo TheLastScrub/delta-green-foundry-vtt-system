@@ -13,7 +13,7 @@
               <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" /></h1>
             </div>
             <div class="">
-              <h2 class="profession"><input name="system.shortDescription" type="text" value="{{actor.system.shortDescription}}" /></h1>
+              <h2 class="profession"><input name="system.shortDescription" type="text" value="{{actor.system.shortDescription}}" placeholder="{{localize 'DG.VehicleSheet.DescriptionPlaceHolder'}}" /></h1>
             </div>
           </div>
         </div>
@@ -36,18 +36,18 @@
   
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="skills">{{localize 'DG.UnnaturalSheet.Tabs.NotesTabLabel'}}</a>
-        <a class="item" data-tab="gear">{{localize 'DG.UnnaturalSheet.Tabs.ItemsTabLabel'}}</a>
+        <a class="item" data-tab="notes">{{localize 'DG.VehicleSheet.NotesTabName'}}</a>
+        <a class="item" data-tab="gear">{{localize 'DG.VehicleSheet.GearTabName'}}</a>
         <a class="item fas fa-question-circle" data-tab="about"></a>
     </nav>
   
     {{!-- Sheet Body --}}
     <section class="sheet-body">
   
-      {{!-- Descriptions --}}
-      <div class="tab skills" data-group="primary" data-tab="skills">
+      {{!-- Descriptions (Notes) --}}
+      <div class="tab skills top-div-border" data-group="primary" data-tab="notes">
         <div>
-          <span class="resource-label">{{localize 'DG.UnnaturalSheet.NotesLabel'}}</span>
+          <span class="resource-label">{{localize 'DG.VehicleSheet.NotesLabel'}}</span>
         </div>
         <div class="unnatural-notes-section">
           <div class="editor-host">
@@ -59,73 +59,7 @@
         
       {{!-- GEAR --}}
       <div class="tab items" data-group="primary" data-tab="gear">
-        <div>
-                      
-          <div class="gear-section-header">
-              <span>{{localize 'DG.Gear.Weapons'}}</span>                                                    
-          </div>
-  
-          <ol class="items-list">
-            
-            <li class="item flexrow item-header">
-              <div class="item-image"></div>
-              <span class="">{{localize 'DG.Gear.Name'}}</span>
-              <span class="centered-item-property">{{localize 'DG.Gear.DamageOrLethality'}}</span>
-              <span class="centered-item-property">{{localize 'DG.Gear.ArmorPiercing'}}</span>
-              <div class="item-controls">
-                <a class="item-control item-create" title="Create item" data-type="weapon"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
-              </div>
-            </li>
-  
-            {{#each actor.items as |item id|}}
-              {{#if_eq item.type 'weapon'}}
-                
-                <li class="item flexrow" data-item-id="{{item.id}}">
-                  <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                  
-                  <h4 style="word-wrap: break-word;" 
-                    
-                    class="item-name rollable" 
-                    data-roll="d100"
-                    data-rolltype="weaponskill" 
-                    data-target="{{item.data.data.skill}}"                         
-                    data-label="{{localizeWeaponSkill item.data.data.skill}}"
-                    title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.data.data.skill}})"
-                    >
-                      {{item.name}}
-                  </h4>
-  
-                  {{#unless item.data.data.isLethal}}
-                  <span class="rollable centered-item-property" 
-                    
-                    data-rolltype="damage" 
-                    data-target="damage" 
-                    data-label="{{toUpperCase item.name}}" 
-                    data-roll="{{toUpperCase item.data.data.damage}}"
-                    data-skill="{{item.data.data.skill}}"
-                    >                      
-                    {{toUpperCase item.data.data.damage}}</span>
-                  {{/unless}}
-  
-                  {{#if item.data.data.isLethal}}
-                  <span class="rollable  centered-item-property" data-rolltype="lethality" data-target="{{item.data.data.lethality}}" data-label="{{item.name}}" data-roll="d100"
-                    title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}"
-                    >{{formatLethality item.data.data.lethality}}</span>
-                  {{/if}}
-  
-                  <span class="centered-item-property">{{item.data.data.armorPiercing}}</span>
-  
-                  <div class="item-controls">
-                      <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                      <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                  </div>
-                  
-                </li>
-  
-              {{/if_eq}}
-            {{/each}}
-          </ol>
-        </div>
+        
         <div>
   
           <div class="gear-section-header">
@@ -149,10 +83,10 @@
                 <li class="item flexrow" data-item-id="{{item.id}}">
                   <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
                   <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
-                  <span class="centered-item-property">{{item.data.data.protection}}</span>
+                  <span class="centered-item-property">{{item.system.protection}}</span>
                   
                   <span class="equipped-item centered-item-property" data-id="{{item.id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}">
-                    {{#if item.data.data.equipped}}
+                    {{#if item.system.equipped}}
                       <span class="fas fa-check"></span>
                     {{else}}
                       <span class="fas fa-times"></span>
@@ -199,7 +133,7 @@
                   
                   <span class="equipped-item centered-item-property" data-id="{{item.id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}" >
                     
-                    {{#if item.data.data.equipped}}
+                    {{#if item.system.equipped}}
                       <span class="fas fa-check"></span>
                     {{else}}
                       <span class="fas fa-times"></span>

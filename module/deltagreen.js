@@ -297,24 +297,31 @@ Hooks.on('createActor', async function(actor, options, userId){
     // can put logic specific to a particular user session below
     if (userId != game.user.id) { return; };
 
-    if(actor != null && actor.type === 'agent'){
-      // update the default type skill of Art - Painting's labels to try to be localized
-      // since I really backed myself into a corner on this with my implementation of it...
-      console.log('createActor Hook');
+    if(actor != null){
 
-      let artLabel = game.i18n.translations.DG?.TypeSkills?.Art ?? "Art";
-      let paintingLabel = game.i18n.translations.DG?.TypeSkills?.Subskills?.Painting ?? "Painting";
+      if(actor.type === 'agent'){
+        // update the default type skill of Art - Painting's labels to try to be localized
+        // since I really backed myself into a corner on this with my implementation of it...
+        console.log('createActor Hook');
 
-      let updatedData = duplicate(actor.system);
-      updatedData.typedSkills.tskill_01.group = artLabel;
-      updatedData.typedSkills.tskill_01.label = paintingLabel;
+        let artLabel = game.i18n.translations.DG?.TypeSkills?.Art ?? "Art";
+        let paintingLabel = game.i18n.translations.DG?.TypeSkills?.Subskills?.Painting ?? "Painting";
+
+        let updatedData = duplicate(actor.system);
+        updatedData.typedSkills.tskill_01.group = artLabel;
+        updatedData.typedSkills.tskill_01.label = paintingLabel;
+        
+        actor.update({"data": updatedData});
+        
+        // throw on an unarmed strike item for convenience
+        actor.AddUnarmedAttackItemIfMissing();
+      }
+      else if(actor.type === 'unnatural'){
       
-      actor.update({"data": updatedData});
-      
-      // throw on an unarmed strike item for convenience
-      actor.AddUnarmedAttackItemIfMissing();
-    }
-    else if(actor.type === 'unnatural'){
+      }
+      else if(actor.type === 'vehicle'){
+        actor.AddBaseVehicleItemsIfMissing();
+      }
       
     }
     

@@ -898,3 +898,10 @@ input.item-sheet-short-input{
 .yellow-king textarea:focus, .yellow-king input:focus{
   color: #a0912f;
 }
+
+.top-div-border{
+  border-top: 1px solid #AAA;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}

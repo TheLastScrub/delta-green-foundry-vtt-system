@@ -446,26 +446,24 @@ export class DeltaGreenActorSheet extends ActorSheet {
    * @private
    */
   _onItemCreate(event) {
+
     event.preventDefault();
+
     const header = event.currentTarget;
+
     // Get the type of item to create.
     const type = header.dataset.type;
-    
-    // Grab any data associated with this control.
-    //const system = duplicate(header.dataset); Not really sure what this was doing here. Seems unnecessary.
     
     // Initialize a default name.
     //const name = `New ${type.capitalize()}`;
     const name = game.i18n.localize("DG.ItemTypes.NewPrefix") + game.i18n.localize("DG.ItemTypes." + type)
+
     // Prepare the item object.
     const itemData = {
       name: name,
       type: type,
       system: {}
     };
-
-    // Remove the type from the dataset since it's in the itemData.type prop.
-    // delete itemData.data["type"];
 
     if(type == "weapon"){
       itemData.system.skill = "firearms"; //default skill to firearms, since that will be most common
@@ -480,8 +478,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       itemData.img = "icons/svg/mystery-man.svg"
     }
     
-    // Finally, create the item!
-    //return this.actor.createOwnedItem(itemData);
+    // create the item
     return this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
@@ -645,7 +642,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     if ( event.target.classList.contains("entity-link") ) return;
 
     // Create drag data
-    const dragData = {
+    let dragData = {
       actorId: this.actor.id,
       sceneId: this.actor.isToken ? canvas.scene?.id : null,
       tokenId: this.actor.isToken ? this.actor.token.id : null

@@ -40,14 +40,13 @@ export class DeltaGreenActor extends Actor {
 
   _prepareVehicleData(actor){
     let actorData = actor;
-    //const data = actorData.data;
 
      // calculate total armor rating
     let protection = 0;
     for (let i of actor.items) {
       if (i.type === 'armor') {
-        if(i.data.data.equipped === true){
-          protection += i.data.data.protection;
+        if(i.system.equipped === true){
+          protection += i.system.protection;
         }
       }
     }
@@ -313,6 +312,41 @@ export class DeltaGreenActor extends Actor {
       console.log('Error adding unarmed strike item to Actor.')
       console.log(ex);
     }
-  } 
+  }
+
+  async AddBaseVehicleItemsIfMissing(){
+    try{
+      let flag = await this.getFlag('deltagreen', 'DefaultVehicleArmorAdded');
+
+      if(flag !== null && flag !== undefined && flag !== true){
+        console.log('found a flag');
+        console.log(flag);
+      }
+      else{
+        // mark the actor so that we don't accidently do this again later, or if we want to fix/change something on it in the future
+        this.setFlag('deltagreen', 'DefaultVehicleArmorAdded', true);
+        
+        let toAdd = []; // createEmbeddedDocument expects an array
+
+        let armor = await Item.create({type:"armor", name:"Vehicle Frame"});
+
+        // this is the current default, but set it anyways in case it gets changed later.
+        armor.system.protection = 3;
+
+        toAdd.push(armor);
+        
+        // create the item on the actor
+        let newItems = await this.createEmbeddedDocuments("Item", toAdd);
+      
+        for(let item of newItems){
+          await item.setFlag('deltagreen','AutoAdded', true);
+        }
+
+      }
+    }
+    catch(ex){
+      console.log(ex);
+    }
+  }
 
 }
