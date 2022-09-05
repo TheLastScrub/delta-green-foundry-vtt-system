@@ -313,23 +313,35 @@
                         {{item.name}}
                     </h4>
 
-                    {{#unless item.system.isLethal}}
-                    <span class="rollable centered-item-property" 
-                      
-                      data-rolltype="damage" 
-                      data-target="damage" 
-                      data-label="{{toUpperCase item.name}}" 
-                      data-roll="{{toUpperCase item.system.damage}}"
-                      data-skill="{{item.system.skill}}"
-                      >                      
-                      {{toUpperCase item.system.damage}}{{#if_eq item.system.skill 'unarmed_combat'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}{{#if_eq item.system.skill 'melee_weapons'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}</span>
-                    {{/unless}}
+                    <span class = "centered-item-property">
+                      {{#unless item.system.isLethal}}
+                      <span class="rollable" 
+                        
+                        data-rolltype="damage" 
+                        data-target="damage" 
+                        data-label="{{toUpperCase item.name}}" 
+                        data-roll="{{toUpperCase item.system.damage}}"
+                        data-skill="{{item.system.skill}}"
+                        >                      
+                        {{toUpperCase item.system.damage}}{{#if_eq item.system.skill 'unarmed_combat'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}{{#if_eq item.system.skill 'melee_weapons'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}</span>
+                      {{/unless}}
 
-                    {{#if item.system.isLethal}}
-                    <span class="rollable  centered-item-property" data-rolltype="lethality" data-target="{{item.system.lethality}}" data-label="{{item.name}}" data-roll="d100"
-                      title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}"
-                      >{{formatLethality item.system.lethality}}</span>
-                    {{/if}}
+                      {{#if item.system.isLethal}}
+                      <span class="rollable" data-rolltype="lethality" data-target="{{item.system.lethality}}" data-label="{{item.name}}" data-roll="d100"
+                        title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}">
+                        {{item.system.lethality}}%</span>
+                      {{/if}}
+                      
+                      {{#if item.system.lethality}}
+                        - 
+                        {{#if item.system.isLethal}}
+                          <a class="item-control toggle-lethality dg-red" title="Toggle Lethality (Current Lethality: {{item.system.lethality}}%)"><i class="fas fa-skull-crossbones" item-id="{{item.id}}" is-lethal="true"></i></a>
+                        {{else}}
+                          <a class="item-control toggle-lethality" title="Toggle Lethality (Currently No Lethality)"><i class="fas fa-user-injured" item-id="{{item.id}}" is-lethal="false"></i></a>
+                        {{/if}}
+                      {{/if}}
+                    </span>
+
 
                     <span class="centered-item-property">{{item.system.armorPiercing}}</span>
 
