@@ -351,7 +351,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
   _toggleLethality(event) {
     const itemId = event.target.getAttribute("item-id");
     const isLethal = event.target.getAttribute("is-lethal") === "true";
-    const item = this.actor.data.items.find((i) => i.id === itemId);
+    const item = this.actor.items.find((i) => i.id === itemId);
     item.update({"data.isLethal": !isLethal});
 
   }

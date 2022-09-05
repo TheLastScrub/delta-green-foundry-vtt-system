@@ -314,30 +314,30 @@
                     </h4>
 
                     <span class = "centered-item-property">
-                      {{#unless item.data.data.isLethal}}
+                      {{#unless item.system.isLethal}}
                       <span class="rollable" 
                         
                         data-rolltype="damage" 
                         data-target="damage" 
                         data-label="{{toUpperCase item.name}}" 
-                        data-roll="{{toUpperCase item.data.data.damage}}"
-                        data-skill="{{item.data.data.skill}}"
+                        data-roll="{{toUpperCase item.system.damage}}"
+                        data-skill="{{item.system.skill}}"
                         >                      
-                        {{toUpperCase item.data.data.damage}}{{#if_eq item.data.data.skill 'unarmed_combat'}}{{actor.data.data.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}{{#if_eq item.data.data.skill 'melee_weapons'}}{{actor.data.data.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}</span>
+                        {{toUpperCase item.system.damage}}{{#if_eq item.system.skill 'unarmed_combat'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}{{#if_eq item.system.skill 'melee_weapons'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}</span>
                       {{/unless}}
 
-                      {{#if item.data.data.isLethal}}
-                      <span class="rollable" data-rolltype="lethality" data-target="{{item.data.data.lethality}}" data-label="{{item.name}}" data-roll="d100"
+                      {{#if item.system.isLethal}}
+                      <span class="rollable" data-rolltype="lethality" data-target="{{item.system.lethality}}" data-label="{{item.name}}" data-roll="d100"
                         title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}">
-                        {{item.data.data.lethality}}%</span>
+                        {{item.system.lethality}}%</span>
                       {{/if}}
                       
-                      {{#if item.data.data.lethality}}
+                      {{#if item.system.lethality}}
                         - 
-                        {{#if item.data.data.isLethal}}
-                          <a class="item-control toggle-lethality dg-red" title="Toggle Lethality (Current Lethality: {{item.data.data.lethality}}%)"><i class="fas fa-tint" item-id="{{item.id}}" is-lethal="true"></i></a>
+                        {{#if item.system.isLethal}}
+                          <a class="item-control toggle-lethality dg-red" title="Toggle Lethality (Current Lethality: {{item.system.lethality}}%)"><i class="fas fa-skull-crossbones" item-id="{{item.id}}" is-lethal="true"></i></a>
                         {{else}}
-                          <a class="item-control toggle-lethality" title="Toggle Lethality (Currently No Lethality)"><i class="fas fa-tint-slash" item-id="{{item.id}}" is-lethal="false"></i></a>
+                          <a class="item-control toggle-lethality" title="Toggle Lethality (Currently No Lethality)"><i class="fas fa-user-injured" item-id="{{item.id}}" is-lethal="false"></i></a>
                         {{/if}}
                       {{/if}}
                     </span>
