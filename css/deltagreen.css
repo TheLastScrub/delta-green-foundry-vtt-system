@@ -843,8 +843,12 @@ input.item-sheet-short-input{
   text-align: left;
 }
 
-.add-typed-skill-button{
+.skill-util-buttons{
   margin: 10px;
+}
+
+.apply-skill-improvements{
+  float: right;
 }
 
 .yellow-king{
