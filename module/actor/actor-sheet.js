@@ -267,30 +267,34 @@ export class DeltaGreenActorSheet extends ActorSheet {
       
       event.preventDefault();
 
-      const failures = Object.entries(this.actor.system.skills).filter((skill) => skill[1].failure);
-      if (failures.length === 0) {
+      const failedSkills = Object.entries(this.actor.system.skills).filter((skill) => skill[1].failure);
+      const failedTypedSkills = Object.entries(this.actor.system.typedSkills).filter((skill) => skill[1].failure);
+      if (failedSkills.length === 0 && failedTypedSkills.length === 0) {
         ui.notifications.warn('No Skills to Increase')
         return;
       }
 
       let htmlContent = "";
       let failedSkillNames = "";
-      failures.forEach(([skill], value) => {
+      failedSkills.forEach(([skill], value) => {
         if (value === 0) {
           failedSkillNames += (game.i18n.localize("DG.Skills." + skill));
         } else {
           failedSkillNames += `, ${(game.i18n.localize("DG.Skills." + skill))}`;
         }
       })
+      failedTypedSkills.forEach(([skillName, skillData], value) => {
+        if (value === 0 && failedSkillNames === "") {
+          failedSkillNames += `${game.i18n.localize("DG.TypeSkills." + skillData.group.split(" ").join(""))} (${skillData.label})`;
+        } else {
+          failedSkillNames += `, ${game.i18n.localize("DG.TypeSkills." + skillData.group.split(" ").join(""))} (${skillData.label})`;
+        }
+      })
+
+      const baseRollFormula = game.settings.get("deltagreen", "skillImprovementFormula");
 
       htmlContent += `<div>`;
-      htmlContent += `     <label>${game.i18n.localize("DG.Skills.ApplySkillImprovementsDialogLabel")}</label>`;
-      htmlContent += `     <select name="roll-formula" />`;
-      htmlContent += `          <option${game.settings.get("deltagreen", "skillImprovementFormula") === "1" ? " selected" : ""} value = "1">Flat +1%</option>`;
-      htmlContent += `          <option${game.settings.get("deltagreen", "skillImprovementFormula") === "1d3" ? " selected" : ""} value = "1d3">+1D3%</option>`;
-      htmlContent += `          <option${game.settings.get("deltagreen", "skillImprovementFormula") === "1d4" ? " selected" : ""} value = "1d4">+1D4%</option>`;
-      htmlContent += `          <option${game.settings.get("deltagreen", "skillImprovementFormula") === "1d4-1" ? " selected" : ""} value = "1d4-1">+1D4-1%</option>`;
-      htmlContent += `     </select>`;
+      htmlContent += `     <label>${game.i18n.localize("DG.Skills.ApplySkillImprovementsDialogLabel")} <b>+${baseRollFormula}%</b></label>`;
       htmlContent += `     <hr>`;
       htmlContent += `     <span> ${game.i18n.localize("DG.Skills.ApplySkillImprovementsDialogEffectsFollowing")} <b>${failedSkillNames}</b> </span>`;
       htmlContent += `</div>`;
@@ -303,8 +307,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
           apply:{
             label: game.i18n.translations.DG?.Skills?.Apply ?? "Apply",
             callback: btn =>{
-              const baseRollForumla = btn.find("[name='roll-formula']").val();
-              this._applySkillImprovements(baseRollForumla, failures);            
+              this._applySkillImprovements(baseRollFormula, failedSkills, failedTypedSkills);            
             },
           }
         }
@@ -686,21 +689,22 @@ export class DeltaGreenActorSheet extends ActorSheet {
     }
   }
 
-  _applySkillImprovements(baseRollFormula, failures) {
+  _applySkillImprovements(baseRollFormula, failedSkills, failedTypedSkills) {
     const actorData = this.actor.system;
     const resultList = [];
     let rollFormula;
     
+    // Define the amount of dice being rolled, if any.
     switch (baseRollFormula) {
       case "1":
         rollFormula = 1;
         break;
       case "1d3":
-        rollFormula = `${failures.length}d3`;
+        rollFormula = `${failedSkills.length + failedTypedSkills.length}d3`;
         break;
       case "1d4":
       case "1d4-1":
-        rollFormula = `${failures.length}d4`;
+        rollFormula = `${failedSkills.length + failedTypedSkills.length}d4`;
         break;
       default:
     }
@@ -709,38 +713,64 @@ export class DeltaGreenActorSheet extends ActorSheet {
     if (rollFormula !== 1) {
       roll = new Roll(rollFormula, actorData);
       roll.evaluate({async: true});
+      // Put the results into a list.
       roll.terms[0].results.forEach((result) => resultList.push(baseRollFormula === "1d4-1" ? result.result - 1 : result.result));
     }
 
-    let updatedSkills = "";
+    // This will be end up being a list of skills and how much each were improved by. It gets modified in the following loops.
+    let improvedSkillList = "";
     
-    failures.forEach(([skill], value) => {
+    failedSkills.forEach(([skill], value) => {
       const updatedData = duplicate(actorData);
-      updatedData.skills[skill].proficiency += resultList[value] ?? 1;
+      updatedData.skills[skill].proficiency += resultList[value] ?? 1; // Increase proficiency by die result or by 1 if there is no dice roll.
       updatedData.skills[skill].failure = false;
       this.actor.update({"system": updatedData});
 
-      // So we can record the skills and how much they were increased by in chat.
-      if (updatedSkills === "") {
-        updatedSkills += `${game.i18n.localize("DG.Skills." + skill)}: +${resultList[value] ?? 1}%`;
+      // So we can record the regular skills improved and how much they were increased by in chat.
+      // The if statement tells us whether to add a comma before the term or not.
+      if (value === 0) {
+        improvedSkillList += `${game.i18n.localize("DG.Skills." + skill)}: <b>+${resultList[value] ?? 1}%</b>`;
       } else {
-        updatedSkills += `, ${game.i18n.localize("DG.Skills." + skill)}: +${resultList[value] ?? 1}%`;
+        improvedSkillList += `, ${game.i18n.localize("DG.Skills." + skill)}: <b>+${resultList[value] ?? 1}%</b>`;
       }
     })
 
+    failedTypedSkills.forEach(([skillName, skillData], value) => {
+      const updatedData = duplicate(actorData);
+      // We must increase value in the following line by the length of failedSkills, so that we index the entire resultList.
+      // Otherwise we would be adding the same die results to regular skills and typed skills.
+      updatedData.typedSkills[skillName].proficiency += resultList[value + failedSkills.length] ?? 1;
+      updatedData.typedSkills[skillName].failure = false;
+      this.actor.update({"system": updatedData});
+
+      // So we can record the typed skills improved and how much they were increased by in chat.
+      // The if statement tells us whether to add a comma before the term or not.
+      if (value === 0 && improvedSkillList === "") {
+        improvedSkillList += `${game.i18n.localize("DG.TypeSkills." + skillData.group.split(" ").join(""))} (${skillData.label}): <b>+${resultList[value + failedSkills.length] ?? 1}%</b>`;
+      } else {
+        improvedSkillList += `, ${game.i18n.localize("DG.TypeSkills." + skillData.group.split(" ").join(""))} (${skillData.label}): <b>+${resultList[value + failedSkills.length] ?? 1}%</b>`;
+      }
+    })
+
+    let html;
+    html =  `<div class="dice-roll">`
+    html += `  <div>${improvedSkillList}</div>`
+    html += `</div>`
+
     const chatData = {
-      speaker: ChatMessage.getSpeaker({actor: this.actor, token: this.token, alias: this.actor.data.name}),
-      content: updatedSkills,
-      flavor: `${game.i18n.localize("DG.Skills.ApplySkillImprovementsChatFlavor")} +${baseRollFormula}%:`,
+      speaker: ChatMessage.getSpeaker({actor: this.actor, token: this.token, alias: this.actor.name}),
+      content: html,
+      flavor: `${game.i18n.localize("DG.Skills.ApplySkillImprovementsChatFlavor")} <b>+${baseRollFormula}%</b>:`,
       type: baseRollFormula === "1" ? 0 : 5, // 0 = CHAT_MESSAGE_TYPES.OTHER, 5 = CHAT_MESSAGE_TYPES.ROLL
-      roll: baseRollFormula === "1" ? null : roll, // If adding flat +1, there is no roll.
+      rolls: baseRollFormula === "1" ? [] : [roll], // If adding flat +1, there is no roll.
       rollMode: game.settings.get("core", "rollMode")
       };
-  
-    // play the dice rolling sound, like a regular in-chat roll
-    if (roll) AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
-  
-    ChatMessage.create(chatData, {});
+    
+      // play the dice rolling sound, like a regular in-chat roll
+      if (roll) AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
+    
+      ChatMessage.create(chatData, {});
+
   }
 
   _onDragStart(event) {
