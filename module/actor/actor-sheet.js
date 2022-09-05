@@ -597,14 +597,14 @@ export class DeltaGreenActorSheet extends ActorSheet {
           targetVal = this.actor.system.statistics.cha.x5;
         }
         else{
-          label = game.i18n.localize("DG.Skills." + targetVal).toUpperCase() + "x5";          
+          label = game.i18n.localize("DG.Skills." + targetVal).toUpperCase();          
           targetVal = this.actor.system.skills[targetVal].proficiency;                    
         }
       }
       else if(dataset.target === "statistic.x5"){
         let stat = this.actor.system.statistics[key];
         targetVal = stat.x5;
-        label = game.i18n.localize("DG.Attributes." + key).toUpperCase();
+        label = game.i18n.localize("DG.Attributes." + key).toUpperCase() + "x5";
       }
       else if(rollType === "sanity"){
         targetVal = this.actor.system.sanity.value;
