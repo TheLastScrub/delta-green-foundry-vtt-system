@@ -6,7 +6,8 @@
   "license": "LICENSE.txt",
   "version": "1.0.6",
   "compatibility": {
-    "minimum": "0.8.6"
+    "minimum": "10.284",
+    "verified": "10"
   },
   "esmodules": [
     "module/deltagreen.js"

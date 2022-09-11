@@ -24,19 +24,18 @@ export class DeltaGreenItem extends Item {
    */
   async roll() {
     // Basic template rendering data
-    const token = this.actor.token;
-    const itemData = this;
+    
+    const item = this;
     const actorSystemData = this.actor.system || {};
-    const { system } = itemData;
 
-    if(system.isLethal){
-      sendLethalityTestToChat(this.actor, item.name, system.lethality, game.settings.get("core", "rollMode"))
+    if(item.system.isLethal){
+      sendLethalityTestToChat(this.actor, item.name, item.system.lethality, game.settings.get("core", "rollMode"))
     }
     else{
       // regular damage roll
 
-      let diceFormula = system.damage;
-      let skillType = system.skill;
+      let diceFormula = item.system.damage;
+      let skillType = item.system.skill;
 
       if(skillType === 'unarmed_combat' || skillType === 'melee_weapons'){
         diceFormula += actorSystemData.statistics.str.meleeDamageBonusFormula;

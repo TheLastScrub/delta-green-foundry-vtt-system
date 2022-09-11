@@ -343,25 +343,25 @@ Hooks.on('createActor', async function(actor, options, userId){
  * @returns {Promise}
  */
 async function createDeltaGreenMacro(data, slot) {
-  if (data.type !== "Item") return;
-  if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
+  if (data.type !== "weapon") return;
+  //if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
   const item = data.system;
 
   // Create the macro command
   let command = '// Uncomment line below to also roll skill check if desired.'
-  command += '\n' + `//game.deltagreen.rollItemSkillCheckMacro("${item.name}");`;
-  command += '\n' + `game.deltagreen.rollItemMacro("${item.name}");`;
+  command += '\n' + `//game.deltagreen.rollItemSkillCheckMacro("${data.name}");`;
+  command += '\n' + `game.deltagreen.rollItemMacro("${data.name}");`;
 
-  let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
-  if (!macro) {
-    macro = await Macro.create({
-      name: item.name,
+  //let macro = game.macros.entities.find(m => (m.name === data.name) && (m.command === command));
+  //if (!macro) {
+  let macro = await Macro.create({
+      name: data.name,
       type: "script",
-      img: item.img,
+      img: data.img,
       command: command,
       flags: { "deltagreen.itemMacro": true }
     });
-  }
+  //}
 
   game.user.assignHotbarMacro(macro, slot);
   return false;
@@ -373,7 +373,7 @@ async function createDeltaGreenMacro(data, slot) {
  * @param {string} itemName
  * @return {Promise}
  */
-function rollItemMacro(itemName) {
+async function rollItemMacro(itemName) {
   const speaker = ChatMessage.getSpeaker();
   let actor;
   if (speaker.token) actor = game.actors.tokens[speaker.token];
@@ -385,7 +385,9 @@ function rollItemMacro(itemName) {
   if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
 
   // Trigger the item roll
-  return item.roll();
+  let r = await item.roll();
+
+  return r;
 }
 
 function rollItemSkillCheckMacro(itemName) {
