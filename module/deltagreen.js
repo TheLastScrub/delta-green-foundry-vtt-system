@@ -349,8 +349,8 @@ async function createDeltaGreenMacro(data, slot) {
 
   // Create the macro command
   let command = '// Uncomment line below to also roll skill check if desired.'
-  command += '\n' + `//game.deltagreen.rollItemSkillCheckMacro("${data.name}");`;
-  command += '\n' + `game.deltagreen.rollItemMacro("${data.name}");`;
+  command += '\n' + `//game.deltagreen.rollItemSkillCheckMacro("${data._id}");`;
+  command += '\n' + `game.deltagreen.rollItemMacro("${data._id}");`;
 
   //let macro = game.macros.entities.find(m => (m.name === data.name) && (m.command === command));
   //if (!macro) {
@@ -373,7 +373,7 @@ async function createDeltaGreenMacro(data, slot) {
  * @param {string} itemName
  * @return {Promise}
  */
-async function rollItemMacro(itemName) {
+async function rollItemMacro(itemId) {
   const speaker = ChatMessage.getSpeaker();
   let actor;
   if (speaker.token) actor = game.actors.tokens[speaker.token];
@@ -381,8 +381,14 @@ async function rollItemMacro(itemName) {
   
   if(!actor) return ui.notifications.warn('Must have an Actor selected first.');
 
-  const item = actor ? actor.items.find(i => i.name === itemName) : null;
-  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
+  let item = actor ? actor.items.find(i => i._id === itemId) : null;
+
+  // for backwards compatibility with older macros, where I unwisely set it to use name instead of id
+  if(!item){
+    item = actor ? actor.items.find(i => i.name === itemId) : null;
+  } 
+
+  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemId}`);
 
   // Trigger the item roll
   let r = await item.roll();
@@ -390,7 +396,7 @@ async function rollItemMacro(itemName) {
   return r;
 }
 
-function rollItemSkillCheckMacro(itemName) {
+function rollItemSkillCheckMacro(itemId) {
   const speaker = ChatMessage.getSpeaker();
   let actor;
   if (speaker.token) actor = game.actors.tokens[speaker.token];
@@ -398,8 +404,14 @@ function rollItemSkillCheckMacro(itemName) {
 
   if(!actor) return ui.notifications.warn('Must have an Actor selected first.');
 
-  const item = actor ? actor.items.find(i => i.name === itemName) : null;
-  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
+  let item = actor ? actor.items.find(i => i._id === itemId) : null;
+
+  // for backwards compatibility with older macros, where I unwisely set it to use name instead of id
+  if(!item){
+    item = actor ? actor.items.find(i => i.name === itemId) : null;
+  } 
+
+  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item '${itemName}'`);
 
   let skillName = item.system.skill.toString();
 
