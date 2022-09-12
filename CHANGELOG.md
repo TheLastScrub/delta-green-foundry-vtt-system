@@ -2,12 +2,12 @@
 
 ### Version 1.0.7 - ??? [BREAKING CHANGE: THIS VERSION FORWARD COMPATIBLE WITH FOUNDRY V10 OR HIGHER ONLY!]
 
-* Enhancement - Update to new data model for Foundry V10. This breaks compatibility with older versions, but leaves the system in a better place for future updates.
+* Enhancement - Update to new data model for Foundry V10. This breaks compatibility with older versions, but leaves the system in a better place for future updates. Thanks to Jailensailen for help with this effort.
 * Enhancement [GitHub 39] - Jailensailen added a way to toggle lethality directly on the actor sheet without editing the item. There is now a toggle button beside the damage formula/lethality percentage.
 * Enhancement [GitHub #56] - Added an actor sheet for Vehicles
 * Fix [GitHub #66] - Dragging item macros to hot bar, as well as executing them seemed to be broken.
 * Fix [GitHub #62] - Fixed issue with how weapon skill rolls are displayed in chat cards (incorrectly appended 'x5' to rolls that were not x5 rolls).
-* Enhancement [GitHub #58] - Did not completely overhaul Agent sheet per request, but did implement some of the requested changes to make the Agent/NPC sheets shorter, so that they require less scrolling when on smaller screens.
+* Enhancement [GitHub #58] - Did not completely overhaul Agent sheet per request, but did implement some of the requested changes to make the Agent/NPC sheets shorter, so that they require less scrolling when on smaller screens. Thanks to wush3 for providing some of the CSS for this.
 * Enhancement - Made a few improvements to improvements to layout for a few of the item and NPC sheets.
 
 ### Version 1.0.6 - 2022-05-26

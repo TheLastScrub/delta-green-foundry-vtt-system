@@ -259,9 +259,9 @@ export class DeltaGreenActor extends Actor {
 
   /** @override */
   static async create(data, options={}) {
-    data.token = data.token || {};
+    data.prototypeToken = data.prototypeToken || {};
     if ( data.type === "agent" ) {
-      mergeObject(data.token, {
+      mergeObject(data.prototypeToken, {
         actorLink: true  // this will make the 'Link Actor Data' option for a token is checked by default. So changes to the token sheet will reflect to the actor sheet.
       }, {overwrite: false});
     }
