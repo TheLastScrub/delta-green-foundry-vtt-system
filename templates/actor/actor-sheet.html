@@ -299,7 +299,14 @@
                 {{#if_eq item.type 'weapon'}}
                   
                   <li class="item flexrow" data-item-id="{{item.id}}">
-                    <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
+                    <div 
+                      class="item-image rollable"
+                      data-roll="d100"
+                      data-rolltype="weaponskill" 
+                      data-target="{{item.system.skill}}"                         
+                      data-label="{{localizeWeaponSkill item.system.skill}}"
+                      title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.system.skill}})"
+                    ><img src="{{item.img}}"  width="24" height="24"/></div>
                     
                     <h4 style="word-wrap: break-word;" 
                       
