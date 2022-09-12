@@ -103,6 +103,8 @@ Hooks.once('init', async function() {
     }
   });
 
+
+  // Is this used anywhere?
   Handlebars.registerHelper('getActorSkillProp', function(actorData, skillName, prop) {
     try{
       if(skillName != "" && prop != ""){
@@ -295,24 +297,31 @@ Hooks.on('createActor', async function(actor, options, userId){
     // can put logic specific to a particular user session below
     if (userId != game.user.id) { return; };
 
-    if(actor != null && actor.data != null && actor.data.type === 'agent'){
-      // update the default type skill of Art - Painting's labels to try to be localized
-      // since I really backed myself into a corner on this with my implementation of it...
-      console.log('createActor Hook');
+    if(actor != null){
 
-      let artLabel = game.i18n.translations.DG?.TypeSkills?.Art ?? "Art";
-      let paintingLabel = game.i18n.translations.DG?.TypeSkills?.Subskills?.Painting ?? "Painting";
+      if(actor.type === 'agent'){
+        // update the default type skill of Art - Painting's labels to try to be localized
+        // since I really backed myself into a corner on this with my implementation of it...
+        console.log('createActor Hook');
 
-      let updatedData = duplicate(actor.data.data);
-      updatedData.typedSkills.tskill_01.group = artLabel;
-      updatedData.typedSkills.tskill_01.label = paintingLabel;
+        let artLabel = game.i18n.translations.DG?.TypeSkills?.Art ?? "Art";
+        let paintingLabel = game.i18n.translations.DG?.TypeSkills?.Subskills?.Painting ?? "Painting";
+
+        let updatedData = duplicate(actor.system);
+        updatedData.typedSkills.tskill_01.group = artLabel;
+        updatedData.typedSkills.tskill_01.label = paintingLabel;
+        
+        actor.update({"data": updatedData});
+        
+        // throw on an unarmed strike item for convenience
+        actor.AddUnarmedAttackItemIfMissing();
+      }
+      else if(actor.type === 'unnatural'){
       
-      actor.update({"data": updatedData});
-      
-      // throw on an unarmed strike item for convenience
-      actor.AddUnarmedAttackItemIfMissing();
-    }
-    else if(actor.data.type === 'unnatural'){
+      }
+      else if(actor.type === 'vehicle'){
+        actor.AddBaseVehicleItemsIfMissing();
+      }
       
     }
     
@@ -334,25 +343,25 @@ Hooks.on('createActor', async function(actor, options, userId){
  * @returns {Promise}
  */
 async function createDeltaGreenMacro(data, slot) {
-  if (data.type !== "Item") return;
-  if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
-  const item = data.data;
+  if (data.type !== "weapon") return;
+  //if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
+  const item = data.system;
 
   // Create the macro command
   let command = '// Uncomment line below to also roll skill check if desired.'
-  command += '\n' + `//game.deltagreen.rollItemSkillCheckMacro("${item.name}");`;
-  command += '\n' + `game.deltagreen.rollItemMacro("${item.name}");`;
+  command += '\n' + `//game.deltagreen.rollItemSkillCheckMacro("${data._id}");`;
+  command += '\n' + `game.deltagreen.rollItemMacro("${data._id}");`;
 
-  let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
-  if (!macro) {
-    macro = await Macro.create({
-      name: item.name,
+  //let macro = game.macros.entities.find(m => (m.name === data.name) && (m.command === command));
+  //if (!macro) {
+  let macro = await Macro.create({
+      name: data.name,
       type: "script",
-      img: item.img,
+      img: data.img,
       command: command,
       flags: { "deltagreen.itemMacro": true }
     });
-  }
+  //}
 
   game.user.assignHotbarMacro(macro, slot);
   return false;
@@ -364,7 +373,7 @@ async function createDeltaGreenMacro(data, slot) {
  * @param {string} itemName
  * @return {Promise}
  */
-function rollItemMacro(itemName) {
+async function rollItemMacro(itemId) {
   const speaker = ChatMessage.getSpeaker();
   let actor;
   if (speaker.token) actor = game.actors.tokens[speaker.token];
@@ -372,14 +381,22 @@ function rollItemMacro(itemName) {
   
   if(!actor) return ui.notifications.warn('Must have an Actor selected first.');
 
-  const item = actor ? actor.items.find(i => i.name === itemName) : null;
-  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
+  let item = actor ? actor.items.find(i => i._id === itemId) : null;
+
+  // for backwards compatibility with older macros, where I unwisely set it to use name instead of id
+  if(!item){
+    item = actor ? actor.items.find(i => i.name === itemId) : null;
+  } 
+
+  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemId}`);
 
   // Trigger the item roll
-  return item.roll();
+  let r = await item.roll();
+
+  return r;
 }
 
-function rollItemSkillCheckMacro(itemName) {
+function rollItemSkillCheckMacro(itemId) {
   const speaker = ChatMessage.getSpeaker();
   let actor;
   if (speaker.token) actor = game.actors.tokens[speaker.token];
@@ -387,12 +404,18 @@ function rollItemSkillCheckMacro(itemName) {
 
   if(!actor) return ui.notifications.warn('Must have an Actor selected first.');
 
-  const item = actor ? actor.items.find(i => i.name === itemName) : null;
-  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemName}`);
+  let item = actor ? actor.items.find(i => i._id === itemId) : null;
 
-  let skillName = item.data.data.skill.toString();
+  // for backwards compatibility with older macros, where I unwisely set it to use name instead of id
+  if(!item){
+    item = actor ? actor.items.find(i => i.name === itemId) : null;
+  } 
 
-  let skill = actor.data.data.skills[skillName];
+  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item '${itemName}'`);
+
+  let skillName = item.system.skill.toString();
+
+  let skill = actor.system.skills[skillName];
   let translatedSkillLabel = "";
 
   try{
@@ -413,7 +436,7 @@ function rollSkillMacro(skillName) {
   
   if(!actor) return ui.notifications.warn('Must have an Actor selected first.');
 
-  let skill = actor.data.data.skills[skillName];
+  let skill = actor.system.skills[skillName];
 
   if(!skill) return ui.notifications.warn('Bad skill name passed to macro.');
 

@@ -22,7 +22,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
   get template() {
     
     if(this.actor !== null){
-      if(this.actor.data.type === 'agent'){
+      if(this.actor.type === 'agent'){
         if ( !game.user.isGM && this.actor.limited ) {
           return "systems/deltagreen/templates/actor/limited-sheet.html";
         }
@@ -31,11 +31,14 @@ export class DeltaGreenActorSheet extends ActorSheet {
           return `systems/deltagreen/templates/actor/actor-sheet.html`;
         }
       }
-      else if(this.actor.data.type === 'unnatural'){
+      else if(this.actor.type === 'unnatural'){
         return `systems/deltagreen/templates/actor/unnatural-sheet.html`;
       }
-      else if(this.actor.data.type === 'npc'){
+      else if(this.actor.type === 'npc'){
         return `systems/deltagreen/templates/actor/npc-sheet.html`;
+      }
+      else if(this.actor.type === 'vehicle'){
+        return `systems/deltagreen/templates/actor/vehicle-sheet.html`;
       }
       else{
         return "systems/deltagreen/templates/actor/limited-sheet.html";
@@ -47,12 +50,26 @@ export class DeltaGreenActorSheet extends ActorSheet {
   }
 
   /** @override */
-  getData() {
+  async getData() {
     const data = super.getData();
 
     // Prepare items.
-    if (this.actor.data.type == 'agent') {
+    if (this.actor.type == 'agent') {
       this._prepareCharacterItems(data);
+    }
+
+    switch (this.actor.type) {
+      case "agent":
+        data.enrichedDescription = await TextEditor.enrichHTML(this.object.system.physicalDescription, {async: true});
+        break;
+      case "vehicle":
+        data.enrichedDescription = await TextEditor.enrichHTML(this.object.system.description, {async: true});
+        break;
+      case "npc":
+      case "unnatural":
+        data.enrichedDescription = await TextEditor.enrichHTML(this.object.system.notes, {async: true});
+        break;
+      default:
     }
     
     return data;
@@ -75,7 +92,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
     for (let i of sheetData.items) {
-      let item = i.data;
+      let item = i;
       i.img = i.img || DEFAULT_TOKEN;
       // Append to armor.
       if (i.type === 'armor') {
@@ -208,9 +225,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
       event.preventDefault();
       let currentBreakingPoint = 0;
     
-      currentBreakingPoint = this.actor.data.data.sanity.value - this.actor.data.data.statistics.pow.value;
+      currentBreakingPoint = this.actor.system.sanity.value - this.actor.system.statistics.pow.value;
       
-      let updatedData = duplicate(this.actor.data.data);
+      let updatedData = duplicate(this.actor.system);
       updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
       this.actor.update({"data": updatedData});
     });
@@ -227,8 +244,8 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
       event.preventDefault();
       let targetskill = event.target.getAttribute("data-typedskill");
-      let existingLabel = this.actor.data.data.typedSkills[targetskill].label;
-      let existingGroup = this.actor.data.data.typedSkills[targetskill].group;
+      let existingLabel = this.actor.system.typedSkills[targetskill].label;
+      let existingGroup = this.actor.system.typedSkills[targetskill].group;
 
       //this.actor.update({[`data.typedSkills.${targetskill}.label`]: 'test'});
 
@@ -242,7 +259,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       let targetskill = event.target.getAttribute("data-typedskill");
 
       // many bothans died to bring us this information on how to delete a property on an entity
-      this.actor.update({[`data.typedSkills.-=${targetskill}`]: null});
+      this.actor.update({[`system.typedSkills.-=${targetskill}`]: null});
 
     });
 
@@ -250,30 +267,34 @@ export class DeltaGreenActorSheet extends ActorSheet {
       
       event.preventDefault();
 
-      const failures = Object.entries(this.actor.data.data.skills).filter((skill) => skill[1].failure);
-      if (failures.length === 0) {
+      const failedSkills = Object.entries(this.actor.system.skills).filter((skill) => skill[1].failure);
+      const failedTypedSkills = Object.entries(this.actor.system.typedSkills).filter((skill) => skill[1].failure);
+      if (failedSkills.length === 0 && failedTypedSkills.length === 0) {
         ui.notifications.warn('No Skills to Increase')
         return;
       }
 
       let htmlContent = "";
       let failedSkillNames = "";
-      failures.forEach(([skill], value) => {
+      failedSkills.forEach(([skill], value) => {
         if (value === 0) {
           failedSkillNames += (game.i18n.localize("DG.Skills." + skill));
         } else {
           failedSkillNames += `, ${(game.i18n.localize("DG.Skills." + skill))}`;
         }
       })
+      failedTypedSkills.forEach(([skillName, skillData], value) => {
+        if (value === 0 && failedSkillNames === "") {
+          failedSkillNames += `${game.i18n.localize("DG.TypeSkills." + skillData.group.split(" ").join(""))} (${skillData.label})`;
+        } else {
+          failedSkillNames += `, ${game.i18n.localize("DG.TypeSkills." + skillData.group.split(" ").join(""))} (${skillData.label})`;
+        }
+      })
+
+      const baseRollFormula = game.settings.get("deltagreen", "skillImprovementFormula");
 
       htmlContent += `<div>`;
-      htmlContent += `     <label>${game.i18n.localize("DG.Skills.ApplySkillImprovementsDialogLabel")}</label>`;
-      htmlContent += `     <select name="roll-formula" />`;
-      htmlContent += `          <option${game.settings.get("deltagreen", "skillImprovementFormula") === "1" ? " selected" : ""} value = "1">Flat +1%</option>`;
-      htmlContent += `          <option${game.settings.get("deltagreen", "skillImprovementFormula") === "1d3" ? " selected" : ""} value = "1d3">+1D3%</option>`;
-      htmlContent += `          <option${game.settings.get("deltagreen", "skillImprovementFormula") === "1d4" ? " selected" : ""} value = "1d4">+1D4%</option>`;
-      htmlContent += `          <option${game.settings.get("deltagreen", "skillImprovementFormula") === "1d4-1" ? " selected" : ""} value = "1d4-1">+1D4-1%</option>`;
-      htmlContent += `     </select>`;
+      htmlContent += `     <label>${game.i18n.localize("DG.Skills.ApplySkillImprovementsDialogLabel")} <b>+${baseRollFormula}%</b></label>`;
       htmlContent += `     <hr>`;
       htmlContent += `     <span> ${game.i18n.localize("DG.Skills.ApplySkillImprovementsDialogEffectsFollowing")} <b>${failedSkillNames}</b> </span>`;
       htmlContent += `</div>`;
@@ -286,8 +307,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
           apply:{
             label: game.i18n.translations.DG?.Skills?.Apply ?? "Apply",
             callback: btn =>{
-              const baseRollForumla = btn.find("[name='roll-formula']").val();
-              this._applySkillImprovements(baseRollForumla, failures);            
+              this._applySkillImprovements(baseRollFormula, failedSkills, failedTypedSkills);            
             },
           }
         }
@@ -321,7 +341,19 @@ export class DeltaGreenActorSheet extends ActorSheet {
     html.find('.gear-browse').click(ev => {
       //game.packs.find(k=>k.collection==="deltagreen.firearms").render(true);
     });
+
+    html.find('.toggle-lethality').click(event => {
+      this._toggleLethality(event);
+    });
     
+  }
+
+  _toggleLethality(event) {
+    const itemId = event.target.getAttribute("item-id");
+    const isLethal = event.target.getAttribute("is-lethal") === "true";
+    const item = this.actor.items.find((i) => i.id === itemId);
+    item.update({"data.isLethal": !isLethal});
+
   }
 
   _showNewEditTypeSkillDialog(targetSkill, currentLabel, currentGroup){
@@ -445,7 +477,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
   }
 
   _addNewTypedSkill(newSkillLabel, newSkillGroup){
-    let updatedData = duplicate(this.actor.data.data);
+    let updatedData = duplicate(this.actor.system);
     let typedSkills = updatedData.typedSkills;
 
     let d = new Date();
@@ -462,7 +494,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
   _updateTypedSkill(targetSkill, newSkillLabel, newSkillGroup){
 
     if(newSkillLabel !== null && newSkillLabel !== "" && newSkillGroup !== null & newSkillGroup !== ""){
-      let updatedData = duplicate(this.actor.data.data);
+      let updatedData = duplicate(this.actor.system);
     
       updatedData.typedSkills[targetSkill].label = newSkillLabel;
       updatedData.typedSkills[targetSkill].group = newSkillGroup;
@@ -478,40 +510,39 @@ export class DeltaGreenActorSheet extends ActorSheet {
    * @private
    */
   _onItemCreate(event) {
+
     event.preventDefault();
+
     const header = event.currentTarget;
+
     // Get the type of item to create.
     const type = header.dataset.type;
-    // Grab any data associated with this control.
-    const data = duplicate(header.dataset);
+    
     // Initialize a default name.
     //const name = `New ${type.capitalize()}`;
     const name = game.i18n.localize("DG.ItemTypes.NewPrefix") + game.i18n.localize("DG.ItemTypes." + type)
+
     // Prepare the item object.
     const itemData = {
       name: name,
       type: type,
-      data: data
+      system: {}
     };
 
-    // Remove the type from the dataset since it's in the itemData.type prop.
-    delete itemData.data["type"];
-
     if(type == "weapon"){
-      itemData.data.skill = "firearms"; //default skill to firearms, since that will be most common
-      itemData.data.expense = "Standard";
+      itemData.system.skill = "firearms"; //default skill to firearms, since that will be most common
+      itemData.system.expense = "Standard";
     }
     else if(type == "armor"){
-      itemData.data.armor = 3;
-      itemData.data.expense = "Standard";
+      itemData.system.armor = 3;
+      itemData.system.expense = "Standard";
     }
     else if(type == "bond"){
-      itemData.data.score = this.object.data.data.statistics.cha.value; // Can vary, but at character creation starting bond score is usually agent's charisma
+      itemData.system.score = this.object.system.statistics.cha.value; // Can vary, but at character creation starting bond score is usually agent's charisma
       itemData.img = "icons/svg/mystery-man.svg"
     }
     
-    // Finally, create the item!
-    //return this.actor.createOwnedItem(itemData);
+    // create the item
     return this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
@@ -555,40 +586,40 @@ export class DeltaGreenActorSheet extends ActorSheet {
         // otherwise roll a regular skill test
         if(targetVal === "dex"){
           label = game.i18n.localize("DG.Attributes.dex").toUpperCase() + "x5";
-          targetVal = this.actor.data.data.statistics.dex.x5;
+          targetVal = this.actor.system.statistics.dex.x5;
         }
         else if(targetVal === "int"){
           label = game.i18n.localize("DG.Attributes.int").toUpperCase() + "x5";
-          targetVal = this.actor.data.data.statistics.int.x5;
+          targetVal = this.actor.system.statistics.int.x5;
         }
         else if(targetVal === "str"){
           label = game.i18n.localize("DG.Attributes.str").toUpperCase() + "x5";
-          targetVal = this.actor.data.data.statistics.str.x5;
+          targetVal = this.actor.system.statistics.str.x5;
         }
         else if(targetVal === "con"){
           label = game.i18n.localize("DG.Attributes.con").toUpperCase() + "x5";
-          targetVal = this.actor.data.data.statistics.con.x5;
+          targetVal = this.actor.system.statistics.con.x5;
         }
         else if(targetVal === "pow"){
           label = game.i18n.localize("DG.Attributes.pow").toUpperCase() + "x5";
-          targetVal = this.actor.data.data.statistics.pow.x5;
+          targetVal = this.actor.system.statistics.pow.x5;
         }
         else if(targetVal === "cha"){
           label = game.i18n.localize("DG.Attributes.cha").toUpperCase() + "x5";
-          targetVal = this.actor.data.data.statistics.cha.x5;
+          targetVal = this.actor.system.statistics.cha.x5;
         }
         else{
-          label = game.i18n.localize("DG.Skills." + targetVal).toUpperCase() + "x5";          
-          targetVal = this.actor.data.data.skills[targetVal].proficiency;                    
+          label = game.i18n.localize("DG.Skills." + targetVal).toUpperCase();          
+          targetVal = this.actor.system.skills[targetVal].proficiency;                    
         }
       }
       else if(dataset.target === "statistic.x5"){
-        let stat = this.actor.data.data.statistics[key];
+        let stat = this.actor.system.statistics[key];
         targetVal = stat.x5;
-        label = game.i18n.localize("DG.Attributes." + key).toUpperCase();
+        label = game.i18n.localize("DG.Attributes." + key).toUpperCase() + "x5";
       }
       else if(rollType === "sanity"){
-        targetVal = this.actor.data.data.sanity.value;
+        targetVal = this.actor.system.sanity.value;
         label = game.i18n.localize("DG.Attributes.SAN").toUpperCase();
       }
       else if(rollType === "damage"){
@@ -608,7 +639,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
         let skillType = dataset.skill ? dataset.skill : '';
 
         if(this.actor.type === 'agent' && (skillType === 'unarmed_combat' || skillType === 'melee_weapons')){
-          diceFormula += this.actor.data.data.statistics.str.meleeDamageBonusFormula;
+          diceFormula += this.actor.system.statistics.str.meleeDamageBonusFormula;
         }
         
         if(requestedModifyRoll){
@@ -640,13 +671,13 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
     let currentBreakingPoint = 0;
     
-    currentBreakingPoint = this.actor.data.data.sanity.value - this.actor.data.data.statistics.pow.value;
+    currentBreakingPoint = this.actor.system.sanity.value - this.actor.system.statistics.pow.value;
 
     if(currentBreakingPoint < 0){
       currentBreakingPoint = 0;
     }
     
-    let updatedData = duplicate(this.actor.data.data);
+    let updatedData = duplicate(this.actor.system);
 
     updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
 
@@ -661,7 +692,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     try{
       //const item = this.actor.getOwnedItem(dataset.id);
       const item = this.actor.items.get(dataset.id);
-      var isEquipped = item.data.data.equipped;
+      var isEquipped = item.system.equipped;
       isEquipped = !isEquipped;
       item.update({data:{equipped: isEquipped}});
     }
@@ -670,21 +701,22 @@ export class DeltaGreenActorSheet extends ActorSheet {
     }
   }
 
-  _applySkillImprovements(baseRollFormula, failures) {
-    const actorData = this.actor.data.data;
+  _applySkillImprovements(baseRollFormula, failedSkills, failedTypedSkills) {
+    const actorData = this.actor.system;
     const resultList = [];
     let rollFormula;
     
+    // Define the amount of dice being rolled, if any.
     switch (baseRollFormula) {
       case "1":
         rollFormula = 1;
         break;
       case "1d3":
-        rollFormula = `${failures.length}d3`;
+        rollFormula = `${failedSkills.length + failedTypedSkills.length}d3`;
         break;
       case "1d4":
       case "1d4-1":
-        rollFormula = `${failures.length}d4`;
+        rollFormula = `${failedSkills.length + failedTypedSkills.length}d4`;
         break;
       default:
     }
@@ -693,38 +725,64 @@ export class DeltaGreenActorSheet extends ActorSheet {
     if (rollFormula !== 1) {
       roll = new Roll(rollFormula, actorData);
       roll.evaluate({async: true});
+      // Put the results into a list.
       roll.terms[0].results.forEach((result) => resultList.push(baseRollFormula === "1d4-1" ? result.result - 1 : result.result));
     }
 
-    let updatedSkills = "";
+    // This will be end up being a list of skills and how much each were improved by. It gets modified in the following loops.
+    let improvedSkillList = "";
     
-    failures.forEach(([skill], value) => {
+    failedSkills.forEach(([skill], value) => {
       const updatedData = duplicate(actorData);
-      updatedData.skills[skill].proficiency += resultList[value] ?? 1;
+      updatedData.skills[skill].proficiency += resultList[value] ?? 1; // Increase proficiency by die result or by 1 if there is no dice roll.
       updatedData.skills[skill].failure = false;
-      this.actor.update({"data": updatedData});
+      this.actor.update({"system": updatedData});
 
-      // So we can record the skills and how much they were increased by in chat.
-      if (updatedSkills === "") {
-        updatedSkills += `${game.i18n.localize("DG.Skills." + skill)}: +${resultList[value] ?? 1}%`;
+      // So we can record the regular skills improved and how much they were increased by in chat.
+      // The if statement tells us whether to add a comma before the term or not.
+      if (value === 0) {
+        improvedSkillList += `${game.i18n.localize("DG.Skills." + skill)}: <b>+${resultList[value] ?? 1}%</b>`;
       } else {
-        updatedSkills += `, ${game.i18n.localize("DG.Skills." + skill)}: +${resultList[value] ?? 1}%`;
+        improvedSkillList += `, ${game.i18n.localize("DG.Skills." + skill)}: <b>+${resultList[value] ?? 1}%</b>`;
       }
     })
 
+    failedTypedSkills.forEach(([skillName, skillData], value) => {
+      const updatedData = duplicate(actorData);
+      // We must increase value in the following line by the length of failedSkills, so that we index the entire resultList.
+      // Otherwise we would be adding the same die results to regular skills and typed skills.
+      updatedData.typedSkills[skillName].proficiency += resultList[value + failedSkills.length] ?? 1;
+      updatedData.typedSkills[skillName].failure = false;
+      this.actor.update({"system": updatedData});
+
+      // So we can record the typed skills improved and how much they were increased by in chat.
+      // The if statement tells us whether to add a comma before the term or not.
+      if (value === 0 && improvedSkillList === "") {
+        improvedSkillList += `${game.i18n.localize("DG.TypeSkills." + skillData.group.split(" ").join(""))} (${skillData.label}): <b>+${resultList[value + failedSkills.length] ?? 1}%</b>`;
+      } else {
+        improvedSkillList += `, ${game.i18n.localize("DG.TypeSkills." + skillData.group.split(" ").join(""))} (${skillData.label}): <b>+${resultList[value + failedSkills.length] ?? 1}%</b>`;
+      }
+    })
+
+    let html;
+    html =  `<div class="dice-roll">`
+    html += `  <div>${improvedSkillList}</div>`
+    html += `</div>`
+
     const chatData = {
-      speaker: ChatMessage.getSpeaker({actor: this.actor, token: this.token, alias: this.actor.data.name}),
-      content: updatedSkills,
-      flavor: `${game.i18n.localize("DG.Skills.ApplySkillImprovementsChatFlavor")} +${baseRollFormula}%:`,
+      speaker: ChatMessage.getSpeaker({actor: this.actor, token: this.token, alias: this.actor.name}),
+      content: html,
+      flavor: `${game.i18n.localize("DG.Skills.ApplySkillImprovementsChatFlavor")} <b>+${baseRollFormula}%</b>:`,
       type: baseRollFormula === "1" ? 0 : 5, // 0 = CHAT_MESSAGE_TYPES.OTHER, 5 = CHAT_MESSAGE_TYPES.ROLL
-      roll: baseRollFormula === "1" ? null : roll, // If adding flat +1, there is no roll.
+      rolls: baseRollFormula === "1" ? [] : [roll], // If adding flat +1, there is no roll.
       rollMode: game.settings.get("core", "rollMode")
       };
-  
-    // play the dice rolling sound, like a regular in-chat roll
-    if (roll) AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
-  
-    ChatMessage.create(chatData, {});
+    
+      // play the dice rolling sound, like a regular in-chat roll
+      if (roll) AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
+    
+      ChatMessage.create(chatData, {});
+
   }
 
   _onDragStart(event) {
@@ -732,7 +790,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     if ( event.target.classList.contains("entity-link") ) return;
 
     // Create drag data
-    const dragData = {
+    let dragData = {
       actorId: this.actor.id,
       sceneId: this.actor.isToken ? canvas.scene?.id : null,
       tokenId: this.actor.isToken ? this.actor.token.id : null
@@ -742,14 +800,14 @@ export class DeltaGreenActorSheet extends ActorSheet {
     if ( li.dataset.itemId ) {
       const item = this.actor.items.get(li.dataset.itemId);
       dragData.type = "Item";
-      dragData.data = item.data;
+      dragData = item;
     }
 
     // Active Effect
     if ( li.dataset.effectId ) {
       const effect = this.actor.effects.get(li.dataset.effectId);
       dragData.type = "ActiveEffect";
-      dragData.data = effect.data;
+      dragData = effect;
     }
 
     // Set data transfer

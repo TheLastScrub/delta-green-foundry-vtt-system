@@ -1,0 +1,208 @@
+<form class="{{cssClass}} {{getFontFamilySystemSettingClass}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header">
+        
+      <div class="header-fields">
+        
+        {{!-- Name, Portrait --}}
+        <div class="flexrow">
+          <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="100"/>
+          <div>
+            <div>
+              <h1 class="charname"><input name="name" type="text" value="{{actor.name}}" /></h1>
+            </div>
+            <div class="">
+              <h2 class="profession"><input name="system.shortDescription" type="text" value="{{actor.system.shortDescription}}" placeholder="{{localize 'DG.VehicleSheet.DescriptionPlaceHolder'}}" /></h1>
+            </div>
+          </div>
+        </div>
+      
+        <div class="resources grid grid-3col">
+          
+          {{!-- HP --}}
+          <div class="resource-outer-grid-1col">
+              <label for="actor.system.health.value" class="resource-label" title="{{localize 'DG.Tooltip.HP'}}">{{localize 'DG.Attributes.HP'}} (<span>{{actor.system.health.protection}} <i class="fas fa-shield-alt"></i></span>)</label>
+              <div class="resource-inner-grid-3col">
+                <input type="text" name="system.health.value" value="{{actor.system.health.value}}" data-dtype="Number"/>
+                <span> / </span>
+                <input type="text" name="system.health.max" value="{{actor.system.health.max}}" data-dtype="Number"/>
+              </div>
+          </div>
+        </div>
+  
+      </div>
+    </header>
+  
+    {{!-- Sheet Tab Navigation --}}
+    <nav class="sheet-tabs tabs" data-group="primary">
+        <a class="item" data-tab="notes">{{localize 'DG.VehicleSheet.NotesTabName'}}</a>
+        <a class="item" data-tab="gear">{{localize 'DG.VehicleSheet.GearTabName'}}</a>
+        <a class="item fas fa-question-circle" data-tab="about"></a>
+    </nav>
+  
+    {{!-- Sheet Body --}}
+    <section class="sheet-body">
+  
+      {{!-- Descriptions (Notes) --}}
+      <div class="tab skills top-div-border" data-group="primary" data-tab="notes">
+        <div>
+          <span class="resource-label">{{localize 'DG.VehicleSheet.NotesLabel'}}</span>
+        </div>
+        <div class="unnatural-notes-section">
+          <div class="editor-host">
+            {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
+          </div>
+        </div>
+        
+      </div>
+        
+      {{!-- GEAR --}}
+      <div class="tab items" data-group="primary" data-tab="gear">
+        
+        <div>
+  
+          <div class="gear-section-header">
+            <span>{{localize 'DG.Gear.Armor'}}</span>
+          </div>
+  
+          <ol class="items-list">
+            <li class="item flexrow item-header">
+              <div class="item-image"></div>
+              <div class="item-name">{{localize 'DG.Gear.Name'}}</div>
+              <span class="centered-item-property">{{localize 'DG.Gear.ArmorRating'}}</span>
+              <span class="centered-item-property">{{localize 'DG.Gear.Equipped'}}</span>
+              <div class="item-controls">
+                <a class="item-control item-create" title="Create item" data-type="armor"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
+              </div>
+            </li>
+  
+            {{#each actor.items as |item id|}}
+              {{#if_eq item.type 'armor'}}
+  
+                <li class="item flexrow" data-item-id="{{item.id}}">
+                  <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
+                  <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
+                  <span class="centered-item-property">{{item.system.protection}}</span>
+                  
+                  <span class="equipped-item centered-item-property" data-id="{{item.id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}">
+                    {{#if item.system.equipped}}
+                      <span class="fas fa-check"></span>
+                    {{else}}
+                      <span class="fas fa-times"></span>
+                    {{/if}}
+                  </span>
+  
+                  <div class="item-controls">
+                      <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                      <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                  </div>
+                </li>
+  
+              {{/if_eq}}
+            {{/each}}
+  
+          </ol>
+        </div>
+        <div>
+  
+          <div class="gear-section-header">
+            <span>{{localize 'DG.Gear.OtherGear'}}</span>
+          </div>
+  
+          <ol class="items-list">
+            <li class="item flexrow item-header">
+              <div class="item-image"></div>
+              <div class="item-name">{{localize 'DG.Gear.Name'}}</div>
+              <div class="item-name"></div>
+              <span class="centered-item-property">{{localize 'DG.Gear.Equipped'}}</span>
+              <div class="item-controls">
+                <a class="item-control item-create" title="Create item" data-type="gear"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
+              </div>
+            </li>
+  
+            {{#each actor.items as |item id|}}
+              {{#if_eq item.type 'gear'}}
+  
+                <li class="item flexrow" data-item-id="{{item.id}}">
+                  <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
+                  
+                  <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
+  
+                  <span></span> <!-- This is just here to get things to align nicely with the other sections-->
+                  
+                  <span class="equipped-item centered-item-property" data-id="{{item.id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}" >
+                    
+                    {{#if item.system.equipped}}
+                      <span class="fas fa-check"></span>
+                    {{else}}
+                      <span class="fas fa-times"></span>
+                    {{/if}}
+                  
+                  </span>
+  
+                  <div class="item-controls">
+                      <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                      <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                  </div>
+                </li>
+  
+              {{/if_eq}}
+            {{/each}}
+  
+          </ol>
+        </div>
+      </div>
+  
+        {{!-- About Tab --}}
+        <div class="tab about" data-group="primary" data-tab="about">
+          <div class="about-section-header">
+            
+          </div>
+          <div class="flex horizontal-flex-column">
+            <div>
+              <a class="fas fa-question-circle" 
+                title="{{localize 'DG.About.OnlineHelpTooltip'}}" 
+                href="https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/blob/master/documentation/home.md"> 
+                  {{localize 'DG.About.OnlineHelp'}}
+              </a>
+            </div>
+            <div>
+              <a class="fas fa-bug" 
+                title="{{localize 'DG.About.OnlineBugTrackerTooltip'}}" 
+                href="https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/issues"> 
+                {{localize 'DG.About.OnlineBugTracker'}}
+              </a>
+            </div>
+            <div>
+              <a class="fas fa-plus-circle" 
+                title="CHANGELOG (ONLINE)" 
+                href="https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/blob/master/CHANGELOG.md"> 
+                CHANGELOG (ONLINE)
+              </a>
+            </div>
+            <br>
+            <div>
+              <span style="font-weight: bold;">This is an <span style="font-style: italic">unofficial</span> fan work, it is not affiliated with or endorsed by Shaney Ivey or Arc Dream Publishing.</span>
+            </div>
+            <br>
+            <div>
+              <span style="font-weight: bold;">Delta Green Community License (NONCOMMERCIAL)</span>
+              <p>
+                  Published by arrangement with the Delta Green Partnership. 
+                  The intellectual property known as Delta Green is a trademark and copyright owned by the Delta Green Partnership, who has licensed its use here.
+              </p>
+              <p>
+                  The contents of this system are licensed per the terms of the included <a href="systems/deltagreen/LICENSE.txt">license</a> file, excepting those elements that are components of the Delta Green intellectual property.
+              </p>
+              <p>
+                Some content may additionally also be covered under the terms of the <a href="systems/deltagreen/OGL-v1.0a.txt">Open Game License</a> (Copyright 2000 Wizards of the Coast, Inc.).
+              </p>
+            </div>
+          </div>
+        </div>
+  
+    </section>
+  </form>
+  
+  

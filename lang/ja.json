@@ -238,5 +238,10 @@
     "DG.ImpossibleLanscapes.CorruptionFirstHalf": "腐",
     "DG.ImpossibleLanscapes.CorruptionSecondHalf": "敗",
     "DG.ImpossibleLanscapes.Gift": "ギフト",
-    "DG.ImpossibleLanscapes.Insight": "インサイト"
+    "DG.ImpossibleLanscapes.Insight": "インサイト",
+
+    "DG.VehicleSheet.NotesTabName": "ノート",
+    "DG.VehicleSheet.GearTabName": "装備",
+    "DG.VehicleSheet.NotesLabel": "ノート",
+    "DG.VehicleSheet.DescriptionPlaceHolder": ""
 }
