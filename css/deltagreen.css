@@ -4,7 +4,7 @@
 @font-face {
   font-family: 'atwriter';
   src: url('../assets/font/another-typewriter/atwriter.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
-} 
+}
 
 @font-face {
   font-family: TypeWriterCondensed;
@@ -26,7 +26,7 @@
 @font-face {
   font-family: 'SpecialElite';
   src: url('../assets/font/special_elite/SpecialElite-Regular.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
-} 
+}
 
 /* Global styles */
 
@@ -87,7 +87,7 @@ section.window-content{
 .grid-1col{
   display: grid;
   grid-column: span 1 / span 1;
-  gap: 10px;
+  gap: 3px;
 }
 
 .grid,
@@ -95,7 +95,7 @@ section.window-content{
   display: grid;
   grid-column: span 2 / span 2;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 3px;
   margin: 0px 0;
   padding: 0;
 }
@@ -160,7 +160,7 @@ section.window-content{
   -ms-flex-align: center;
   align-items: center;
   text-align: center;
-  padding: 5px;
+  padding: 2px;
   border: 1px solid #999;
 }
 
@@ -195,7 +195,7 @@ section.window-content{
 }
 
 .horizontal-flex-column{
-  display: flex; 
+  display: flex;
   flex-direction: column;
 }
 
@@ -230,11 +230,11 @@ section.window-content{
   -ms-flex: 0 0 100px;
   flex: 0 0 100px;
   height: 100px;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .profile-img{
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .deltagreen .sheet-header .header-fields {
@@ -244,7 +244,7 @@ section.window-content{
 }
 
 .deltagreen .sheet-header h1.charname {
-  height: 50px;
+  height: 55px;
   padding: 0px;
   border-bottom: 0;
 }
@@ -284,7 +284,7 @@ section.window-content{
   font-weight: bold;
   vertical-align: middle !important;
   line-height: inherit;
-  padding: 10px 15px 5px 15px;
+  padding: 5px 10px 0px 10px;
   border-radius: 5px 5px 0px 0px;
   border-color: #000;
 }
@@ -365,7 +365,7 @@ a.btn-tiny{
 
 span.left-aligned-label{
   justify-content: left;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 span.max-attribute-value-label{
@@ -379,12 +379,12 @@ span.max-attribute-value-label{
 }
 
 .deltagreen .skill-label{
-  margin: 5px;
+  margin: 2px;
   align-content: flex-start;
 }
 
 .deltagreen .skill-type-label{
-  margin: 5px;
+  margin: 2px;
 }
 
 .typed-skill-flexrow{
@@ -394,9 +394,15 @@ span.max-attribute-value-label{
 }
 
 input.percentile-skill-input{
-  width: 50px;
+  flex: 0 0 40px;
   margin-right: 5px;
   margin-left: 5px;
+}
+
+input.checkbox-skill-input{
+  /*flex: 0 0 10px;*/
+  width: 15px;
+  height: 15px;
 }
 
 .deltagreen .sheet-header h2.profession{
@@ -407,7 +413,7 @@ input.percentile-skill-input{
 
 .deltagreen .sheet-header h2.profession input {
   width: 100%;
-  height: 35px;
+  height: 40px;
   margin: 0;
 }
 
@@ -433,7 +439,7 @@ div span.bio-grid-label{
   align-items: center;
   padding-bottom: 10px;
   row-gap: 10px;
-} 
+}
 
 .bio-grid-top-border{
   border-top: 1px solid #AAA;
@@ -445,14 +451,14 @@ div span.bio-grid-label{
   grid-template-columns: 100px 100px 20px 120px auto;
   align-items: center;
   padding-bottom: 10px;
-} 
+}
 
 .bonds-grid-3col{
   display: grid;
   grid-template-columns: auto 50px max-content;
   align-items: center;
   padding-bottom: 10px;
-} 
+}
 
 .centered-input-value{
   text-align: center !important;
@@ -847,8 +853,9 @@ input.item-sheet-short-input{
   text-align: left;
 }
 
+
 .skill-util-buttons{
-  margin: 10px;
+  margin: 5px;
 }
 
 .apply-skill-improvements{
@@ -885,7 +892,7 @@ input.item-sheet-short-input{
   grid-template-columns: max-content 5px max-content max-content 20px max-content max-content 10px 35px;
   align-items: center;
   padding-bottom: 10px;
-} 
+}
 
 .yellow-king-grid-5col{
   display: grid;

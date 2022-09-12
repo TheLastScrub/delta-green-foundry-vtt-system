@@ -7,7 +7,8 @@
 * Enhancement [GitHub #56] - Added an actor sheet for Vehicles
 * Fix [GitHub #66] - Dragging item macros to hot bar, as well as executing them seemed to be broken.
 * Fix [GitHub #62] - Fixed issue with how weapon skill rolls are displayed in chat cards (incorrectly appended 'x5' to rolls that were not x5 rolls).
-* Enhancement - Made a few improvements to improvements to layout for a few of the item sheets.
+* Enhancement [GitHub #58] - Did not completely overhaul Agent sheet per request, but did implement some of the requested changes to make the Agent/NPC sheets shorter, so that they require less scrolling when on smaller screens.
+* Enhancement - Made a few improvements to improvements to layout for a few of the item and NPC sheets.
 
 ### Version 1.0.6 - 2022-05-26
 
