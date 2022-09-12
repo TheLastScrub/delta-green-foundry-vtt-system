@@ -1,6 +1,6 @@
 ## Release/Patch Notes
 
-### Version 1.0.7 - 2022-09-11 [BREAKING CHANGE: THIS VERSION FORWARD COMPATIBLE WITH FOUNDRY V10 OR HIGHER ONLY!]
+### Version 1.1.0 - 2022-09-11 [BREAKING CHANGE: THIS VERSION FORWARD COMPATIBLE WITH FOUNDRY V10 OR HIGHER ONLY!]
 
 * Enhancement - Update to new data model for Foundry V10. This breaks compatibility with older versions, but leaves the system in a better place for future updates. Thanks to Jailensailen for help with this effort.
 * Enhancement [GitHub 39] - Jailensailen added a way to toggle lethality directly on the actor sheet without editing the item. There is now a toggle button beside the damage formula/lethality percentage.
