@@ -462,6 +462,7 @@
           <div>
             <ol class="items-list">
               <li class="item flexrow item-header">
+                <div class="item-image"></div>
                 <div class="item-name">{{localize 'DG.Bonds.Name'}}</div>
                 <div class="item-name">{{localize 'DG.Bonds.Relationship'}}</div>
                 <div class="item-name">{{localize 'DG.Bonds.Score'}}</div>                
@@ -474,7 +475,7 @@
                 {{#if_eq item.type 'bond'}}
 
                   <li class="item flexrow" data-item-id="{{item.id}}">
-                    
+                    <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
                     <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
                     <span>{{item.system.relationship}}</span>
                     <span>{{item.system.score}}</span>                    
