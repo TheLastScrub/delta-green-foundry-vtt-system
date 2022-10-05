@@ -290,6 +290,7 @@ section.window-content{
   border: gray;
   border-width: 1px 1px 0px 1px;
   border-style: solid;
+  background: rgba(173, 151, 101, 0.3);
 }
 
 .deltagreen .tabs .item.active {
