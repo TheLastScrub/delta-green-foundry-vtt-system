@@ -1,7 +1,6 @@
 /**
  * Define a set of template paths to pre-load
  * Pre-loaded templates are compiled and cached for fast access when rendering
- * NWE - I am not sure if there is actually much point to this
  * @return {Promise}
  */
 export const preloadHandlebarsTemplates = async function() {
