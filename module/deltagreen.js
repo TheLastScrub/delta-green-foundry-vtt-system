@@ -6,6 +6,7 @@ import { DeltaGreenItemSheet } from "./item/item-sheet.js";
 import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat } from "./roll/roll.js";
 import { registerSystemSettings } from "./settings.js"
 import { preloadHandlebarsTemplates } from "./templates.js";
+import { ParseDeltaGreenStatBlock } from "./other/macro.js";
 
 Hooks.once('init', async function() {
 
@@ -14,7 +15,8 @@ Hooks.once('init', async function() {
     DeltaGreenItem,
     rollItemMacro,
     rollItemSkillCheckMacro,
-    rollSkillMacro
+    rollSkillMacro,
+    ParseDeltaGreenStatBlock
   };
 
   /**
@@ -288,6 +290,18 @@ Hooks.on("ready", ()=> {
   }
   
 });
+
+Hooks.on("renderSidebarTab", async (app, html) => {
+  if (app.options.id == "actors") {
+    let button = $("<button class='import-cd'><i class='fas fa-file-import'></i> Parse Stat Block</button>")
+
+    button.click(function () {
+      ParseDeltaGreenStatBlock()
+    });
+
+    html.find(".directory-footer").append(button);
+  }
+})
 
 // Note - this event is fired on ALL connected clients...
 Hooks.on('createActor', async function(actor, options, userId){
