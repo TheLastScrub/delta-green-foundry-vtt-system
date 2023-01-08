@@ -394,8 +394,7 @@ export async function showModifyDamageRollDialogue(actor, label, originalFormula
         }
       }
     }
-    }
-  ).render(true);
+  }).render(true);
 }
 
 export function skillIsStatTest(skillName){
