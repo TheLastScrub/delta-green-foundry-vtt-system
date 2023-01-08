@@ -6,7 +6,7 @@ import { DeltaGreenItemSheet } from "./item/item-sheet.js";
 import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat } from "./roll/roll.js";
 import { registerSystemSettings } from "./settings.js"
 import { preloadHandlebarsTemplates } from "./templates.js";
-import { ParseDeltaGreenStatBlock } from "./other/macro.js";
+import { ParseDeltaGreenStatBlock } from "./other/stat-parser-macro.js";
 
 Hooks.once('init', async function() {
 
