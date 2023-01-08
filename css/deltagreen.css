@@ -287,13 +287,17 @@ section.window-content{
   padding: 5px 10px 0px 10px;
   border-radius: 5px 5px 0px 0px;
   border-color: #000;
+  border: gray;
+  border-width: 1px 1px 0px 1px;
+  border-style: solid;
+  background: rgba(173, 151, 101, 0.3);
 }
 
 .deltagreen .tabs .item.active {
   text-shadow: none;
   font-style: italic;
   border: #000;
-  border-width: 1px 1px 0px 1px;
+  border-width: 2px 2px 0px 2px;
   border-style: solid;
 }
 
