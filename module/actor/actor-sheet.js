@@ -701,7 +701,8 @@ export class DeltaGreenActorSheet extends ActorSheet {
     }
   }
 
-  _applySkillImprovements(baseRollFormula, failedSkills, failedTypedSkills) {
+  // For any skills a user has checked off as failed, roll the improvement and update the agent's skills to their new values
+  async _applySkillImprovements(baseRollFormula, failedSkills, failedTypedSkills) {
     const actorData = this.actor.system;
     const resultList = [];
     let rollFormula;
@@ -732,11 +733,13 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // This will be end up being a list of skills and how much each were improved by. It gets modified in the following loops.
     let improvedSkillList = "";
     
+    // Get copy of current system data, will update this and then apply all changes at once synchronously at the end.
+    const updatedData = duplicate(actorData);
+
     failedSkills.forEach(([skill], value) => {
-      const updatedData = duplicate(actorData);
+      
       updatedData.skills[skill].proficiency += resultList[value] ?? 1; // Increase proficiency by die result or by 1 if there is no dice roll.
       updatedData.skills[skill].failure = false;
-      this.actor.update({"system": updatedData});
 
       // So we can record the regular skills improved and how much they were increased by in chat.
       // The if statement tells us whether to add a comma before the term or not.
@@ -745,15 +748,13 @@ export class DeltaGreenActorSheet extends ActorSheet {
       } else {
         improvedSkillList += `, ${game.i18n.localize("DG.Skills." + skill)}: <b>+${resultList[value] ?? 1}%</b>`;
       }
-    })
+    })   
 
     failedTypedSkills.forEach(([skillName, skillData], value) => {
-      const updatedData = duplicate(actorData);
       // We must increase value in the following line by the length of failedSkills, so that we index the entire resultList.
       // Otherwise we would be adding the same die results to regular skills and typed skills.
       updatedData.typedSkills[skillName].proficiency += resultList[value + failedSkills.length] ?? 1;
       updatedData.typedSkills[skillName].failure = false;
-      this.actor.update({"system": updatedData});
 
       // So we can record the typed skills improved and how much they were increased by in chat.
       // The if statement tells us whether to add a comma before the term or not.
@@ -763,6 +764,11 @@ export class DeltaGreenActorSheet extends ActorSheet {
         improvedSkillList += `, ${game.i18n.localize("DG.TypeSkills." + skillData.group.split(" ").join(""))} (${skillData.label}): <b>+${resultList[value + failedSkills.length] ?? 1}%</b>`;
       }
     })
+
+    // Probably not worth triggering the update if the user didn't pick any skills
+    if (improvedSkillList !== ""){
+      await this.actor.update({"system": updatedData});
+    } 
 
     let html;
     html =  `<div class="dice-roll">`
