@@ -4,10 +4,21 @@
   "description": "Fan-made Foundry VTT system for Delta Green: The Role Playing Game. Based on the rules in the Agent's Handbook (https://www.drivethrurpg.com/product/181674/Delta-Green-Agents-Handbook) [*NOT* Call of Cthulu]. Made with the permission of but neither affiliated with nor endorsed by Arc Dream Publishing or the Delta Green Partnership.",
   "url": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial",
   "license": "LICENSE.txt",
-  "version": "1.1.0",
+  "background": "systems/deltagreen/assets/img/green_delta_splash_page.webp",
+  "authors": [
+    {
+      "name": "TheLastScrub",
+      "discord": "TheLastScrub"
+    },
+    {
+      "name": "jalensailin",
+      "discord": "jalensailin"
+    }  
+  ],
+  "version": "1.2.0",
   "compatibility": {
-    "minimum": "10.284",
-    "verified": "10"
+    "minimum": "11",
+    "verified": "11"
   },
   "esmodules": [
     "module/deltagreen.js"
@@ -53,59 +64,77 @@
       "name": "firearms",
       "label": "Firearms",
       "system": "deltagreen",
-      "path": "packs/firearms.db",
-      "private": false,
+      "path": "packs/firearms",
       "type": "Item",
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "name": "armor",
       "label": "Armor",
       "system": "deltagreen",
-      "path": "packs/armor.db",
-      "private": false,
+      "path": "packs/armor",
       "type": "Item",
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "name": "hand-to-hand-weapons",
       "label": "Hand-to-Hand Weapons",
       "system": "deltagreen",
-      "path": "packs/hand-to-hand-weapons.db",
-      "private": false,
+      "path": "packs/hand-to-hand-weapons",
       "type": "Item",
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "name": "agent-pregens",
       "label": "Agent Pregens",
       "system": "deltagreen",
-      "path": "packs/pregens.db",
-      "private": false,
+      "path": "packs/pregens",
       "type": "Actor",
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "name": "operation-code-name-generator-tables",
       "label": "Operation Code Name Generator Tables",
       "system": "deltagreen",
-      "path": "packs/operation-code-name-generator.db",
-      "private": false,
+      "path": "packs/operation-code-name-generator",
       "type": "RollTable",
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     },
     {
       "name": "operation-code-name-generator-macro",
       "label": "Operation Code Name Generator Macro",
       "system": "deltagreen",
-      "path": "packs/operation-code-name-generator-macro.db",
-      "private": false,
+      "path": "packs/operation-code-name-generator-macro",
       "type": "Macro",
-      "flags": {}
+      "flags": {},
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
     }
   ],
   "manifest": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/raw/master/system.json",
-  "download": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/archive/v1.1.0.zip",
+  "download": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/archive/v1.2.0.zip",
   "gridDistance": 1,
   "gridUnits": "m",
   "primaryTokenAttribute": "health",

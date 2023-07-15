@@ -1,5 +1,11 @@
 ## Release/Patch Notes
 
+### Version 1.2.0 - 2023-06-28 [BREAKING CHANGE: THIS VERSION FORWARD COMPATIBLE WITH FOUNDRY V11 OR HIGHER ONLY!]
+
+* Fix [GitHub #71] - Fix for the update skill button does not work in Foundry V11.
+* Fix - Dragging items from one sheet to another now does create the item on the other sheet, although it does not delete the item on the original character sheet.
+* Enhancement - (Work in Progress) Added macro to parse a DG stat block. Currently only works for English, and only gets core attributes and skills. Call from a macro like: game.deltagreen.ParseDeltaGreenStatBlock()
+
 ### Version 1.1.0 - 2022-09-11 [BREAKING CHANGE: THIS VERSION FORWARD COMPATIBLE WITH FOUNDRY V10 OR HIGHER ONLY!]
 
 * Enhancement - Update to new data model for Foundry V10. This breaks compatibility with older versions, but leaves the system in a better place for future updates. Thanks to Jailensailen for help with this effort.
