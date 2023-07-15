@@ -791,35 +791,44 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
   }
 
+  /** @override */
   _onDragStart(event) {
+    // Most of this is the standard Foundry implementation of _onDragStart
     const li = event.currentTarget;
-    if ( event.target.classList.contains("entity-link") ) return;
+    if ( event.target.classList.contains("content-link") ) return;
 
     // Create drag data
-    let dragData = {
-      actorId: this.actor.id,
-      sceneId: this.actor.isToken ? canvas.scene?.id : null,
-      tokenId: this.actor.isToken ? this.actor.token.id : null
-    };
+    let dragData;
 
     // Owned Items
     if ( li.dataset.itemId ) {
       const item = this.actor.items.get(li.dataset.itemId);
-      dragData.type = "Item";
-      dragData = item;
+      dragData = item.toDragData();
     }
 
     // Active Effect
     if ( li.dataset.effectId ) {
       const effect = this.actor.effects.get(li.dataset.effectId);
-      dragData.type = "ActiveEffect";
-      dragData = effect;
+      dragData = effect.toDragData();
+    }
+
+    if ( !dragData ) return;
+
+    // this is custom, grab item data for creating item macros on the hotbar
+    if ( li.dataset.itemId ) {
+      const item = this.actor.items.get(li.dataset.itemId);
+      dragData.itemData = item;
     }
 
     // Set data transfer
     event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
   }
-  
+
+  /** @override */
+  _onDrop(event){
+    super._onDrop(event);
+  }
+
   activateEditor(target, editorOptions, initialContent) {
     editorOptions.content_css = "./systems/deltagreen/css/editor.css";
     return super.activateEditor(target, editorOptions, initialContent);

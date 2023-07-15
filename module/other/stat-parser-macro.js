@@ -1,7 +1,10 @@
-
+// call this within a world as: game.deltagreen.ParseDeltaGreenStatBlock()
 function GetTypeSkillRatingsFromInput(inputText){
     
     let matchStr = "(Art|Craft|Foreign Language|Native Language|Military Science|Pilot|Science)\\s?\\((\\w.*?)\\)\\s?(\\d?\\d)%";
+
+    inputText = inputText.replace(/[\n\r]/g, ' ')
+
     let re = new RegExp(matchStr, "gi");
     
     let matches = [];
@@ -94,7 +97,7 @@ async function RegexParseNpcStatBlock(inputStr, actorType){
     if(actorType === 'agent'){
         actorData.data.physical = {description: shortDescription, wounds: "", firstAidAttempted: false}
     }
-    else if(actorType === 'npc'){
+    else if(actorType === 'npc' || actorType === 'unnatural'){
         actorData.data.shortDescription = shortDescription;
     }
     
@@ -125,6 +128,12 @@ async function RegexParseNpcStatBlock(inputStr, actorType){
     actorData.data.skills.disguise = {"label": "Disguise", proficiency: GetSkillRatingsFromInput(inputStr, "DISGUISE"), failure: false};
     actorData.data.skills.dodge = {"label": "Dodge", proficiency: GetSkillRatingsFromInput(inputStr, "DODGE"), failure: false};
     actorData.data.skills.drive = {"label": "Drive", proficiency: GetSkillRatingsFromInput(inputStr, "DRIVE"), failure: false};
+
+    // Impossible Landscapes seems to favor 'Driving' as the name for this instead for some
+    if(actorData.data.skills.drive.proficiency === 0){
+        actorData.data.skills.drive = {"label": "Drive", proficiency: GetSkillRatingsFromInput(inputStr, "DRIVING"), failure: false};
+    }
+
     actorData.data.skills.firearms = {"label": "Firearms", proficiency: GetSkillRatingsFromInput(inputStr, "FIREARMS"), failure: false};
     actorData.data.skills.first_aid = {"label": "First Adi", proficiency: GetSkillRatingsFromInput(inputStr, "FIRST AID"), failure: false};
     actorData.data.skills.forensics = {"label": "Forensics", proficiency: GetSkillRatingsFromInput(inputStr, "FORENSICS"), failure: false};
@@ -150,6 +159,11 @@ async function RegexParseNpcStatBlock(inputStr, actorType){
     actorData.data.skills.unarmed_combat = {"label": "Unarmed Combat", proficiency: GetSkillRatingsFromInput(inputStr, "UNARMED COMBAT"), failure: false};
     actorData.data.skills.unnatural = {"label": "Unnatural", proficiency: GetSkillRatingsFromInput(inputStr, "UNNATURAL"), failure: false};
 
+    // some npcs/unnatural have other skills
+    if(GetSkillRatingsFromInput(inputStr, "FLIGHT") > 0){
+        actorData.data.skills.flight = {"label": "Flight", proficiency: GetSkillRatingsFromInput(inputStr, "FLIGHT"), failure: false};
+    }
+    
     arr = GetTypeSkillRatingsFromInput(inputStr);
 
     for (let index = 0; index < arr.length; ++index) {

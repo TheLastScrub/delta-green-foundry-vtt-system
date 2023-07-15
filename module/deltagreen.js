@@ -7,6 +7,7 @@ import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat
 import { registerSystemSettings } from "./settings.js"
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { ParseDeltaGreenStatBlock } from "./other/stat-parser-macro.js";
+import { localizeWithFallback } from "./other/utility-functions.js";
 
 Hooks.once('init', async function() {
 
@@ -45,6 +46,10 @@ Hooks.once('init', async function() {
   preloadHandlebarsTemplates();
 
   // Add Handlebars helpers
+  Handlebars.registerHelper('localizeWithFallback', function(value, fallbackValue) {
+    return localizeWithFallback(value, fallbackValue);
+  });
+
   Handlebars.registerHelper('concat', function() {
     var outStr = '';
     for (var arg in arguments) {
@@ -357,9 +362,9 @@ Hooks.on('createActor', async function(actor, options, userId){
  * @returns {Promise}
  */
 async function createDeltaGreenMacro(data, slot) {
-  if (data.type !== "weapon") return;
+  if (data.type = "Item" && data.itemData.type !== "weapon") return;
   //if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
-  const item = data.system;
+  const item = data.itemData.system;
 
   // Create the macro command
   let command = '// Uncomment line below to also roll skill check if desired.'
@@ -369,9 +374,9 @@ async function createDeltaGreenMacro(data, slot) {
   //let macro = game.macros.entities.find(m => (m.name === data.name) && (m.command === command));
   //if (!macro) {
   let macro = await Macro.create({
-      name: data.name,
+      name: data.itemData.name,
       type: "script",
-      img: data.img,
+      img: data.itemData.img,
       command: command,
       flags: { "deltagreen.itemMacro": true }
     });

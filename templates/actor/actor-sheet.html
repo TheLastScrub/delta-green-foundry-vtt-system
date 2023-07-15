@@ -95,15 +95,15 @@
             <div class="grid grid-3col">
 
               {{#each actor.system.skills as |skill key|}}
-
+              
                 <div class="flexrow flex-group-center">
                   <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{localize (concat 'DG.Skills.' key)}}" for="system.skills.{{key}}.value" 
                       {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
                       {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}}
                     >
-                    {{ localize (concat "DG.Skills." key) }}
+                    {{localizeWithFallback (concat "DG.Skills." key) skill.label }}
                   </label>
-
+                  
                   {{#if_eq key 'ritual' }}
 
                     {{#if (keepSanityPrivate)}}
@@ -298,7 +298,7 @@
               {{#each actor.items as |item id|}}
                 {{#if_eq item.type 'weapon'}}
                   
-                  <li class="item flexrow" data-item-id="{{item.id}}">
+                  <li class="item flexrow" data-item-id="{{item._id}}">
                     <div 
                       class="item-image rollable"
                       data-roll="d100"
