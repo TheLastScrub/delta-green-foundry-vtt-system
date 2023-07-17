@@ -205,7 +205,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
     // Rollable abilities - bind to everything with the 'Rollable' class
     //html.find('.rollable').click(this._onRoll.bind(this));
-    html.find('.rollable').mousedown(this._onRoll.bind(this));
+    html.find('.rollable').click(this._onRoll.bind(this));
 
     // Macro for toggling an item's equipped state
     html.find('.equipped-item').mousedown(this._onEquippedStatusChange.bind(this));
@@ -825,8 +825,18 @@ export class DeltaGreenActorSheet extends ActorSheet {
   }
 
   /** @override */
-  _onDrop(event){
+  async _onDrop(event){
     super._onDrop(event);
+    // If alt key is held down, we will delete the original document.
+    if (event.altKey) {
+      // This is from Foundry. It will get the item data from the event.
+      const dragData = TextEditor.getDragEventData(event);
+      // Make sure that we are dragging an item, otherwise this doesn't make sense.
+      if (dragData.type = "Item") {
+        const item = fromUuidSync(dragData.uuid);
+        await item.delete()
+      }
+    }
   }
 
   activateEditor(target, editorOptions, initialContent) {
