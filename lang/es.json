@@ -243,5 +243,16 @@
     "DG.VehicleSheet.NotesTabName": "Notes",
     "DG.VehicleSheet.GearTabName": "Gear",
     "DG.VehicleSheet.NotesLabel": "NOTES",
-    "DG.VehicleSheet.DescriptionPlaceHolder": "Vehicle Description"
+    "DG.VehicleSheet.DescriptionPlaceHolder": "Vehicle Description",
+
+    "TYPES.Actor.agent": "Agent",
+    "TYPES.Actor.unnatural": "Unnatural",
+    "TYPES.Actor.npc": "NPC",
+    "TYPES.Actor.vehicle": "Vehicle",
+
+    "TYPES.Item.weapon": "Weapon",
+    "TYPES.Item.armor": "Armor",
+    "TYPES.Item.motivation": "Motivation",
+    "TYPES.Item.bond": "Bond",
+    "TYPES.Item.gear": "Gear"
 }
