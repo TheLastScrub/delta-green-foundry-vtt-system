@@ -1,9 +1,9 @@
 ## Release/Patch Notes
 
-### Version 1.2.1 - 2023-07-20
+### Version 1.2.2 - 2023-07-20
 
-* Enhancement [Github #76] - Jailensailen added drag drop functionality to items. If you hold alt and drag, it will automatically delete the item from the original sheet. Otherwise, it will duplicate the item.
-* Fix [Github #74] - Jailensailen fixed issue with Portuguese (Brasil) translation.
+* Enhancement [Github #76] - jalensailin added drag drop functionality to items. If you hold alt and drag, it will automatically delete the item from the original sheet. Otherwise, it will duplicate the item.
+* Fix [Github #74] - jalensailin fixed issue with Portuguese (Brasil) translation.
 
 ### Version 1.2.0 - 2023-06-28 [BREAKING CHANGE: THIS VERSION FORWARD COMPATIBLE WITH FOUNDRY V11 OR HIGHER ONLY!]
 
