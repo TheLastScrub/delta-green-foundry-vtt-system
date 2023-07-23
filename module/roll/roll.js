@@ -14,6 +14,8 @@ export async function sendPercentileTestToChat(actor, skill, target, rollMode){
   let resultString = '';
   let styleOverride = '';
 
+  let skillName = typeof skill === "string" ? skill : game.i18n.localize(skill.label).toUpperCase();
+
   if(rollMode == null || rollMode === ""){
     rollMode = game.settings.get("core", "rollMode"); 
   }
@@ -23,7 +25,7 @@ export async function sendPercentileTestToChat(actor, skill, target, rollMode){
 
   setting = game.settings.get("deltagreen", "keepSanityPrivate");
 
-  if(setting === true && (skill === 'SAN' || skill === 'RITUAL') && !game.user.isGM){
+  if(setting === true && (skillName === 'SAN' || skillName === 'RITUAL') && !game.user.isGM){
     rollMode = 'blindroll';
   }
 
@@ -32,9 +34,9 @@ export async function sendPercentileTestToChat(actor, skill, target, rollMode){
   // For an inhuman check, the roll succeeds except on a roll of 100 which fails AND fumbles.
   // If the roll is a matching digit roll, it is a critical as normal.
   // Also, if the roll is below the regular (non-x5) value of the stat, it is a critical.  E.g. a CON of 25, a d100 roll of 21 would be a critical.
-  if(target > 99 && skillIsStatTest(skill)){
+  if(target > 99 && skillIsStatTest(skillName)){
 
-    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${skill} [${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${Math.floor(target / 5)}`;
+    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${skillName} [${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${Math.floor(target / 5)}`;
 
     if(total === 100){
       // only possible fail criteria, and also a fumble.
@@ -57,7 +59,8 @@ export async function sendPercentileTestToChat(actor, skill, target, rollMode){
   }
   else{
 
-    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${skill}</b> ${game.i18n.localize("DG.Roll.Target")} ${target}`;
+    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${skillName}</b> ${game.i18n.localize("DG.Roll.Target")} ${target}`;
+    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${skillName}</b> ${game.i18n.localize("DG.Roll.Target")} ${target}`;
 
     isCritical = skillCheckResultIsCritical(total);
 
@@ -80,6 +83,18 @@ export async function sendPercentileTestToChat(actor, skill, target, rollMode){
     }
   }
   else{
+    let skillSlug = `system.skills.${skill.key}.failure`;
+    if (typeof skill === "object") {      
+      if (typeof skill.cannotBeImprovedByFailure === "undefined") {
+        skill.typedSkill = true;
+      }
+      if (actor.type === "agent" && !skill.cannotBeImprovedByFailure) {
+        if (skill.typedSkill) {
+          skillSlug = `system.typedSkills.${skill.key}.failure`
+        }
+        await actor.update({ [skillSlug]: true});
+      }
+    }
     resultString += `${game.i18n.localize("DG.Roll.Failure")}`;
 
     if(isCritical){

@@ -567,6 +567,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       let label = dataset.label ? `${dataset.label}` : '';
       let targetVal = "";
       let rollType = dataset.rolltype ? dataset.rolltype : '';
+      const skillKey = dataset.skillkey;
       
       let isDamageRoll = false;
       let isLethalityRoll = false;
@@ -578,9 +579,17 @@ export class DeltaGreenActorSheet extends ActorSheet {
       if(rollType === "skill" || rollType === "typeskill"){
         targetVal = dataset.target;
         label = game.i18n.localize(label).toUpperCase();
+        if (this.actor.type === "agent") {
+          label = this.actor.system.skills[skillKey] || this.actor.system.typedSkills[skillKey];
+          label.key = skillKey;
+        }
       }
       else if(rollType === "weaponskill"){
         targetVal = dataset.target;        
+        label = this.actor.system.skills[targetVal];
+        if (label) {
+          label.key = targetVal;
+        }
 
         // some weapons randomly can just use dexterity x5, so try to trap on that
         // otherwise roll a regular skill test
@@ -609,7 +618,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
           targetVal = this.actor.system.statistics.cha.x5;
         }
         else{
-          label = game.i18n.localize("DG.Skills." + targetVal).toUpperCase();          
+          // label = game.i18n.localize("DG.Skills." + targetVal).toUpperCase();          
           targetVal = this.actor.system.skills[targetVal].proficiency;                    
         }
       }
