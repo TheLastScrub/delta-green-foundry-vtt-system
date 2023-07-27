@@ -76,11 +76,11 @@
     "DG.Attributes.cha": "CHA",
 
     "DG.Navigation.Skills": "Skills",
-    "DG.Navigation.Physical": "Physical",
-    "DG.Navigation.Mental": "Mental",
-    "DG.Navigation.Gear": "Gear",
-    "DG.Navigation.CV": "C.V.",
-    "DG.Navigation.Contacts": "Contacts",
+    "DG.Navigation.Physical": "Statistics",
+    "DG.Navigation.Mental": "Psychological",
+    "DG.Navigation.Gear": "Equipment",
+    "DG.Navigation.CV": "Personal",
+    "DG.Navigation.Contacts": "Bonds",
 
     "DG.About.OnlineHelp": "Open System Documentation on (ONLINE)",
     "DG.About.OnlineHelpTooltip": "Launch browser with online GitHub help.",
