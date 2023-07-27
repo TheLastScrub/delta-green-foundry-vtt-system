@@ -143,6 +143,7 @@
     "DG.Tooltip.AdaptedToViolence": "Estar adaptado à violência significa que a empatia do seu agente sofre quando eles veem a violência como nada além de outra ferramenta a ser usada. O agente perde permanentemente 1D6 CAR e a mesma quantia de cada um de seus vínculos.",
     "DG.Tooltip.AdaptedToHelplessness": "Estar adaptado ao desamparo significa que a motivação pessoal do seu agente sofre à medida que ele se afasta do mundo ao seu redor. Assim que seu Agente se adaptar ao desamparo, o agente perde permanentemente 1D6 de POD.",
     "DG.Tooltip.ToggleEquippedState": "Clique para alternar se este item está equipado ou não.",
+    "DG.Gear.Expense.NA": "N/A",
     "DG.Gear.Expense.Incidental": "Incidental",
     "DG.Gear.Expense.Standard": "Padrão",
     "DG.Gear.Expense.Unusual": "Incomum",

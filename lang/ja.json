@@ -160,6 +160,7 @@
     "DG.Tooltip.AdaptedToHelplessness": "すべてが無意味と理解し、もう無力の精神ダメージはうけないが、執行するドライブが下がって、永遠に１D6判断力を失ってしまう。",
     "DG.Tooltip.ToggleEquippedState": "クリックすると、この装備を着るる／外す。",
 
+    "DG.Gear.Expense.NA": "N/A",
     "DG.Gear.Expense.Incidental": "付帯費用",
     "DG.Gear.Expense.Standard": "普通",
     "DG.Gear.Expense.Unusual": "普通でない",

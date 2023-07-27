@@ -160,6 +160,7 @@
     "DG.Tooltip.AdaptedToHelplessness": "Estar adaptado a la impotencia significa que el impulso personal de su Agente sufre cuando se aleja del mundo que lo rodea. Tan pronto como su Agente se adapte a la indefensión, perderá permanentemente 1D6 POD. ",
     "DG.Tooltip.ToggleEquippedState": "Haga clic para alternar si este artículo está equipado o no. ",
 
+    "DG.Gear.Expense.NA": "N/A",
     "DG.Gear.Expense.Incidental": "Incidental",
     "DG.Gear.Expense.Standard": "Estándar",
     "DG.Gear.Expense.Unusual": "Inusual",

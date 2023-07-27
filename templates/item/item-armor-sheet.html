@@ -11,6 +11,7 @@
                         
           <span class="resource-label">{{localize 'DG.ItemWindow.Armor.Expense'}}:</span>
           <select name="system.expense" >
+            <option {{#if_eq item.system.expense 'NA'}}selected{{/if_eq}} value="NA">{{localize 'DG.Gear.Expense.NA'}}</option>
             <option {{#if_eq item.system.expense 'Incidental'}}selected{{/if_eq}} value="Incidental">{{localize 'DG.Gear.Expense.Incidental'}}</option>
             <option {{#if_eq item.system.expense 'Standard'}}selected{{/if_eq}} value="Standard">{{localize 'DG.Gear.Expense.Standard'}}</option>
             <option {{#if_eq item.system.expense 'Unusual'}}selected{{/if_eq}} value="Unusual">{{localize 'DG.Gear.Expense.Unusual'}}</option>
