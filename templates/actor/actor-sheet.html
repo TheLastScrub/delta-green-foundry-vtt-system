@@ -499,50 +499,9 @@
 
         {{!-- About Tab --}}
         <div class="tab about" data-group="primary" data-tab="about">
-          <div class="about-section-header">
-            
-          </div>
-          <div class="flex horizontal-flex-column">
-            <div>
-              <a class="fas fa-question-circle" 
-                title="{{localize 'DG.About.OnlineHelpTooltip'}}" 
-                href="https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/blob/master/documentation/home.md"> 
-                  {{localize 'DG.About.OnlineHelp'}}
-              </a>
-            </div>
-            <div>
-              <a class="fas fa-bug" 
-                title="{{localize 'DG.About.OnlineBugTrackerTooltip'}}" 
-                href="https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/issues"> 
-                {{localize 'DG.About.OnlineBugTracker'}}
-              </a>
-            </div>
-            <div>
-              <a class="fas fa-plus-circle" 
-                title="CHANGELOG (ONLINE)" 
-                href="https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/blob/master/CHANGELOG.md"> 
-                CHANGELOG (ONLINE)
-              </a>
-            </div>
-            <br>
-            <div>
-              <span style="font-weight: bold;">This is an <span style="font-style: italic">unofficial</span> fan work, it is not affiliated with or endorsed by Shaney Ivey or Arc Dream Publishing.</span>
-            </div>
-            <br>
-            <div>
-              <span style="font-weight: bold;">Delta Green Community License (NONCOMMERCIAL)</span>
-              <p>
-                 Published by arrangement with the Delta Green Partnership. 
-                 The intellectual property known as Delta Green is a trademark and copyright owned by the Delta Green Partnership, who has licensed its use here.
-              </p>
-              <p>
-                 The contents of this system are licensed per the terms of the included <a href="systems/deltagreen/LICENSE.txt">license</a> file, excepting those elements that are components of the Delta Green intellectual property.
-              </p>
-              <p>
-                Some content may additionally also be covered under the terms of the <a href="systems/deltagreen/OGL-v1.0a.txt">Open Game License</a> (Copyright 2000 Wizards of the Coast, Inc.).
-              </p>
-            </div>
-          </div>
+          
+          {{> "systems/deltagreen/templates/actor/help-and-licensing-partial.html" }}
+
         </div>
 
     </section>
