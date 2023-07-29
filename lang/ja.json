@@ -247,5 +247,7 @@
     "DG.VehicleSheet.DescriptionPlaceHolder": "",
 
     "DG.Generic.CheckDamagedBondsBoxUntilNextHomeScene": "すぎのホーム・シーヌまで、傷つけた絆のボックスにチェクを",
-    "DG.Generic.ClearAll": "全てのチェックを消す"
+    "DG.Generic.ClearAll": "全てのチェックを消す",
+
+    "DG.Generic.SanDamage": "SAN ダメージ"
 }

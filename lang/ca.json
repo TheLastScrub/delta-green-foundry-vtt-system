@@ -247,5 +247,7 @@
     "DG.VehicleSheet.DescriptionPlaceHolder": "Vehicle Description",
 
     "DG.Generic.CheckDamagedBondsBoxUntilNextHomeScene": "Check a damaged Bond's box until the next Home Scene ends.",
-    "DG.Generic.ClearAll": "Clear All"
+    "DG.Generic.ClearAll": "Clear All",
+
+    "DG.Generic.SanDamage": "SAN Damage"
 }

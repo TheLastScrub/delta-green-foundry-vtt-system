@@ -252,7 +252,7 @@ export async function sendDamageRollToChat(actor, label, diceFormula, rollMode){
     label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${game.i18n.localize("DG.Roll.Damage").toUpperCase()}</b> ${game.i18n.localize("DG.Roll.For")} <b>${label.toUpperCase()}</b>`;
   }
   catch{
-    label = `Rolling <b>DAMAGE</b> for <b>${label.toUpperCase()}</b>`
+    label = `Rolling <b>DAMAGE</b> for <b>${label.toUpperCase()}</b>`;
   }
 
   let chatData = {
@@ -269,6 +269,45 @@ export async function sendDamageRollToChat(actor, label, diceFormula, rollMode){
 
   ChatMessage.create(chatData, {});
 
+}
+
+export async function sendSanityDamageToChat(actor, label, lowFormula, highFormula, rollMode){
+
+  if(rollMode == null || rollMode === ""){
+    rollMode = game.settings.get("core", "rollMode");
+  }
+
+  //console.log(`Low: ${lowFormula} High: ${highFormula}`)
+
+  // try to do both rolls as one, so that when sent to chat, Dice So Nice will roll both
+  let combinedRoll = new Roll('{'+lowFormula + ',' + highFormula + '}', actor.system);
+
+  await combinedRoll.evaluate({async: true});
+  
+  let flavor = `<h3>Rolling ${localizeWithFallback('DG.Generic.SanDamage', 'SAN DAMAGE')} (${lowFormula}/${highFormula})</h3>`;
+  
+  let lowResult = "";
+  let highResult = "";
+  console.log(combinedRoll);
+  
+  lowResult = combinedRoll.terms[0].results[0].result;
+  highResult = combinedRoll.terms[0].results[1].result;
+
+  let html = `<h4><b>${lowResult} / ${highResult}</b></h4>`;
+
+  let chatData = {
+    speaker: ChatMessage.getSpeaker({actor: actor}),
+    content: html,
+    flavor: flavor,
+    type: 5, //CHAT_MESSAGE_TYPES.ROLL,
+    roll: combinedRoll,
+    rollMode: rollMode
+  };
+
+  // play the dice rolling sound, like a regular in-chat roll
+  AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
+
+  ChatMessage.create(chatData, {});
 }
 
 export async function showModifyPercentileTestDialogue(actor, label, originalTarget, isLethalityTest){

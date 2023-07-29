@@ -1,4 +1,11 @@
-import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat, showModifyPercentileTestDialogue, showModifyDamageRollDialogue } from "../roll/roll.js"
+import { 
+  sendPercentileTestToChat, 
+  sendLethalityTestToChat, 
+  sendDamageRollToChat, 
+  showModifyPercentileTestDialogue, 
+  showModifyDamageRollDialogue,
+  sendSanityDamageToChat
+} from "../roll/roll.js"
 /**
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
@@ -506,7 +513,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     let d = new Date();
 
     let newSkillPropertyName = d.getFullYear().toString() + (d.getMonth() + 1).toString() + d.getDate().toString() + d.getHours().toString() + d.getMinutes().toString() + d.getSeconds().toString();
-    console.log(newSkillPropertyName);
+    //console.log(newSkillPropertyName);
     typedSkills[newSkillPropertyName] = {"label": newSkillLabel, "group": newSkillGroup, "proficiency": 10, "failure": false};
 
     updatedData.typedSkills = typedSkills;
@@ -593,6 +600,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       
       let isDamageRoll = false;
       let isLethalityRoll = false;
+      let isSanityDamageRoll = false;
       
       // if shift-click or right click, bring up roll editor dialog
       let requestedModifyRoll = (event && event.shiftKey || event.which === 3); //(event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
@@ -655,6 +663,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
         isLethalityRoll = true;
         targetVal = dataset.target;
       }
+      else if(rollType === 'sanity-damage'){
+        isSanityDamageRoll = true;
+      }
 
       if(isDamageRoll){
 
@@ -671,6 +682,13 @@ export class DeltaGreenActorSheet extends ActorSheet {
         else{
           sendDamageRollToChat(this.actor, label, diceFormula, game.settings.get("core", "rollMode"));
         }
+      }
+      else if(isSanityDamageRoll){
+
+        let lowRollFormula = dataset.roll;
+        let highRollFormula = dataset.roll2;
+
+        sendSanityDamageToChat(this.actor, label, lowRollFormula, highRollFormula, game.settings.get("core", "rollMode"))
       }
       else{
         if(requestedModifyRoll){
