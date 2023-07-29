@@ -1,7 +1,12 @@
-# IDE
-.idea/
-.vs/
-
-# Node Modules
-node_modules/
-npm-debug.log
+packs/armor
+packs/armor*
+packs/firearms
+packs/firearms*
+packs/hand-to-hand-weapons
+packs/hand-to-hand-weapons*
+packs/operation-code-name-generator
+packs/operation-code-name-generator*
+packs/operation-code-name-generator-macro
+packs/operation-code-name-generator-macro*
+packs/pregens
+packs/pregens*
