@@ -568,7 +568,8 @@
                 "base"
             ],
             "score": 10,
-            "relationship": ""
+            "relationship": "?",
+            "hasBeenDamagedSinceLastHomeScene": false
         },
         "gear":{
             "templates":["base"],

@@ -345,7 +345,30 @@ export class DeltaGreenActorSheet extends ActorSheet {
     html.find('.toggle-lethality').click(event => {
       this._toggleLethality(event);
     });
-    
+
+    // let user check off the 'bond damaged' checkbox right from the sheet
+    html.find('.bond-has-been-damaged-agent-sheet-checkbox').click(ev => {
+        
+      const el = $(ev.currentTarget).parents(".item");
+      const item = this.actor.items.get(el.data('item-id'));
+      let value = ev.target.checked;
+
+      item.update({["system.hasBeenDamagedSinceLastHomeScene"]: value});
+
+    });
+
+    html.find('.clear-all-bond-damage-checks').click(ev => {
+      this._updateBondsRemoveAllDamagedCheckmarks();
+    });
+  }
+
+  // trigger an update on all bonds that have had their damaged flag checked off
+  async _updateBondsRemoveAllDamagedCheckmarks(){
+    for(let i of this.actor.items){
+      if(i.type === 'bond' && i.system.hasBeenDamagedSinceLastHomeScene){
+        await i.update({["system.hasBeenDamagedSinceLastHomeScene"]: false});
+      }
+    }
   }
 
   _toggleLethality(event) {

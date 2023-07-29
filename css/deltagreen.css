@@ -329,6 +329,14 @@ section.window-content{
   margin-right: 5px;
 }
 
+.deltagreen .items-list .item .item-icon {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 24px;
+  flex: 0 0 24px;
+  margin-left: 6px;
+  
+}
+
 .deltagreen .items-list .item img {
   display: block;
 }
@@ -671,6 +679,12 @@ input.item-sheet-short-input{
   margin-right: 5px;
   margin-left: 5px;
   text-align: center !important;
+}
+
+.item-grid-button-row{
+  vertical-align: middle !important;
+  line-height: inherit;
+  padding: 5px 0px 0px 10px;
 }
 
 /*
