@@ -244,5 +244,8 @@
     "DG.VehicleSheet.NotesTabName": "ノート",
     "DG.VehicleSheet.GearTabName": "装備",
     "DG.VehicleSheet.NotesLabel": "ノート",
-    "DG.VehicleSheet.DescriptionPlaceHolder": ""
+    "DG.VehicleSheet.DescriptionPlaceHolder": "",
+
+    "DG.Generic.CheckDamagedBondsBoxUntilNextHomeScene": "すぎのホーム・シーヌまで、傷つけた絆のボックスにチェクを",
+    "DG.Generic.ClearAll": "全てのチェックを消す"
 }

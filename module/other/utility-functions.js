@@ -8,13 +8,17 @@ export function localizeWithFallback(key, fallback){
             return translatedValue;
         }
         else{
+            
+            console.warn(`Untranslated localization key '${key}'.`);
+
             // can't have single quotes in a handlebars string literal input, so sort of hack in an escape character for them.
             fallback = fallback.replace("&#39;", "'");
+
             return fallback;
         }
     }
     catch(ex){
-        console.log(ex);
+        console.warn(ex);
         return fallback;
     }
 }

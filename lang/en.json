@@ -250,5 +250,8 @@
     "DG.VehicleSheet.NotesTabName": "Notes",
     "DG.VehicleSheet.GearTabName": "Gear",
     "DG.VehicleSheet.NotesLabel": "NOTES",
-    "DG.VehicleSheet.DescriptionPlaceHolder": "Vehicle Description"
+    "DG.VehicleSheet.DescriptionPlaceHolder": "Vehicle Description",
+
+    "DG.Generic.CheckDamagedBondsBoxUntilNextHomeScene": "Check a damaged Bond's box until the next Home Scene ends.",
+    "DG.Generic.ClearAll": "Clear All"
 }
