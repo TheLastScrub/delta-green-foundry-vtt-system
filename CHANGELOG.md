@@ -1,5 +1,14 @@
 ## Release/Patch Notes
 
+### Version 1.2.3 - 2023-08-03 
+
+The system is now officially recognized by Arc Dream!
+
+* Enhancement[GitHub #77] - Changed some English localization labels and the legalese, per Arc Dream's request.
+* Fix - Fixed layout bug on bond sheet.
+* Enhancement[GitHub #78] - Added checkbox to bonds on the Agent sheet that you can use to indicate if the bond has been damaged since the last home scene. Also added a button to allow clearing the checkbox on all bonds.
+* Enhancement [GitHub #80] - Can now roll SAN Damage from unnatural sheet
+
 ### Version 1.2.2 - 2023-07-20
 
 * Enhancement [Github #76] - jalensailin added drag drop functionality to items. If you hold alt and drag, it will automatically delete the item from the original sheet. Otherwise, it will duplicate the item.
