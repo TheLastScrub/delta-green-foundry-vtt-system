@@ -263,6 +263,18 @@ Handlebars.registerHelper('playerHasGamemasterPrivileges', function(){
   return game.user.isGM;
 });
 
+Handlebars.registerHelper('showImpossibleLandscapesContent', function() {
+
+  let result = false;
+  let setting = game.settings.get("deltagreen", "showImpossibleLandscapesContent");
+
+  if(game.user.isGM === true && setting === true){
+    result = true;
+  }
+  
+  return result
+});
+
 Hooks.once("ready", async function() {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => createDeltaGreenMacro(data, slot));

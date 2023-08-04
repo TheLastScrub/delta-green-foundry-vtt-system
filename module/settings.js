@@ -62,6 +62,13 @@ export const registerSystemSettings = function() {
       }
     });
 
-  
+    game.settings.register('deltagreen', 'showImpossibleLandscapesContent', {
+      name: "Show Impossible Landscapes Content",
+      hint: "Show Impossible Landscapes-specific fields from character sheets.",
+      scope: "world",
+      config: true,
+      type: Boolean,
+      default: true
+    });
 
 }
