@@ -1,6 +1,6 @@
 ## Release/Patch Notes
 
-### Version 1.2.3 - 2023-08-03 
+### Version 1.2.4 - 2023-08-03 
 
 The system is now officially recognized by Arc Dream!
 
@@ -8,6 +8,7 @@ The system is now officially recognized by Arc Dream!
 * Fix - Fixed layout bug on bond sheet.
 * Enhancement[GitHub #78] - Added checkbox to bonds on the Agent sheet that you can use to indicate if the bond has been damaged since the last home scene. Also added a button to allow clearing the checkbox on all bonds.
 * Enhancement [GitHub #80] - Can now roll SAN Damage from unnatural sheet
+* Enhancement [GitHub #81] - You can now hide the Impossible Landscapes specific fields from the Agent's sheet by changing a system setting.
 
 ### Version 1.2.2 - 2023-07-20
 
