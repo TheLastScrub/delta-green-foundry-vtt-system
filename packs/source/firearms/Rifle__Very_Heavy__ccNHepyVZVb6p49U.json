@@ -1,0 +1,26 @@
+{
+  "name": "Rifle (Very Heavy)",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "<p>Use lethality rating (10%) if firing bursts.&nbsp; Heavier rounds inflict 1D12+1 damage.</p>",
+    "skill": "firearms",
+    "range": "250M",
+    "damage": "2D10",
+    "armorPiercing": 5,
+    "lethality": 20,
+    "isLethal": true,
+    "killRadius": "N/A",
+    "ammo": "",
+    "expense": "Major"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/fn-fal.svg",
+  "_id": "ccNHepyVZVb6p49U",
+  "effects": [],
+  "_key": "!items!ccNHepyVZVb6p49U"
+}

@@ -1,0 +1,829 @@
+{
+  "name": "Codename Generator - Adjective",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Generate part of an operation codename, getting an adjective to use for it.",
+  "results": [
+    {
+      "_id": "3vFJaAHyKrureAH7",
+      "type": 0,
+      "text": "Able",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 1,
+      "rangeH": 1,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.3vFJaAHyKrureAH7"
+    },
+    {
+      "_id": "LHDjvLcHKKArwXHV",
+      "type": 0,
+      "text": "Acid",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 2,
+      "rangeH": 2,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.LHDjvLcHKKArwXHV"
+    },
+    {
+      "_id": "RhVSr9sXXWkKZsPS",
+      "type": 0,
+      "text": "Active",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 3,
+      "rangeH": 3,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.RhVSr9sXXWkKZsPS"
+    },
+    {
+      "_id": "EDkdDQMhoiIbifqq",
+      "type": 0,
+      "text": "Assured",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 4,
+      "rangeH": 4,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.EDkdDQMhoiIbifqq"
+    },
+    {
+      "_id": "ys6PlfT6lxFv1tQR",
+      "type": 0,
+      "text": "Aztec",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 5,
+      "rangeH": 5,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.ys6PlfT6lxFv1tQR"
+    },
+    {
+      "_id": "1Ldo4EEmWB6os3Ab",
+      "type": 0,
+      "text": "Big",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 6,
+      "rangeH": 6,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.1Ldo4EEmWB6os3Ab"
+    },
+    {
+      "_id": "76EE4y0lT74oyhQr",
+      "type": 0,
+      "text": "Bumpy",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 7,
+      "rangeH": 7,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.76EE4y0lT74oyhQr"
+    },
+    {
+      "_id": "Ofe2mQxCfySOL3Uv",
+      "type": 0,
+      "text": "Burnt",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 8,
+      "rangeH": 8,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.Ofe2mQxCfySOL3Uv"
+    },
+    {
+      "_id": "mNqlFIylC4ouykEs",
+      "type": 0,
+      "text": "Calm",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 9,
+      "rangeH": 9,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.mNqlFIylC4ouykEs"
+    },
+    {
+      "_id": "m74VHL3GepGwx8v1",
+      "type": 0,
+      "text": "Celestial",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 10,
+      "rangeH": 10,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.m74VHL3GepGwx8v1"
+    },
+    {
+      "_id": "YIAwGxOrtTopiCg9",
+      "type": 0,
+      "text": "Cold",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 11,
+      "rangeH": 11,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.YIAwGxOrtTopiCg9"
+    },
+    {
+      "_id": "ImlFOYRfeel93IJW",
+      "type": 0,
+      "text": "Constant",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 12,
+      "rangeH": 12,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.ImlFOYRfeel93IJW"
+    },
+    {
+      "_id": "TAnfBwEHV7scfDJE",
+      "type": 0,
+      "text": "Cryptic",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 13,
+      "rangeH": 13,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.TAnfBwEHV7scfDJE"
+    },
+    {
+      "_id": "rh5BbAhqDWkhsN9t",
+      "type": 0,
+      "text": "Crystal",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 14,
+      "rangeH": 14,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.rh5BbAhqDWkhsN9t"
+    },
+    {
+      "_id": "9afg0mnxhj2N0Azx",
+      "type": 0,
+      "text": "Dark",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 15,
+      "rangeH": 15,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.9afg0mnxhj2N0Azx"
+    },
+    {
+      "_id": "eZVp26gEGgirZMII",
+      "type": 0,
+      "text": "Dawn",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 16,
+      "rangeH": 16,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.eZVp26gEGgirZMII"
+    },
+    {
+      "_id": "7I0TTB2eFpLhMNos",
+      "type": 0,
+      "text": "Deep",
+      "weight": 1,
+      "range": [
+        17,
+        17
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 17,
+      "rangeH": 17,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.7I0TTB2eFpLhMNos"
+    },
+    {
+      "_id": "jPovWr3DGuifUBTy",
+      "type": 0,
+      "text": "Driving",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 18,
+      "rangeH": 18,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.jPovWr3DGuifUBTy"
+    },
+    {
+      "_id": "AiMTYQv0FjirNLNy",
+      "type": 0,
+      "text": "Empty",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 19,
+      "rangeH": 19,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.AiMTYQv0FjirNLNy"
+    },
+    {
+      "_id": "6gtitLBTExGbK6OO",
+      "type": 0,
+      "text": "Enduring",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 20,
+      "rangeH": 20,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.6gtitLBTExGbK6OO"
+    },
+    {
+      "_id": "E6jC9RX9ce6xyM9g",
+      "type": 0,
+      "text": "Flexible",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 21,
+      "rangeH": 21,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.E6jC9RX9ce6xyM9g"
+    },
+    {
+      "_id": "JLN8ikoDXTN6euXY",
+      "type": 0,
+      "text": "Frequent",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 22,
+      "rangeH": 22,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.JLN8ikoDXTN6euXY"
+    },
+    {
+      "_id": "rCZ0a91Z6Ephn7TC",
+      "type": 0,
+      "text": "Fluid",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 23,
+      "rangeH": 23,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.rCZ0a91Z6Ephn7TC"
+    },
+    {
+      "_id": "GCQzuYircPTtnl9D",
+      "type": 0,
+      "text": "Frozen",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 24,
+      "rangeH": 24,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.GCQzuYircPTtnl9D"
+    },
+    {
+      "_id": "9VEEO7JeKIEYOUvX",
+      "type": 0,
+      "text": "Gallant",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 25,
+      "rangeH": 25,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.9VEEO7JeKIEYOUvX"
+    },
+    {
+      "_id": "IHIlCrPP8TvczKyM",
+      "type": 0,
+      "text": "Glass",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 26,
+      "rangeH": 26,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.IHIlCrPP8TvczKyM"
+    },
+    {
+      "_id": "LwqxF4sGH33PGbRT",
+      "type": 0,
+      "text": "Have",
+      "weight": 1,
+      "range": [
+        27,
+        27
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 27,
+      "rangeH": 27,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.LwqxF4sGH33PGbRT"
+    },
+    {
+      "_id": "cmDVYkjpUNBE5suc",
+      "type": 0,
+      "text": "Hidden",
+      "weight": 1,
+      "range": [
+        28,
+        28
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 28,
+      "rangeH": 28,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.cmDVYkjpUNBE5suc"
+    },
+    {
+      "_id": "6OgLHBEZbCKz2QxC",
+      "type": 0,
+      "text": "High",
+      "weight": 1,
+      "range": [
+        29,
+        29
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 29,
+      "rangeH": 29,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.6OgLHBEZbCKz2QxC"
+    },
+    {
+      "_id": "VQp0awvtO1bMDrSa",
+      "type": 0,
+      "text": "Hot",
+      "weight": 1,
+      "range": [
+        30,
+        30
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 30,
+      "rangeH": 30,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.VQp0awvtO1bMDrSa"
+    },
+    {
+      "_id": "sAGg6E2vskHBbDHG",
+      "type": 0,
+      "text": "Infinite",
+      "weight": 1,
+      "range": [
+        31,
+        31
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 31,
+      "rangeH": 31,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.sAGg6E2vskHBbDHG"
+    },
+    {
+      "_id": "9TraznxEDZB4pW3q",
+      "type": 0,
+      "text": "Instant",
+      "weight": 1,
+      "range": [
+        32,
+        32
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 32,
+      "rangeH": 32,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.9TraznxEDZB4pW3q"
+    },
+    {
+      "_id": "TvNfEpw8le8zrkUI",
+      "type": 0,
+      "text": "Jagged",
+      "weight": 1,
+      "range": [
+        33,
+        33
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 33,
+      "rangeH": 33,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.TvNfEpw8le8zrkUI"
+    },
+    {
+      "_id": "voGPtulIRkPJ906c",
+      "type": 0,
+      "text": "Jolly",
+      "weight": 1,
+      "range": [
+        34,
+        34
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 34,
+      "rangeH": 34,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.voGPtulIRkPJ906c"
+    },
+    {
+      "_id": "NjAd8cg4NpoPxqhy",
+      "type": 0,
+      "text": "Juniper",
+      "weight": 1,
+      "range": [
+        35,
+        35
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 35,
+      "rangeH": 35,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.NjAd8cg4NpoPxqhy"
+    },
+    {
+      "_id": "W9Sz99LNQEdOxFEA",
+      "type": 0,
+      "text": "Keen",
+      "weight": 1,
+      "range": [
+        36,
+        36
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 36,
+      "rangeH": 36,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.W9Sz99LNQEdOxFEA"
+    },
+    {
+      "_id": "SaPGJVWMu447DZxd",
+      "type": 0,
+      "text": "Lazy",
+      "weight": 1,
+      "range": [
+        37,
+        37
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 37,
+      "rangeH": 37,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.SaPGJVWMu447DZxd"
+    },
+    {
+      "_id": "pupoeqiXYlQMkitF",
+      "type": 0,
+      "text": "Lost",
+      "weight": 1,
+      "range": [
+        38,
+        38
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 38,
+      "rangeH": 38,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.pupoeqiXYlQMkitF"
+    },
+    {
+      "_id": "9wHtVIn1QhNXAvxQ",
+      "type": 0,
+      "text": "Middle",
+      "weight": 1,
+      "range": [
+        39,
+        39
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 39,
+      "rangeH": 39,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.9wHtVIn1QhNXAvxQ"
+    },
+    {
+      "_id": "yj40oCqzpyINMHpC",
+      "type": 0,
+      "text": "Neon",
+      "weight": 1,
+      "range": [
+        40,
+        40
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 40,
+      "rangeH": 40,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.yj40oCqzpyINMHpC"
+    },
+    {
+      "_id": "GqJ2rRw7hoNFi6KU",
+      "type": 0,
+      "text": "Noble",
+      "weight": 1,
+      "range": [
+        41,
+        41
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 41,
+      "rangeH": 41,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.GqJ2rRw7hoNFi6KU"
+    },
+    {
+      "_id": "rUlTfslZyb5AULFn",
+      "type": 0,
+      "text": "Orient",
+      "weight": 1,
+      "range": [
+        42,
+        42
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 42,
+      "rangeH": 42,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.rUlTfslZyb5AULFn"
+    },
+    {
+      "_id": "T3RSQoWHaZrZW8zG",
+      "type": 0,
+      "text": "Pacific",
+      "weight": 1,
+      "range": [
+        43,
+        43
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 43,
+      "rangeH": 43,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.T3RSQoWHaZrZW8zG"
+    },
+    {
+      "_id": "Q4G8pgGIDcpbCHfk",
+      "type": 0,
+      "text": "Patient",
+      "weight": 1,
+      "range": [
+        44,
+        44
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 44,
+      "rangeH": 44,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.Q4G8pgGIDcpbCHfk"
+    },
+    {
+      "_id": "21Yhu19obQIXoIN8",
+      "type": 0,
+      "text": "Quick",
+      "weight": 1,
+      "range": [
+        45,
+        45
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 45,
+      "rangeH": 45,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.21Yhu19obQIXoIN8"
+    },
+    {
+      "_id": "gI6GjNkonRkWfyui",
+      "type": 0,
+      "text": "Prime",
+      "weight": 1,
+      "range": [
+        46,
+        46
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 46,
+      "rangeH": 46,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.gI6GjNkonRkWfyui"
+    },
+    {
+      "_id": "0EsAAKLYqur2Jbtf",
+      "type": 0,
+      "text": "Silent",
+      "weight": 1,
+      "range": [
+        47,
+        47
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 47,
+      "rangeH": 47,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.0EsAAKLYqur2Jbtf"
+    },
+    {
+      "_id": "Yv3qbQv2V8neEGEO",
+      "type": 0,
+      "text": "Swift",
+      "weight": 1,
+      "range": [
+        48,
+        48
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 48,
+      "rangeH": 48,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.Yv3qbQv2V8neEGEO"
+    },
+    {
+      "_id": "w2PqOP24oTyDxc4W",
+      "type": 0,
+      "text": "Upper",
+      "weight": 1,
+      "range": [
+        49,
+        49
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 49,
+      "rangeH": 49,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.w2PqOP24oTyDxc4W"
+    },
+    {
+      "_id": "r0vIeQ0pspNAReg1",
+      "type": 0,
+      "text": "Wild",
+      "weight": 1,
+      "range": [
+        50,
+        50
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 50,
+      "rangeH": 50,
+      "_key": "!tables.results!E5pMC6z88h7oJb9n.r0vIeQ0pspNAReg1"
+    }
+  ],
+  "formula": "1d50",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "permission": {
+    "default": 0,
+    "HQMGHY3GfipU1eSK": 3
+  },
+  "flags": {
+    "exportSource": {
+      "world": "dgtest",
+      "system": "deltagreen",
+      "coreVersion": "0.8.8",
+      "systemVersion": "1.0.0"
+    },
+    "core": {
+      "sourceId": "RollTable.5tDfr9vkTXO5z284"
+    }
+  },
+  "_id": "E5pMC6z88h7oJb9n",
+  "_key": "!tables!E5pMC6z88h7oJb9n"
+}

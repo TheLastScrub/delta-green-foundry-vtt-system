@@ -1,0 +1,26 @@
+{
+  "_id": "DUJXpTwNqHJCqv6E",
+  "name": "Two-handed Sword",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "<p>Requires special training</p>",
+    "skill": "melee_weapons",
+    "range": "10M",
+    "damage": "1D12",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "",
+    "ammo": "",
+    "expense": "Standard"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/two-handed-sword.svg",
+  "effects": [],
+  "_key": "!items!DUJXpTwNqHJCqv6E"
+}

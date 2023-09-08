@@ -1,0 +1,26 @@
+{
+  "_id": "5JoNQn7l3KiOAHlE",
+  "name": "Rifle (Heavy)",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "<p>Use Lethality rating (10%) if firing bursts.&nbsp;</p>\n<p><strong>RESTRICTED IF CAPABLE OF FULLY AUTOMATIC FIRE.</strong> Use the Lethality rating if firing bursts. Examples: 7.62 mm NATO, 7.62x54mm, .30-06:</p>\n<p>H&amp;K G3, FN FAL, Izhmash SVD, M1 Garand, Remington Model 700 (M24).</p>",
+    "skill": "firearms",
+    "range": "100M",
+    "damage": "1D12+2",
+    "armorPiercing": 3,
+    "lethality": 10,
+    "isLethal": false,
+    "killRadius": "N/A",
+    "ammo": "",
+    "expense": "Unusual"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/lee-enfield.svg",
+  "effects": [],
+  "_key": "!items!5JoNQn7l3KiOAHlE"
+}

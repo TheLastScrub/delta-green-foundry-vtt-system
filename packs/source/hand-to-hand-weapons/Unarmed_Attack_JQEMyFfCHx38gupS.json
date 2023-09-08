@@ -1,0 +1,26 @@
+{
+  "name": "Unarmed Attack",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "",
+    "skill": "unarmed_combat",
+    "range": "0M",
+    "damage": "1D4-1",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "N/A",
+    "ammo": "",
+    "expense": "Standard"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/punch.svg",
+  "_id": "JQEMyFfCHx38gupS",
+  "effects": [],
+  "_key": "!items!JQEMyFfCHx38gupS"
+}

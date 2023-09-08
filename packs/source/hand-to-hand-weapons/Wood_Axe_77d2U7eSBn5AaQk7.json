@@ -1,0 +1,26 @@
+{
+  "_id": "77d2U7eSBn5AaQk7",
+  "name": "Wood Axe",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "",
+    "skill": "melee_weapons",
+    "range": "0M",
+    "damage": "1D10",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "N/A",
+    "ammo": "",
+    "expense": "Incidental"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/wood-axe.svg",
+  "effects": [],
+  "_key": "!items!77d2U7eSBn5AaQk7"
+}

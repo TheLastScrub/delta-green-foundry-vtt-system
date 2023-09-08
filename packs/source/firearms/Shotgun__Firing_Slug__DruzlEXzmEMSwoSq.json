@@ -1,0 +1,26 @@
+{
+  "_id": "DruzlEXzmEMSwoSq",
+  "name": "Shotgun (Firing Slug)",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "<p>Examples (12-gauge): Mossberg Model 500, Remington Model 870, Ruger Red Label. Double-barrel capacity: 2.</p>",
+    "skill": "firearms",
+    "range": "75M",
+    "damage": "2D6",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "",
+    "ammo": "20",
+    "expense": "Standard"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/sawed-off-shotgun.svg",
+  "effects": [],
+  "_key": "!items!DruzlEXzmEMSwoSq"
+}

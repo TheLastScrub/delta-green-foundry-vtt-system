@@ -1,0 +1,26 @@
+{
+  "name": "Garotte",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "<p>Works only from surprise. If it succeeds, the target is pinned and cannot make a sound, and the garrote does 1D6 damage per round until the target escapes or dies. A garotte made from Kevlar can cut through flexible cuffs.</p>",
+    "skill": "unarmed_combat",
+    "range": "0M",
+    "damage": "1D6",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "N/A",
+    "ammo": "",
+    "expense": "Incidental"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/wire-coil.svg",
+  "_id": "PkhlVFDhDUGqLdCW",
+  "effects": [],
+  "_key": "!items!PkhlVFDhDUGqLdCW"
+}

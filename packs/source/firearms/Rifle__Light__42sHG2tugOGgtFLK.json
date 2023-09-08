@@ -1,0 +1,26 @@
+{
+  "_id": "42sHG2tugOGgtFLK",
+  "name": "Rifle (Light)",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "<p>Use lethality rating (10%) if firing bursts.&nbsp; Heavier rounds inflict 1D12+1 damage.</p>",
+    "skill": "firearms",
+    "range": "100M",
+    "damage": "1D12",
+    "armorPiercing": 3,
+    "lethality": 10,
+    "isLethal": false,
+    "killRadius": "N/A",
+    "ammo": "",
+    "expense": "Standard"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/ak47.svg",
+  "effects": [],
+  "_key": "!items!42sHG2tugOGgtFLK"
+}

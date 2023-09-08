@@ -1,0 +1,26 @@
+{
+  "_id": "xb73X4SjsbuYs4D7",
+  "name": "Medium Pistol",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "<p>Revolver capacity: 6. Examples: 9×19 mm, .40 S&amp;W, .45 ACP: Beretta Mod 92FS (M9), Colt M1911A1, Glock 17, Glock 22.</p>",
+    "skill": "firearms",
+    "range": "15M",
+    "damage": "1D10",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "",
+    "ammo": "20",
+    "expense": "Standard"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/glock.svg",
+  "effects": [],
+  "_key": "!items!xb73X4SjsbuYs4D7"
+}

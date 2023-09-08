@@ -1,0 +1,26 @@
+{
+  "_id": "ryiBL4PoYTutSaZ5",
+  "name": "Large Sword",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "",
+    "skill": "melee_weapons",
+    "range": "10M",
+    "damage": "1d10",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "",
+    "ammo": "",
+    "expense": "Standard"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/katana.svg",
+  "effects": [],
+  "_key": "!items!ryiBL4PoYTutSaZ5"
+}

@@ -1,0 +1,26 @@
+{
+  "_id": "7TSuCYbhLeHIRpod",
+  "name": "Light Pistol",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "<p>Revolver capacity: 6. Examples: .22 LR, .32 ACP, .380 ACP, .38 Special: S&amp;W Model 36 Chief’s Special, Walther PPK.</p>",
+    "skill": "firearms",
+    "range": "10M",
+    "damage": "1D8",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "",
+    "ammo": "20",
+    "expense": "Standard"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/walther-ppk.svg",
+  "effects": [],
+  "_key": "!items!7TSuCYbhLeHIRpod"
+}
