@@ -1,5 +1,9 @@
 ## Release/Patch Notes
 
+### Version 1.2.5 - 20230-09-09
+
+* Fix - Removing more places where system still says 'Unofficial' at Arc Dream's request
+
 ### Version 1.2.4 - 2023-08-03 
 
 The system is now officially recognized by Arc Dream!
