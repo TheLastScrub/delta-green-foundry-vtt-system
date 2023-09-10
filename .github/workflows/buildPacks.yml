@@ -40,7 +40,7 @@ jobs:
     # 12. Zip up the branch with the LevelDB packs.
     - name: Zip 
       # Exclude the source json files from the final package, as well as any git folders.
-      run: zip -r deltagreen.zip . --exclude=*packs/source/* --exclude="*.git*"
+      run: zip -r deltagreen.zip . --exclude="*packs/source/*" --exclude="*.git*"
     # 13. Updates the release with the newly zipped branch. See documentation of this action for details.
     - name: Update Release with Artifacts 
       uses: ncipollo/release-action@v1.13.0
