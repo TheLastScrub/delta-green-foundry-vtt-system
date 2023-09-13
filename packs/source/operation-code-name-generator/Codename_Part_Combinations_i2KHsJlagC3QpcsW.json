@@ -1,0 +1,93 @@
+{
+  "name": "Codename Part Combinations",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Determine what roll tables to use to build a random code name.",
+  "results": [
+    {
+      "_id": "7bp41ypZCyCogOoi",
+      "type": 0,
+      "text": "Color-Noun",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 1,
+      "rangeH": 1,
+      "_key": "!tables.results!i2KHsJlagC3QpcsW.7bp41ypZCyCogOoi"
+    },
+    {
+      "_id": "auwFajeXKOl1m9sh",
+      "type": 0,
+      "text": "Adjective-Noun",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 2,
+      "rangeH": 2,
+      "_key": "!tables.results!i2KHsJlagC3QpcsW.auwFajeXKOl1m9sh"
+    },
+    {
+      "_id": "3zVRob6yNeI0G8tC",
+      "type": 0,
+      "text": "Noun-Noun",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 3,
+      "rangeH": 3,
+      "_key": "!tables.results!i2KHsJlagC3QpcsW.3zVRob6yNeI0G8tC"
+    },
+    {
+      "_id": "EBFNFa4EPBvFa1IQ",
+      "type": 0,
+      "text": "Phonetic-Noun",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "rangeL": 4,
+      "rangeH": 4,
+      "_key": "!tables.results!i2KHsJlagC3QpcsW.EBFNFa4EPBvFa1IQ"
+    }
+  ],
+  "formula": "1d4",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "permission": {
+    "default": 0,
+    "HQMGHY3GfipU1eSK": 3
+  },
+  "flags": {
+    "exportSource": {
+      "world": "dgtest",
+      "system": "deltagreen",
+      "coreVersion": "0.8.8",
+      "systemVersion": "1.0.0"
+    },
+    "core": {
+      "sourceId": "RollTable.9pPwcriwd6wlT0PL"
+    }
+  },
+  "_id": "i2KHsJlagC3QpcsW",
+  "_key": "!tables!i2KHsJlagC3QpcsW"
+}

@@ -1,0 +1,26 @@
+{
+  "_id": "mvGLbgOB9TeGBfhr",
+  "name": "Heavy Pistol",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "<p>Revolver capacity: 6. Examples: 10×25mm Auto, .357 Magnum, .44 Magnum, .50 AE: Colt Delta Elite, Glock 20, S&amp;W Model 13.</p>",
+    "skill": "firearms",
+    "range": "20M",
+    "damage": "1D12",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "",
+    "ammo": "20",
+    "expense": "Standard"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/desert-eagle.svg",
+  "effects": [],
+  "_key": "!items!mvGLbgOB9TeGBfhr"
+}

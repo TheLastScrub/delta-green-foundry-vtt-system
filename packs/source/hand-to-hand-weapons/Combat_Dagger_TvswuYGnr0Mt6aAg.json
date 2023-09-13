@@ -1,0 +1,26 @@
+{
+  "_id": "TvswuYGnr0Mt6aAg",
+  "name": "Combat Dagger",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "",
+    "skill": "melee_weapons",
+    "range": "10M",
+    "damage": "1D6",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "",
+    "ammo": "",
+    "expense": "Incidental"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/bowie-knife.svg",
+  "effects": [],
+  "_key": "!items!TvswuYGnr0Mt6aAg"
+}

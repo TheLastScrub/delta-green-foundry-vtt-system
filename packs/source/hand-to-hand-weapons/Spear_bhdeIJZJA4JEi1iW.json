@@ -1,0 +1,26 @@
+{
+  "name": "Spear",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "",
+    "skill": "melee_weapons",
+    "range": "0M",
+    "damage": "1D8",
+    "armorPiercing": 3,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "N/A",
+    "ammo": "",
+    "expense": "Incidental"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/arrowhead.svg",
+  "_id": "bhdeIJZJA4JEi1iW",
+  "effects": [],
+  "_key": "!items!bhdeIJZJA4JEi1iW"
+}

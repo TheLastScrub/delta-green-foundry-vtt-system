@@ -1,0 +1,20 @@
+{
+  "_id": "W9gc014kriVkUpxq",
+  "name": "Reinforced Kevlar Vest",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "armor",
+  "data": {
+    "name": "",
+    "description": "<p>If worn below outer garments, noticing it requires an Alertness test at +20%.</p>",
+    "protection": 4,
+    "equipped": true,
+    "expense": "Unusual"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/kevlar-vest.svg",
+  "effects": [],
+  "_key": "!items!W9gc014kriVkUpxq"
+}

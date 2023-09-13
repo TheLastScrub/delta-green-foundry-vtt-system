@@ -1,0 +1,509 @@
+{
+  "_id": "qgWNUPXLF51A828B",
+  "name": "Federal Agent-MCCULLOUGH, Kristie",
+  "type": "agent",
+  "img": "icons/svg/mystery-man.svg",
+  "data": {
+    "health": {
+      "value": 15,
+      "min": 0,
+      "max": 15,
+      "protection": 0
+    },
+    "wp": {
+      "value": 8,
+      "min": 0,
+      "max": 8
+    },
+    "statistics": {
+      "str": {
+        "value": 17,
+        "distinguishing_feature": "Musclebound",
+        "x5": 85,
+        "meleeDamageBonus": 2,
+        "meleeDamageBonusFormula": "+2"
+      },
+      "con": {
+        "value": 13,
+        "distinguishing_feature": "Resilient",
+        "x5": 65
+      },
+      "dex": {
+        "value": 10,
+        "distinguishing_feature": "",
+        "x5": 50
+      },
+      "int": {
+        "value": 14,
+        "distinguishing_feature": "Quick witted",
+        "x5": 70
+      },
+      "pow": {
+        "value": 8,
+        "distinguishing_feature": "Nervous",
+        "x5": 40
+      },
+      "cha": {
+        "value": 10,
+        "distinguishing_feature": "",
+        "x5": 50
+      }
+    },
+    "skills": {
+      "accounting": {
+        "label": "Accounting",
+        "proficiency": 60,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "alertness": {
+        "label": "Alertness",
+        "proficiency": 70,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "anthropology": {
+        "label": "Anthropology",
+        "proficiency": 0,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "archeology": {
+        "label": "Archeology",
+        "proficiency": 20,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "artillery": {
+        "label": "Artillery",
+        "proficiency": 0,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "athletics": {
+        "label": "Athletics",
+        "proficiency": 30,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "bureaucracy": {
+        "label": "Bureaucracy",
+        "proficiency": 40,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "computer_science": {
+        "label": "Computer Science",
+        "proficiency": 0,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "criminology": {
+        "label": "Criminology",
+        "proficiency": 50,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "demolitions": {
+        "label": "Demolitions",
+        "proficiency": 0,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "disguise": {
+        "label": "Disguise",
+        "proficiency": 0,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "dodge": {
+        "label": "Dodge",
+        "proficiency": 30,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "drive": {
+        "label": "Drive",
+        "proficiency": 50,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "firearms": {
+        "label": "Firearms",
+        "proficiency": 50,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "first_aid": {
+        "label": "First Aid",
+        "proficiency": 10,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "forensics": {
+        "label": "Forensics",
+        "proficiency": 30,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "heavy_machiner": {
+        "label": "Heavy Machinery",
+        "proficiency": 10,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "heavy_weapons": {
+        "label": "Heavy Weapons",
+        "proficiency": 20,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "history": {
+        "label": "History",
+        "proficiency": 10,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "humint": {
+        "label": "HUMINT",
+        "proficiency": 80,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "law": {
+        "label": "Law",
+        "proficiency": 30,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "medicine": {
+        "label": "Medicine",
+        "proficiency": 0,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "melee_weapons": {
+        "label": "Melee Weapons",
+        "proficiency": 30,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "navigate": {
+        "label": "Navigate",
+        "proficiency": 10,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "occult": {
+        "label": "Occult",
+        "proficiency": 10,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "persuade": {
+        "label": "Persuade",
+        "proficiency": 50,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "pharmacy": {
+        "label": "Pharmacy",
+        "proficiency": 0,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "psychotherapy": {
+        "label": "Psychotherapy",
+        "proficiency": 10,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "ride": {
+        "label": "Ride",
+        "proficiency": 10,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "search": {
+        "label": "Search",
+        "proficiency": 70,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "sigint": {
+        "label": "SIGINT",
+        "proficiency": 0,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "stealth": {
+        "label": "Stealth",
+        "proficiency": 10,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "surgery": {
+        "label": "Surgery",
+        "proficiency": 0,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "survival": {
+        "label": "Survival",
+        "proficiency": 30,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "swim": {
+        "label": "Swim",
+        "proficiency": 20,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "unarmed_combat": {
+        "label": "Unarmed Combat",
+        "proficiency": 60,
+        "failure": false,
+        "cannotBeImprovedByFailure": false,
+        "isCalculatedValue": false
+      },
+      "unnatural": {
+        "label": "Unnatural",
+        "proficiency": 0,
+        "cannotBeImprovedByFailure": true,
+        "isCalculatedValue": false
+      },
+      "ritual": {
+        "label": "Ritual",
+        "proficiency": 59,
+        "cannotBeImprovedByFailure": true,
+        "failure": false,
+        "isCalculatedValue": true
+      }
+    },
+    "typedSkills": {
+      "tskill_01": {
+        "label": "Painting",
+        "group": "Art",
+        "proficiency": 20,
+        "failure": false
+      }
+    },
+    "schemaVersion": 1,
+    "sanity": {
+      "value": 40,
+      "currentBreakingPoint": 32,
+      "adaptations": {
+        "violence": {
+          "incident1": false,
+          "incident2": false,
+          "incident3": false,
+          "isAdapted": false
+        },
+        "helplessness": {
+          "incident1": false,
+          "incident2": false,
+          "incident3": false,
+          "isAdapted": false
+        }
+      },
+      "max": 99
+    },
+    "physical": {
+      "description": "(Physical description of agent)",
+      "wounds": "",
+      "firstAidAttempted": false
+    },
+    "biography": {
+      "profession": "Federal Agent",
+      "employer": "",
+      "nationality": "(U.S.A.) Corvallis, OR",
+      "sex": "F",
+      "age": "43    (AUG 15)",
+      "education": ""
+    }
+  },
+  "token": {
+    "name": "Federal Agent-MCCULLOUGH, Kristie",
+    "img": "icons/svg/mystery-man.svg",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "scale": 1,
+    "mirrorX": false,
+    "mirrorY": false,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "vision": false,
+    "dimSight": 0,
+    "brightSight": 0,
+    "sightAngle": 0,
+    "light": {
+      "alpha": 0.5,
+      "angle": 0,
+      "bright": 0,
+      "coloration": 1,
+      "dim": 0,
+      "gradual": true,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "health"
+    },
+    "bar2": {
+      "attribute": "wp"
+    },
+    "flags": {},
+    "randomImg": false
+  },
+  "items": [
+    {
+      "name": "New Bond",
+      "type": "bond",
+      "img": "icons/svg/mystery-man.svg",
+      "data": {
+        "name": "New Bond",
+        "description": "",
+        "score": 10,
+        "relationship": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "permission": {
+        "default": 0
+      },
+      "flags": {},
+      "_id": "uvih5m599nfbsnys",
+      "_key": "!actors.items!qgWNUPXLF51A828B.uvih5m599nfbsnys"
+    },
+    {
+      "name": "New Bond",
+      "type": "bond",
+      "img": "icons/svg/mystery-man.svg",
+      "data": {
+        "name": "New Bond",
+        "description": "",
+        "score": 10,
+        "relationship": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "permission": {
+        "default": 0
+      },
+      "flags": {},
+      "_id": "8zy49m20julrxi43",
+      "_key": "!actors.items!qgWNUPXLF51A828B.8zy49m20julrxi43"
+    },
+    {
+      "name": "New Bond",
+      "type": "bond",
+      "img": "icons/svg/mystery-man.svg",
+      "data": {
+        "name": "New Bond",
+        "description": "",
+        "score": 10,
+        "relationship": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "permission": {
+        "default": 0
+      },
+      "flags": {},
+      "_id": "jfuw3bzf4pcbinxa",
+      "_key": "!actors.items!qgWNUPXLF51A828B.jfuw3bzf4pcbinxa"
+    },
+    {
+      "name": "Unarmed Attack",
+      "type": "weapon",
+      "img": "systems/deltagreen/assets/icons/punch.svg",
+      "data": {
+        "name": "Unarmed Attack",
+        "description": "",
+        "skill": "melee_weapons",
+        "range": "0M",
+        "damage": "1D4-1",
+        "armorPiercing": 0,
+        "lethality": 0,
+        "isLethal": false,
+        "killRadius": "N/A",
+        "ammo": "",
+        "expense": "Incidental",
+        "equipped": true
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "permission": {
+        "default": 0
+      },
+      "_id": "86ix3i0867wwyirv",
+      "flags": {},
+      "_key": "!actors.items!qgWNUPXLF51A828B.86ix3i0867wwyirv"
+    }
+  ],
+  "effects": [],
+  "folder": null,
+  "sort": 0,
+  "permission": {
+    "default": 0,
+    "HQMGHY3GfipU1eSK": 3
+  },
+  "flags": {},
+  "_key": "!actors!qgWNUPXLF51A828B"
+}

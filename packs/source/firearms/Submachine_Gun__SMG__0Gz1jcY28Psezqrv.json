@@ -1,0 +1,26 @@
+{
+  "_id": "0Gz1jcY28Psezqrv",
+  "name": "Submachine Gun (SMG)",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "<p><strong>RESTRICTED IF CAPABLE OF FULLY AUTOMATIC FIRE.</strong> Use the Lethality rating if firing bursts.&nbsp;</p>\n<p>Examples: 5.7×28 mm, 9×19mm, .45 ACP: B&amp;T MP9, FN P90, H&amp;K MP5, IMI Uzi, KRISS Vector, MAC-Ingram M10.</p>",
+    "skill": "firearms",
+    "range": "50M",
+    "damage": "1D10",
+    "armorPiercing": 0,
+    "lethality": 10,
+    "isLethal": false,
+    "killRadius": "",
+    "ammo": "",
+    "expense": "Unusual"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/spectre-m4.svg",
+  "effects": [],
+  "_key": "!items!0Gz1jcY28Psezqrv"
+}

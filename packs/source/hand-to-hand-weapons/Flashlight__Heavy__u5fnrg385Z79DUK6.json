@@ -1,0 +1,26 @@
+{
+  "_id": "u5fnrg385Z79DUK6",
+  "name": "Flashlight (Heavy)",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "",
+    "skill": "unarmed_combat",
+    "range": "0M",
+    "damage": "1D4",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "N/A",
+    "ammo": "",
+    "expense": "Incidental"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/flashlight.svg",
+  "effects": [],
+  "_key": "!items!u5fnrg385Z79DUK6"
+}

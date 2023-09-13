@@ -1,0 +1,26 @@
+{
+  "_id": "0gCwBTqSAbG9J20Y",
+  "name": "Hatchet",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "",
+    "skill": "melee_weapons",
+    "range": "0M",
+    "damage": "1D4",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "N/A",
+    "ammo": "",
+    "expense": "Incidental"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/hatchet.svg",
+  "effects": [],
+  "_key": "!items!0gCwBTqSAbG9J20Y"
+}

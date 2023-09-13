@@ -1,0 +1,26 @@
+{
+  "_id": "oQhWip2JTJYY18fS",
+  "name": "Shotgun (Firing Nonlethal)",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "<p>Target stunned on a hit (along with damage).</p>",
+    "skill": "firearms",
+    "range": "10M",
+    "damage": "1D6",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "",
+    "ammo": "20",
+    "expense": "Standard"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/sawed-off-shotgun.svg",
+  "effects": [],
+  "_key": "!items!oQhWip2JTJYY18fS"
+}

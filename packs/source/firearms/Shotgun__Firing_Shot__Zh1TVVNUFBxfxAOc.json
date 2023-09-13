@@ -1,0 +1,26 @@
+{
+  "_id": "Zh1TVVNUFBxfxAOc",
+  "name": "Shotgun (Firing Shot)",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "<p>Full damage up to 20 m; 2D6 from 21 to 50 m; 1D6 beyond beyond 50 m.</p>\n<p>Examples (12-gauge): Mossberg Model 500, Remington Model 870, Ruger Red Label. Double-barrel capacity: 2.</p>",
+    "skill": "firearms",
+    "range": "50M",
+    "damage": "2d10",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "",
+    "ammo": "20",
+    "expense": "Standard"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/sawed-off-shotgun.svg",
+  "effects": [],
+  "_key": "!items!Zh1TVVNUFBxfxAOc"
+}

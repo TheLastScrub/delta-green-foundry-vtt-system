@@ -1,0 +1,26 @@
+{
+  "_id": "b9hKP3QHJPzk45YD",
+  "name": "Sword",
+  "permission": {
+    "default": 0,
+    "bugxCCxa4GzlYx2g": 3
+  },
+  "type": "weapon",
+  "data": {
+    "name": "",
+    "description": "",
+    "skill": "melee_weapons",
+    "range": "10M",
+    "damage": "1D8",
+    "armorPiercing": 0,
+    "lethality": 0,
+    "isLethal": false,
+    "killRadius": "",
+    "ammo": "",
+    "expense": "Incidental"
+  },
+  "flags": {},
+  "img": "systems/deltagreen/assets/icons/stiletto.svg",
+  "effects": [],
+  "_key": "!items!b9hKP3QHJPzk45YD"
+}
