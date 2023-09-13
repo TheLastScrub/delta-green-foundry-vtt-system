@@ -1,6 +1,10 @@
 ## Release/Patch Notes
 
-### Version 1.2.5 - 20230-09-09
+### Version 1.2.6 - 2023-09-13
+
+* Fix [Github #82] - New packaging workflow from @jalensailin will hopefully resolve issues with the Forge by deploying the v11 compendium packs directly.
+
+### Version 1.2.5 - 2023-09-09
 
 * Fix - Removing more places where system still says 'Unofficial' at Arc Dream's request
 
