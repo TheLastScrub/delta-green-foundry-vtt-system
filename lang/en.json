@@ -112,8 +112,8 @@
     "DG.Mental.Helplessness": "Helplessness",
     "DG.Mental.AdaptedToViolence": "Adapted to Violence",
     "DG.Mental.AdaptedToHelplessness": "Adapted to Helplessness",
-    "DG.Mental.Motivations": "Motivations",
-    "DG.Mental.Disorders": "Disorders",
+    "DG.Mental.Motivations": "Motivation",
+    "DG.Mental.Disorders": "Disorder",
 
     "DG.Gear.Weapons": "WEAPONS",
     "DG.Gear.Armor": "ARMOR",
@@ -134,7 +134,7 @@
     "DG.CV.NationalityPlaceholder": "Nationality",
     "DG.CV.Education": "Education",
     "DG.CV.EducationPlaceholder": "Education or Training",
-    "DG.CV.PhysicalDescriptionLabel": "Physical Description/Notes",
+    "DG.CV.PhysicalDescriptionLabel": "PHYSICAL DESCRIPTION/NOTES",
 
     "DG.Bonds.Bond": "Bond",
     "DG.Bonds.Name": "Name",

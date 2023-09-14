@@ -1,4 +1,4 @@
-<form class="{{cssClass}} {{getFontFamilySystemSettingClass}} flexcol" autocomplete="off">
+<form class="{{cssClass}} {{getCharacterSheetStyle}} flexcol" autocomplete="off">
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
@@ -92,6 +92,10 @@
 
         {{!-- Skills Tab --}}
         <div class="tab skills" data-group="primary" data-tab="skills">
+          <div class="horizontal-bar-section-divider">
+            <span>SKILLS AND TRAINING</span>                                                    
+          </div>
+          
             <div class="grid grid-3col">
 
               {{#each actor.system.skills as |skill key|}}
@@ -161,6 +165,10 @@
 
         {{!-- Physical Statistics like STR, CON, etc. --}}
         <div class="tab physical" data-group="primary" data-tab="physical">
+          <div class="horizontal-bar-section-divider">
+            <span>ATTRIBUTES</span>                                                    
+          </div>
+          <br>
           <div class="grid grid-3col">
             {{#each actor.system.statistics as |statistic key|}}
               <div class="flex-group-center">
@@ -177,6 +185,11 @@
               </div>
             {{/each}}
           </div>
+          <br />
+          <div class="horizontal-bar-section-divider">
+            <span>INJURIES</span>                                                    
+          </div>
+
           <div>
             <div class="first-aid-received-section resource">
               <label class="bolded-label first-aid-label"
@@ -193,15 +206,18 @@
           </div>
         </div>
 
-        {{!-- Mental Tab (formerly 'Motivations') --}}
+        {{!-- Psychological Tab (formerly 'Mental', formerly 'Motivations') --}}
         <div class="tab motivations" data-group="primary" data-tab="motivations">
+          <div class="horizontal-bar-section-divider">
+            <span>BREAKING POINT AND ADAPTATIONS</span>                                                    
+          </div>
           <div class="">
               <div class="breaking-point-grid-3col">
                 <label class="bolded-label">{{localize 'DG.Mental.BreakingPoint'}}</label>
                 <input class="centered-input-value" title="{{localize 'DG.Tooltip.BreakPoint'}}" type="text" name="system.sanity.currentBreakingPoint" value="{{actor.system.sanity.currentBreakingPoint}}" data-dtype="Number"/>
                 <a class="btn-tiny btn-reset-breaking-point" title="Reset breaking point to be current SAN - WP.">{{localize 'DG.Mental.Reset'}}</a>
               </div>
-          
+
               <div class="">
                 <h4 class="bolded-label">{{localize 'DG.Mental.SanityLossIncidentsLabel'}}</h4>
                 <div class="adaptation-grid-5col">
@@ -234,6 +250,10 @@
                   
                 </div>
               </div>
+          </div>
+
+          <div class="horizontal-bar-section-divider">
+            <span>MOTIVATIONS AND DISORDERS</span>                                                    
           </div>
 
           <div>
@@ -416,8 +436,8 @@
             <ol class="items-list">
               <li class="item flexrow item-header">
                 <div class="item-image"></div>
-                <div class="item-name">{{localize 'DG.Gear.Name'}}</div>
-                <div class="item-name"></div>
+                <div style="min-width: 55%;" class="item-name">{{localize 'DG.Gear.Name'}}</div>
+                
                 <span class="centered-item-property">{{localize 'DG.Gear.Equipped'}}</span>
                 <div class="item-controls">
                   <a class="item-control item-create" title="Create item" data-type="gear"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
@@ -425,13 +445,12 @@
               </li>
 
               {{#each actor.items as |item id|}}
+
                 {{#if_eq item.type 'gear'}}
 
                   <li class="item flexrow" data-item-id="{{item.id}}">
                     <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                    <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
-
-                    <span></span> <!-- This is just here to get things to align nicely with the other sections-->
+                    <h4 style="word-wrap: break-word; min-width: 55%;" class="item-name">{{item.name}}</h4>                    
                     
                     <span class="equipped-item centered-item-property" data-id="{{item.id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}" >
                       
@@ -456,16 +475,20 @@
           </div>
         </div>
 
-        {{!-- Biography Tab --}}
+        {{!-- PERSONAL (Biography) Tab --}}
         <div class="tab bio" data-group="primary" data-tab="bio">
+          <div class="horizontal-bar-section-divider">
+            <span>PERSIONAL INFORMATION/CV</span>                                                    
+          </div>
           {{> "systems/deltagreen/templates/actor/cv-partial.html" }}
         </div>
 
         {{!-- Bonds Tab --}}
         <div class="tab bonds" data-group="primary" data-tab="bonds">
-          <div class="bonds-section-header">
-            
+          <div class="horizontal-bar-section-divider">
+            <span>BONDS/RELATIONSHIPS/CONTACTS</span>                                                    
           </div>
+          
           <div>
             <ol class="items-list">
               <li class="item flexrow item-header">

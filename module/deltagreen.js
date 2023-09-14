@@ -217,7 +217,10 @@ Hooks.once('init', async function() {
   // generates the character sheet.
   Handlebars.registerHelper('getFontFamilySystemSettingClass', function() {
     let setting = game.settings.get("deltagreen", "characterSheetFont");
+
+    let characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
     
+    /*
     if(setting === "TypeWriterCondensed"){
       return "typewriter-condensed-font";
     }
@@ -233,8 +236,32 @@ Hooks.once('init', async function() {
     else if(setting === "SpecialElite"){
       return "special-elite-font";
     }
+    else if(setting === "PublicSans"){
+      return "public-sans-font";
+    }
     else{
       return "martel-font";
+    }
+    */
+   
+    if(characterSheetStyle === "cowboy"){
+      return "special-elite-font";
+    }
+    else{
+      return "public-sans-font";
+    }
+    
+  });
+
+  Handlebars.registerHelper('getCharacterSheetStyle', function() {
+
+    let characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
+   
+    if(characterSheetStyle === "cowboy"){
+      return "cowboy-style";
+    }
+    else{
+      return "program-style";
     }
     
   });
@@ -282,13 +309,15 @@ Hooks.once("ready", async function() {
 
 Hooks.on("ready", ()=> {
   
-  let backgroundImageSetting = game.settings.get("deltagreen", "characterSheetBackgroundImageSetting");
+  //let backgroundImageSetting = game.settings.get("deltagreen", "characterSheetBackgroundImageSetting");
+  let characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
 
   let customCss = "";
 
   let customStyle = document.createElement("style");
   customStyle.id = "dg-custom-css";
 
+  /*
   if(backgroundImageSetting === "OldPaper1"){
     customCss += `div.deltagreen.sheet.actor section.window-content{
           background: url("systems/deltagreen/assets/img/old_paper.jpg") !important;
@@ -299,11 +328,23 @@ Hooks.on("ready", ()=> {
           background-size: 100% !important;
     }`;
   }
+  */
+
+  if(characterSheetStyle === "cowboy"){
+    customCss += `div.deltagreen.sheet.actor section.window-content{
+          background: url("systems/deltagreen/assets/img/old_paper.jpg") !important;
+    }`;
+  }
+  else if(characterSheetStyle === "program"){
+    customCss += `div.deltagreen.sheet.actor section.window-content{
+        background: url("systems/deltagreen/assets/img/CrumpledPlainPaper10.webp") !important;
+      }`;
+  }
 
   customStyle.innerHTML = customCss;
 
   if(customCss != ""){
-    document.querySelector("head").appendChild(customStyle);
+    //document.querySelector("head").appendChild(customStyle);
   }
   
 });

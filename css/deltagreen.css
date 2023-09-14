@@ -28,23 +28,36 @@
   src: url('../assets/font/special_elite/SpecialElite-Regular.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }
 
+@font-face {
+  font-family: 'PublicSans';
+  src: url('../assets/font/public-sans/PublicSans-VariableFont_wght.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
 /* Global styles */
 
-/*
-.window-app {
-  font-family: "TypeWriterCondensed", "atwriter", "Martel", 'Signika', sans-serif !important;
-  height: auto;
-}
-*/
 
-/*
-section.window-content{
-  background: url("../assets/img/old_paper.jpg") !important;
+/* Hacky overrides of outer Foundry stuff */
+form.program-style{
+  background: url("../assets/img/CrumpledPlainPaper10.webp") !important;
 }
-*/
+
+form.cowboy-style{
+  background: url("../assets/img/old_paper.webp") !important;
+}
+
+/* Override default foundry CSS to remove padding, so that our background image can take up the whole window */
+.deltagreen section.window-content{
+  padding: 0 !important;
+}
+
+/* Override the default Foundry CSS to add the padding we removed from the outer window back in */
+.deltagreen section.window-content form.editable{
+  padding: 6px !important;
+}
+
 
 .old-paper-background{
-  background: url("../assets/img/old_paper.jpg") !important;
+  background: url("../assets/img/old_paper.webp") !important;
 }
 .default-parchment-background{
   background: url("/ui/parchment.jpg") repeat !important;
@@ -68,6 +81,27 @@ section.window-content{
 
 .special-elite-font{
   font-family: "SpecialElite", sans-serif !important;
+}
+
+.public-sans-font{
+  font-family: "PublicSans", sans-serif !important;
+}
+
+
+.cowboy-style{
+  font-family: "SpecialElite", sans-serif !important;
+}
+
+.program-style{
+  font-family: "PublicSans", sans-serif !important;
+}
+
+.program-style .tabs .item {
+  background: rgba(138, 136, 133, 0.3);
+}
+
+.cowboy-style .tabs .item {
+  background: rgba(173, 151, 101, 0.3);
 }
 
 .rollable:hover, .rollable:focus {
@@ -290,7 +324,7 @@ section.window-content{
   border: gray;
   border-width: 1px 1px 0px 1px;
   border-style: solid;
-  background: rgba(173, 151, 101, 0.3);
+  /*background: rgba(173, 151, 101, 0.3);*/
 }
 
 .deltagreen .tabs .item.active {
@@ -454,7 +488,7 @@ div span.bio-grid-label{
 }
 
 .bio-grid-top-border{
-  border-top: 1px solid #AAA;
+  border-top: 0px solid #AAA;
   padding-top: 10px;
 }
 
@@ -479,7 +513,7 @@ div span.bio-grid-label{
 .breaking-point-grid-3col{
   display: grid;
   grid-template-columns: 100px 70px 65px;
-  border-top: 1px solid #AAA;
+  border-top: 0px solid #AAA;
   margin-bottom: 10px;
   border-bottom: 1px solid #AAA;
   align-content: center;
@@ -498,7 +532,7 @@ div span.bio-grid-label{
   justify-content: left;
   align-items: center;
   padding-bottom: 5px;
-  border-bottom: 1px solid #AAA;
+  border-bottom: 0px solid #AAA;
 }
 
 .adapted-label{
@@ -550,7 +584,7 @@ div .first-aid-received-section{
 }
 
 .bonds-section-header{
-  border-top: 1px solid #AAA;
+  /* border-top: 1px solid #AAA; */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -614,6 +648,20 @@ div.gear-section-header{
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  background: #000;
+  color: #fff;
+  height: 30px;
+}
+
+div.horizontal-bar-section-divider{
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  margin-bottom: 3px;
 
   background: #000;
   color: #fff;
