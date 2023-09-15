@@ -52,7 +52,7 @@ form.cowboy-style{
 
 /* Override the default Foundry CSS to add the padding we removed from the outer window back in */
 .deltagreen section.window-content form.editable{
-  padding: 6px !important;
+  padding: 6px 6px 6px 6px !important;
 }
 
 
@@ -257,6 +257,7 @@ form.cowboy-style{
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
+  margin-bottom: 8px;
 }
 
 .deltagreen .sheet-header .profile-img {
@@ -289,6 +290,7 @@ form.cowboy-style{
   margin: 0;
 }
 
+
 .deltagreen .sheet-body,
 .deltagreen .sheet-body .tab,
 .deltagreen .sheet-body .tab .editor {
@@ -304,6 +306,15 @@ form.cowboy-style{
 .sheet nav.sheet-tabs{
   border-bottom: transparent !important;
   border-top: transparent !important;
+}
+
+.deltagreen section.sheet-body{
+  border: #000 !important;
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-radius: 3px 3px 3px 3px;
+
+  padding: 5px;
 }
 
 .deltagreen .tabs {
@@ -333,6 +344,16 @@ form.cowboy-style{
   border: #000;
   border-width: 2px 2px 0px 2px;
   border-style: solid;
+}
+
+.deltagreen .program-style .tabs .item.active {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.deltagreen .cowboy-style .tabs .item.active {
+  background-color: rgba(156, 115, 18, 0.3);
+  color: #000000;
 }
 
 .deltagreen .items-list {
@@ -617,10 +638,11 @@ textarea.wounds{
   grid-template-columns: 100%;
   align-items: center;
   justify-content: center;
-  border: 1px solid #999;
+  border: 1.5px solid #000000;
   padding: 5px;
   grid-gap: 3px;
   text-align: center;
+  border-radius: 2px;
 }
 
 div.max-resource-value{
@@ -666,6 +688,22 @@ div.horizontal-bar-section-divider{
   background: #000;
   color: #fff;
   height: 30px;
+
+  border-radius: 3px 3px 3px 3px;
+}
+
+div.horizontal-bar-section-header{
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  margin-bottom: 3px;
+
+  background: #000;
+  color: #fff;
+  height: 50px;
 }
 
 .physical-description-label{

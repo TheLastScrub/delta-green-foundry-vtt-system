@@ -152,6 +152,8 @@ https://creativecommons.org/licenses/by/3.0/
 * Magic Hand icon by Lorc under CC BY 3.0
 * Magic Shield icon by Lorc under CC BY 3.0
 * Sly icon by Lorc under CC BY 3.0
+* Swap Bag icon by Lorc under CC BY 3.0
+* Person icon by Delapouite under CC BY 3.0
 
 
 Portugese Translation submitted by IgorAK25

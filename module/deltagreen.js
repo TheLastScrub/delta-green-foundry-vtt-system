@@ -310,12 +310,12 @@ Hooks.once("ready", async function() {
 Hooks.on("ready", ()=> {
   
   //let backgroundImageSetting = game.settings.get("deltagreen", "characterSheetBackgroundImageSetting");
-  let characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
+  //let characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
 
-  let customCss = "";
+  //let customCss = "";
 
-  let customStyle = document.createElement("style");
-  customStyle.id = "dg-custom-css";
+  //let customStyle = document.createElement("style");
+  //customStyle.id = "dg-custom-css";
 
   /*
   if(backgroundImageSetting === "OldPaper1"){
@@ -330,6 +330,7 @@ Hooks.on("ready", ()=> {
   }
   */
 
+  /*
   if(characterSheetStyle === "cowboy"){
     customCss += `div.deltagreen.sheet.actor section.window-content{
           background: url("systems/deltagreen/assets/img/old_paper.jpg") !important;
@@ -346,7 +347,25 @@ Hooks.on("ready", ()=> {
   if(customCss != ""){
     //document.querySelector("head").appendChild(customStyle);
   }
+  */
   
+});
+
+Hooks.on("preCreateItem", (item) => {
+  console.log("preCreateItem");
+  console.log(item.img);
+  console.log(item.type);
+
+  if(item.img === 'icons/svg/item-bag.svg'){
+
+    if(item.type === 'bond'){
+      item.updateSource({ img: 'systems/deltagreen/assets/icons/person-black-bg.svg'});
+    }
+    else{
+      item.updateSource({ img: 'systems/deltagreen/assets/icons/swap-bag-black-bg.svg'});
+    }
+  }
+
 });
 
 Hooks.on("renderSidebarTab", async (app, html) => {

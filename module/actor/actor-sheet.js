@@ -560,16 +560,17 @@ export class DeltaGreenActorSheet extends ActorSheet {
     };
 
     if(type == "weapon"){
-      itemData.system.skill = "firearms"; //default skill to firearms, since that will be most common
-      itemData.system.expense = "Standard";
+      //itemData.system.skill = "firearms"; //default skill to firearms, since that will be most common
+      //itemData.system.expense = "Standard";
     }
     else if(type == "armor"){
-      itemData.system.armor = 3;
-      itemData.system.expense = "Standard";
+      //itemData.system.armor = 3;
+      //itemData.system.expense = "Standard";
     }
     else if(type == "bond"){
+      // try to default bonds for an agent to their current CHA
       itemData.system.score = this.object.system.statistics.cha.value; // Can vary, but at character creation starting bond score is usually agent's charisma
-      itemData.img = "icons/svg/mystery-man.svg"
+      //itemData.img = "icons/svg/mystery-man.svg"
     }
     
     // create the item

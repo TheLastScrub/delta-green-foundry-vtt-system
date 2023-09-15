@@ -1,14 +1,14 @@
 export const registerSystemSettings = function () {
   game.settings.register("deltagreen", "characterSheetStyle", {
     name: "Character Sheet Style",
-    hint: "Choose how actor sheets should be styled. 'Program' is a more modern government style, where 'Cowboy' is an older, grittier looking typewriter style.",
+    hint: "Choose how actor sheets should be styled. 'Program' is a more modern government style, where 'Cowboy/Outlaw' is an older, grittier looking typewriter style.",
     scope: "world", // This specifies a world-stored setting
     config: true, // This specifies that the setting appears in the configuration view
     requiresReload: true,
     type: String,
     choices: {
       // If choices are defined, the resulting setting will be a select menu
-      cowboy: "The Cowboys",
+      cowboy: "The Cowboys/Outlaws",
       program: "The Program",
     },
     default: "program", // The default value for the setting
