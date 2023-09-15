@@ -38,11 +38,11 @@
 
 /* Hacky overrides of outer Foundry stuff */
 form.program-style{
-  background: url("../assets/img/CrumpledPlainPaper10.webp") !important;
+  background: url("../assets/img/CrumpledPlainPaper10b.webp") !important;
 }
 
 form.cowboy-style{
-  background: url("../assets/img/StainedPlainPaper10.webp") !important;
+  background: url("../assets/img/StainedPlainPaper10b.webp") !important;
   background-size: 100% !important;
 }
 
