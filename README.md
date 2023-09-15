@@ -71,6 +71,12 @@ Comes from a character generator created by jimstorch, who graciously posted the
 
 The roll tables added to generate operation code names comes from Reddit user /u/Travern.
 
+## Localization
+
+Portugese (BR) Translation submitted by IgorAK25
+Spanish Translation submitted by CthulhuRol 
+Catalonian Translation submitted by trombonecot
+
 ## Fonts (Some in use, others that I would like to use at some point)
 
 ### MARTEL FONT
@@ -108,6 +114,12 @@ https://www.dafont.com/typewriter-condensed.font
 By Johan Holmdahl
 License: None given
 https://www.dafont.com/another-typewriter.font
+
+### PUBLIC SANS FONT
+
+Designed by USWDS, Dan Williams, Pablo Impallari, Rodrigo Fuenzalida
+License: Open Font License.
+https://github.com/uswds/public-sans
 
 ## Game Icons
 
@@ -155,6 +167,3 @@ https://creativecommons.org/licenses/by/3.0/
 * Swap Bag icon by Lorc under CC BY 3.0
 * Person icon by Delapouite under CC BY 3.0
 * Cowled icon by Lorc under CC BY 3.0
-
-
-Portugese Translation submitted by IgorAK25
