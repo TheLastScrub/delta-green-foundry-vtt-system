@@ -42,7 +42,8 @@ form.program-style{
 }
 
 form.cowboy-style{
-  background: url("../assets/img/old_paper.webp") !important;
+  background: url("../assets/img/StainedPlainPaper10.webp") !important;
+  background-size: 100% !important;
 }
 
 /* Override default foundry CSS to remove padding, so that our background image can take up the whole window */
@@ -57,7 +58,7 @@ form.cowboy-style{
 
 
 .old-paper-background{
-  background: url("../assets/img/old_paper.webp") !important;
+  background: url("../assets/img/StainedPlainPaper10.webp") !important;
 }
 .default-parchment-background{
   background: url("/ui/parchment.jpg") repeat !important;
