@@ -244,13 +244,14 @@ Hooks.once('init', async function() {
     }
     */
    
+    /*
     if(characterSheetStyle === "cowboy"){
       return "special-elite-font";
     }
     else{
       return "public-sans-font";
     }
-    
+    */
   });
 
   Handlebars.registerHelper('getCharacterSheetStyle', function() {
@@ -259,6 +260,9 @@ Hooks.once('init', async function() {
    
     if(characterSheetStyle === "cowboy"){
       return "cowboy-style";
+    }
+    else if(characterSheetStyle === "outlaw"){
+      return "outlaw-style";
     }
     else{
       return "program-style";

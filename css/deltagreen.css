@@ -37,14 +37,6 @@
 
 
 /* Hacky overrides of outer Foundry stuff */
-form.program-style{
-  background: url("../assets/img/CrumpledPlainPaper10b.webp") !important;
-}
-
-form.cowboy-style{
-  background: url("../assets/img/StainedPlainPaper10b.webp") !important;
-  background-size: 100% !important;
-}
 
 /* Override default foundry CSS to remove padding, so that our background image can take up the whole window */
 .deltagreen section.window-content{
@@ -55,6 +47,44 @@ form.cowboy-style{
 .deltagreen section.window-content form.editable{
   padding: 6px 6px 6px 6px !important;
 }
+
+/* Character Sheet Style Options */
+
+form.outlaw-style,
+form.cowboy-style{
+  background: url("../assets/img/StainedPlainPaper10b.webp") !important;
+  background-size: 100% !important;
+}
+
+form.program-style{
+  background: url("../assets/img/CrumpledPlainPaper10b.webp") !important;
+}
+
+.cowboy-style{
+  font-family: "SpecialElite", sans-serif !important;
+}
+
+.outlaw-style,
+.program-style{
+  font-family: "PublicSans", sans-serif !important;
+}
+
+.outlaw-style
+.cowboy-style .tabs .item {
+  background: rgba(173, 151, 101, 0.3);
+}
+
+.program-style .tabs .item {
+  background: rgba(138, 136, 133, 0.3);
+}
+
+
+/*
+#pause img {
+  content: url(../assets/img/DG_Pause_Icon.webp);
+}
+*/
+
 
 
 .old-paper-background{
@@ -89,21 +119,7 @@ form.cowboy-style{
 }
 
 
-.cowboy-style{
-  font-family: "SpecialElite", sans-serif !important;
-}
 
-.program-style{
-  font-family: "PublicSans", sans-serif !important;
-}
-
-.program-style .tabs .item {
-  background: rgba(138, 136, 133, 0.3);
-}
-
-.cowboy-style .tabs .item {
-  background: rgba(173, 151, 101, 0.3);
-}
 
 .rollable:hover, .rollable:focus {
   color: #000;

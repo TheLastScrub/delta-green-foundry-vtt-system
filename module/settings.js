@@ -8,7 +8,8 @@ export const registerSystemSettings = function () {
     type: String,
     choices: {
       // If choices are defined, the resulting setting will be a select menu
-      cowboy: "The Cowboys/Outlaws",
+      cowboy: "The Cowboys",
+      outlaw: "The Outlaws",
       program: "The Program",
     },
     default: "program", // The default value for the setting
