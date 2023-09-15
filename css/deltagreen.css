@@ -57,7 +57,8 @@ form.cowboy-style{
 }
 
 form.program-style{
-  background: url("../assets/img/CrumpledPlainPaper10b.webp") !important;
+  background: url("../assets/img/StainedPlainPaper10a.webp") !important;
+  background-size: 100% !important;
 }
 
 .cowboy-style{
