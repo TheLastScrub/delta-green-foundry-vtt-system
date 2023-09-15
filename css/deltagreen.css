@@ -195,7 +195,17 @@ form.cowboy-style{
   align-items: center;
   text-align: center;
   padding: 2px;
+  
+}
+
+.flex-thin-border{
   border: 1px solid #999;
+  border-radius: 2px;
+}
+
+.flex-mid-border{
+  border: 1.5px solid rgb(0, 0, 0);
+  border-radius: 2px;
 }
 
 .flex-group-left {
@@ -662,6 +672,11 @@ div.max-resource-value{
   text-align: center;
   padding: 5px;
   grid-gap: 5px;
+}
+
+.physical-stats-and-feature{
+  border-radius: 2px;
+  border: 1.5px solid #000000;
 }
 
 div.gear-section-header{

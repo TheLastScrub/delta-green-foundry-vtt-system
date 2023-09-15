@@ -54,9 +54,12 @@
 
       {{!-- Physical Statistics like STR, CON, etc. --}}
       <div class="">
+        <div class="horizontal-bar-section-divider">
+          <span>{{localize 'DG.Navigation.Physical'}}</span>                                                    
+        </div>
         <div class="grid grid-3col">
           {{#each actor.system.statistics as |statistic key|}}
-            <div class="flex-group-center">
+            <div class="flex-group-center flex-mid-border">
               <div class="">
                 <div class="physical-stats-outer-grid-3col">
                   <label class="rollable" data-rolltype="statistic.x5" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" for="system.statistics.{{key}}.value" class="resource-label">{{localize (concat 'DG.Attributes.' key)}}</label>
@@ -94,7 +97,7 @@
         {{#each actor.system.skills as |skill key|}}
           
           {{#if (hideSkillBasedOnProficiencyAndUserChoice ../actor.system.showUntrainedSkills skill.proficiency)}}
-          <div class="flexrow flex-group-center">
+          <div class="flexrow flex-group-center flex-thin-border">
             <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{localize (concat 'DG.Skills.' key)}}" for="system.skills.{{key}}.value" 
                 {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
                 {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}}
