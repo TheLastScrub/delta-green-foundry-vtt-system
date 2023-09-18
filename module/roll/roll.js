@@ -12,13 +12,16 @@ export class DGPercentileRoll extends Roll {
     switch (rollType) {
       case "stat":
         this.rollBasis = actor.system.statistics[key]
-        this.target = this.rollBasis.x5;
-        this.localizedKey = key.toUpperCase();
+        this.target = actor.system.statistics[key].x5;
+        this.localizedKey = game.i18n.localize(`DG.Attributes.${key}`);
         break;
       case "skill": 
-        this.rollBasis = actor.system.skills[key];
-        this.target = this.rollBasis.proficiency;
+        this.target = actor.system.skills[key].proficiency;
         this.localizedKey = game.i18n.localize(`DG.Skills.${key}`);
+        break;
+      case "sanity":
+        this.target = actor.system.sanity.value;
+        this.localizedKey = game.i18n.localize("DG.Attributes.SAN");
         break;
       default:
         break;
@@ -158,21 +161,6 @@ export async function sendPercentileTestToChat(roll){
   AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
   
   ChatMessage.create(chatData);
-}
-
-export function skillCheckResultIsCritical(rollResult){
-  let isCritical = false;
-
-  if(rollResult === 1 || rollResult === 100){
-    // really good, or reeaaaally bad
-    isCritical = true;
-  }
-  else if(rollResult % 11 === 0){
-    // any matching dice are a crit, i.e. 11, 22, 33...99.
-    isCritical = true;
-  }
-
-  return isCritical;
 }
 
 export async function sendLethalityTestToChat(actor, weaponName, target, rollMode){

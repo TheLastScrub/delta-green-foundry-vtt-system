@@ -212,7 +212,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
     });
 
     // Rollable abilities - bind to everything with the 'Rollable' class
-    //html.find('.rollable').click(this._onRoll.bind(this));
     html.find('.rollable').mouseup(this._onRoll.bind(this));
 
     // Macro for toggling an item's equipped state
