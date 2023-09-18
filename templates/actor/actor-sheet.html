@@ -101,7 +101,7 @@
               {{#each actor.system.skills as |skill key|}}
               
                 <div class="flexrow flex-group-center flex-thin-border">
-                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-skillkey="{{key}}" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{localize (concat 'DG.Skills.' key)}}" for="system.skills.{{key}}.value" 
+                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-key="{{key}}" data-rolltype="skill" for="system.skills.{{key}}.value" 
                       {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
                       {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}}
                     >
@@ -145,7 +145,7 @@
             <div class="grid-2col">
               {{#each actor.system.typedSkills as |skill key|}}
                 <div class="item flexrow flex-group-center flex-thin-border">
-                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-skillkey="{{key}}" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" 
+                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-key="{{key}}" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" 
                       {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
                       {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}} 
                     >
@@ -174,9 +174,9 @@
               <div class="flex-group-center flex-mid-border">
                 <div class="">
                   <div class="physical-stats-outer-grid-3col">
-                    <label class="rollable" data-rolltype="statistic.x5" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}" for="system.statistics.{{key}}.value" class="resource-label">{{localize (concat 'DG.Attributes.' key)}}</label>
+                    <label class="rollable" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}" for="system.statistics.{{key}}.value" class="resource-label">{{localize (concat 'DG.Attributes.' key)}}</label>
                     <input type="text" name="system.statistics.{{key}}.value" value="{{statistic.value}}" data-dtype="Number"/>
-                    <span  class="rollable" data-rolltype="statistic.x5" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}">({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
+                    <span  class="rollable" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}">({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
                   </div >
                   <div >
                     <input type="text" name="system.statistics.{{key}}.distinguishing_feature" value="{{statistic.distinguishing_feature}}" data-dtype="String" title="{{localize 'DG.Tooltip.DistinguishingFeature'}}" />
@@ -320,35 +320,17 @@
                   
                   <li class="item flexrow" data-item-id="{{item._id}}">
                     <div 
-                      class="item-image rollable"
-                      
-                      data-roll="d100"
-                      data-rolltype="weaponskill" 
-                      data-target="{{item.system.skill}}"                                          
-                      data-itemname="{{item.name}}"                       
-                      data-label="{{localizeWeaponSkill item.system.skill}}"
-                      title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.system.skill}})"
-
-                      data-skillmodifier="{{item.system.skillModifier}}"
-                      data-customtarget="{{item.system.customSkillTarget}}"
+                      class="flexrow rollable"
                       data-iid="{{item._id}}"
-                    ><img src="{{item.img}}"  width="24" height="24"/></div>
+                      data-rolltype="weaponskill" 
+                      data-skill="{{item.system.skill}}"                                          
+                      title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.system.skill}})"
+                    ><img class="item-image" src="{{item.img}}"  width="24" height="24"/>
                     
-                    <h4 style="word-wrap: break-word;" 
-                      
-                      class="item-name rollable" 
-                      data-roll="d100"
-                      data-rolltype="weaponskill" 
-                      data-target="{{item.system.skill}}"                         
-                      data-label="{{localizeWeaponSkill item.system.skill}}"
-                      title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.system.skill}})"
-                      
-                      data-skillmodifier="{{item.system.skillModifier}}"
-                      data-customtarget="{{item.system.customSkillTarget}}"
-                      data-iid="{{item._id}}"
-                      >
+                    <h4 style="word-wrap: break-word;" class="item-name rollable">
                         {{item.name}}
                     </h4>
+                    </div>
 
                     <span class = "centered-item-property">
                       {{#unless item.system.isLethal}}

@@ -1,3 +1,5 @@
+/* globals $ game Roll ChatMessage AudioHelper ActorSheet mergeObject Dialog TextEditor ActiveEffect ui duplicate fromUuidSync */
+
 import { 
   sendPercentileTestToChat, 
   sendLethalityTestToChat, 
@@ -99,8 +101,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
     for (let i of sheetData.items) {
-      let item = i;
-      i.img = i.img || DEFAULT_TOKEN;
       // Append to armor.
       if (i.type === 'armor') {
         armor.push(i);
@@ -597,6 +597,69 @@ export class DeltaGreenActorSheet extends ActorSheet {
   _onRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
+    const { dataset } = element;
+
+    if(event && event.which === 2){
+      // probably don't want rolls to trigger from a middle mouse click so just kill it here
+      return;
+    }
+
+    switch (dataset.rolltype) {
+      case "stat":
+      case "skill":
+      case "typedskill":
+      case "sanity": {
+        // const confirmRoll = showModifyPercentileTestDialogue(this.actor);
+        // if (!confirmRoll) return;
+        sendPercentileTestToChat(dataset.rolltype, dataset.key, this.actor);
+        break;
+      }
+
+      case "weapon": {
+        if (!dataset.iid) {
+          return ui.notifications.error("No item id provided.")
+        }
+        const item = this.actor.items.get(dataset.iid);
+        sendPercentileTestToChat(dataset.rolltype, dataset.key, this.actor, item);
+        break;
+      }
+      
+      case "damage": {
+        let diceFormula = dataset.roll;
+        let skillType = dataset.skill ? dataset.skill : '';
+        if(this.actor.type === 'agent' && (skillType === 'unarmed_combat' || skillType === 'melee_weapons')){
+          diceFormula += this.actor.system.statistics.str.meleeDamageBonusFormula;
+        }
+        showModifyDamageRollDialogue(this.actor, diceFormula);
+        sendDamageRollToChat(this.actor, diceFormula, game.settings.get("core", "rollMode"));
+        break;
+      }
+
+      case "lethality": {
+          sendLethalityTestToChat(this.actor, game.settings.get("core", "rollMode"));
+          break;
+        }
+
+      case "sanitydamage":{
+        const lowRollFormula = dataset.roll;
+        const highRollFormula = dataset.roll2;
+        sendSanityDamageToChat(this.actor, lowRollFormula, highRollFormula, game.settings.get("core", "rollMode"))
+        break;
+      }
+
+      default:
+        break;
+    }
+  }
+
+  /**
+   * Handle clickable rolls.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  _onRoll2(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
     const dataset = element.dataset;
 
     if(event && event.which === 2){
@@ -923,7 +986,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       // This is from Foundry. It will get the item data from the event.
       const dragData = TextEditor.getDragEventData(event);
       // Make sure that we are dragging an item, otherwise this doesn't make sense.
-      if (dragData.type = "Item") {
+      if (dragData.type === "Item") {
         const item = fromUuidSync(dragData.uuid);
         await item.delete()
       }
@@ -933,6 +996,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
   activateEditor(target, editorOptions, initialContent) {
     editorOptions.content_css = "./systems/deltagreen/css/editor.css";
     return super.activateEditor(target, editorOptions, initialContent);
-  };
+  }
 }
 
