@@ -2,10 +2,8 @@
 
 import { 
   DGPercentileRoll,
-  sendPercentileTestToChat, 
   sendLethalityTestToChat, 
   sendDamageRollToChat, 
-  showModifyPercentileTestDialogue, 
   showModifyDamageRollDialogue,
   sendSanityDamageToChat
 } from "../roll/roll.js"
@@ -591,10 +589,12 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
   /**
    * Handle clickable rolls.
+   * 
    * @param {Event} event   The originating click event
+   * @async
    * @private
    */
-  _onRoll(event) {
+  async _onRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const { dataset } = element;
@@ -609,10 +609,13 @@ export class DeltaGreenActorSheet extends ActorSheet {
       case "skill":
       case "typedskill":
       case "sanity": {
-        // const confirmRoll = showModifyPercentileTestDialogue(this.actor);
-        // if (!confirmRoll) return;
         const roll = new DGPercentileRoll(dataset.rolltype, dataset.key, this.actor)
-        sendPercentileTestToChat(roll);
+        if (event.shiftKey || event.which === 3) {
+          const dialogData = await roll.showDialog(dataset.key);
+          if (!dialogData) return;
+          roll.modifier += dialogData.targetModifier;
+        }
+        roll.toChat();
         break;
       }
 
@@ -622,7 +625,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
         }
         const item = this.actor.items.get(dataset.iid);
         const roll = new DGPercentileRoll(dataset.rolltype, dataset.key, this.actor, item)
-        sendPercentileTestToChat(roll);
+        roll.toChat();
         break;
       }
       
@@ -651,174 +654,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
       default:
         break;
-    }
-  }
-
-  /**
-   * Handle clickable rolls.
-   * @param {Event} event   The originating click event
-   * @private
-   */
-  _onRoll2(event) {
-    event.preventDefault();
-    const element = event.currentTarget;
-    const dataset = element.dataset;
-
-    if(event && event.which === 2){
-      // probably don't want rolls to trigger from a middle mouse click so just kill it here
-      return;
-    }
-
-    if (dataset.roll) {
-      
-      let key = dataset.label ? dataset.label : '';
-      let label = dataset.label ? `${dataset.label}` : '';
-      let targetVal = "";
-      let rollType = dataset.rolltype ? dataset.rolltype : '';
-
-      //let customTarget = dataset.customtarget ? parseInt(dataset.customtarget, 10) : 50;
-      //let skillModifier = dataset.skillmodifier ? parseInt(dataset.skillmodifier, 10) : 0; // allow adding a fixed modifier, for example if a weapon has a scope
-      //let itemName = dataset.itemname ? `${dataset.itemname}` : '';
-
-      let itemId = dataset.iid;
-
-      let isDamageRoll = false;
-      let isLethalityRoll = false;
-      let isSanityDamageRoll = false;
-
-
-      let item;
-      let customTarget = 0;
-      let skillModifier = 0;
-      let itemName;
-      
-      if(itemId !== null && itemId !== undefined && itemId !== ''){
-        item = this.actor.items.get(itemId);
-
-        customTarget = item.system.customSkillTarget;
-        skillModifier = item.system.skillModifier;
-        itemName = item.name;
-      }
-      
-      // if shift-click or right click, bring up roll editor dialog
-      let requestedModifyRoll = (event && event.shiftKey || event.which === 3); //(event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
-
-      // check the 'data-target="something" property to determine how to grab the target for the roll
-      if(rollType === "skill" || rollType === "typeskill"){
-        targetVal = parseInt(dataset.target, 10);
-        targetVal += skillModifier;
-        label = game.i18n.localize(label).toUpperCase();
-        if(skillModifier !== 0){
-          label += " (" + this._formatStringWithLeadingPlus(skillModifier) + "%)";
-        }
-      }
-      else if(rollType === "weaponskill"){
-        targetVal = dataset.target;        
-
-        if(targetVal === "custom"){
-          label = itemName.toUpperCase();
-          targetVal = customTarget;
-        }
-        // some weapons randomly can just use dexterity x5, so try to trap on that
-        // otherwise roll a regular skill test
-        else if(targetVal === "dex"){
-          label = game.i18n.localize("DG.Attributes.dex").toUpperCase() + "x5";
-          targetVal = this.actor.system.statistics.dex.x5;
-        }
-        else if(targetVal === "int"){
-          label = game.i18n.localize("DG.Attributes.int").toUpperCase() + "x5";
-          targetVal = this.actor.system.statistics.int.x5;
-        }
-        else if(targetVal === "str"){
-          label = game.i18n.localize("DG.Attributes.str").toUpperCase() + "x5";
-          targetVal = this.actor.system.statistics.str.x5;
-        }
-        else if(targetVal === "con"){
-          label = game.i18n.localize("DG.Attributes.con").toUpperCase() + "x5";
-          targetVal = this.actor.system.statistics.con.x5;
-        }
-        else if(targetVal === "pow"){
-          label = game.i18n.localize("DG.Attributes.pow").toUpperCase() + "x5";
-          targetVal = this.actor.system.statistics.pow.x5;
-        }
-        else if(targetVal === "cha"){
-          label = game.i18n.localize("DG.Attributes.cha").toUpperCase() + "x5";
-          targetVal = this.actor.system.statistics.cha.x5;
-        }
-        else{
-          label = game.i18n.localize("DG.Skills." + targetVal).toUpperCase();          
-          targetVal = this.actor.system.skills[targetVal].proficiency;                    
-        }
-
-        targetVal += skillModifier;
-        if(skillModifier !== 0){
-          label += " (" + this._formatStringWithLeadingPlus(skillModifier) + "%)";
-        }
-      }
-      else if(dataset.target === "statistic.x5"){
-        let stat = this.actor.system.statistics[key];
-        targetVal = stat.x5;
-        label = game.i18n.localize("DG.Attributes." + key).toUpperCase() + "x5";
-        
-        targetVal += skillModifier;
-        if(skillModifier !== 0){
-          label += " (" + this._formatStringWithLeadingPlus(skillModifier) + "%)";
-        }
-      }
-      else if(rollType === "sanity"){
-        targetVal = this.actor.system.sanity.value;
-        label = game.i18n.localize("DG.Attributes.SAN").toUpperCase();
-      }
-      else if(rollType === "damage"){
-        // damage roll, not a skill check
-        isDamageRoll = true;
-      }
-      else if(rollType === "lethality"){
-        // a lethality roll
-        isLethalityRoll = true;
-        targetVal = dataset.target;
-      }
-      else if(rollType === 'sanity-damage'){
-        isSanityDamageRoll = true;
-      }
-
-      if(isDamageRoll){
-
-        let diceFormula = dataset.roll;
-        let skillType = dataset.skill ? dataset.skill : '';
-
-        if(this.actor.type === 'agent' && (skillType === 'unarmed_combat' || skillType === 'melee_weapons')){
-          diceFormula += this.actor.system.statistics.str.meleeDamageBonusFormula;
-        }
-        
-        if(requestedModifyRoll){
-          showModifyDamageRollDialogue(this.actor, label, diceFormula);
-        }
-        else{
-          sendDamageRollToChat(this.actor, label, diceFormula, game.settings.get("core", "rollMode"));
-        }
-      }
-      else if(isSanityDamageRoll){
-
-        let lowRollFormula = dataset.roll;
-        let highRollFormula = dataset.roll2;
-
-        sendSanityDamageToChat(this.actor, label, lowRollFormula, highRollFormula, game.settings.get("core", "rollMode"))
-      }
-      else{
-        if(requestedModifyRoll){
-          showModifyPercentileTestDialogue(this.actor, label, targetVal, isLethalityRoll);
-        }
-        else{
-          if(isLethalityRoll)
-          {
-            sendLethalityTestToChat(this.actor, label, targetVal, game.settings.get("core", "rollMode"));
-          }
-          else{
-            sendPercentileTestToChat("skill", dataset.skillkey, this.actor);
-          }
-        }
-      }
     }
   }
 

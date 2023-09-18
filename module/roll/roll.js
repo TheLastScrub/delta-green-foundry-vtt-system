@@ -9,6 +9,7 @@ export class DGPercentileRoll extends Roll {
     this.key = key;
     this.actor = actor;
     this.item = item;
+    this.modifier = 0;
     switch (rollType) {
       case "stat":
         this.rollBasis = actor.system.statistics[key]
@@ -64,7 +65,7 @@ export class DGPercentileRoll extends Roll {
 
     // If inhuman and the roll is below the regular (non-x5) value of the stat, it is a critical. 
     // E.g. a CON of 25, a d100 roll of 21 would be a critical.
-    if (this.isInhuman && this.total <= (this.target / 5)) {
+    if (this.isInhuman && this.total <= ((this.target + this.modifier) / 5)) {
       isCritical = true;
     }
 
@@ -85,82 +86,147 @@ export class DGPercentileRoll extends Roll {
 
     // A roll of 100 always (critically) fails, even for inhuman rolls.
     if (this.total === 100) return false;
-    return this.total <= this.target;
-  }
-}
-
-export async function sendPercentileTestToChat(roll){
-  await roll.evaluate({async: true});
-  let rollMode = game.settings.get("core", "rollMode"); 
-
-  // if using private san rolls, must hide any SAN roll unless user is a GM
-  const privateSanSetting = game.settings.get("deltagreen", "keepSanityPrivate");
-  if (privateSanSetting && (roll.key === 'sanity' || roll.key === 'ritual') && !game.user.isGM){
-    rollMode = 'blindroll';
+    return this.total <= (this.target + this.modifier);
   }
 
-  let label = '';
-  // "Inhuman" stat being rolled. See function for details.
-  if (roll.isInhuman) {
-    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${roll.localizedKey} [${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${Math.floor(roll.target / 5)}`;
-  } else {
-    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${roll.localizedKey}</b> ${game.i18n.localize("DG.Roll.Target")} ${roll.target}`;
-  }
-
-  let resultString = '', styleOverride = '';
-  if (roll.isCritical) {
-    resultString = `${game.i18n.localize("DG.Roll.Critical")} `;
-  }
-
-  if (roll.isSuccess) {
-    resultString += `${game.i18n.localize("DG.Roll.Success")}`;
-
-    if (roll.isCritical){ 
-      resultString = resultString.toUpperCase() + '!';
-      styleOverride="color: green";
-    }
-  } else { 
-    resultString += `${game.i18n.localize("DG.Roll.Failure")}`;
-
-    if(roll.isCritical){
-      resultString = resultString.toUpperCase() + '!';
-      styleOverride="color: red";
-    }
-  }
-
-  let html = '';
-  html += `<div class="dice-roll">`
-  html += `     <div class="dice-result">`
-  html += `     <div style="${styleOverride}" class="dice-formula">${resultString}</div>`
-  html += `     <div class="dice-tooltip">`
-  html += `          <section class="tooltip-part">`
-  html += `               <div class="dice">`
-  html += `                    <p class="part-formula">`
-  html += `                         ${roll.formula}`
-  html += `                         <span class="part-total">${roll.total}</span>`
-  html += `                    </p>`
-  html += `                    <ol class="dice-rolls">`
-  html += `                         <li class="roll die ${roll.formula}">${roll.total}</li>`
-  html += `                    </ol>`
-  html += `               </div>`
-  html += `          </section>`
-  html += `     </div>`
-  html += `     <h4 class="dice-total">${roll.total}</h4>`
-  html += `</div>`
-
-  let chatData = {
-    speaker: ChatMessage.getSpeaker({actor: roll.actor}),
-    content: html,
-    flavor: label,
-    type: 5, //CHAT_MESSAGE_TYPES.ROLL,
-    roll: roll,
-    rollMode: rollMode
-    };
-
-  // play the dice rolling sound, like a regular in-chat roll
-  AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
+  /**
+   * Shows a dialog that can modify the roll.
+   * 
+   * @returns {Promise<Object|void>} - the results of the dialog.
+   */
+  async showDialog() {  
+    let isSanCheck = false;
+    const hideSanTarget = !game.user.isGM && game.settings.get("deltagreen", "keepSanityPrivate");
   
-  ChatMessage.create(chatData);
+    if (this.key === 'sanity' || this.key === 'ritual') {
+      isSanCheck = true;
+    }
+  
+    let backingData = {
+      data:{
+        label: this.key,
+        originalTarget: this.target,
+        targetModifier: 20,
+        isSanCheck: isSanCheck,
+        hideTarget: hideSanTarget
+      },
+    };
+    
+    let template = "systems/deltagreen/templates/dialog/modify-percentile-roll.html";
+    let html = await renderTemplate(template, backingData);
+    return new Promise((resolve, reject) => {
+      new Dialog({
+        content: html,
+        title: localizeWithFallback("DG.ModifySkillRollDialogue.Title", "Modify Roll"),
+        default: "roll",
+        buttons: {
+          roll:{
+            label: localizeWithFallback("DG.Roll.Roll", "Roll"),
+            callback: html => { 
+              try {
+                let targetModifier = html.find("[name='targetModifier']").val();  // this is text as a heads up
+    
+                let rollMode = html.find("[name='targetRollMode']").val();
+    
+                let plusMinus = html.find("[name='plusOrMinus']").val();
+                            
+                if (targetModifier.trim() != "" && !isNaN(targetModifier)){
+                  targetModifier = Math.abs(parseInt(targetModifier));
+                  
+                  if(plusMinus === "-"){
+                    targetModifier = -1 * targetModifier;
+                  }
+                }
+                resolve({targetModifier, rollMode})
+              } catch(ex) {
+                reject(console.log(ex));
+              }
+            }
+          }
+        }
+      }).render(true);
+    });
+  }
+
+  /**
+   * Evaluates and sends a roll to chat.
+   * Lays out and styles message based on outcome of the roll.
+   * 
+   * @returns {void} - the results of the dialog.
+   */
+  async toChat() {
+    await this.evaluate({async: true});
+    let rollMode = game.settings.get("core", "rollMode"); 
+  
+    // if using private san rolls, must hide any SAN roll unless user is a GM
+    const privateSanSetting = game.settings.get("deltagreen", "keepSanityPrivate");
+    if (privateSanSetting && (this.key === 'sanity' || this.key === 'ritual') && !game.user.isGM){
+      rollMode = 'blindroll';
+    }
+  
+    let label = '';
+    // "Inhuman" stat being rolled. See function for details.
+    if (this.isInhuman) {
+      label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${this.localizedKey} [${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${Math.floor(this.target + this.modifier / 5)}`;
+    } else {
+      label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${this.localizedKey}</b> ${game.i18n.localize("DG.Roll.Target")} ${this.target + this.modifier}`;
+    }
+  
+    let resultString = '', styleOverride = '';
+    if (this.isCritical) {
+      resultString = `${game.i18n.localize("DG.Roll.Critical")} `;
+    }
+  
+    if (this.isSuccess) {
+      resultString += `${game.i18n.localize("DG.Roll.Success")}`;
+  
+      if (this.isCritical){ 
+        resultString = resultString.toUpperCase() + '!';
+        styleOverride="color: green";
+      }
+    } else { 
+      resultString += `${game.i18n.localize("DG.Roll.Failure")}`;
+  
+      if(this.isCritical){
+        resultString = resultString.toUpperCase() + '!';
+        styleOverride="color: red";
+      }
+    }
+  
+    let html = '';
+    html += `<div class="dice-roll">`
+    html += `     <div class="dice-result">`
+    html += `     <div style="${styleOverride}" class="dice-formula">${resultString}</div>`
+    html += `     <div class="dice-tooltip">`
+    html += `          <section class="tooltip-part">`
+    html += `               <div class="dice">`
+    html += `                    <p class="part-formula">`
+    html += `                         ${this.formula}`
+    html += `                         <span class="part-total">${this.total}</span>`
+    html += `                    </p>`
+    html += `                    <ol class="dice-rolls">`
+    html += `                         <li class="roll die ${this.formula}">${this.total}</li>`
+    html += `                    </ol>`
+    html += `               </div>`
+    html += `          </section>`
+    html += `     </div>`
+    html += `     <h4 class="dice-total">${this.total}</h4>`
+    html += `</div>`
+  
+    let chatData = {
+      speaker: ChatMessage.getSpeaker({actor: this.actor}),
+      content: html,
+      flavor: label,
+      type: 5, //CHAT_MESSAGE_TYPES.ROLL,
+      roll: this,
+      rollMode: rollMode
+      };
+  
+    // play the dice rolling sound, like a regular in-chat roll
+    AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
+    
+    ChatMessage.create(chatData);
+  }
 }
 
 export async function sendLethalityTestToChat(actor, weaponName, target, rollMode){
@@ -334,80 +400,6 @@ export async function sendSanityDamageToChat(actor, label, lowFormula, highFormu
   AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
 
   ChatMessage.create(chatData, {});
-}
-
-export async function showModifyPercentileTestDialogue(actor, label, originalTarget, isLethalityTest){
-  
-  let template = "systems/deltagreen/templates/dialog/modify-percentile-roll.html";
-
-  let isSanCheck = false;
-  let hideSanTarget = false;
-
-  if(label === 'SAN' || label === 'RITUAL'){
-
-    isSanCheck = true;
-
-    hideSanTarget = game.settings.get("deltagreen", "keepSanityPrivate");
-
-    if(game.user.isGM){
-      hideSanTarget = false;
-    }
-  }
-
-  let backingData = {
-    data:{
-      label: label,
-      originalTarget: originalTarget,
-      targetModifier: 20,
-      isSanCheck: isSanCheck,
-      hideTarget: hideSanTarget
-    },
-  };
-  
-  let html = await renderTemplate(template, backingData);
-
-  new Dialog({
-    content: html,
-    title: localizeWithFallback("DG.ModifySkillRollDialogue.Title", "Modify Roll"),
-    default: "roll",
-    buttons: {
-      roll:{
-        label: localizeWithFallback("DG.Roll.Roll", "Roll"),
-
-        callback: html => { 
-          try{
-            let targetModifier = html.find("[name='targetModifier']").val();  // this is text as a heads up
-
-            let rollMode = html.find("[name='targetRollMode']").val();
-
-            let plusMinus = html.find("[name='plusOrMinus']").val();
-                    
-            let newTarget = parseInt(originalTarget); // this should be an int, but technically the incoming value is text, so parse it just to be safe
-
-            if(targetModifier.trim() != "" && !isNaN(targetModifier)){
-              let numericTargetModifier = Math.abs(parseInt(targetModifier));
-              
-              if(plusMinus === "-"){
-                numericTargetModifier = -1 * numericTargetModifier;
-              }
-
-              newTarget += numericTargetModifier;
-            }
-            
-            if(isLethalityTest){
-              sendLethalityTestToChat(actor, label, newTarget, rollMode);
-            }
-            else{
-              sendPercentileTestToChat(actor, label, newTarget, rollMode);
-            }
-          }
-          catch(ex){
-            console.log(ex);
-          }
-        }
-      }
-    }
-  }).render(true);
 }
 
 export async function showModifyDamageRollDialogue(actor, label, originalFormula){

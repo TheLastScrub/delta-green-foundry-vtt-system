@@ -1,9 +1,11 @@
+/* globals $ Hooks game CONFIG Actors Items ActorSheet ItemSheet Handlebars Macro ChatMessage ui duplicate */
+
 // Import Modules
 import { DeltaGreenActor } from "./actor/actor.js";
 import { DeltaGreenActorSheet } from "./actor/actor-sheet.js";
 import { DeltaGreenItem } from "./item/item.js";
 import { DeltaGreenItemSheet } from "./item/item-sheet.js";
-import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat, DGPercentileRoll } from "./roll/roll.js";
+import { sendLethalityTestToChat, sendDamageRollToChat, DGPercentileRoll } from "./roll/roll.js";
 import { registerSystemSettings } from "./settings.js"
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { ParseDeltaGreenStatBlock } from "./other/stat-parser-macro.js";

@@ -49,7 +49,7 @@
           {{!-- Sanity --}}
           <div class="resource-outer-grid-1col">
               <label for="system.san.value" class="resource-label rollable"
-                data-rolltype="sanity" data-roll="d100" data-target="sanity" data-label="SAN" title="{{localize 'DG.Tooltip.SanityLabel'}}"
+                data-rolltype="sanity" data-key="sanity" title="{{localize 'DG.Tooltip.SanityLabel'}}"
               >{{localize 'DG.Attributes.SAN' }} <i class="fas fa-dice"></i></label>
               <div class="resource-inner-grid-3col">
 
@@ -174,7 +174,7 @@
               <div class="flex-group-center flex-mid-border">
                 <div class="">
                   <div class="physical-stats-outer-grid-3col">
-                    <label class="rollable" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}" for="system.statistics.{{key}}.value" class="resource-label">{{localize (concat 'DG.Attributes.' key)}}</label>
+                    <label class="rollable resource-label" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}" for="system.statistics.{{key}}.value">{{localize (concat 'DG.Attributes.' key)}}</label>
                     <input type="text" name="system.statistics.{{key}}.value" value="{{statistic.value}}" data-dtype="Number"/>
                     <span  class="rollable" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}">({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
                   </div >
