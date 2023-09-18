@@ -144,7 +144,7 @@
             </div>
             <div class="grid-2col">
               {{#each actor.system.typedSkills as |skill key|}}
-                <div class="item flexrow flex-group-center">
+                <div class="item flexrow flex-group-center flex-thin-border">
                   <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" 
                       {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
                       {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}} 
