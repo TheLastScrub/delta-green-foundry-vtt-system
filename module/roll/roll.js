@@ -2,119 +2,130 @@
 
 import {localizeWithFallback} from "../other/utility-functions.js"
 
-export class DGRoll extends Roll {
-  constructor(formula, data, rollType, options) {
-    super(formula, data, options);
+export class DGPercentileRoll extends Roll {
+  constructor(rollType, key, actor, item, options) {
+    super("1D100", {}, options);
+    this.type = rollType;
+    this.key = key;
+    this.actor = actor;
+    this.item = item;
+    switch (rollType) {
+      case "stat":
+        this.rollBasis = actor.system.statistics[key]
+        this.target = this.rollBasis.x5;
+        this.localizedKey = key.toUpperCase();
+        break;
+      case "skill": 
+        this.rollBasis = actor.system.skills[key];
+        this.target = this.rollBasis.proficiency;
+        this.localizedKey = game.i18n.localize(`DG.Skills.${key}`);
+        break;
+      default:
+        break;
+    }
+  }
+
+  /**
+   * "Inhuman" stat being rolled, logic is different per page 188 of the Handler's Guide.
+   * Note - originally implemented by Uriele, but my attempt at merging conficts went poorly, so re-implementing.
+   * For an inhuman check, the roll succeeds except on a roll of 100 which fails AND fumbles.
+   * If the roll is a matching digit roll, it is a critical as normal.
+   * Also, if the roll is below the regular (non-x5) value of the stat, it is a critical.  E.g. a CON of 25, a d100 roll of 21 would be a critical.
+   * 
+   */
+  get isInhuman() {
+    if (this.target > 99 && this.type === "stat") {
+      return true;
+    }
+    return false; 
+  }
+
+  /**
+   * Determines if a roll result is critical.
+   * If roll has not been evaluated, return null.
+   * 
+   * @returns {null|Boolean} 
+   */
+  get isCritical() {
+    // If roll isn't evaluated, return null.
+    if (!this.total) {
+      return null;
+    }
+    let isCritical = false
+
+    // 1, 100, or any matching dice are a crit, i.e. 11, 22, 33...99.
+    if (this.total === 1 || this.total === 100 || this.total % 11 === 0) {
+      // really good, or reeaaaally bad
+      isCritical = true;
+    }
+
+    // If inhuman and the roll is below the regular (non-x5) value of the stat, it is a critical. 
+    // E.g. a CON of 25, a d100 roll of 21 would be a critical.
+    if (this.isInhuman && this.total <= (this.target / 5)) {
+      isCritical = true;
+    }
+
+    return isCritical;
+  }
+
+  /**
+   * Determines if a roll succeeded.
+   * If roll has not been evaluated, return null.
+   * 
+   * @returns {null|Boolean} 
+   */
+  get isSuccess() {
+    // If roll isn't evaluated, return null.
+    if (!this.total) {
+      return null;
+    }
+
+    // A roll of 100 always (critically) fails, even for inhuman rolls.
+    if (this.total === 100) return false;
+    return this.total <= this.target;
   }
 }
 
-export async function sendPercentileTestToChat(rollType, rollKey, actor, item){
-  let roll = new Roll('1D100', actor.system)
-  
+export async function sendPercentileTestToChat(roll){
   await roll.evaluate({async: true});
-  
-  const msg = await roll.toMessage({}, {create: false});
-  
-  let total = roll.total;
-  let isCritical = false;
-  let isSuccess = false;
-  let html = '';
-  let label = '';
-  let resultString = '';
-  let styleOverride = '';
-  let target;
-  let rollBasis;
-  let localizedKey;
-
-
-
-  switch (rollType) {
-    case "stat":
-      rollBasis = actor.system.statistics[rollKey]
-      target = rollBasis.x5;
-      localizedKey = rollKey.toUpperCase();
-      break;
-    case "skill": 
-      rollBasis = actor.system.skills[rollKey];
-      target = rollBasis.proficiency;
-      localizedKey = game.i18n.localize(`DG.Skills.${rollKey}`);
-      break;
-    default:
-      break;
-  }
-
   let rollMode = game.settings.get("core", "rollMode"); 
 
   // if using private san rolls, must hide any SAN roll unless user is a GM
-  let setting = false;
-
-  setting = game.settings.get("deltagreen", "keepSanityPrivate");
-
-  if(setting && (rollKey === 'sanity' || rollKey === 'ritual') && !game.user.isGM){
+  const privateSanSetting = game.settings.get("deltagreen", "keepSanityPrivate");
+  if (privateSanSetting && (roll.key === 'sanity' || roll.key === 'ritual') && !game.user.isGM){
     rollMode = 'blindroll';
   }
 
-  // "Inhuman" stat being rolled, logic is different per page 188 of the Handler's Guide.
-  // Note - originally implemented by Uriele, but my attempt at merging conficts went poorly, so re-implementing.
-  // For an inhuman check, the roll succeeds except on a roll of 100 which fails AND fumbles.
-  // If the roll is a matching digit roll, it is a critical as normal.
-  // Also, if the roll is below the regular (non-x5) value of the stat, it is a critical.  E.g. a CON of 25, a d100 roll of 21 would be a critical.
-  if(target > 99 && rollType === "stat"){
-
-    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${localizedKey} [${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${Math.floor(target / 5)}`;
-
-    if(total === 100){
-      // only possible fail criteria, and also a fumble.
-      isSuccess = false;
-      isCritical = true;
-    }
-    else{
-      isSuccess = true;
-      if(total <= (target / 5.0)){
-        isCritical = true;
-      }
-      else if(skillCheckResultIsCritical(total)){
-        isCritical = true;
-      }
-      else{
-        isCritical = false;
-      }
-    }
-
-  }
-  else{
-
-    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${localizedKey}</b> ${game.i18n.localize("DG.Roll.Target")} ${target}`;
-
-    isCritical = skillCheckResultIsCritical(total);
-
-    if(total <= target){
-      isSuccess = true;
-    }
-
+  let label = '';
+  // "Inhuman" stat being rolled. See function for details.
+  if (roll.isInhuman) {
+    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${roll.localizedKey} [${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${Math.floor(roll.target / 5)}`;
+  } else {
+    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${roll.localizedKey}</b> ${game.i18n.localize("DG.Roll.Target")} ${roll.target}`;
   }
 
-  if(isCritical){
+  let resultString = '', styleOverride = '';
+  if (roll.isCritical) {
     resultString = `${game.i18n.localize("DG.Roll.Critical")} `;
   }
 
-  if(isSuccess){
+  if (roll.isSuccess) {
     resultString += `${game.i18n.localize("DG.Roll.Success")}`;
 
-    if(isCritical){
+    if (roll.isCritical){ 
       resultString = resultString.toUpperCase() + '!';
       styleOverride="color: green";
     }
-  }
-  else{
+  } else { 
     resultString += `${game.i18n.localize("DG.Roll.Failure")}`;
 
-    if(isCritical){
+    if(roll.isCritical){
       resultString = resultString.toUpperCase() + '!';
       styleOverride="color: red";
     }
   }
 
+  let html = '';
   html += `<div class="dice-roll">`
   html += `     <div class="dice-result">`
   html += `     <div style="${styleOverride}" class="dice-formula">${resultString}</div>`
@@ -135,7 +146,7 @@ export async function sendPercentileTestToChat(rollType, rollKey, actor, item){
   html += `</div>`
 
   let chatData = {
-    speaker: ChatMessage.getSpeaker({actor: actor}),
+    speaker: ChatMessage.getSpeaker({actor: roll.actor}),
     content: html,
     flavor: label,
     type: 5, //CHAT_MESSAGE_TYPES.ROLL,

@@ -1,6 +1,7 @@
 /* globals $ game Roll ChatMessage AudioHelper ActorSheet mergeObject Dialog TextEditor ActiveEffect ui duplicate fromUuidSync */
 
 import { 
+  DGPercentileRoll,
   sendPercentileTestToChat, 
   sendLethalityTestToChat, 
   sendDamageRollToChat, 
@@ -611,7 +612,8 @@ export class DeltaGreenActorSheet extends ActorSheet {
       case "sanity": {
         // const confirmRoll = showModifyPercentileTestDialogue(this.actor);
         // if (!confirmRoll) return;
-        sendPercentileTestToChat(dataset.rolltype, dataset.key, this.actor);
+        const roll = new DGPercentileRoll(dataset.rolltype, dataset.key, this.actor)
+        sendPercentileTestToChat(roll);
         break;
       }
 
@@ -620,13 +622,14 @@ export class DeltaGreenActorSheet extends ActorSheet {
           return ui.notifications.error("No item id provided.")
         }
         const item = this.actor.items.get(dataset.iid);
-        sendPercentileTestToChat(dataset.rolltype, dataset.key, this.actor, item);
+        const roll = new DGPercentileRoll(dataset.rolltype, dataset.key, this.actor, item)
+        sendPercentileTestToChat(roll);
         break;
       }
       
       case "damage": {
         let diceFormula = dataset.roll;
-        let skillType = dataset.skill ? dataset.skill : '';
+        let skillType = dataset.key;
         if(this.actor.type === 'agent' && (skillType === 'unarmed_combat' || skillType === 'melee_weapons')){
           diceFormula += this.actor.system.statistics.str.meleeDamageBonusFormula;
         }

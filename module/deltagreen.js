@@ -3,7 +3,7 @@ import { DeltaGreenActor } from "./actor/actor.js";
 import { DeltaGreenActorSheet } from "./actor/actor-sheet.js";
 import { DeltaGreenItem } from "./item/item.js";
 import { DeltaGreenItemSheet } from "./item/item-sheet.js";
-import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat } from "./roll/roll.js";
+import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat, DGPercentileRoll } from "./roll/roll.js";
 import { registerSystemSettings } from "./settings.js"
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { ParseDeltaGreenStatBlock } from "./other/stat-parser-macro.js";
@@ -28,6 +28,9 @@ Hooks.once('init', async function() {
     formula: "@statistics.dex.value",
     decimals: 0
   };
+
+  // Register custom dice rolls
+  CONFIG.Dice.rolls.push(DGPercentileRoll);
 
   // Register System Settings
   registerSystemSettings();
