@@ -1,11 +1,18 @@
 import {localizeWithFallback} from "../other/utility-functions.js"
 
-export async function sendPercentileTestToChat(actor, skill, target, rollMode){
-  //let roll = new Roll('1D100', actor.data.data).evaluate(false);
+export class DGRoll extends Roll {
+  constructor(formula, data, rollType, options) {
+    super(formula, data, options);
+  }
+}
+
+export async function sendPercentileTestToChat(rollType, skillKey, actor, item){
   let roll = new Roll('1D100', actor.system)
   
   await roll.evaluate({async: true});
-
+  
+  const msg = await roll.toMessage({}, {create: false});
+  
   let total = roll.total;
   let isCritical = false;
   let isSuccess = false;
@@ -13,12 +20,25 @@ export async function sendPercentileTestToChat(actor, skill, target, rollMode){
   let label = '';
   let resultString = '';
   let styleOverride = '';
+  let target;
+  let rollBasis;
 
-  if(rollMode == null || rollMode === ""){
-    rollMode = game.settings.get("core", "rollMode"); 
+  switch (rollType) {
+    case "stat":
+      rollBasis = actor.system.statistics[skillKey]
+      target = rollBasis.x5;
+      break;
+    case "skill": 
+      rollBasis = actor.system.skills[skillKey];
+      target = rollBasis.proficiency;
+      break;
+    default:
+      break;
   }
 
-  // if using private san rolls, must hide any SAN role unless user is a GM
+  let rollMode = game.settings.get("core", "rollMode"); 
+
+  // if using private san rolls, must hide any SAN roll unless user is a GM
   let setting = false;
 
   setting = game.settings.get("deltagreen", "keepSanityPrivate");
@@ -32,9 +52,9 @@ export async function sendPercentileTestToChat(actor, skill, target, rollMode){
   // For an inhuman check, the roll succeeds except on a roll of 100 which fails AND fumbles.
   // If the roll is a matching digit roll, it is a critical as normal.
   // Also, if the roll is below the regular (non-x5) value of the stat, it is a critical.  E.g. a CON of 25, a d100 roll of 21 would be a critical.
-  if(target > 99 && skillIsStatTest(skill)){
+  if(target > 99 && rollType === "stat"){
 
-    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${skill} [${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${Math.floor(target / 5)}`;
+    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${game.i18n.localize(skillKey)} [${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${Math.floor(target / 5)}`;
 
     if(total === 100){
       // only possible fail criteria, and also a fumble.
@@ -57,7 +77,7 @@ export async function sendPercentileTestToChat(actor, skill, target, rollMode){
   }
   else{
 
-    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${skill}</b> ${game.i18n.localize("DG.Roll.Target")} ${target}`;
+    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${game.i18n.localize(`DG.Skills.${skillKey}`)}</b> ${game.i18n.localize("DG.Roll.Target")} ${target}`;
 
     isCritical = skillCheckResultIsCritical(total);
 
@@ -88,7 +108,7 @@ export async function sendPercentileTestToChat(actor, skill, target, rollMode){
     }
   }
 
-  html = `<div class="dice-roll">`
+  html += `<div class="dice-roll">`
   html += `     <div class="dice-result">`
   html += `     <div style="${styleOverride}" class="dice-formula">${resultString}</div>`
   html += `     <div class="dice-tooltip">`
@@ -119,7 +139,7 @@ export async function sendPercentileTestToChat(actor, skill, target, rollMode){
   // play the dice rolling sound, like a regular in-chat roll
   AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
   
-  ChatMessage.create(chatData, {});
+  ChatMessage.create(chatData);
 }
 
 export function skillCheckResultIsCritical(rollResult){

@@ -101,7 +101,7 @@
               {{#each actor.system.skills as |skill key|}}
               
                 <div class="flexrow flex-group-center flex-thin-border">
-                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{localize (concat 'DG.Skills.' key)}}" for="system.skills.{{key}}.value" 
+                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-skillkey="{{key}}" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{localize (concat 'DG.Skills.' key)}}" for="system.skills.{{key}}.value" 
                       {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
                       {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}}
                     >
@@ -145,7 +145,7 @@
             <div class="grid-2col">
               {{#each actor.system.typedSkills as |skill key|}}
                 <div class="item flexrow flex-group-center flex-thin-border">
-                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" 
+                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-skillkey="{{key}}" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" 
                       {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
                       {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}} 
                     >

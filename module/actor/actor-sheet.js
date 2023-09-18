@@ -750,7 +750,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
             sendLethalityTestToChat(this.actor, label, targetVal, game.settings.get("core", "rollMode"));
           }
           else{
-            sendPercentileTestToChat(this.actor, label, targetVal, game.settings.get("core", "rollMode"));
+            sendPercentileTestToChat("skill", dataset.skillkey, this.actor);
           }
         }
       }
