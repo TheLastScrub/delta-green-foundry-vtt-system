@@ -643,6 +643,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
         targetVal = parseInt(dataset.target, 10);
         targetVal += skillModifier;
         label = game.i18n.localize(label).toUpperCase();
+        if(skillModifier !== 0){
+          label += " (" + this._formatStringWithLeadingPlus(skillModifier) + "%)";
+        }
       }
       else if(rollType === "weaponskill"){
         targetVal = dataset.target;        
