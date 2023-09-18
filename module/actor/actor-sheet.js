@@ -621,24 +621,28 @@ export class DeltaGreenActorSheet extends ActorSheet {
       let isLethalityRoll = false;
       let isSanityDamageRoll = false;
 
-      let item = this.actor.items.get(itemId);
 
-      let customTarget = item.system.customSkillTarget;
-      let skillModifier = item.system.skillModifier;
-      let itemName = item.name;
+      let item;
+      let customTarget = 0;
+      let skillModifier = 0;
+      let itemName;
+      
+      if(itemId !== null && itemId !== undefined && itemId !== ''){
+        item = this.actor.items.get(itemId);
+
+        customTarget = item.system.customSkillTarget;
+        skillModifier = item.system.skillModifier;
+        itemName = item.name;
+      }
       
       // if shift-click or right click, bring up roll editor dialog
       let requestedModifyRoll = (event && event.shiftKey || event.which === 3); //(event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
 
       // check the 'data-target="something" property to determine how to grab the target for the roll
       if(rollType === "skill" || rollType === "typeskill"){
-        targetVal = dataset.target;
+        targetVal = parseInt(dataset.target, 10);
         targetVal += skillModifier;
         label = game.i18n.localize(label).toUpperCase();
-
-        if(skillModifier !== 0){
-          label += " (" + skillModifier.toString() + ")"
-        }
       }
       else if(rollType === "weaponskill"){
         targetVal = dataset.target;        
