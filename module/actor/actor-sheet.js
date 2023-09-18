@@ -577,6 +577,18 @@ export class DeltaGreenActorSheet extends ActorSheet {
     return this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
+  _formatStringWithLeadingPlus(number){
+    let s = "";
+
+    if(number > 0){
+      s += "+"
+    }
+
+    s += number.toString();
+
+    return s;
+  }
+
   /**
    * Handle clickable rolls.
    * @param {Event} event   The originating click event
@@ -598,10 +610,22 @@ export class DeltaGreenActorSheet extends ActorSheet {
       let label = dataset.label ? `${dataset.label}` : '';
       let targetVal = "";
       let rollType = dataset.rolltype ? dataset.rolltype : '';
-      
+
+      //let customTarget = dataset.customtarget ? parseInt(dataset.customtarget, 10) : 50;
+      //let skillModifier = dataset.skillmodifier ? parseInt(dataset.skillmodifier, 10) : 0; // allow adding a fixed modifier, for example if a weapon has a scope
+      //let itemName = dataset.itemname ? `${dataset.itemname}` : '';
+
+      let itemId = dataset.iid;
+
       let isDamageRoll = false;
       let isLethalityRoll = false;
       let isSanityDamageRoll = false;
+
+      let item = this.actor.items.get(itemId);
+
+      let customTarget = item.system.customSkillTarget;
+      let skillModifier = item.system.skillModifier;
+      let itemName = item.name;
       
       // if shift-click or right click, bring up roll editor dialog
       let requestedModifyRoll = (event && event.shiftKey || event.which === 3); //(event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
@@ -609,14 +633,23 @@ export class DeltaGreenActorSheet extends ActorSheet {
       // check the 'data-target="something" property to determine how to grab the target for the roll
       if(rollType === "skill" || rollType === "typeskill"){
         targetVal = dataset.target;
+        targetVal += skillModifier;
         label = game.i18n.localize(label).toUpperCase();
+
+        if(skillModifier !== 0){
+          label += " (" + skillModifier.toString() + ")"
+        }
       }
       else if(rollType === "weaponskill"){
         targetVal = dataset.target;        
 
+        if(targetVal === "custom"){
+          label = itemName.toUpperCase();
+          targetVal = customTarget;
+        }
         // some weapons randomly can just use dexterity x5, so try to trap on that
         // otherwise roll a regular skill test
-        if(targetVal === "dex"){
+        else if(targetVal === "dex"){
           label = game.i18n.localize("DG.Attributes.dex").toUpperCase() + "x5";
           targetVal = this.actor.system.statistics.dex.x5;
         }
@@ -644,11 +677,21 @@ export class DeltaGreenActorSheet extends ActorSheet {
           label = game.i18n.localize("DG.Skills." + targetVal).toUpperCase();          
           targetVal = this.actor.system.skills[targetVal].proficiency;                    
         }
+
+        targetVal += skillModifier;
+        if(skillModifier !== 0){
+          label += " (" + this._formatStringWithLeadingPlus(skillModifier) + ")";
+        }
       }
       else if(dataset.target === "statistic.x5"){
         let stat = this.actor.system.statistics[key];
         targetVal = stat.x5;
         label = game.i18n.localize("DG.Attributes." + key).toUpperCase() + "x5";
+        
+        targetVal += skillModifier;
+        if(skillModifier !== 0){
+          label += " (" + this._formatStringWithLeadingPlus(skillModifier) + ")";
+        }
       }
       else if(rollType === "sanity"){
         targetVal = this.actor.system.sanity.value;
@@ -657,7 +700,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       else if(rollType === "damage"){
         // damage roll, not a skill check
         isDamageRoll = true;
-        label = dataset.label ? dataset.label : '';
+        label += " (" + this._formatStringWithLeadingPlus(skillModifier) + ")";
       }
       else if(rollType === "lethality"){
         // a lethality roll

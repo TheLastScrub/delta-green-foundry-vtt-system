@@ -73,6 +73,10 @@ export class DeltaGreenActor extends Actor {
 
   system.sanity.max = 99 - system.skills.unnatural.proficiency;
 
+  system.wp.max = system.statistics.pow.value;
+
+  system.health.max = Math.ceil((system.statistics.con.value + system.statistics.str.value) / 2);
+
   system.skills.ritual = {
     label: "Ritual",
     proficiency: 99 - system.sanity.value,

@@ -321,11 +321,17 @@
                   <li class="item flexrow" data-item-id="{{item._id}}">
                     <div 
                       class="item-image rollable"
+                      
                       data-roll="d100"
                       data-rolltype="weaponskill" 
-                      data-target="{{item.system.skill}}"                         
+                      data-target="{{item.system.skill}}"                                          
+                      data-itemname="{{item.name}}"                       
                       data-label="{{localizeWeaponSkill item.system.skill}}"
                       title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.system.skill}})"
+
+                      data-skillmodifier="{{item.system.skillModifier}}"
+                      data-customtarget="{{item.system.customSkillTarget}}"
+                      data-iid="{{item._id}}"
                     ><img src="{{item.img}}"  width="24" height="24"/></div>
                     
                     <h4 style="word-wrap: break-word;" 
@@ -336,6 +342,10 @@
                       data-target="{{item.system.skill}}"                         
                       data-label="{{localizeWeaponSkill item.system.skill}}"
                       title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.system.skill}})"
+                      
+                      data-skillmodifier="{{item.system.skillModifier}}"
+                      data-customtarget="{{item.system.customSkillTarget}}"
+                      data-iid="{{item._id}}"
                       >
                         {{item.name}}
                     </h4>
@@ -349,6 +359,7 @@
                         data-label="{{toUpperCase item.name}}" 
                         data-roll="{{toUpperCase item.system.damage}}"
                         data-skill="{{item.system.skill}}"
+                        data-iid="{{item._id}}"
                         >                      
                         {{toUpperCase item.system.damage}}{{#if_eq item.system.skill 'unarmed_combat'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}{{#if_eq item.system.skill 'melee_weapons'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}</span>
                       {{/unless}}
@@ -368,7 +379,6 @@
                         {{/if}}
                       {{/if}}
                     </span>
-
 
                     <span class="centered-item-property">{{item.system.armorPiercing}}</span>
 

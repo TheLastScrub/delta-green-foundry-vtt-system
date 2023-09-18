@@ -25,7 +25,10 @@
             <div class="resource-inner-grid-3col">
               <input type="text" name="system.health.value" value="{{actor.system.health.value}}" data-dtype="Number"/>
               <span> / </span>
-              <input type="text" name="system.health.max" value="{{actor.system.health.max}}" data-dtype="Number"/>
+              <!-- <input type="text" name="system.health.max" value="{{actor.system.health.max}}" data-dtype="Number"/> -->
+              <div class="max-resource-value" title="{{localize 'DG.Tooltip.MaximumHP'}}">
+                <div>{{numberFormat actor.system.health.max decimals=0 sign=false}}</div>
+              </div>
             </div>
         </div>
 
@@ -35,7 +38,10 @@
             <div class="resource-inner-grid-3col">
               <input type="text" name="system.wp.value" value="{{actor.system.wp.value}}" data-dtype="Number"/>
               <span> / </span>
-              <input type="text" name="system.wp.max" value="{{actor.system.wp.max}}" data-dtype="Number"/>
+              <!-- <input type="text" name="system.wp.max" value="{{actor.system.wp.max}}" data-dtype="Number"/> -->
+              <div class="max-resource-value" title="{{localize 'DG.Tooltip.MaximumWP'}}">
+                <div>{{numberFormat actor.system.wp.max decimals=0 sign=false}}</div>
+              </div>
             </div>
         </div>
 
@@ -182,9 +188,13 @@
                   class="item-name rollable" 
                   data-roll="d100"
                   data-rolltype="weaponskill" 
-                  data-target="{{item.system.skill}}"                         
+                  data-target="{{item.system.skill}}"
+                  data-customtarget="{{item.system.customSkillTarget}}"
+                  data-skillmodifier="{{item.system.skillModifier}}"
+                  data-itemname="{{item.name}}"                     
                   data-label="{{localizeWeaponSkill item.system.skill}}"
                   title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.system.skill}})"
+                  data-iid="{{item._id}}"
                   >
                     {{item.name}}
                 </h4>
@@ -197,6 +207,7 @@
                   data-label="{{toUpperCase item.name}}" 
                   data-roll="{{toUpperCase item.system.damage}}"
                   data-skill="{{item.system.skill}}"
+                  data-iid="{{item._id}}"
                   >                      
                   {{toUpperCase item.system.damage}}</span>
                 {{/unless}}

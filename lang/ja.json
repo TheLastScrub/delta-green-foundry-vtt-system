@@ -249,5 +249,9 @@
     "DG.Generic.CheckDamagedBondsBoxUntilNextHomeScene": "すぎのホーム・シーヌまで、傷つけた絆のボックスにチェクを",
     "DG.Generic.ClearAll": "全てのチェックを消す",
 
-    "DG.Generic.SanDamage": "SAN ダメージ"
+    "DG.Generic.SanDamage": "SAN ダメージ",
+
+    "DG.ItemWindow.Weapons.CustomSkillTarget": "ターゲット",
+    "DG.ItemWindow.Weapons.SkillModifier": "ターゲットに加えて",
+    "DG.ItemWindow.Custom": "カスタム"
 }

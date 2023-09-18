@@ -9,7 +9,7 @@ export class DeltaGreenItemSheet extends ItemSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["deltagreen", "sheet", "item"],
       width: 520,
-      height: 480,
+      height: 600,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "attributes" }]
     });
   }

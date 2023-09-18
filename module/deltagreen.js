@@ -179,6 +179,9 @@ Hooks.once('init', async function() {
       if(skill === 'dex'){
         label = game.i18n.localize("DG.Attributes.dex");
       }
+      if(skill === 'DG.Skills.custom'){
+        label = game.i18n.localize('DG.ItemWindow.Custom');
+      }
       else{
         label = game.i18n.localize("DG.Skills." + skill);
       }      

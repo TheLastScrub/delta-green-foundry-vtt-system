@@ -24,7 +24,7 @@
 
         </div>
       </div>
-      
+
       <div class="weapon-sheet-outer-grid-2col">
 
         <div class="weapon-sheet-horizontal-grid-left-2col">
@@ -44,22 +44,41 @@
               <option {{#if_eq item.system.skill 'int'}}selected{{/if_eq}} value="int">{{localize 'DG.Attributes.int'}}x5</option>
               <option {{#if_eq item.system.skill 'pow'}}selected{{/if_eq}} value="pow">{{localize 'DG.Attributes.pow'}}x5</option>
               <option {{#if_eq item.system.skill 'cha'}}selected{{/if_eq}} value="cha">{{localize 'DG.Attributes.cha'}}x5</option>
-          </select>                              
+              <option {{#if_eq item.system.skill 'custom'}}selected{{/if_eq}} value="custom">{{localize 'DG.ItemWindow.Custom'}}</option>
+          </select> 
+        </div>
+
+        <div class="weapon-sheet-horizontal-grid-right-2col">
+          {{#if_eq item.system.skill 'custom'}}
+          <span class="resource-label">{{localize 'DG.ItemWindow.Weapons.CustomSkillTarget'}}:</span>
+          <input type="text" name="system.customSkillTarget" value="{{item.system.customSkillTarget}}" data-dtype="Number"/>
+          {{/if_eq}}
+        </div>
+
+        <!-- left 'column' (label and value)-->
+        <div class="weapon-sheet-horizontal-grid-left-2col">
+
+          <span class="resource-label">{{localize 'DG.ItemWindow.Weapons.ArmorPiercing'}}:</span>
+          <input type="text" name="system.armorPiercing" value="{{item.system.armorPiercing}}" data-dtype="Number"/>
+          
+          <span class="resource-label">{{localize 'DG.ItemWindow.Weapons.SkillModifier'}}:</span>
+          <input type="text" name="system.skillModifier" value="{{item.system.skillModifier}}" data-dtype="Number"/>
 
           <span class="resource-label">{{localize 'DG.ItemWindow.Weapons.IsLethality'}}:</span>
           <input class="labeled-resource-checkbox" type="checkbox" name="system.isLethal" {{checked item.system.isLethal}} data-dtype="Boolean" 
               title="{{localize 'DG.ItemWindow.Weapons.IsLethalityTooltip'}}"
-          />
+          />          
+                    
+        </div>
+      
+        <!-- right 'column' (label and value)-->
+        <div class="weapon-sheet-horizontal-grid-right-2col">        
+
+          <span class="resource-label">{{localize 'DG.ItemWindow.Weapons.Range'}}:</span>
+          <input type="text" name="system.range" value="{{item.system.range}}" data-dtype="String"/>
 
           <span class="resource-label">{{localize 'DG.ItemWindow.Weapons.KillRadius'}}:</span>
           <input type="text" name="system.killRadius" value="{{item.system.killRadius}}" data-dtype="String"/>
-          
-        </div>
-
-        <div class="weapon-sheet-horizontal-grid-right-2col">
-        
-          <span class="resource-label">{{localize 'DG.ItemWindow.Weapons.Range'}}:</span>
-          <input type="text" name="system.range" value="{{item.system.range}}" data-dtype="String"/>
 
           {{!-- If a weapon is 'Lethal', need to show the d100% Lethality input, otherwise only show the regular Damage formula (e.g. 1D6, 1D4+2, etc...) --}}
 
@@ -78,10 +97,7 @@
             />
           
           {{/if}}
-          
-          <span class="resource-label">{{localize 'DG.ItemWindow.Weapons.ArmorPiercing'}}:</span>
-          <input type="text" name="system.armorPiercing" value="{{item.system.armorPiercing}}" data-dtype="Number"/>
- 
+
         </div>
 
       </div>
@@ -90,7 +106,7 @@
         <span class="resource-label">{{localize 'DG.ItemWindow.Weapons.Ammo'}}:</span>
         <input type="text" name="system.ammo" value="{{item.system.ammo}}" data-dtype="String"/>
       </div>
-         
+      <br>
     </header>
 
     {{!-- Sheet Tab Navigation --}}
@@ -100,10 +116,10 @@
     </nav>
 
     {{!-- Sheet Body --}}
-    <section class="sheet-body">
+    <section class="sheet-body" style="max-height: 25%;">
 
         {{!-- Description Tab --}}
-        <div class="tab top-div-border" data-group="primary" data-tab="description">
+        <div class="tab" data-group="primary" data-tab="description">
             {{editor enrichedDescription target="system.description" button=true owner=owner editable=editable}}
         </div>
     </section>
