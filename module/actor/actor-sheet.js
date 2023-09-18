@@ -680,7 +680,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
         targetVal += skillModifier;
         if(skillModifier !== 0){
-          label += " (" + this._formatStringWithLeadingPlus(skillModifier) + ")";
+          label += " (" + this._formatStringWithLeadingPlus(skillModifier) + "%)";
         }
       }
       else if(dataset.target === "statistic.x5"){
@@ -690,7 +690,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
         
         targetVal += skillModifier;
         if(skillModifier !== 0){
-          label += " (" + this._formatStringWithLeadingPlus(skillModifier) + ")";
+          label += " (" + this._formatStringWithLeadingPlus(skillModifier) + "%)";
         }
       }
       else if(rollType === "sanity"){
@@ -700,7 +700,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
       else if(rollType === "damage"){
         // damage roll, not a skill check
         isDamageRoll = true;
-        label += " (" + this._formatStringWithLeadingPlus(skillModifier) + ")";
       }
       else if(rollType === "lethality"){
         // a lethality roll
