@@ -2,7 +2,7 @@
 
 import { 
   DGPercentileRoll,
-  sendLethalityTestToChat, 
+  DGLethalityRoll,
   sendDamageRollToChat, 
   showModifyDamageRollDialogue,
   sendSanityDamageToChat
@@ -612,21 +612,19 @@ export class DeltaGreenActorSheet extends ActorSheet {
       item
     }
 
+    // Create a default 1d100 roll just in case.
+    let roll = new Roll("1d100", {});
     switch (dataset.rolltype) {
       case "stat":
       case "skill":
       case "typedskill":
       case "weapon":
-      case "sanity": {
-        const roll = new DGPercentileRoll("1D100", {}, rollOptions);
-        if (event.shiftKey || event.which === 3) {
-          const dialogData = await roll.showDialog(dataset.key);
-          if (!dialogData) return;
-          roll.modifier += dialogData.targetModifier;
-        }
-        roll.toChat();
+      case "sanity": 
+        roll = new DGPercentileRoll("1D100", {}, rollOptions);
         break;
-      }
+      case "lethality":
+        roll = new DGLethalityRoll("1D100", {}, rollOptions)
+        break;
       case "damage": {
         let diceFormula = dataset.roll;
         let skillType = dataset.key;
@@ -637,10 +635,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
         sendDamageRollToChat(this.actor, diceFormula, game.settings.get("core", "rollMode"));
         break;
       }
-      case "lethality": {
-          sendLethalityTestToChat(this.actor, game.settings.get("core", "rollMode"));
-          break;
-        }
       case "sanitydamage":{
         const lowRollFormula = dataset.roll;
         const highRollFormula = dataset.roll2;
@@ -650,6 +644,18 @@ export class DeltaGreenActorSheet extends ActorSheet {
       default:
         break;
     }
+
+    // Open dialog if user requests it.
+    if (event.shiftKey || event.which === 3) {
+      const dialogData = await roll.showDialog(dataset.key);
+      if (!dialogData) return;
+      roll.modifier += dialogData.targetModifier;
+      roll.options.rollMode = dialogData.targetRollMode;
+    }
+    // Evaluate the roll.
+    await roll.evaluate({ async: true });
+    // Send the roll to chat.
+    roll.toChat();
   }
 
   _resetBreakingPoint(event){

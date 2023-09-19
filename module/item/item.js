@@ -1,4 +1,4 @@
-import { sendLethalityTestToChat, sendDamageRollToChat } from "../roll/roll.js"
+import { sendDamageRollToChat } from "../roll/roll.js"
 
 /**
  * Extend the basic Item with some very simple modifications.

@@ -1,6 +1,6 @@
 /* globals game Roll ChatMessage AudioHelper renderTemplate Dialog */
 
-import {localizeWithFallback} from "../other/utility-functions.js"
+import { localizeWithFallback } from "../other/utility-functions.js"
 
 export class DGPercentileRoll extends Roll {
   /**
@@ -66,66 +66,6 @@ export class DGPercentileRoll extends Roll {
   }
 
   /**
-   * "Inhuman" stat being rolled, logic is different per page 188 of the Handler's Guide.
-   * Note - originally implemented by Uriele, but my attempt at merging conficts went poorly, so re-implementing.
-   * For an inhuman check, the roll succeeds except on a roll of 100 which fails AND fumbles.
-   * If the roll is a matching digit roll, it is a critical as normal.
-   * Also, if the roll is below the regular (non-x5) value of the stat, it is a critical.  E.g. a CON of 25, a d100 roll of 21 would be a critical.
-   * 
-   */
-  get isInhuman() {
-    if (this.target > 99 && this.type === "stat") {
-      return true;
-    }
-    return false; 
-  }
-
-  /**
-   * Determines if a roll result is critical.
-   * If roll has not been evaluated, return null.
-   * 
-   * @returns {null|Boolean} 
-   */
-  get isCritical() {
-    // If roll isn't evaluated, return null.
-    if (!this.total) {
-      return null;
-    }
-    let isCritical = false
-
-    // 1, 100, or any matching dice are a crit, i.e. 11, 22, 33...99.
-    if (this.total === 1 || this.total === 100 || this.total % 11 === 0) {
-      // really good, or reeaaaally bad
-      isCritical = true;
-    }
-
-    // If inhuman and the roll is below the regular (non-x5) value of the stat, it is a critical. 
-    // E.g. a CON of 25, a d100 roll of 21 would be a critical.
-    if (this.isInhuman && this.total <= ((this.target + this.modifier) / 5)) {
-      isCritical = true;
-    }
-
-    return isCritical;
-  }
-
-  /**
-   * Determines if a roll succeeded.
-   * If roll has not been evaluated, return null.
-   * 
-   * @returns {null|Boolean} 
-   */
-  get isSuccess() {
-    // If roll isn't evaluated, return null.
-    if (!this.total) {
-      return null;
-    }
-
-    // A roll of 100 always (critically) fails, even for inhuman rolls.
-    if (this.total === 100) return false;
-    return this.total <= (this.target + this.modifier);
-  }
-
-  /**
    * Shows a dialog that can modify the roll.
    * 
    * @returns {Promise<Object|void>} - the results of the dialog.
@@ -188,11 +128,10 @@ export class DGPercentileRoll extends Roll {
    * Evaluates and sends a roll to chat.
    * Lays out and styles message based on outcome of the roll.
    * 
-   * @returns {void} - the results of the dialog.
+   * @returns {Promise<ChatMessage>} - the created chat message.
    */
   async toChat() {
-    await this.evaluate({async: true});
-    let rollMode = game.settings.get("core", "rollMode"); 
+    let rollMode = this.options.rollMode || game.settings.get("core", "rollMode"); 
   
     // if using private san rolls, must hide any SAN roll unless user is a GM
     const privateSanSetting = game.settings.get("deltagreen", "keepSanityPrivate");
@@ -261,107 +200,190 @@ export class DGPercentileRoll extends Roll {
     // play the dice rolling sound, like a regular in-chat roll
     AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
     
-    ChatMessage.create(chatData);
+    return ChatMessage.create(chatData);
+  }
+
+  /**
+   * "Inhuman" stat being rolled, logic is different per page 188 of the Handler's Guide.
+   * Note - originally implemented by Uriele, but my attempt at merging conficts went poorly, so re-implementing.
+   * For an inhuman check, the roll succeeds except on a roll of 100 which fails AND fumbles.
+   * If the roll is a matching digit roll, it is a critical as normal.
+   * Also, if the roll is below the regular (non-x5) value of the stat, it is a critical.  E.g. a CON of 25, a d100 roll of 21 would be a critical.
+   * 
+   * @returns {Boolean} 
+   */
+  get isInhuman() {
+    if (this.target > 99 && this.type === "stat") {
+      return true;
+    }
+    return false; 
+  }
+
+  /**
+   * Determines if a roll result is critical.
+   * If roll has not been evaluated, return null.
+   * 
+   * @returns {null|Boolean} 
+   */
+  get isCritical() {
+    // If roll isn't evaluated, return null.
+    if (!this.total) {
+      return null;
+    }
+    let isCritical = false
+
+    // 1, 100, or any matching dice are a crit, i.e. 11, 22, 33...99.
+    if (this.total === 1 || this.total === 100 || this.total % 11 === 0) {
+      // really good, or reeaaaally bad
+      isCritical = true;
+    }
+
+    // If inhuman and the roll is below the regular (non-x5) value of the stat, it is a critical. 
+    // E.g. a CON of 25, a d100 roll of 21 would be a critical.
+    if (this.isInhuman && this.total <= ((this.target + this.modifier) / 5)) {
+      isCritical = true;
+    }
+
+    return isCritical;
+  }
+
+  /**
+   * Determines if a roll succeeded.
+   * If roll has not been evaluated, return null.
+   * 
+   * @returns {null|Boolean} 
+   */
+  get isSuccess() {
+    // If roll isn't evaluated, return null.
+    if (!this.total) {
+      return null;
+    }
+
+    // A roll of 100 always (critically) fails, even for inhuman rolls.
+    if (this.total === 100) return false;
+    return this.total <= (this.target + this.modifier);
   }
 }
 
-export async function sendLethalityTestToChat(actor, weaponName, target, rollMode){
-  //let roll = new Roll('1D100', actor.data.data).evaluate(false);
-
-  let roll = new Roll('1D100', actor.system);
-
-  await roll.evaluate({async: true});
-
-  let isCritical = false;
-  let skillCheckTotal = roll.total;
-  
-  if(rollMode == null || rollMode === ""){
-    rollMode = game.settings.get("core", "rollMode");
+export class DGLethalityRoll extends DGPercentileRoll {
+  /**
+   * See constructor for DGPercentileRoll. This theoretically could be done in the parent class'
+   * constructor, but since Lethality rolls needs its own class for custom methods anyway,
+   * we will set the target and localized key here. 
+   * 
+   * @param {String} formula 
+   * @param {Object} data 
+   * @param {Object} options 
+   */
+  constructor(formula, data, options) {
+    super(formula, data, options);
+    this.target = options.item.system.lethality;
+    this.localizedKey = game.i18n.localize("DG.ItemWindow.Weapons.Lethality");
   }
 
-  // page 57 of agent's handbook
-  // For a failed lethality check, the damage on the tens die is a 10 for a roll of '0'.  E.g. '30' + '0' = 13 damage.
-  // Lethality rolls do not fumble or critically succeed, but the attack roll can.
-  // In this situation, the lethality threshold doubles (e.g. 20% would become 40%),
-  // and if the lethality roll fails, the damage is doubled per normal.  However right now
-  // the attack roll and damage roll are completely separate... Perhaps in the future, use a
-  // button in the skill check roll to allow doubling this logic?
+  /**
+   * Evaluates and sends a roll to chat.
+   * Lays out and styles message based on outcome of the roll.
+   * 
+   * Overrides `DGPercentileRoll.toChat()`
+   * 
+   * @returns {Promise<ChatMessage>} - the created chat message.
+   * @override
+   */
+  async toChat() {    
+    const rollMode = this.options.rollMode || game.settings.get("core", "rollMode");
+    let resultString = '';
+    let styleOverride = '';
+    if(this.total <= this.target){
+      resultString = `${game.i18n.localize("DG.Roll.Lethal").toUpperCase()}`;
+      styleOverride="color: red";
+    }
+    else{
+      resultString = `${game.i18n.localize("DG.Roll.Failure")}`;
+    }
 
-  // try to determine what the d100 result would be as if it was two d10's being rolled
-  let damageDie1 = Math.floor(skillCheckTotal / 10);
-  let damageDie2 = skillCheckTotal - (damageDie1 * 10);
-  if(damageDie2 === 0){
-    // if the result is evenly divisible by 10 (e.g. 30, 40, 50...) 
-    // then the percentile die result was actually one lower than the calculation above would show.
-    // For example, a '70' is actually a 60 + 10, so the damage die should be 6 + 10 = 16, not 7 + 0 = 7.
-    damageDie1 -= 1;
-    damageDie2 = 10;
+    const { nonLethalDamage } = this;
+    let label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${game.i18n.localize("DG.Roll.Lethality").toUpperCase()}</b> ${game.i18n.localize("DG.Roll.For")} <b>${this.item.name.toUpperCase()}</b> ${game.i18n.localize("DG.Roll.Target")} ${this.target}`;
+    let html = '';
+    html += `<div class="dice-roll">`;
+    html += `     <div class="dice-result">`;
+    html += `     <div style="${styleOverride}" class="dice-formula">${resultString}</div>`;
+    html += `     <div class="dice-tooltip">`;
+    html += `          <section class="tooltip-part">`;
+    html += `               <div class="dice">`;
+    html += `                    <p class="part-formula">`;
+    html += `                         d100`;
+    html += `                    </p>`;
+    html += `                    <ol class="dice-rolls">`;
+    html += `                         <li class="roll die d100">${this.total}`;
+    html += `                    </ol>`;
+    html += `                    <hr>`;
+    html += `                    <p class="part-formula">`;
+    html += `                         2d10 (d10 + d10)`;
+    html += `                    </p>`;
+    html += `                    <ol class="dice-rolls">`;
+    html += `                         <li class="roll die d10">${nonLethalDamage.die1}</li>`;
+    html += `                         <li class="roll die d10">${nonLethalDamage.die2}</li>`;
+    html += `                    </ol>`;
+    html += `               </div>`;
+    html += `          </section>`;
+    html += `     </div>`;
+    html += `     <h4 class="dice-total">${this.total} (${nonLethalDamage.total} ${game.i18n.localize("DG.Roll.Damage")})</h4>`;
+    html += `</div>`;
+
+    let chatData = {
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content: html,
+      flavor: label,
+      type: 5, //CHAT_MESSAGE_TYPES.ROLL,
+      roll: this,
+      rollMode: rollMode
+      };
+
+    // play the dice rolling sound, like a regular in-chat roll
+    AudioHelper.play({ src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false }, true);
+    return ChatMessage.create(chatData, {});
   }
 
-  let damageDie1Label = damageDie1.toString();
-  let damageDie2Label = damageDie2.toString();
+  /**
+   * Calculates the damage for when a lethality roll fails.
+   * If roll has not been evaluated, return null.
+   * 
+   * See full rules on page 57 of agent's handbook.
+   * 
+   * Note, this getter does not actually care if the roll has failed.
+   * 
+   * @returns {null|Object} - return data about the non-lethal damage. 
+   */
+  get nonLethalDamage() {
+    if (!this.total) {
+      return null;
+    }
 
-  if(damageDie1 === 0){
-    // a roll of 00 on the tens part of the d100 counts as a ten if it becomes a damage die
-    // Will leave the labeling as a '0' though, to be consistent with a regular d10 roll
-    damageDie1 = 10;
+    // Try to determine what the d100 result would be as if it was two d10's being rolled.
+    const totalString = this.total.toString();
+    const digits = totalString.length;
+    let die1, die2;
+    switch (digits) {
+      case 1:
+        // If one digit in the result, one die is a 10, and the other is the result.
+        [die1, die2] = [10, this.total];
+        break;
+      case 2:
+        // If two digits in the result, each die is the value of one of the digits. If one of those digits is 0, make it 10.
+        [die1, die2] = totalString.split("").map((digit) => parseInt(digit)).map((digit) => digit || 10);
+        break;
+      case 3:
+        // If three digits in the result (aka result === 100), each die is a 10.
+        [die1, die2] = [10, 10];
+        break;
+      default:
+        break;
+    }
+
+    const total = die1 + die2;
+    return { die1, die2, total }
   }
-
-  if(damageDie2 === 10){
-    // keep the labelling consistent, show a '0' for a ten
-    damageDie2Label = '0';
-  }
-
-  let nonlethalDamage = damageDie1 + damageDie2;
-  
-  let isLethal = false;
-  let html = '';
-  let label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${game.i18n.localize("DG.Roll.Lethality").toUpperCase()}</b> ${game.i18n.localize("DG.Roll.For")} <b>${weaponName.toUpperCase()}</b> ${game.i18n.localize("DG.Roll.Target")} ${target}`;
-  let resultString = '';
-  let styleOverride = '';
-
-  if(skillCheckTotal <= target){
-    isLethal = true;
-    resultString = `${game.i18n.localize("DG.Roll.Lethal").toUpperCase()}`;
-    styleOverride="color: red";
-  }
-  else{
-    resultString = `${game.i18n.localize("DG.Roll.Failure")}`;
-  }
-
-  html = `<div class="dice-roll">`;
-  html += `     <div class="dice-result">`;
-  html += `     <div style="${styleOverride}" class="dice-formula">${resultString}</div>`;
-  html += `     <div class="dice-tooltip">`;
-  html += `          <section class="tooltip-part">`;
-  html += `               <div class="dice">`;
-  html += `                    <p class="part-formula">`;
-  html += `                         d100 ${game.i18n.localize("DG.Roll.Or").toUpperCase()} d10 + d10`;
-  html += `                         <span class="part-total">${roll.total}</span>`;
-  html += `                    </p>`;
-  html += `                    <ol class="dice-rolls">`;
-  html += `                         <li class="roll die d10">${damageDie1Label}</li>`;
-  html += `                         <li class="roll die d10">${damageDie2Label}</li>`;
-  html += `                    </ol>`;
-  html += `               </div>`;
-  html += `          </section>`;
-  html += `     </div>`;
-  html += `     <h4 class="dice-total">${roll.total} (${nonlethalDamage} ${game.i18n.localize("DG.Roll.Damage")})</h4>`;
-  html += `</div>`;
-
-  let chatData = {
-    speaker: ChatMessage.getSpeaker({actor: actor}),
-    content: html,
-    flavor: label,
-    type: 5, //CHAT_MESSAGE_TYPES.ROLL,
-    roll: roll,
-    rollMode: rollMode
-    };
-
-  // play the dice rolling sound, like a regular in-chat roll
-  AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
-
-  ChatMessage.create(chatData, {});
 }
 
 export async function sendDamageRollToChat(actor, label, diceFormula, rollMode){
