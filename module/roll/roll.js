@@ -438,22 +438,22 @@ export async function showModifyDamageRollDialogue(actor, label, originalFormula
 
 export function skillIsStatTest(skillName){
   try{
-    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.str").toUpperCase()){
+    if(skillName === game.i18n.localize("DG.Attributes.str").toUpperCase() + "x5"){
       return true;
     }
-    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.con").toUpperCase()){
+    if(skillName === game.i18n.localize("DG.Attributes.con").toUpperCase() + "x5"){
       return true;
     }
-    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.dex").toUpperCase()){
+    if(skillName === game.i18n.localize("DG.Attributes.dex").toUpperCase() + "x5"){
       return true;
     }
-    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.int").toUpperCase()){
+    if(skillName === game.i18n.localize("DG.Attributes.int").toUpperCase() + "x5"){
       return true;
     }
-    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.pow").toUpperCase()){
+    if(skillName === game.i18n.localize("DG.Attributes.pow").toUpperCase() + "x5"){
       return true;
     }
-    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.cha").toUpperCase()){
+    if(skillName === game.i18n.localize("DG.Attributes.cha").toUpperCase() + "x5"){
       return true;
     }
     else{
