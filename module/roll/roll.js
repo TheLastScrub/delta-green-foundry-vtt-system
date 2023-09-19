@@ -10,19 +10,41 @@ export class DGPercentileRoll extends Roll {
     this.actor = actor;
     this.item = item;
     this.modifier = 0;
+
+    const skillKeys = Object.keys(actor.system.skills);
+    const typedSkillKeys = Object.keys(actor.system.typedSkills);
+    const statKeys = Object.keys(actor.system.statistics);
+
     switch (rollType) {
       case "stat":
-        this.rollBasis = actor.system.statistics[key]
         this.target = actor.system.statistics[key].x5;
         this.localizedKey = game.i18n.localize(`DG.Attributes.${key}`);
         break;
       case "skill": 
-        this.target = actor.system.skills[key].proficiency;
-        this.localizedKey = game.i18n.localize(`DG.Skills.${key}`);
+        if (skillKeys.includes(key)) {
+          this.target = actor.system.skills[key].proficiency;
+          this.localizedKey = game.i18n.localize(`DG.Skills.${key}`);
+        }
+        if (typedSkillKeys.includes(key)) {
+          this.target = actor.system.typedSkills[key].proficiency;
+          this.localizedKey = game.i18n.localize(`DG.Skills.${key}`);
+        }
         break;
       case "sanity":
         this.target = actor.system.sanity.value;
         this.localizedKey = game.i18n.localize("DG.Attributes.SAN");
+        break;
+      case "weapon":
+        if (key === "custom") {
+          this.target = item.system.customSkillTarget;
+          this.localizedKey = game.i18n.localize("DG.ItemWindow.Custom");
+        } else if (skillKeys.includes(key)) {
+          this.target = actor.system.skills[key].proficiency;
+          this.localizedKey = game.i18n.localize(`DG.Skills.${key}`);
+        } else if (statKeys.includes(key)) {
+          this.target = actor.system.statistics[key].x5;
+          this.localizedKey = game.i18n.localize(`DG.Attributes.${key}`);
+        }
         break;
       default:
         break;

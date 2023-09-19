@@ -609,7 +609,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       case "skill":
       case "typedskill":
       case "sanity": {
-        const roll = new DGPercentileRoll(dataset.rolltype, dataset.key, this.actor)
+        const roll = new DGPercentileRoll(dataset.rolltype, dataset.key, this.actor);
         if (event.shiftKey || event.which === 3) {
           const dialogData = await roll.showDialog(dataset.key);
           if (!dialogData) return;
@@ -624,7 +624,12 @@ export class DeltaGreenActorSheet extends ActorSheet {
           return ui.notifications.error("No item id provided.")
         }
         const item = this.actor.items.get(dataset.iid);
-        const roll = new DGPercentileRoll(dataset.rolltype, dataset.key, this.actor, item)
+        const roll = new DGPercentileRoll(dataset.rolltype, dataset.key, this.actor, item);
+        if (event.shiftKey || event.which === 3) {
+          const dialogData = await roll.showDialog(dataset.key);
+          if (!dialogData) return;
+          roll.modifier += dialogData.targetModifier;
+        }
         roll.toChat();
         break;
       }
