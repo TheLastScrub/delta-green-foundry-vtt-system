@@ -3,8 +3,22 @@
 import {localizeWithFallback} from "../other/utility-functions.js"
 
 export class DGPercentileRoll extends Roll {
-  constructor(rollType, key, actor, item, options) {
+  /**
+   * In order for all of our custom data to persist, our constructor must use the same parameters as its parent class.
+   * So, even though percentile rolls will always have a formula of "1d100" and we don't use the `data` object,
+   * we still have to keep them as parameters.
+   * 
+   * @param {string}          formula            Unused - The string formula to parse (from Foundry) - Always "1d100" for percentile rolls.
+   * @param {Object}          data               Unused - The data object against which to parse attributes within the formula
+   * @param {Object}          [options]          Additional data which is preserved in the database
+   * @param {Number}          [options.rollType] The type of roll (stat, skill, sanity, etc).
+   * @param {String}          [options.key]      The key of the skill, stat, etc. to use as a basis for this roll.
+   * @param {DeltaGreenActor} [options.actor]    The actor that this roll originates from.
+   * @param {DeltaGreenItem}  [options.item]     Optional - The item from which the roll originates.
+   */
+  constructor(formula = "1D100", data = {}, options) {
     super("1D100", {}, options);
+    const { rollType, key, actor, item } = options;
     this.type = rollType;
     this.key = key;
     this.actor = actor;

@@ -210,7 +210,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     });
 
     // Rollable abilities - bind to everything with the 'Rollable' class
-    html.find('.rollable').mouseup(this._onRoll.bind(this));
+    html.find('.rollable').click(this._onRoll.bind(this));
 
     // Macro for toggling an item's equipped state
     html.find('.equipped-item').mousedown(this._onEquippedStatusChange.bind(this));
@@ -604,12 +604,21 @@ export class DeltaGreenActorSheet extends ActorSheet {
       return;
     }
 
+    const item = this.actor.items.get(dataset.iid);
+    const rollOptions = {
+      rollType: dataset.rolltype,
+      key: dataset.key,
+      actor: this.actor,
+      item
+    }
+
     switch (dataset.rolltype) {
       case "stat":
       case "skill":
       case "typedskill":
+      case "weapon":
       case "sanity": {
-        const roll = new DGPercentileRoll(dataset.rolltype, dataset.key, this.actor);
+        const roll = new DGPercentileRoll("1D100", {}, rollOptions);
         if (event.shiftKey || event.which === 3) {
           const dialogData = await roll.showDialog(dataset.key);
           if (!dialogData) return;
@@ -618,22 +627,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
         roll.toChat();
         break;
       }
-
-      case "weapon": {
-        if (!dataset.iid) {
-          return ui.notifications.error("No item id provided.")
-        }
-        const item = this.actor.items.get(dataset.iid);
-        const roll = new DGPercentileRoll(dataset.rolltype, dataset.key, this.actor, item);
-        if (event.shiftKey || event.which === 3) {
-          const dialogData = await roll.showDialog(dataset.key);
-          if (!dialogData) return;
-          roll.modifier += dialogData.targetModifier;
-        }
-        roll.toChat();
-        break;
-      }
-      
       case "damage": {
         let diceFormula = dataset.roll;
         let skillType = dataset.key;
@@ -644,19 +637,16 @@ export class DeltaGreenActorSheet extends ActorSheet {
         sendDamageRollToChat(this.actor, diceFormula, game.settings.get("core", "rollMode"));
         break;
       }
-
       case "lethality": {
           sendLethalityTestToChat(this.actor, game.settings.get("core", "rollMode"));
           break;
         }
-
       case "sanitydamage":{
         const lowRollFormula = dataset.roll;
         const highRollFormula = dataset.roll2;
         sendSanityDamageToChat(this.actor, lowRollFormula, highRollFormula, game.settings.get("core", "rollMode"))
         break;
       }
-
       default:
         break;
     }
