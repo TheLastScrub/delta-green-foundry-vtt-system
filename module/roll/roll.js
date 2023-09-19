@@ -60,6 +60,10 @@ export class DGPercentileRoll extends Roll {
           this.localizedKey = game.i18n.localize(`DG.Attributes.${key}`);
         }
         break;
+      case "luck": 
+        this.target = 50;
+        this.localizedKey = game.i18n.localize("DG.Luck");
+        break;
       default:
         break;
     }
@@ -80,7 +84,7 @@ export class DGPercentileRoll extends Roll {
   
     let backingData = {
       data:{
-        label: this.key,
+        label: this.localizedKey,
         originalTarget: this.target,
         targetModifier: 20,
         isSanCheck: isSanCheck,

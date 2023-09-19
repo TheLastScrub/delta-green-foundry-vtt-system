@@ -141,21 +141,30 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
   // This only exists to give a chance to activate the modifier dialogue if desired
   // Cannot seem to trigger the event on a right-click, so unfortunately only applies to a shift-click currently.
-  luckRollOnClick(event, actor, label){
+  async luckRollOnClick(event){
     if(event && event.which === 2){
       // probably don't want rolls to trigger from a middle mouse click so just kill it here
       return;
     }
-
-    let requestedModifyRoll = (event && event.shiftKey || event.which === 3);
-    let target = 50;
-
-    if(requestedModifyRoll){
-      showModifyPercentileTestDialogue(actor, label, target, false);
+    const rollOptions = {
+      rollType: "luck",
+      key: "luck",
+      actor: this.actor,
     }
-    else{      
-      sendPercentileTestToChat(actor, label, target, game.settings.get("core", "rollMode"));
-    }    
+
+    // Create a default 1d100 roll just in case.
+    let roll = new DGPercentileRoll("1D100", {}, rollOptions);
+    // Open dialog if user requests it.
+    if (event.shiftKey || event.which === 3) {
+      const dialogData = await roll.showDialog();
+      if (!dialogData) return;
+      roll.modifier += dialogData.targetModifier;
+      roll.options.rollMode = dialogData.targetRollMode;
+    }
+    // Evaluate the roll.
+    await roll.evaluate({ async: true });
+    // Send the roll to chat.
+    roll.toChat(); 
   }
 
   activeEffectTest(sheet){
@@ -647,7 +656,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
     // Open dialog if user requests it.
     if (event.shiftKey || event.which === 3) {
-      const dialogData = await roll.showDialog(dataset.key);
+      const dialogData = await roll.showDialog();
       if (!dialogData) return;
       roll.modifier += dialogData.targetModifier;
       roll.options.rollMode = dialogData.targetRollMode;
