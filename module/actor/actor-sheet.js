@@ -4,6 +4,7 @@ import {
   DGPercentileRoll,
   DGLethalityRoll,
   DGDamageRoll,
+  DGSanityDamageRoll,
 } from "../roll/roll.js"
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -641,18 +642,19 @@ export class DeltaGreenActorSheet extends ActorSheet {
         roll = new DGDamageRoll(diceFormula, {}, rollOptions)
         break;
       }
-      case "sanitydamage":{
-        const lowRollFormula = dataset.roll;
-        const highRollFormula = dataset.roll2;
-        sendSanityDamageToChat(this.actor, lowRollFormula, highRollFormula, game.settings.get("core", "rollMode"))
+      case "sanity-damage":{
+        const lowFormula = dataset.roll;
+        const highFormula = dataset.roll2;
+        const combinedFormula = `{${lowFormula}, ${highFormula}}`;
+        roll = new DGSanityDamageRoll(combinedFormula, {}, rollOptions);
         break;
       }
       default:
         break;
     }
 
-    // Open dialog if user requests it.
-    if (event.shiftKey || event.which === 3) {
+    // Open dialog if user requests it (no dialog for Sanity Damage rolls)
+    if ((event.shiftKey || event.which === 3) && !(roll instanceof DGSanityDamageRoll)) {
       const dialogData = await roll.showDialog();
       if (!dialogData) return;
       if (dialogData.newFormula) {

@@ -16,7 +16,7 @@ export class DGRoll extends Roll {
    * @param {DeltaGreenActor} [options.actor]    The actor that this roll originates from.
    * @param {DeltaGreenItem}  [options.item]     Optional - The item from which the roll originates.
    */
-  constructor(formula, data = {}, options) {
+  constructor(formula, data = {}, options = {}) {
     super(formula, data, options);
     const { rollType, key, actor, item } = options;
     this.type = rollType;
@@ -492,41 +492,47 @@ export class DGDamageRoll extends DGRoll {
   }
 }
 
-async function sendSanityDamageToChat(actor, label, lowFormula, highFormula, rollMode){
+export class DGSanityDamageRoll extends DGRoll {
+  /**
+   * Prepares data for a chat message and then passes that data
+   * to a method that actually creates a ChatMessage.
+   *  
+   * @returns {Promise<ChatMessage>} - the created chat message.
+   * @override
+   */
+  async toChat() {
+    const rollMode = this.options.rollMode || game.settings.get("core", "rollMode");
 
-  if(rollMode == null || rollMode === ""){
-    rollMode = game.settings.get("core", "rollMode");
+    const [lowFormula, highFormula] = this.damageFormulas;
+    const flavor = `<h3>Rolling ${localizeWithFallback('DG.Generic.SanDamage', 'SAN DAMAGE')} (${lowFormula}/${highFormula})</h3>`;
+  
+    const [lowResult, highResult] = this.damageResults;
+  
+    const html = `<h4><b>${lowResult} / ${highResult}</b></h4>`;
+    return this.createMessage(html, flavor, rollMode);
   }
 
-  //console.log(`Low: ${lowFormula} High: ${highFormula}`)
+  /**
+   * Returns the two formulas for a sanity damage roll.
+   * 
+   * @returns {Array<String>} - Array of formula strings
+   */
+  get damageFormulas() {
+    const [lowFormula, highFormula] = this.terms[0].terms;
+    return [lowFormula, highFormula];
+  }
 
-  // try to do both rolls as one, so that when sent to chat, Dice So Nice will roll both
-  let combinedRoll = new Roll('{'+lowFormula + ',' + highFormula + '}', actor.system);
+  /**
+   * Returns the two results for a sanity damage roll.
+   * 
+   * Returns null if the roll has not been evaluated.
+   * 
+   * @returns {null|Array<Number>} - Array of result numbers
+   */
+  get damageResults() {
+    if (!this.total) return null;
 
-  await combinedRoll.evaluate({async: true});
-  
-  let flavor = `<h3>Rolling ${localizeWithFallback('DG.Generic.SanDamage', 'SAN DAMAGE')} (${lowFormula}/${highFormula})</h3>`;
-  
-  let lowResult = "";
-  let highResult = "";
-  console.log(combinedRoll);
-  
-  lowResult = combinedRoll.terms[0].results[0].result;
-  highResult = combinedRoll.terms[0].results[1].result;
-
-  let html = `<h4><b>${lowResult} / ${highResult}</b></h4>`;
-
-  let chatData = {
-    speaker: ChatMessage.getSpeaker({actor: actor}),
-    content: html,
-    flavor: flavor,
-    type: 5, //CHAT_MESSAGE_TYPES.ROLL,
-    roll: combinedRoll,
-    rollMode: rollMode
-  };
-
-  // play the dice rolling sound, like a regular in-chat roll
-  AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
-
-  ChatMessage.create(chatData, {});
+    const [lowResult, highResult] = this.terms[0].results;
+    return [lowResult?.result, highResult?.result]
+  }
 }
