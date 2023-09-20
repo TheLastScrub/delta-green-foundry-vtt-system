@@ -236,7 +236,6 @@ export class DGPercentileRoll extends DGRoll {
     html += `               <div class="dice">`
     html += `                    <p class="part-formula">`
     html += `                         ${this.formula}`
-    html += `                         <span class="part-total">${this.total}</span>`
     html += `                    </p>`
     html += `                    <ol class="dice-rolls">`
     html += `                         <li class="roll die ${this.formula}">${this.total}</li>`

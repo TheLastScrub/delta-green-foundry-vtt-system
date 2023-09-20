@@ -49,7 +49,7 @@
           {{!-- Sanity --}}
           <div class="resource-outer-grid-1col">
               <label for="system.san.value" class="resource-label rollable"
-                data-rolltype="sanity" data-key="sanity" title="{{localize 'DG.Tooltip.SanityLabel'}}"
+                data-rolltype="sanity" title="{{localize 'DG.Tooltip.SanityLabel'}}"
               >{{localize 'DG.Attributes.SAN' }} <i class="fas fa-dice"></i></label>
               <div class="resource-inner-grid-3col">
 
@@ -344,7 +344,7 @@
                       {{/unless}}
 
                       {{#if item.system.isLethal}}
-                      <span class="rollable" data-rolltype="lethality" data-key="lethality" data-iid="{{item._id}}"
+                      <span class="rollable" data-rolltype="lethality" data-iid="{{item._id}}"
                         title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}">
                         {{item.system.lethality}}%</span>
                       {{/if}}
