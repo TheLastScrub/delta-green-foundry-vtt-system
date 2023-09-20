@@ -87,8 +87,9 @@ export class DGPercentileRoll extends DGRoll {
           this.localizedKey = game.i18n.localize(`DG.Skills.${this.key}`);
         }
         if (typedSkillKeys.includes(this.key)) {
-          this.target = this.actor.system.typedSkills[this.key].proficiency;
-          this.localizedKey = game.i18n.localize(`DG.Skills.${this.key}`);
+          const skill = this.actor.system.typedSkills[this.key];
+          this.target = skill.proficiency;
+          this.localizedKey = `${skill.group} (${skill.label})`;
         }
         break;
       case "sanity":
@@ -195,7 +196,7 @@ export class DGPercentileRoll extends DGRoll {
     let label = '';
     // "Inhuman" stat being rolled. See function for details.
     if (this.isInhuman) {
-      label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${this.localizedKey} [${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${Math.floor(this.target + this.modifier / 5)}`;
+      label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${this.localizedKey} [${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${this.target + this.modifier}`;
     } else {
       label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${this.localizedKey}</b> ${game.i18n.localize("DG.Roll.Target")} ${this.target + this.modifier}`;
     }
@@ -254,7 +255,7 @@ export class DGPercentileRoll extends DGRoll {
    * @returns {Boolean} 
    */
   get isInhuman() {
-    if (this.target > 99 && this.type === "stat") {
+    if (this.target + this.modifier > 99 && this.type === "stat") {
       return true;
     }
     return false; 
