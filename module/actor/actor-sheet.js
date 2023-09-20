@@ -655,6 +655,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
     if (event.shiftKey || event.which === 3) {
       const dialogData = await roll.showDialog();
       if (!dialogData) return;
+      if (dialogData.newFormula) {
+        roll = new DGDamageRoll(dialogData.newFormula, {}, rollOptions)
+      }
       roll.modifier += dialogData.targetModifier;
       roll.options.rollMode = dialogData.rollMode;
     }

@@ -438,6 +438,58 @@ export class DGDamageRoll extends DGRoll {
     }
     return this.createMessage(this.total, label, rollMode);
   }
+
+  async showDialog() {
+    let template = "systems/deltagreen/templates/dialog/modify-damage-roll.html";
+    let backingData = {
+      data:{
+        label: this.item?.name,
+        originalFormula: this.formula,
+        outerModifier: "2 * ",
+        innerModifier: "+ 0" 
+      },
+    };
+
+    let html = await renderTemplate(template, backingData);
+    return new Promise((resolve, reject) => {
+      new Dialog({
+        content: html,
+        title: game.i18n.localize("DG.ModifySkillRollDialogue.Title"),
+        default: "roll",
+        buttons: {
+          roll:{
+            label: game.i18n.translations.DG.Roll.Roll,
+
+            callback: html => { 
+              try{
+                let outerModifier = html.find("[name='outerModifier']").val();  // this is text as a heads up
+                let innerModifier = html.find("[name='innerModifier']").val();  // this is text as a heads up
+                let modifiedBaseRoll = html.find("[name='originalFormula']").val();  // this is text as a heads up
+                let rollMode = html.find("[name='targetRollMode']").val();
+
+                if(innerModifier.replace(" ", "") === "+0"){
+                  innerModifier = "";
+                }
+
+                let newFormula = "";
+                if(outerModifier.trim() != ""){
+                  newFormula += outerModifier + "(" + modifiedBaseRoll + innerModifier.trim() + ")";
+                }
+                else{
+                  newFormula += modifiedBaseRoll + innerModifier.trim();
+                }
+
+                resolve({newFormula, rollMode})
+              }
+              catch(ex){
+                reject(console.log(ex));
+              }
+            }
+          }
+        }
+      }).render(true);
+    });
+  }
 }
 
 async function sendSanityDamageToChat(actor, label, lowFormula, highFormula, rollMode){
@@ -477,85 +529,4 @@ async function sendSanityDamageToChat(actor, label, lowFormula, highFormula, rol
   AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
 
   ChatMessage.create(chatData, {});
-}
-
-async function showModifyDamageRollDialogue(actor, label, originalFormula){
-  
-  let template = "systems/deltagreen/templates/dialog/modify-damage-roll.html";
-  let backingData = {
-    data:{
-      label: label,
-      originalFormula: originalFormula,
-      outerModifier: "2 * ",
-      innerModifier: "+ 0" 
-    },
-  };
-  
-  let html = await renderTemplate(template, backingData);
-
-  new Dialog({
-    content: html,
-    title: game.i18n.localize("DG.ModifySkillRollDialogue.Title"),
-    default: "roll",
-    buttons: {
-      roll:{
-        label: game.i18n.translations.DG.Roll.Roll,
-
-        callback: html => { 
-          try{
-            let outerModifier = html.find("[name='outerModifier']").val();  // this is text as a heads up
-            let innerModifier = html.find("[name='innerModifier']").val();  // this is text as a heads up
-            let modifiedBaseRoll = html.find("[name='originalFormula']").val();  // this is text as a heads up
-            let rollMode = html.find("[name='targetRollMode']").val();
-            
-            if(innerModifier.replace(" ", "") === "+0"){
-              innerModifier = "";
-            }
-
-            let newRoll = "";
-            if(outerModifier.trim() != ""){
-              newRoll += outerModifier + "(" + modifiedBaseRoll + innerModifier.trim() + ")";
-            }
-            else{
-              newRoll += modifiedBaseRoll + innerModifier.trim();
-            }
-            
-            sendDamageRollToChat(actor, label, newRoll, rollMode);
-          }
-          catch(ex){
-            console.log(ex);
-          }
-        }
-      }
-    }
-  }).render(true);
-}
-
-function skillIsStatTest(skillName){
-  try{
-    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.str").toUpperCase()){
-      return true;
-    }
-    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.con").toUpperCase()){
-      return true;
-    }
-    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.dex").toUpperCase()){
-      return true;
-    }
-    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.int").toUpperCase()){
-      return true;
-    }
-    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.pow").toUpperCase()){
-      return true;
-    }
-    if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.cha").toUpperCase()){
-      return true;
-    }
-    else{
-      return false;
-    }
-  }
-  catch(ex){
-    return false;
-  }
 }
