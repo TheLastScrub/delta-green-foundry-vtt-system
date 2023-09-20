@@ -106,7 +106,7 @@ export class DGPercentileRoll extends Roll {
               try {
                 let targetModifier = html.find("[name='targetModifier']").val();  // this is text as a heads up
     
-                let rollMode = html.find("[name='targetRollMode']").val();
+                let rollMode = html.find("[name='rollMode']").val();
     
                 let plusMinus = html.find("[name='plusOrMinus']").val();
                             

@@ -159,7 +159,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       const dialogData = await roll.showDialog();
       if (!dialogData) return;
       roll.modifier += dialogData.targetModifier;
-      roll.options.rollMode = dialogData.targetRollMode;
+      roll.options.rollMode = dialogData.rollMode;
     }
     // Evaluate the roll.
     await roll.evaluate({ async: true });
@@ -659,7 +659,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       const dialogData = await roll.showDialog();
       if (!dialogData) return;
       roll.modifier += dialogData.targetModifier;
-      roll.options.rollMode = dialogData.targetRollMode;
+      roll.options.rollMode = dialogData.rollMode;
     }
     // Evaluate the roll.
     await roll.evaluate({ async: true });
