@@ -234,9 +234,14 @@ export class DGPercentileRoll extends DGRoll {
     html += `     <div class="dice-tooltip">`
     html += `          <section class="tooltip-part">`
     html += `               <div class="dice">`
-    html += `                    <p class="part-formula">`
-    html += `                         ${this.formula}`
-    html += `                    </p>`
+    html += `                    <header class="part-header flexrow">`
+    html += `                         <span class="part-formula">`
+    html += `                              ${this.formula}`
+    html += `                         </span>`
+    html += `                         <span class="part-total">`
+    html += `                              ${this.total}`
+    html += `                         </span>`
+    html += `                    </header>`
     html += `                    <ol class="dice-rolls">`
     html += `                         <li class="roll die ${this.formula}">${this.total}</li>`
     html += `                    </ol>`
@@ -359,16 +364,26 @@ export class DGLethalityRoll extends DGPercentileRoll {
     html += `     <div class="dice-tooltip">`;
     html += `          <section class="tooltip-part">`;
     html += `               <div class="dice">`;
-    html += `                    <p class="part-formula">`;
-    html += `                         d100`;
-    html += `                    </p>`;
+    html += `                    <header class="part-header flexrow">`;
+    html += `                         <span class="part-formula">`;
+    html += `                              d100`;
+    html += `                         </span>`;
+    html += `                         <span class="part-total">`;
+    html += `                              ${this.total}`;
+    html += `                         </span>`;
+    html += `                    </header>`;
     html += `                    <ol class="dice-rolls">`;
     html += `                         <li class="roll die d100">${this.total}`;
     html += `                    </ol>`;
     html += `                    <hr>`;
-    html += `                    <p class="part-formula">`;
-    html += `                         2d10 (d10 + d10)`;
-    html += `                    </p>`;
+    html += `                    <header class="part-header flexrow">`;
+    html += `                         <span class="part-formula">`;
+    html += `                              2d10 (d10 + d10)`;
+    html += `                         </span>`;
+    html += `                         <span class="part-total">`;
+    html += `                              ${nonLethalDamage.total}`;
+    html += `                         </span>`;
+    html += `                    </header>`;
     html += `                    <ol class="dice-rolls">`;
     html += `                         <li class="roll die d10">${nonLethalDamage.die1}</li>`;
     html += `                         <li class="roll die d10">${nonLethalDamage.die2}</li>`;
@@ -507,23 +522,50 @@ export class DGSanityDamageRoll extends DGRoll {
   async toChat() {
     const rollMode = this.options.rollMode || game.settings.get("core", "rollMode");
 
-    const [lowFormula, highFormula] = this.damageFormulas;
-    const flavor = `<h3>Rolling ${localizeWithFallback('DG.Generic.SanDamage', 'SAN DAMAGE')} (${lowFormula}/${highFormula})</h3>`;
-  
-    const [lowResult, highResult] = this.damageResults;
-  
-    const html = `<h4><b>${lowResult} / ${highResult}</b></h4>`;
-    return this.createMessage(html, flavor, rollMode);
-  }
+    const [lowDie, highDie] = this.terms[0].terms.map((formula) => {
+      return Roll.parse(formula)[0] || { faces: parseInt(formula), number: 1 };
+    });
 
-  /**
-   * Returns the two formulas for a sanity damage roll.
-   * 
-   * @returns {Array<String>} - Array of formula strings
-   */
-  get damageFormulas() {
-    const [lowFormula, highFormula] = this.terms[0].terms;
-    return [lowFormula, highFormula];
+    const [lowResult, highResult] = this.damageResults;
+    
+    const flavor = `Rolling <b>${localizeWithFallback('DG.Generic.SanDamage', 'SAN DAMAGE')}</b> For <b>${lowDie.formula} / ${highDie.formula}</b>`;
+  
+    let html = '';
+    html += `<div class="dice-roll">`;
+    html += `     <div class="dice-result">`;
+    html += `     <div class="dice-formula">${lowDie.formula} / ${highDie.formula}</div>`;
+    html += `     <div class="dice-tooltip">`;
+    html += `          <section class="tooltip-part">`;
+    html += `               <div class="dice">`;
+    html += `                    <header class="part-header flexrow">`;
+    html += `                         <span class="part-formula">`;
+    html += `                              ${lowDie.formula}`;
+    html += `                         </span>`;
+    html += `                         <span class="part-total">`;
+    html += `                              ${lowResult}`;
+    html += `                         </span>`;
+    html += `                    </header>`;
+    html += `                    <ol class="dice-rolls">`;
+    html += `                         <li class="roll die d${lowDie.faces}">${lowResult}`;
+    html += `                    </ol>`;
+    html += `                    <hr>`;
+    html += `                    <header class="part-header flexrow">`;
+    html += `                         <span class="part-formula">`;
+    html += `                               ${highDie.formula}`;
+    html += `                         </span>`;
+    html += `                         <span class="part-total">`;
+    html += `                               ${highResult}`;
+    html += `                         </span>`;
+    html += `                    </header>`;
+    html += `                    <ol class="dice-rolls">`;
+    html += `                         <li class="roll die d${highDie.faces}">${highResult}</li>`;
+    html += `                    </ol>`;
+    html += `               </div>`;
+    html += `          </section>`;
+    html += `     </div>`;
+    html += `     <h4 class="dice-total">${lowResult} / ${highResult}</h4>`
+    html += `</div>`;
+    return this.createMessage(html, flavor, rollMode);
   }
 
   /**
