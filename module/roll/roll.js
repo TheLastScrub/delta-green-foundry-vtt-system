@@ -82,6 +82,7 @@ export class DGPercentileRoll extends DGRoll {
         this.localizedKey = game.i18n.localize(`DG.Attributes.${this.key}`);
         break;
       case "skill": 
+        // Set up a target number and localized roll based on whether the skill is regular or typed.
         if (skillKeys.includes(this.key)) {
           this.target = this.actor.system.skills[this.key].proficiency;
           this.localizedKey = game.i18n.localize(`DG.Skills.${this.key}`);
@@ -97,6 +98,8 @@ export class DGPercentileRoll extends DGRoll {
         this.localizedKey = game.i18n.localize("DG.Attributes.SAN");
         break;
       case "weapon":
+        // Set up target number and localized key depending on whether the weapon uses a custom number,
+        // a skill, or a stat for its roll.
         if (this.key === "custom") {
           this.target = this.item.system.customSkillTarget;
           this.localizedKey = game.i18n.localize("DG.ItemWindow.Custom");
@@ -107,6 +110,8 @@ export class DGPercentileRoll extends DGRoll {
           this.target = this.actor.system.statistics[this.key].x5;
           this.localizedKey = game.i18n.localize(`DG.Attributes.${this.key}`);
         }
+        // Add a the weapon's internal modifier.
+        this.modifier += this.item.system.skillModifier;
         break;
       case "luck": 
         this.target = 50;

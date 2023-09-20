@@ -625,9 +625,8 @@ export class DeltaGreenActorSheet extends ActorSheet {
     switch (dataset.rolltype) {
       case "stat":
       case "skill":
-      case "typedskill":
-      case "weapon":
       case "sanity": 
+      case "weapon":
         roll = new DGPercentileRoll("1D100", {}, rollOptions);
         break;
       case "lethality":
