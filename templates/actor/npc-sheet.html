@@ -48,7 +48,7 @@
         {{!-- Sanity --}}
         <div class="resource-outer-grid-1col">
             <label for="system.wp.value" class="resource-label rollable"
-              data-rolltype="sanity" data-roll="d100" data-target="sanity" data-label="SAN" title="{{localize 'DG.Tooltip.SanityLabel'}}"
+              data-rolltype="sanity" title="{{localize 'DG.Tooltip.SanityLabel'}}"
             >{{localize 'DG.Attributes.SAN' }}</label>
             <div class="resource-inner-grid-3col">
               <input type="text" name="system.sanity.value" value="{{actor.system.sanity.value}}" data-dtype="Number" title="{{localize 'DG.Tooltip.CurrentSanityPartOne'}}{{actor.system.sanity.currentBreakingPoint}}{{localize 'DG.Tooltip.CurrentSanityPartTwo'}}" />
@@ -70,9 +70,9 @@
             <div class="flex-group-center flex-mid-border">
               <div class="">
                 <div class="physical-stats-outer-grid-3col">
-                  <label class="rollable" data-rolltype="statistic.x5" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}" for="system.statistics.{{key}}.value" class="resource-label">{{localize (concat 'DG.Attributes.' key)}}</label>
+                  <label class="rollable resource-label" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}" for="system.statistics.{{key}}.value">{{localize (concat 'DG.Attributes.' key)}}</label>
                   <input type="text" name="system.statistics.{{key}}.value" value="{{statistic.value}}" data-dtype="Number"/>
-                  <span >({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
+                  <span  class="rollable" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}">({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
                 </div >
                 {{!-- <div> <input type="text" name="system.statistics.{{key}}.distinguishing_feature" value="{{statistic.distinguishing_feature}}" data-dtype="String" title="{{localize 'DG.Tooltip.DistinguishingFeature'}}" /> </div> --}}
               </div>
@@ -107,7 +107,7 @@
           
           {{#if (hideSkillBasedOnProficiencyAndUserChoice ../actor.system.showUntrainedSkills skill.proficiency)}}
           <div class="flexrow flex-group-center flex-thin-border">
-            <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{localize (concat 'DG.Skills.' key)}}" for="system.skills.{{key}}.value" 
+            <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-key="{{key}}" for="system.skills.{{key}}.value" 
                 {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
                 {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}}
               >
@@ -129,7 +129,7 @@
           {{#each actor.system.typedSkills as |skill key|}}
             {{#if (hideSkillBasedOnProficiencyAndUserChoice ../actor.system.showUntrainedSkills skill.proficiency)}}
             <div class="item flexrow flex-group-center">
-              <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" 
+              <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-key="{{key}}" 
                   {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
                   {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}} 
                 >
@@ -184,17 +184,11 @@
                 <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
                 
                 <h4 style="word-wrap: break-word;" 
-                  
                   class="item-name rollable" 
-                  data-roll="d100"
-                  data-rolltype="weaponskill" 
-                  data-target="{{item.system.skill}}"
-                  data-customtarget="{{item.system.customSkillTarget}}"
-                  data-skillmodifier="{{item.system.skillModifier}}"
-                  data-itemname="{{item.name}}"                     
-                  data-label="{{localizeWeaponSkill item.system.skill}}"
-                  title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.system.skill}})"
+                  data-rolltype="weapon"                  
+                  data-key="{{item.system.skill}}"
                   data-iid="{{item._id}}"
+                  title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.system.skill}})"
                   >
                     {{item.name}}
                 </h4>
@@ -203,9 +197,7 @@
                 <span class="rollable centered-item-property" 
                   
                   data-rolltype="damage" 
-                  data-target="damage" 
-                  data-label="{{toUpperCase item.name}}" 
-                  data-roll="{{item.system.damage}}"
+                  data-formula="{{item.system.damage}}"
                   data-skill="{{item.system.skill}}"
                   data-iid="{{item._id}}"
                   >                      
@@ -213,7 +205,7 @@
                 {{/unless}}
 
                 {{#if item.system.isLethal}}
-                <span class="rollable  centered-item-property" data-rolltype="lethality" data-target="{{item.system.lethality}}" data-label="{{item.name}}" data-roll="d100"
+                <span class="rollable centered-item-property" data-rolltype="lethality" data-label="{{item.name}}" data-iid="{{item._id}}"
                   title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}"
                   >{{formatLethality item.system.lethality}}</span>
                 {{/if}}
