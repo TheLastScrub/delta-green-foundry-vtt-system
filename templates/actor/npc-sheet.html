@@ -193,22 +193,33 @@
                     {{item.name}}
                 </h4>
 
-                {{#unless item.system.isLethal}}
-                <span class="rollable centered-item-property" 
-                  
-                  data-rolltype="damage" 
-                  data-formula="{{item.system.damage}}"
-                  data-skill="{{item.system.skill}}"
-                  data-iid="{{item._id}}"
-                  >                      
-                  {{toUpperCase item.system.damage}}</span>
-                {{/unless}}
+                <span class="centered-item-property">
+                  {{#unless item.system.isLethal}}
+                    <span class="rollable" 
+                      data-rolltype="damage" 
+                      data-formula="{{item.system.damage}}"
+                      data-skill="{{item.system.skill}}"
+                      data-iid="{{item._id}}"
+                      >                      
+                      {{toUpperCase item.system.damage}}</span>
+                  {{/unless}}
 
-                {{#if item.system.isLethal}}
-                <span class="rollable centered-item-property" data-rolltype="lethality" data-label="{{item.name}}" data-iid="{{item._id}}"
-                  title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}"
-                  >{{formatLethality item.system.lethality}}</span>
-                {{/if}}
+                  {{#if item.system.isLethal}}
+                    <span class="rollable" data-rolltype="lethality" data-label="{{item.name}}" data-iid="{{item._id}}"
+                      title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}"
+                      >{{formatLethality item.system.lethality}}</span>
+                  {{/if}}
+
+                  {{#if item.system.lethality}}
+                    - 
+                    {{#if item.system.isLethal}}
+                      <a class="item-control toggle-lethality dg-red" title="Toggle Lethality (Current Lethality: {{item.system.lethality}}%)"><i class="fas fa-skull-crossbones" item-id="{{item.id}}" is-lethal="true"></i></a>
+                    {{else}}
+                      <a class="item-control toggle-lethality" title="Toggle Lethality (Currently No Lethality)"><i class="fas fa-user-injured" item-id="{{item.id}}" is-lethal="false"></i></a>
+                    {{/if}}
+                  {{/if}}
+                </span>
+
 
                 <span class="centered-item-property">{{item.system.armorPiercing}}</span>
 
