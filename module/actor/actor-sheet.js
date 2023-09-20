@@ -651,13 +651,25 @@ export class DeltaGreenActorSheet extends ActorSheet {
       default:
         break;
     }
+    return this.processRoll(event, roll, rollOptions)
+  }
 
+  /**
+   * Show a dialog for the roll and then send to chat.
+   * Broke this logic out from `_onRoll()` so that other files can call it,
+   * namely the macro logic.
+   * 
+   * @param {Event} event   The originating click event
+   * @param {Event} roll   The roll to show a dialog for and then send to chat.
+   * @async
+   */
+  async processRoll(event, roll) {
     // Open dialog if user requests it (no dialog for Sanity Damage rolls)
     if ((event.shiftKey || event.which === 3) && !(roll instanceof DGSanityDamageRoll)) {
       const dialogData = await roll.showDialog();
       if (!dialogData) return;
       if (dialogData.newFormula) {
-        roll = new DGDamageRoll(dialogData.newFormula, {}, rollOptions)
+        roll = new DGDamageRoll(dialogData.newFormula, {}, roll.options)
       }
       roll.modifier += dialogData.targetModifier;
       roll.options.rollMode = dialogData.rollMode;
@@ -665,7 +677,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Evaluate the roll.
     await roll.evaluate({ async: true });
     // Send the roll to chat.
-    roll.toChat();
+    return roll.toChat();
   }
 
   _resetBreakingPoint(event){

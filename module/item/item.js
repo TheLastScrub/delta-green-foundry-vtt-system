@@ -1,3 +1,6 @@
+/* globals Item */
+
+import { DGDamageRoll, DGLethalityRoll } from "../roll/roll.js";
 
 /**
  * Extend the basic Item with some very simple modifications.
@@ -23,24 +26,24 @@ export class DeltaGreenItem extends Item {
    */
   async roll() {
     // Basic template rendering data
-    
     const item = this;
+    const { actor } = this;
     const actorSystemData = this.actor.system || {};
 
-    if(item.system.isLethal){
-      sendLethalityTestToChat(this.actor, item.name, item.system.lethality, game.settings.get("core", "rollMode"))
-    }
-    else{
+    let roll;
+    if (item.system.isLethal) {
+      roll = new DGLethalityRoll("1D100", {}, { rollType: "lethality", actor, item })
+    } else {
       // regular damage roll
-
       let diceFormula = item.system.damage;
       let skillType = item.system.skill;
 
-      if(skillType === 'unarmed_combat' || skillType === 'melee_weapons'){
+      if (skillType === 'unarmed_combat' || skillType === 'melee_weapons') {
         diceFormula += actorSystemData.statistics.str.meleeDamageBonusFormula;
       }
 
-      sendDamageRollToChat(this.actor, item.name, diceFormula);
+      roll = new DGDamageRoll(diceFormula, {}, { rollType: "damage", actor, item })
     }
+    return actor.sheet.processRoll({}, roll);
   }
 }

@@ -103,7 +103,7 @@ Hooks.once('init', async function() {
   });
 
   Handlebars.registerHelper('cite_ahb', function(page) {
-    return "See page " + str(page) + " of the Agent's Handbook.";
+    return `See page ${page} of the Agent's Handbook.`;
   });
 
   Handlebars.registerHelper('formatLethality', function(lethality) {
@@ -398,9 +398,9 @@ Hooks.on('createActor', async function(actor, options, userId){
     
     // use this to trap on if this hook is firing for the same user that triggered the create
     // can put logic specific to a particular user session below
-    if (userId != game.user.id) { return; };
+    if (userId !== game.user.id) return;
 
-    if(actor != null){
+    if (actor !== null){
 
       if(actor.type === 'agent'){
         // update the default type skill of Art - Painting's labels to try to be localized
@@ -420,7 +420,7 @@ Hooks.on('createActor', async function(actor, options, userId){
         actor.AddUnarmedAttackItemIfMissing();
       }
       else if(actor.type === 'unnatural'){
-      
+        // Do nothing.
       }
       else if(actor.type === 'vehicle'){
         actor.AddBaseVehicleItemsIfMissing();
@@ -446,14 +446,16 @@ Hooks.on('createActor', async function(actor, options, userId){
  * @returns {Promise}
  */
 async function createDeltaGreenMacro(data, slot) {
+  // Definitely should not be doing assignments in conditionals but if we fix this, it breaks macro creation.
+  // eslint-disable-next-line no-cond-assign
   if (data.type = "Item" && data.itemData.type !== "weapon") return;
   //if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
-  const item = data.itemData.system;
+  const item = data.itemData;
 
   // Create the macro command
   let command = '// Uncomment line below to also roll skill check if desired.'
-  command += '\n' + `//game.deltagreen.rollItemSkillCheckMacro("${data._id}");`;
-  command += '\n' + `game.deltagreen.rollItemMacro("${data._id}");`;
+  command += '\n' + `//game.deltagreen.rollItemSkillCheckMacro("${item._id}");`;
+  command += '\n' + `game.deltagreen.rollItemMacro("${item._id}");`;
 
   //let macro = game.macros.entities.find(m => (m.name === data.name) && (m.command === command));
   //if (!macro) {
@@ -494,7 +496,7 @@ async function rollItemMacro(itemId) {
   if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemId}`);
 
   // Trigger the item roll
-  let r = await item.roll();
+  const r = await item.roll();
 
   return r;
 }
@@ -505,7 +507,7 @@ function rollItemSkillCheckMacro(itemId) {
   if (speaker.token) actor = game.actors.tokens[speaker.token];
   if (!actor) actor = game.actors.get(speaker.actor);
 
-  if(!actor) return ui.notifications.warn('Must have an Actor selected first.');
+  if (!actor) return ui.notifications.warn('Must have an Actor selected first.');
 
   let item = actor ? actor.items.find(i => i._id === itemId) : null;
 
@@ -514,22 +516,12 @@ function rollItemSkillCheckMacro(itemId) {
     item = actor ? actor.items.find(i => i.name === itemId) : null;
   } 
 
-  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item '${itemName}'`);
+  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item '${item.name}'`);
 
   let skillName = item.system.skill.toString();
 
-  let skill = actor.system.skills[skillName];
-  let translatedSkillLabel = "";
-
-  try{
-    translatedSkillLabel = game.i18n.localize("DG.Skills." + skillName)
-  }
-  catch{
-    translatedSkillLabel = skillName;
-  }
-
-  sendPercentileTestToChat(actor, translatedSkillLabel, skill.proficiency);
-}
+  const roll = new DGRolls.DGPercentileRoll("1D100", {}, { rollType: "weapon", key: skillName, actor, item });
+  return actor.sheet.processRoll({}, roll)}
 
 function rollSkillMacro(skillName) {
   const speaker = ChatMessage.getSpeaker();
@@ -543,14 +535,7 @@ function rollSkillMacro(skillName) {
 
   if(!skill) return ui.notifications.warn('Bad skill name passed to macro.');
 
-  let translatedSkillLabel = "";
-
-  try{
-    translatedSkillLabel = game.i18n.localize("DG.Skills." + skillName)
-  }
-  catch{
-    translatedSkillLabel = skillName;
-  }
-
-  sendPercentileTestToChat(actor, translatedSkillLabel, skill.proficiency);
+  const roll = new DGRolls.DGPercentileRoll("1D100", {}, { rollType: "skill", key: skillName, actor });
+  actor.sheet.processRoll({}, roll)
+  // sendPercentileTestToChat(actor, translatedSkillLabel, skill.proficiency);
 }
