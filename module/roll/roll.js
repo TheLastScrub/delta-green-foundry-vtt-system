@@ -192,18 +192,26 @@ export class DGPercentileRoll extends Roll {
     html += `     <h4 class="dice-total">${this.total}</h4>`
     html += `</div>`
   
+    return this.createMessage(html, label, rollMode);
+  }
+
+  /**
+   * Broke this out so multiple functions can use it.
+   * 
+   * @returns {Promise<ChatMessage>} - the created chat message.
+   */
+  async createMessage(content, flavor, rollMode) {
     let chatData = {
-      speaker: ChatMessage.getSpeaker({actor: this.actor}),
-      content: html,
-      flavor: label,
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content,
+      flavor,
       type: 5, //CHAT_MESSAGE_TYPES.ROLL,
       roll: this,
-      rollMode: rollMode
-      };
+      rollMode
+    };
   
     // play the dice rolling sound, like a regular in-chat roll
     AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
-    
     return ChatMessage.create(chatData);
   }
 
@@ -335,18 +343,7 @@ export class DGLethalityRoll extends DGPercentileRoll {
     html += `     <h4 class="dice-total">${this.total} (${nonLethalDamage.total} ${game.i18n.localize("DG.Roll.Damage")})</h4>`;
     html += `</div>`;
 
-    let chatData = {
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content: html,
-      flavor: label,
-      type: 5, //CHAT_MESSAGE_TYPES.ROLL,
-      roll: this,
-      rollMode: rollMode
-      };
-
-    // play the dice rolling sound, like a regular in-chat roll
-    AudioHelper.play({ src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false }, true);
-    return ChatMessage.create(chatData, {});
+    return this.createMessage(html, label, rollMode);
   }
 
   /**
