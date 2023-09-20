@@ -3,9 +3,7 @@
 import { 
   DGPercentileRoll,
   DGLethalityRoll,
-  sendDamageRollToChat, 
-  showModifyDamageRollDialogue,
-  sendSanityDamageToChat
+  DGDamageRoll,
 } from "../roll/roll.js"
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -608,7 +606,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const element = event.currentTarget;
     const { dataset } = element;
 
-    if(event && event.which === 2){
+    if(event && event.which === 2) {
       // probably don't want rolls to trigger from a middle mouse click so just kill it here
       return;
     }
@@ -635,13 +633,12 @@ export class DeltaGreenActorSheet extends ActorSheet {
         roll = new DGLethalityRoll("1D100", {}, rollOptions)
         break;
       case "damage": {
-        let diceFormula = dataset.roll;
-        let skillType = dataset.key;
+        let diceFormula = dataset.formula;
+        const skillType = dataset.skill;
         if(this.actor.type === 'agent' && (skillType === 'unarmed_combat' || skillType === 'melee_weapons')){
           diceFormula += this.actor.system.statistics.str.meleeDamageBonusFormula;
         }
-        showModifyDamageRollDialogue(this.actor, diceFormula);
-        sendDamageRollToChat(this.actor, diceFormula, game.settings.get("core", "rollMode"));
+        roll = new DGDamageRoll(diceFormula, {}, rollOptions)
         break;
       }
       case "sanitydamage":{

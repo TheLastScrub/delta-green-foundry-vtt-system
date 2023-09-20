@@ -5,7 +5,7 @@ import { DeltaGreenActor } from "./actor/actor.js";
 import { DeltaGreenActorSheet } from "./actor/actor-sheet.js";
 import { DeltaGreenItem } from "./item/item.js";
 import { DeltaGreenItemSheet } from "./item/item-sheet.js";
-import { sendDamageRollToChat, DGPercentileRoll, DGLethalityRoll } from "./roll/roll.js";
+import * as DGRolls from "./roll/roll.js";
 import { registerSystemSettings } from "./settings.js"
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { ParseDeltaGreenStatBlock } from "./other/stat-parser-macro.js";
@@ -32,7 +32,7 @@ Hooks.once('init', async function() {
   };
 
   // Register custom dice rolls
-  CONFIG.Dice.rolls.push(DGPercentileRoll, DGLethalityRoll);
+  Object.values(DGRolls).forEach((cls) =>  CONFIG.Dice.rolls.push(cls))
 
   // Register System Settings
   registerSystemSettings();

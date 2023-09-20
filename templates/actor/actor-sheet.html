@@ -335,11 +335,8 @@
                     <span class = "centered-item-property">
                       {{#unless item.system.isLethal}}
                       <span class="rollable" 
-                        
                         data-rolltype="damage" 
-                        data-target="damage" 
-                        data-label="{{toUpperCase item.name}}" 
-                        data-roll="{{toUpperCase item.system.damage}}"
+                        data-formula="{{toUpperCase item.system.damage}}"
                         data-skill="{{item.system.skill}}"
                         data-iid="{{item._id}}"
                         >                      

@@ -2,9 +2,62 @@
 
 import { localizeWithFallback } from "../other/utility-functions.js"
 
-export class DGPercentileRoll extends Roll {
+export class DGRoll extends Roll {
   /**
-   * In order for all of our custom data to persist, our constructor must use the same parameters as its parent class.
+   * NOTE: This class will rarely be called on its own. It should generally be extended. Look to DGPercentileRoll as an example.
+   * 
+   * Customize our roll with some useful information, passed in the `options` Object.
+   * 
+   * @param {string}          formula            Unused - The string formula to parse (from Foundry)
+   * @param {Object}          data               Unused - The data object against which to parse attributes within the formula
+   * @param {Object}          [options]          Additional data which is preserved in the database
+   * @param {Number}          [options.rollType] The type of roll (stat, skill, sanity, damage, etc).
+   * @param {String}          [options.key]      The key of the skill, stat, etc. to use as a basis for this roll.
+   * @param {DeltaGreenActor} [options.actor]    The actor that this roll originates from.
+   * @param {DeltaGreenItem}  [options.item]     Optional - The item from which the roll originates.
+   */
+  constructor(formula, data = {}, options) {
+    super(formula, data, options);
+    const { rollType, key, actor, item } = options;
+    this.type = rollType;
+    this.key = key;
+    this.actor = actor;
+    this.item = item;
+    this.modifier = 0;
+  }
+
+  /**
+   * Simple function that actually creates the message and sends it to chat. 
+   * 
+   * Broke this out so multiple functions can use it.
+   * 
+   * @returns {Promise<ChatMessage>} - the created chat message.
+   */
+  async createMessage(content, flavor, rollMode) {
+    let chatData = {
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      content,
+      flavor,
+      type: 5, //CHAT_MESSAGE_TYPES.ROLL,
+      roll: this,
+      rollMode
+    };
+  
+    // play the dice rolling sound, like a regular in-chat roll
+    AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
+    return ChatMessage.create(chatData);
+  }
+}
+
+export class DGPercentileRoll extends DGRoll {
+  /**
+   * Creates D100 rolls, the base die of the system.
+   * 
+   * This constructor embeds the following info into the roll: 
+   *   1. Target number that the roll needs to beat. 
+   *   2. Localized name for the roll. 
+   * 
+   * Note: In order for all of our custom data to persist, our constructor must use the same parameters as its parent class.
    * So, even though percentile rolls will always have a formula of "1d100" and we don't use the `data` object,
    * we still have to keep them as parameters.
    * 
@@ -18,46 +71,40 @@ export class DGPercentileRoll extends Roll {
    */
   constructor(formula = "1D100", data = {}, options) {
     super("1D100", {}, options);
-    const { rollType, key, actor, item } = options;
-    this.type = rollType;
-    this.key = key;
-    this.actor = actor;
-    this.item = item;
-    this.modifier = 0;
 
-    const skillKeys = Object.keys(actor.system.skills);
-    const typedSkillKeys = Object.keys(actor.system.typedSkills);
-    const statKeys = Object.keys(actor.system.statistics);
+    const skillKeys = Object.keys(this.actor.system.skills);
+    const typedSkillKeys = Object.keys(this.actor.system.typedSkills);
+    const statKeys = Object.keys(this.actor.system.statistics);
 
-    switch (rollType) {
+    switch (this.type) {
       case "stat":
-        this.target = actor.system.statistics[key].x5;
-        this.localizedKey = game.i18n.localize(`DG.Attributes.${key}`);
+        this.target = this.actor.system.statistics[this.key].x5;
+        this.localizedKey = game.i18n.localize(`DG.Attributes.${this.key}`);
         break;
       case "skill": 
-        if (skillKeys.includes(key)) {
-          this.target = actor.system.skills[key].proficiency;
-          this.localizedKey = game.i18n.localize(`DG.Skills.${key}`);
+        if (skillKeys.includes(this.key)) {
+          this.target = this.actor.system.skills[this.key].proficiency;
+          this.localizedKey = game.i18n.localize(`DG.Skills.${this.key}`);
         }
-        if (typedSkillKeys.includes(key)) {
-          this.target = actor.system.typedSkills[key].proficiency;
-          this.localizedKey = game.i18n.localize(`DG.Skills.${key}`);
+        if (typedSkillKeys.includes(this.key)) {
+          this.target = this.actor.system.typedSkills[this.key].proficiency;
+          this.localizedKey = game.i18n.localize(`DG.Skills.${this.key}`);
         }
         break;
       case "sanity":
-        this.target = actor.system.sanity.value;
+        this.target = this.actor.system.sanity.value;
         this.localizedKey = game.i18n.localize("DG.Attributes.SAN");
         break;
       case "weapon":
-        if (key === "custom") {
-          this.target = item.system.customSkillTarget;
+        if (this.key === "custom") {
+          this.target = this.item.system.customSkillTarget;
           this.localizedKey = game.i18n.localize("DG.ItemWindow.Custom");
-        } else if (skillKeys.includes(key)) {
-          this.target = actor.system.skills[key].proficiency;
-          this.localizedKey = game.i18n.localize(`DG.Skills.${key}`);
-        } else if (statKeys.includes(key)) {
-          this.target = actor.system.statistics[key].x5;
-          this.localizedKey = game.i18n.localize(`DG.Attributes.${key}`);
+        } else if (skillKeys.includes(this.key)) {
+          this.target = this.actor.system.skills[this.key].proficiency;
+          this.localizedKey = game.i18n.localize(`DG.Skills.${this.key}`);
+        } else if (statKeys.includes(this.key)) {
+          this.target = this.actor.system.statistics[this.key].x5;
+          this.localizedKey = game.i18n.localize(`DG.Attributes.${this.key}`);
         }
         break;
       case "luck": 
@@ -129,7 +176,9 @@ export class DGPercentileRoll extends Roll {
   }
 
   /**
-   * Evaluates and sends a roll to chat.
+   * Prepares data for a chat message and then passes that data
+   * to a method that actually creates a ChatMessage.
+   * 
    * Lays out and styles message based on outcome of the roll.
    * 
    * @returns {Promise<ChatMessage>} - the created chat message.
@@ -193,26 +242,6 @@ export class DGPercentileRoll extends Roll {
     html += `</div>`
   
     return this.createMessage(html, label, rollMode);
-  }
-
-  /**
-   * Broke this out so multiple functions can use it.
-   * 
-   * @returns {Promise<ChatMessage>} - the created chat message.
-   */
-  async createMessage(content, flavor, rollMode) {
-    let chatData = {
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content,
-      flavor,
-      type: 5, //CHAT_MESSAGE_TYPES.ROLL,
-      roll: this,
-      rollMode
-    };
-  
-    // play the dice rolling sound, like a regular in-chat roll
-    AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
-    return ChatMessage.create(chatData);
   }
 
   /**
@@ -294,7 +323,9 @@ export class DGLethalityRoll extends DGPercentileRoll {
   }
 
   /**
-   * Evaluates and sends a roll to chat.
+   * Prepares data for a chat message and then passes that data
+   * to a method that actually creates a ChatMessage.  
+   * 
    * Lays out and styles message based on outcome of the roll.
    * 
    * Overrides `DGPercentileRoll.toChat()`
@@ -387,42 +418,28 @@ export class DGLethalityRoll extends DGPercentileRoll {
   }
 }
 
-export async function sendDamageRollToChat(actor, label, diceFormula, rollMode){
-  
-  if(rollMode == null || rollMode === ""){
-    rollMode = game.settings.get("core", "rollMode");
+export class DGDamageRoll extends DGRoll {
+  /**
+   * Prepares data for a chat message and then passes that data
+   * to a method that actually creates a ChatMessage.
+   *  
+   * @returns {Promise<ChatMessage>} - the created chat message.
+   * @override
+   */
+  async toChat() {
+    const rollMode = this.options.rollMode || game.settings.get("core", "rollMode");
+    let label = this.formula;
+    try{
+      label = `${this.item.name}: ${game.i18n.localize("DG.Roll.Rolling")} <b>${game.i18n.localize("DG.Roll.Damage").toUpperCase()}</b> ${game.i18n.localize("DG.Roll.For")} <b>${label.toUpperCase()}</b>`;
+    }
+    catch{
+      label = `Rolling <b>DAMAGE</b> for <b>${label.toUpperCase()}</b>`;
+    }
+    return this.createMessage(this.total, label, rollMode);
   }
-
-  //diceFormula += actor.data.data.statistics.str.meleeDamageBonusFormula;
-
-  let roll = new Roll(diceFormula, actor.system);
-
-  await roll.evaluate({async: true});
-  
-  try{
-    label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${game.i18n.localize("DG.Roll.Damage").toUpperCase()}</b> ${game.i18n.localize("DG.Roll.For")} <b>${label.toUpperCase()}</b>`;
-  }
-  catch{
-    label = `Rolling <b>DAMAGE</b> for <b>${label.toUpperCase()}</b>`;
-  }
-
-  let chatData = {
-    speaker: ChatMessage.getSpeaker({actor: actor}),
-    content: roll.total,
-    flavor: label,
-    type: 5, //CHAT_MESSAGE_TYPES.ROLL,
-    roll: roll,
-    rollMode: rollMode
-    };
-
-  // play the dice rolling sound, like a regular in-chat roll
-  AudioHelper.play({src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false}, true);
-
-  ChatMessage.create(chatData, {});
-
 }
 
-export async function sendSanityDamageToChat(actor, label, lowFormula, highFormula, rollMode){
+async function sendSanityDamageToChat(actor, label, lowFormula, highFormula, rollMode){
 
   if(rollMode == null || rollMode === ""){
     rollMode = game.settings.get("core", "rollMode");
@@ -461,7 +478,7 @@ export async function sendSanityDamageToChat(actor, label, lowFormula, highFormu
   ChatMessage.create(chatData, {});
 }
 
-export async function showModifyDamageRollDialogue(actor, label, originalFormula){
+async function showModifyDamageRollDialogue(actor, label, originalFormula){
   
   let template = "systems/deltagreen/templates/dialog/modify-damage-roll.html";
   let backingData = {
@@ -513,7 +530,7 @@ export async function showModifyDamageRollDialogue(actor, label, originalFormula
   }).render(true);
 }
 
-export function skillIsStatTest(skillName){
+function skillIsStatTest(skillName){
   try{
     if(skillName.toUpperCase() === game.i18n.localize("DG.Attributes.str").toUpperCase()){
       return true;
