@@ -134,7 +134,6 @@
     "DG.CV.NationalityPlaceholder": "Nationality",
     "DG.CV.Education": "Education",
     "DG.CV.EducationPlaceholder": "Education or Training",
-    "DG.CV.PhysicalDescriptionLabel": "PHYSICAL DESCRIPTION/NOTES",
 
     "DG.Bonds.Bond": "Bond",
     "DG.Bonds.Name": "Name",
@@ -233,9 +232,19 @@
 
     "DG.TypeSkills.Subskills.Painting": "Painting",
 
+    "DG.Sheet.BlockHeaders.Attributes": "ATTRIBUTES",
+    "DG.Sheet.BlockHeaders.PhysicalDescriptionNotes": "PHYSICAL DESCRIPTION / NOTES",
+    "DG.Sheet.BlockHeaders.SkillsAndTraining": "SKILLS AND TRAINING",
+    "DG.Sheet.BlockHeaders.Injuries": "INJURIES",
+    "DG.Sheet.BlockHeaders.BreakingPointAndAdaptations": "BREAKING POINT AND ADAPTATIONS",
+    "DG.Sheet.BlockHeaders.MotivationsAndDisorders": "MOTIVATIONS AND DISDORDERS",
+    "DG.Sheet.BlockHeaders.PersonalInfoCV": "PERSONAL INFORMATION / CV",
+    "DG.Sheet.BlockHeaders.BondsRelationshipsContacts": "BONDS / RELATIONSHIPS / CONTACTS",
+
     "DG.UnnaturalSheet.HideUntrainedSkillsLabel": "Hide Untrained Skills",
     "DG.UnnaturalSheet.NotesLabel": "Notes",
     "DG.UnnaturalSheet.ShortDescriptionFallbackText": "Description of creature or creature type",
+    "DG.UnnaturalSheet.ShowUntrainedSkillsLabel": "Show Untrained Skills",
     "DG.UnnaturalSheet.Tabs.NotesTabLabel": "Skills & Notes",
     "DG.UnnaturalSheet.Tabs.ItemsTabLabel": "Attacks & Abilities",
     "DG.NPCSheet.BreakPointAbbreviation": "BP",

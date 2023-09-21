@@ -8,6 +8,7 @@
 * Weapons can now have modifiers for their rolls built-in.
 * Weapons can choose a custom target for their rolls. This can be used for unnatural creature attacks that may not line up with one of the skills.
 * Damage rolls can now utilize math functions like base Foundry rolls.
+* Hide untrained skills toggle turned into toggleable eye icon rather than a checkbox.
 
 ### Version 1.2.6 - 2023-09-13
 

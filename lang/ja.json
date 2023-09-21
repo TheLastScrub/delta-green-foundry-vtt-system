@@ -128,7 +128,6 @@
     "DG.CV.NationalityPlaceholder": "国籍",
     "DG.CV.Education": "教育",
     "DG.CV.EducationPlaceholder": "教育",
-    "DG.CV.PhysicalDescriptionLabel": "身体的特徴とメモ",
 
     "DG.Bonds.Bond": "絆",
     "DG.Bonds.Name": "名前",
@@ -226,6 +225,15 @@
     "DG.Bonds.Relationship": "関係",
 
     "DG.TypeSkills.Subskills.Painting": "ペインティング",
+
+    "DG.Sheet.BlockHeaders.Attributes": "ATTRIBUTES",
+    "DG.Sheet.BlockHeaders.PhysicalDescriptionNotes": "身体的特徴とメモ",
+    "DG.Sheet.BlockHeaders.SkillsAndTraining": "SKILLS AND TRAINING",
+    "DG.Sheet.BlockHeaders.Injuries": "INJURIES",
+    "DG.Sheet.BlockHeaders.BreakingPointAndAdaptations": "BREAKING POINT AND ADAPTATIONS",
+    "DG.Sheet.BlockHeaders.MotivationsAndDisorders": "MOTIVATIONS AND DISDORDERS",
+    "DG.Sheet.BlockHeaders.PersonalInfoCV": "PERSONAL INFORMATION / CV",
+    "DG.Sheet.BlockHeaders.BondsRelationshipsContacts": "BONDS / RELATIONSHIPS / CONTACTS",
 
     "DG.UnnaturalSheet.HideUntrainedSkillsLabel": "持たないスキルを表示しない",
     "DG.UnnaturalSheet.NotesLabel": "ノート",

@@ -128,7 +128,6 @@
     "DG.CV.NationalityPlaceholder": "Nacionalitat",
     "DG.CV.Education": "Educació",
     "DG.CV.EducationPlaceholder": "Educació o entrenament",
-    "DG.CV.PhysicalDescriptionLabel": "Descripció física/notes",
 
     "DG.Bonds.Bond": "Vincle",
     "DG.Bonds.Name": "Nom",
@@ -226,6 +225,16 @@
     "DG.Bonds.Relationship": "Relació",
 
     "DG.TypeSkills.Subskills.Painting": "Pintar",
+
+    "DG.Sheet.BlockHeaders.Attributes": "ATTRIBUTES",
+    "DG.Sheet.BlockHeaders.PhysicalDescriptionNotes": "Descripció física/notes",
+    "DG.Sheet.BlockHeaders.SkillsAndTraining": "SKILLS AND TRAINING",
+    "DG.Sheet.BlockHeaders.Injuries": "INJURIES",
+    "DG.Sheet.BlockHeaders.BreakingPointAndAdaptations": "BREAKING POINT AND ADAPTATIONS",
+    "DG.Sheet.BlockHeaders.MotivationsAndDisorders": "MOTIVATIONS AND DISDORDERS",
+    "DG.Sheet.BlockHeaders.PersonalInfoCV": "PERSONAL INFORMATION / CV",
+    "DG.Sheet.BlockHeaders.BondsRelationshipsContacts": "BONDS / RELATIONSHIPS / CONTACTS",
+
 
     "DG.UnnaturalSheet.HideUntrainedSkillsLabel": "Amagar habilitats no entrenades",
     "DG.UnnaturalSheet.NotesLabel": "Notes",
