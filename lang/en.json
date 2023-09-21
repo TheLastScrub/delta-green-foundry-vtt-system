@@ -233,6 +233,7 @@
     "DG.TypeSkills.Subskills.Painting": "Painting",
 
     "DG.Sheet.BlockHeaders.Attributes": "ATTRIBUTES",
+    "DG.Sheet.BlockHeaders.Statistics": "STATISTICS",
     "DG.Sheet.BlockHeaders.PhysicalDescriptionNotes": "PHYSICAL DESCRIPTION / NOTES",
     "DG.Sheet.BlockHeaders.SkillsAndTraining": "SKILLS AND TRAINING",
     "DG.Sheet.BlockHeaders.Injuries": "INJURIES",

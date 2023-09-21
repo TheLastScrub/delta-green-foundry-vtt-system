@@ -227,6 +227,7 @@
     "DG.TypeSkills.Subskills.Painting": "Cuadro",
 
     "DG.Sheet.BlockHeaders.Attributes": "ATTRIBUTES",
+    "DG.Sheet.BlockHeaders.Statistics": "STATISTICS",
     "DG.Sheet.BlockHeaders.PhysicalDescriptionNotes": "Descripción Física/Notas",
     "DG.Sheet.BlockHeaders.SkillsAndTraining": "SKILLS AND TRAINING",
     "DG.Sheet.BlockHeaders.Injuries": "INJURIES",

@@ -63,7 +63,7 @@
       {{!-- Physical Statistics like STR, CON, etc. --}}
       <div class="">
         <div class="horizontal-bar-section-divider">
-          <span>{{localize 'DG.Navigation.Physical'}}</span>                                                    
+          <span>{{localize "DG.Sheet.BlockHeaders.Statistics"}}</span>                                                    
         </div>
         <div class="grid grid-3col">
           {{#each actor.system.statistics as |statistic key|}}
@@ -95,7 +95,7 @@
   <section class="sheet-body">
 
     {{!-- Descriptions/Notes/Skills Tab --}}
-    <div class="tab skills top-div-border" data-group="primary" data-tab="skills">
+    <div class="tab skills" data-group="primary" data-tab="skills">
       <div class="horizontal-bar-section-divider"> 
         <span>
           {{localize "DG.Sheet.BlockHeaders.SkillsAndTraining"}}

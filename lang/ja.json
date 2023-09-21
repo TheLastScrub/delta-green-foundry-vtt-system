@@ -227,6 +227,7 @@
     "DG.TypeSkills.Subskills.Painting": "ペインティング",
 
     "DG.Sheet.BlockHeaders.Attributes": "ATTRIBUTES",
+    "DG.Sheet.BlockHeaders.Statistics": "STATISTICS",
     "DG.Sheet.BlockHeaders.PhysicalDescriptionNotes": "身体的特徴とメモ",
     "DG.Sheet.BlockHeaders.SkillsAndTraining": "SKILLS AND TRAINING",
     "DG.Sheet.BlockHeaders.Injuries": "INJURIES",
