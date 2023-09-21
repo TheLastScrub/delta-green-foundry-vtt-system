@@ -9,7 +9,7 @@ import * as DGRolls from "./roll/roll.js";
 import { registerSystemSettings } from "./settings.js"
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { ParseDeltaGreenStatBlock } from "./other/stat-parser-macro.js";
-import { localizeWithFallback } from "./other/utility-functions.js";
+import DGUtils from "./other/utility-functions.js";
 
 Hooks.once('init', async function() {
 
@@ -52,7 +52,7 @@ Hooks.once('init', async function() {
 
   // Add Handlebars helpers
   Handlebars.registerHelper('localizeWithFallback', function(value, fallbackValue) {
-    return localizeWithFallback(value, fallbackValue);
+    return DGUtils.localizeWithFallback(value, fallbackValue);
   });
 
   Handlebars.registerHelper('concat', function() {

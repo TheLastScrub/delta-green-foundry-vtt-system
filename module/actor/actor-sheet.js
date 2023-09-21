@@ -583,18 +583,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
     return this.actor.createEmbeddedDocuments("Item", [itemData]);
   }
 
-  _formatStringWithLeadingPlus(number){
-    let s = "";
-
-    if(number > 0){
-      s += "+"
-    }
-
-    s += number.toString();
-
-    return s;
-  }
-
   /**
    * Handle clickable rolls.
    * 

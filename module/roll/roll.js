@@ -1,6 +1,6 @@
 /* globals game Roll ChatMessage AudioHelper renderTemplate Dialog */
 
-import { localizeWithFallback } from "../other/utility-functions.js"
+import DGUtils from "../other/utility-functions.js"
 
 export class DGRoll extends Roll {
   /**
@@ -150,11 +150,11 @@ export class DGPercentileRoll extends DGRoll {
     return new Promise((resolve, reject) => {
       new Dialog({
         content: html,
-        title: localizeWithFallback("DG.ModifySkillRollDialogue.Title", "Modify Roll"),
+        title: DGUtils.localizeWithFallback("DG.ModifySkillRollDialogue.Title", "Modify Roll"),
         default: "roll",
         buttons: {
           roll:{
-            label: localizeWithFallback("DG.Roll.Roll", "Roll"),
+            label: DGUtils.localizeWithFallback("DG.Roll.Roll", "Roll"),
             callback: html => { 
               try {
                 let targetModifier = html.find("[name='targetModifier']").val();  // this is text as a heads up
@@ -198,12 +198,13 @@ export class DGPercentileRoll extends DGRoll {
       rollMode = 'blindroll';
     }
   
-    let label = '';
+    let label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${this.localizedKey}</b> ${game.i18n.localize("DG.Roll.Target")} ${this.target + this.modifier}`;
     // "Inhuman" stat being rolled. See function for details.
     if (this.isInhuman) {
       label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${this.localizedKey} [${game.i18n.localize("DG.Roll.Inhuman").toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${this.target + this.modifier}`;
-    } else {
-      label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${this.localizedKey}</b> ${game.i18n.localize("DG.Roll.Target")} ${this.target + this.modifier}`;
+    }
+    if (this.modifier) {
+      label += ` (${DGUtils.formatStringWithLeadingPlus(this.modifier)}%)`
     }
   
     let resultString = '', styleOverride = '';
@@ -356,7 +357,11 @@ export class DGLethalityRoll extends DGPercentileRoll {
     }
 
     const { nonLethalDamage } = this;
-    let label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${game.i18n.localize("DG.Roll.Lethality").toUpperCase()}</b> ${game.i18n.localize("DG.Roll.For")} <b>${this.item.name.toUpperCase()}</b> ${game.i18n.localize("DG.Roll.Target")} ${this.target}`;
+    let label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${game.i18n.localize("DG.Roll.Lethality").toUpperCase()}</b> ${game.i18n.localize("DG.Roll.For")} <b>${this.item.name.toUpperCase()}</b> ${game.i18n.localize("DG.Roll.Target")} ${this.target + this.modifier}`;
+    if (this.modifier) {
+      label += ` (${DGUtils.formatStringWithLeadingPlus(this.modifier)}%)`
+    }
+    
     let html = '';
     html += `<div class="dice-roll">`;
     html += `     <div class="dice-result">`;
@@ -528,7 +533,7 @@ export class DGSanityDamageRoll extends DGRoll {
 
     const [lowResult, highResult] = this.damageResults;
     
-    const flavor = `Rolling <b>${localizeWithFallback('DG.Generic.SanDamage', 'SAN DAMAGE')}</b> For <b>${lowDie.formula} / ${highDie.formula}</b>`;
+    const flavor = `Rolling <b>${DGUtils.localizeWithFallback('DG.Generic.SanDamage', 'SAN DAMAGE')}</b> For <b>${lowDie.formula} / ${highDie.formula}</b>`;
   
     let html = '';
     html += `<div class="dice-roll">`;
