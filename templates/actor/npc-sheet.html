@@ -195,13 +195,9 @@
 
                 <span class="centered-item-property">
                   {{#unless item.system.isLethal}}
-                    <span class="rollable" 
-                      data-rolltype="damage" 
-                      data-formula="{{item.system.damage}}"
-                      data-skill="{{item.system.skill}}"
-                      data-iid="{{item._id}}"
-                      >                      
-                      {{toUpperCase item.system.damage}}</span>
+                    <span class="rollable" data-rolltype="damage" data-iid="{{item._id}}">                      
+                      {{toUpperCase item.system.damage}}
+                    </span>
                   {{/unless}}
 
                   {{#if item.system.isLethal}}

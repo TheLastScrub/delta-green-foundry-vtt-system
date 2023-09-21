@@ -35,6 +35,6 @@ export default class DGUtils {
    * 
    */
   static formatStringWithLeadingPlus(number){
-    return number > 0 ? `+${number}` : number.toString();
+    return number > 0 ? `+${number}` : number.toString() ;
   }
 }

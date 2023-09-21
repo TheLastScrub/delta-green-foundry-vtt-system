@@ -41,7 +41,7 @@
 
         {{!-- Sanity Damage --}}
         <div class="resource-outer-grid-1col">
-          <label for="system.wp.value" class="resource-label rollable" data-roll="{{actor.system.sanity.successLoss}}" data-roll2="{{actor.system.sanity.failedLoss}}" data-rolltype="sanity-damage">{{localize 'DG.Attributes.SAN'}} <i class="fas fa-dice"></i></label>
+          <label class="resource-label rollable" data-rolltype="sanity-damage">{{localize 'DG.Attributes.SAN'}} <i class="fas fa-dice"></i></label>
           <div class="resource-inner-grid-3col">
             <input type="text" name="system.sanity.successLoss" value="{{actor.system.sanity.successLoss}}" />
             <span> / </span>
@@ -186,13 +186,9 @@
 
                 <span class="centered-item-property">
                   {{#unless item.system.isLethal}}
-                  <span class="rollable" 
-                    data-rolltype="damage" 
-                    data-formula="{{item.system.damage}}"
-                    data-skill="{{item.system.skill}}"
-                    data-iid="{{item._id}}"
-                    >                      
-                    {{toUpperCase item.system.damage}}</span>
+                    <span class="rollable" data-rolltype="damage" data-iid="{{item._id}}">                      
+                      {{toUpperCase item.system.damage}}
+                    </span>
                   {{/unless}}
 
                   {{#if item.system.isLethal}}

@@ -334,13 +334,9 @@
 
                     <span class = "centered-item-property">
                       {{#unless item.system.isLethal}}
-                      <span class="rollable" 
-                        data-rolltype="damage" 
-                        data-formula="{{item.system.damage}}"
-                        data-skill="{{item.system.skill}}"
-                        data-iid="{{item._id}}"
-                        >                      
-                        {{toUpperCase item.system.damage}}{{#if_eq item.system.skill 'unarmed_combat'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}{{#if_eq item.system.skill 'melee_weapons'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}</span>
+                        <span class="rollable" data-rolltype="damage" data-iid="{{item._id}}">                      
+                          {{toUpperCase item.system.damage}}{{#if_eq item.system.skill 'unarmed_combat'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}{{#if_eq item.system.skill 'melee_weapons'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}
+                        </span>
                       {{/unless}}
 
                       {{#if item.system.isLethal}}

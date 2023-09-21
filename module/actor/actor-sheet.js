@@ -621,18 +621,17 @@ export class DeltaGreenActorSheet extends ActorSheet {
         roll = new DGLethalityRoll("1D100", {}, rollOptions)
         break;
       case "damage": {
-        let diceFormula = dataset.formula;
-        const skillType = dataset.skill;
-        if(this.actor.type === 'agent' && (skillType === 'unarmed_combat' || skillType === 'melee_weapons')){
+        let diceFormula = item.system.damage;
+        const { skill } = item.system;
+        if(this.actor.type === 'agent' && (skill === 'unarmed_combat' || skill === 'melee_weapons')){
           diceFormula += this.actor.system.statistics.str.meleeDamageBonusFormula;
         }
         roll = new DGDamageRoll(diceFormula, {}, rollOptions)
         break;
       }
       case "sanity-damage":{
-        const lowFormula = dataset.roll;
-        const highFormula = dataset.roll2;
-        const combinedFormula = `{${lowFormula}, ${highFormula}}`;
+        const { successLoss, failedLoss } = this.actor.system.sanity;
+        const combinedFormula = `{${successLoss}, ${failedLoss}}`;
         roll = new DGSanityDamageRoll(combinedFormula, {}, rollOptions);
         break;
       }
