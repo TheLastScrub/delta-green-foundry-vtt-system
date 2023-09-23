@@ -94,20 +94,19 @@
 
     {{!-- Descriptions/Notes/Skills Tab --}}
     <div class="tab skills" data-group="primary" data-tab="skills">
-      <div class="horizontal-bar-section-divider"> 
-        <span>
+      <div class="horizontal-bar-section-divider contains-hide-button"> 
+        <span class="contains-hide-button-title">
           {{localize "DG.Sheet.BlockHeaders.SkillsAndTraining"}}
           {{!-- Checkbox to hide/show skills that are at zero --}}
-          <a class="toggle-untrained" title="
-            {{#if actor.system.showUntrainedSkills}}
-              {{localize 'DG.UnnaturalSheet.ShowUntrainedSkillsLabel'}}
-            {{else}}
-              {{localize 'DG.UnnaturalSheet.HideUntrainedSkillsLabel'}}
-            {{/if}}"
-            >
-            <i class="far fa-eye{{#if actor.system.showUntrainedSkills}}-slash{{/if}}"></i>
-          </a>
         </span>
+        <a class="toggle-untrained">
+          {{#if actor.system.showUntrainedSkills}}
+            {{localize 'DG.UnnaturalSheet.ShowUntrainedSkillsLabel'}}
+          {{else}}
+            {{localize 'DG.UnnaturalSheet.HideUntrainedSkillsLabel'}}
+          {{/if}}&nbsp;
+          <i class="far fa-eye{{#if actor.system.showUntrainedSkills}}-slash{{/if}}"></i>
+        </a>
       </div>
       <div class="grid grid-3col">
         {{#each actor.system.skills as |skill key|}}

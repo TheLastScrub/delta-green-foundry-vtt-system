@@ -242,10 +242,10 @@
     "DG.Sheet.BlockHeaders.PersonalInfoCV": "PERSONAL INFORMATION / CV",
     "DG.Sheet.BlockHeaders.BondsRelationshipsContacts": "BONDS / RELATIONSHIPS / CONTACTS",
 
-    "DG.UnnaturalSheet.HideUntrainedSkillsLabel": "Hide Untrained Skills",
+    "DG.UnnaturalSheet.HideUntrainedSkillsLabel": "Hide Untrained",
     "DG.UnnaturalSheet.NotesLabel": "Notes",
     "DG.UnnaturalSheet.ShortDescriptionFallbackText": "Description of creature or creature type",
-    "DG.UnnaturalSheet.ShowUntrainedSkillsLabel": "Show Untrained Skills",
+    "DG.UnnaturalSheet.ShowUntrainedSkillsLabel": "Show Untrained",
     "DG.UnnaturalSheet.Tabs.NotesTabLabel": "Skills & Notes",
     "DG.UnnaturalSheet.Tabs.ItemsTabLabel": "Attacks & Abilities",
     "DG.NPCSheet.BreakPointAbbreviation": "BP",
