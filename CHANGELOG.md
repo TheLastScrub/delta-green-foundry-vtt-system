@@ -1,14 +1,14 @@
 ## Release/Patch Notes
 
-### Version 1.2.7 - 2023-XX-XX
+### Version 1.3.0 - 2023-09-23
 
-* Refactor roll system
-* Slight restyle of roll chat messages.
-* Restyled actor sheets to be more in-line with the core book's design. You can change back to the old style in the settings for the Delta Green system.
-* Weapons can now have modifiers for their rolls built-in.
-* Weapons can choose a custom target for their rolls. This can be used for unnatural creature attacks that may not line up with one of the skills.
-* Damage rolls can now utilize math functions like base Foundry rolls.
-* Hide untrained skills toggle turned into toggleable eye icon rather than a checkbox.
+* Enhancement - Refactor roll system to make future changes easier.
+* Enhancement - Slight restyle of roll chat messages.
+* Enhancement - Restyled actor sheets to be more in-line with the core book's design. You can change back to the old style in the settings for the Delta Green system.
+* Enhancement[GitHub #72] - Weapons can now have modifiers for their rolls built-in.
+* Enhancement - Weapons can choose a custom target for their rolls. This can be used for unnatural creature attacks that may not line up with one of the skills.
+* Fix - Damage rolls can now utilize math functions like base Foundry rolls.
+* Enhancement - Hide untrained skills toggle turned into toggleable eye icon rather than a checkbox.
 
 ### Version 1.2.6 - 2023-09-13
 
