@@ -699,18 +699,6 @@ div.max-resource-value{
   border: 1.5px solid #000000;
 }
 
-div.gear-section-header{
-  display: grid;
-  grid-template-columns: 100%;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  background: #000;
-  color: #fff;
-  height: 30px;
-}
-
 div.horizontal-bar-section-divider{
   display: grid;
   grid-template-columns: 100%;
