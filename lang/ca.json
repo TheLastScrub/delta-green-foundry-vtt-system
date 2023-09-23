@@ -128,7 +128,6 @@
     "DG.CV.NationalityPlaceholder": "Nacionalitat",
     "DG.CV.Education": "Educació",
     "DG.CV.EducationPlaceholder": "Educació o entrenament",
-    "DG.CV.PhysicalDescriptionLabel": "Descripció física/notes",
 
     "DG.Bonds.Bond": "Vincle",
     "DG.Bonds.Name": "Nom",
@@ -227,6 +226,17 @@
 
     "DG.TypeSkills.Subskills.Painting": "Pintar",
 
+    "DG.Sheet.BlockHeaders.Attributes": "ATTRIBUTES",
+    "DG.Sheet.BlockHeaders.Statistics": "STATISTICS",
+    "DG.Sheet.BlockHeaders.PhysicalDescriptionNotes": "Descripció física/notes",
+    "DG.Sheet.BlockHeaders.SkillsAndTraining": "SKILLS AND TRAINING",
+    "DG.Sheet.BlockHeaders.Injuries": "INJURIES",
+    "DG.Sheet.BlockHeaders.BreakingPointAndAdaptations": "BREAKING POINT AND ADAPTATIONS",
+    "DG.Sheet.BlockHeaders.MotivationsAndDisorders": "MOTIVATIONS AND DISDORDERS",
+    "DG.Sheet.BlockHeaders.PersonalInfoCV": "PERSONAL INFORMATION / CV",
+    "DG.Sheet.BlockHeaders.BondsRelationshipsContacts": "BONDS / RELATIONSHIPS / CONTACTS",
+
+
     "DG.UnnaturalSheet.HideUntrainedSkillsLabel": "Amagar habilitats no entrenades",
     "DG.UnnaturalSheet.NotesLabel": "Notes",
     "DG.UnnaturalSheet.ShortDescriptionFallbackText": "Descripció de la criatura o tipus de criatura",
@@ -249,5 +259,9 @@
     "DG.Generic.CheckDamagedBondsBoxUntilNextHomeScene": "Check a damaged Bond's box until the next Home Scene ends.",
     "DG.Generic.ClearAll": "Clear All",
 
-    "DG.Generic.SanDamage": "SAN Damage"
+    "DG.Generic.SanDamage": "SAN Damage",
+
+    "DG.ItemWindow.Weapons.CustomSkillTarget": "Target",
+    "DG.ItemWindow.Weapons.SkillModifier": "Skill Modifier",
+    "DG.ItemWindow.Custom": "Custom"
 }

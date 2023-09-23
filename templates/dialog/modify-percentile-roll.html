@@ -24,8 +24,8 @@
             <input class="numeric-label-field" type="number" name="targetModifier" value="{{data.targetModifier}}" title="{{localize 'DG.ModifySkillRollDialogue.ModifierTooltip'}}" />
         </div>
         
-        <label for="targetRollMode">{{ localize "DG.RollMode" }}:</label>
-        <select name="targetRollMode">
+        <label for="rollMode">{{ localize "DG.RollMode" }}:</label>
+        <select name="rollMode">
             {{selectOptions (getAvailableRollModes) selected=(getDefaultRollMode) localize=true}}
         </select>
     </div>

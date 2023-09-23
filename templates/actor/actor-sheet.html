@@ -1,10 +1,10 @@
-<form class="{{cssClass}} {{getFontFamilySystemSettingClass}} flexcol" autocomplete="off">
+<form class="{{cssClass}} {{getCharacterSheetStyle}} flexcol" autocomplete="off">
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
         
       <div class="header-fields">
-        
+        {{!-- <div class="horizontal-bar-section-header"><h1>DELTA GREEN</h1></div> --}}
         {{!-- Name, Profession, Portrait --}}
         <div class="flexrow">
           <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="100"/>
@@ -49,7 +49,7 @@
           {{!-- Sanity --}}
           <div class="resource-outer-grid-1col">
               <label for="system.san.value" class="resource-label rollable"
-                data-rolltype="sanity" data-roll="d100" data-target="sanity" data-label="SAN" title="{{localize 'DG.Tooltip.SanityLabel'}}"
+                data-rolltype="sanity" title="{{localize 'DG.Tooltip.SanityLabel'}}"
               >{{localize 'DG.Attributes.SAN' }} <i class="fas fa-dice"></i></label>
               <div class="resource-inner-grid-3col">
 
@@ -91,13 +91,17 @@
     <section class="sheet-body">
 
         {{!-- Skills Tab --}}
-        <div class="tab skills" data-group="primary" data-tab="skills">
+        <div class="tab skills" data-group="primary" data-tab="skills" >
+          <div class="horizontal-bar-section-divider">
+            <span>{{localize "DG.Sheet.BlockHeaders.SkillsAndTraining"}}</span>                                                    
+          </div>
+          
             <div class="grid grid-3col">
 
               {{#each actor.system.skills as |skill key|}}
               
-                <div class="flexrow flex-group-center">
-                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{localize (concat 'DG.Skills.' key)}}" for="system.skills.{{key}}.value" 
+                <div class="flexrow flex-group-center flex-thin-border">
+                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-key="{{key}}" data-rolltype="skill" for="system.skills.{{key}}.value" 
                       {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
                       {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}}
                     >
@@ -140,8 +144,8 @@
             </div>
             <div class="grid-2col">
               {{#each actor.system.typedSkills as |skill key|}}
-                <div class="item flexrow flex-group-center">
-                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" 
+                <div class="item flexrow flex-group-center flex-thin-border">
+                  <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-key="{{key}}" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" 
                       {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
                       {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}} 
                     >
@@ -161,14 +165,18 @@
 
         {{!-- Physical Statistics like STR, CON, etc. --}}
         <div class="tab physical" data-group="primary" data-tab="physical">
+          <div class="horizontal-bar-section-divider">
+            <span>{{localize "DG.Sheet.BlockHeaders.Attributes"}}</span>                                                    
+          </div>
+          
           <div class="grid grid-3col">
             {{#each actor.system.statistics as |statistic key|}}
-              <div class="flex-group-center">
+              <div class="flex-group-center flex-mid-border">
                 <div class="">
                   <div class="physical-stats-outer-grid-3col">
-                    <label class="rollable" data-rolltype="statistic.x5" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}" for="system.statistics.{{key}}.value" class="resource-label">{{localize (concat 'DG.Attributes.' key)}}</label>
+                    <label class="rollable resource-label" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}" for="system.statistics.{{key}}.value">{{localize (concat 'DG.Attributes.' key)}}</label>
                     <input type="text" name="system.statistics.{{key}}.value" value="{{statistic.value}}" data-dtype="Number"/>
-                    <span  class="rollable" data-rolltype="statistic.x5" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}">({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
+                    <span  class="rollable" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}">({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
                   </div >
                   <div >
                     <input type="text" name="system.statistics.{{key}}.distinguishing_feature" value="{{statistic.distinguishing_feature}}" data-dtype="String" title="{{localize 'DG.Tooltip.DistinguishingFeature'}}" />
@@ -177,6 +185,11 @@
               </div>
             {{/each}}
           </div>
+          <br />
+          <div class="horizontal-bar-section-divider">
+            <span>{{localize "DG.Sheet.BlockHeaders.Injuries"}}</span>                                                    
+          </div>
+
           <div>
             <div class="first-aid-received-section resource">
               <label class="bolded-label first-aid-label"
@@ -193,15 +206,18 @@
           </div>
         </div>
 
-        {{!-- Mental Tab (formerly 'Motivations') --}}
+        {{!-- Psychological Tab (formerly 'Mental', formerly 'Motivations') --}}
         <div class="tab motivations" data-group="primary" data-tab="motivations">
+          <div class="horizontal-bar-section-divider">
+            <span>{{localize "DG.Sheet.BlockHeaders.BreakingPointAndAdaptations"}}</span>                                                    
+          </div>
           <div class="">
               <div class="breaking-point-grid-3col">
                 <label class="bolded-label">{{localize 'DG.Mental.BreakingPoint'}}</label>
                 <input class="centered-input-value" title="{{localize 'DG.Tooltip.BreakPoint'}}" type="text" name="system.sanity.currentBreakingPoint" value="{{actor.system.sanity.currentBreakingPoint}}" data-dtype="Number"/>
                 <a class="btn-tiny btn-reset-breaking-point" title="Reset breaking point to be current SAN - WP.">{{localize 'DG.Mental.Reset'}}</a>
               </div>
-          
+
               <div class="">
                 <h4 class="bolded-label">{{localize 'DG.Mental.SanityLossIncidentsLabel'}}</h4>
                 <div class="adaptation-grid-5col">
@@ -234,6 +250,10 @@
                   
                 </div>
               </div>
+          </div>
+
+          <div class="horizontal-bar-section-divider">
+            <span>{{localize "DG.Sheet.BlockHeaders.MotivationsAndDisorders"}}</span>                                                    
           </div>
 
           <div>
@@ -279,7 +299,7 @@
         <div class="tab items" data-group="primary" data-tab="gear">
           <div>
                         
-            <div class="gear-section-header">
+            <div class="horizontal-bar-section-divider">
                 <span>{{localize 'DG.Gear.Weapons'}}</span>                                                    
             </div>
 
@@ -300,41 +320,27 @@
                   
                   <li class="item flexrow" data-item-id="{{item._id}}">
                     <div 
-                      class="item-image rollable"
-                      data-roll="d100"
-                      data-rolltype="weaponskill" 
-                      data-target="{{item.system.skill}}"                         
-                      data-label="{{localizeWeaponSkill item.system.skill}}"
+                      class="flexrow rollable"
+                      data-iid="{{item._id}}"
+                      data-rolltype="weapon" 
+                      data-key="{{item.system.skill}}"                                          
                       title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.system.skill}})"
-                    ><img src="{{item.img}}"  width="24" height="24"/></div>
+                    ><img class="item-image" src="{{item.img}}"  width="24" height="24"/>
                     
-                    <h4 style="word-wrap: break-word;" 
-                      
-                      class="item-name rollable" 
-                      data-roll="d100"
-                      data-rolltype="weaponskill" 
-                      data-target="{{item.system.skill}}"                         
-                      data-label="{{localizeWeaponSkill item.system.skill}}"
-                      title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.system.skill}})"
-                      >
+                    <h4 style="word-wrap: break-word;" class="item-name">
                         {{item.name}}
                     </h4>
+                    </div>
 
                     <span class = "centered-item-property">
                       {{#unless item.system.isLethal}}
-                      <span class="rollable" 
-                        
-                        data-rolltype="damage" 
-                        data-target="damage" 
-                        data-label="{{toUpperCase item.name}}" 
-                        data-roll="{{toUpperCase item.system.damage}}"
-                        data-skill="{{item.system.skill}}"
-                        >                      
-                        {{toUpperCase item.system.damage}}{{#if_eq item.system.skill 'unarmed_combat'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}{{#if_eq item.system.skill 'melee_weapons'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}</span>
+                        <span class="rollable" data-rolltype="damage" data-iid="{{item._id}}">                      
+                          {{toUpperCase item.system.damage}}{{#if_eq item.system.skill 'unarmed_combat'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}{{#if_eq item.system.skill 'melee_weapons'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}
+                        </span>
                       {{/unless}}
 
                       {{#if item.system.isLethal}}
-                      <span class="rollable" data-rolltype="lethality" data-target="{{item.system.lethality}}" data-label="{{item.name}}" data-roll="d100"
+                      <span class="rollable" data-rolltype="lethality" data-iid="{{item._id}}"
                         title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}">
                         {{item.system.lethality}}%</span>
                       {{/if}}
@@ -348,7 +354,6 @@
                         {{/if}}
                       {{/if}}
                     </span>
-
 
                     <span class="centered-item-property">{{item.system.armorPiercing}}</span>
 
@@ -365,7 +370,7 @@
           </div>
           <div>
 
-            <div class="gear-section-header">
+            <div class="horizontal-bar-section-divider">
               <span>{{localize 'DG.Gear.Armor'}}</span>
             </div>
 
@@ -409,15 +414,15 @@
           </div>
           <div>
 
-            <div class="gear-section-header">
+            <div class="horizontal-bar-section-divider">
               <span>{{localize 'DG.Gear.OtherGear'}}</span>
             </div>
 
             <ol class="items-list">
               <li class="item flexrow item-header">
                 <div class="item-image"></div>
-                <div class="item-name">{{localize 'DG.Gear.Name'}}</div>
-                <div class="item-name"></div>
+                <div style="min-width: 55%;" class="item-name">{{localize 'DG.Gear.Name'}}</div>
+                
                 <span class="centered-item-property">{{localize 'DG.Gear.Equipped'}}</span>
                 <div class="item-controls">
                   <a class="item-control item-create" title="Create item" data-type="gear"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
@@ -425,13 +430,12 @@
               </li>
 
               {{#each actor.items as |item id|}}
+
                 {{#if_eq item.type 'gear'}}
 
                   <li class="item flexrow" data-item-id="{{item.id}}">
                     <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                    <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
-
-                    <span></span> <!-- This is just here to get things to align nicely with the other sections-->
+                    <h4 style="word-wrap: break-word; min-width: 55%;" class="item-name">{{item.name}}</h4>                    
                     
                     <span class="equipped-item centered-item-property" data-id="{{item.id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}" >
                       
@@ -456,16 +460,20 @@
           </div>
         </div>
 
-        {{!-- Biography Tab --}}
+        {{!-- PERSONAL (Biography) Tab --}}
         <div class="tab bio" data-group="primary" data-tab="bio">
+          <div class="horizontal-bar-section-divider">
+            <span>{{localize "DG.Sheet.BlockHeaders.PersonalInfoCV"}}</span>                                                    
+          </div>
           {{> "systems/deltagreen/templates/actor/cv-partial.html" }}
         </div>
 
         {{!-- Bonds Tab --}}
         <div class="tab bonds" data-group="primary" data-tab="bonds">
-          <div class="bonds-section-header">
-            
+          <div class="horizontal-bar-section-divider">
+            <span>{{localize "DG.Sheet.BlockHeaders.BondsRelationshipsContacts"}}</span>                                                    
           </div>
+          
           <div>
             <ol class="items-list">
               <li class="item flexrow item-header">

@@ -28,23 +28,66 @@
   src: url('../assets/font/special_elite/SpecialElite-Regular.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }
 
+@font-face {
+  font-family: 'PublicSans';
+  src: url('../assets/font/public-sans/PublicSans-VariableFont_wght.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
 /* Global styles */
 
-/*
-.window-app {
-  font-family: "TypeWriterCondensed", "atwriter", "Martel", 'Signika', sans-serif !important;
-  height: auto;
+
+/* Hacky overrides of outer Foundry stuff */
+
+/* Override default foundry CSS to remove padding, so that our background image can take up the whole window */
+.deltagreen section.window-content{
+  padding: 0 !important;
 }
-*/
+
+/* Override the default Foundry CSS to add the padding we removed from the outer window back in */
+.deltagreen section.window-content form.editable{
+  padding: 6px 6px 6px 6px !important;
+}
+
+/* Character Sheet Style Options */
+
+form.outlaw-style,
+form.cowboy-style{
+  background: url("../assets/img/StainedPlainPaper10b.webp") !important;
+  background-size: 100% !important;
+}
+
+form.program-style{
+  background: url("../assets/img/StainedPlainPaper10a.webp") !important;
+  background-size: 100% !important;
+}
+
+.cowboy-style{
+  font-family: "SpecialElite", sans-serif !important;
+}
+
+.outlaw-style,
+.program-style{
+  font-family: "PublicSans", sans-serif !important;
+}
+
+.outlaw-style
+.cowboy-style .tabs .item {
+  background: rgba(173, 151, 101, 0.3);
+}
+
+.program-style .tabs .item {
+  background: rgba(138, 136, 133, 0.3);
+}
+
 
 /*
-section.window-content{
-  background: url("../assets/img/old_paper.jpg") !important;
+#pause img {
+  content: url(../assets/img/DG_Pause_Icon.webp);
 }
 */
 
 .old-paper-background{
-  background: url("../assets/img/old_paper.jpg") !important;
+  background: url("../assets/img/StainedPlainPaper10.webp") !important;
 }
 .default-parchment-background{
   background: url("/ui/parchment.jpg") repeat !important;
@@ -70,6 +113,13 @@ section.window-content{
   font-family: "SpecialElite", sans-serif !important;
 }
 
+.public-sans-font{
+  font-family: "PublicSans", sans-serif !important;
+}
+
+
+
+
 .rollable:hover, .rollable:focus {
   color: #000;
   text-shadow: 0 0 10px red;
@@ -82,6 +132,10 @@ section.window-content{
 
 .dg-red{
   color:rgb(117, 0, 0);
+}
+
+.bottom-margin-5px{
+  margin-bottom: 5px !important;
 }
 
 .grid-1col{
@@ -161,7 +215,17 @@ section.window-content{
   align-items: center;
   text-align: center;
   padding: 2px;
+  
+}
+
+.flex-thin-border{
   border: 1px solid #999;
+  border-radius: 2px;
+}
+
+.flex-mid-border{
+  border: 1.5px solid rgb(0, 0, 0);
+  border-radius: 2px;
 }
 
 .flex-group-left {
@@ -223,6 +287,7 @@ section.window-content{
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
+  margin-bottom: 8px;
 }
 
 .deltagreen .sheet-header .profile-img {
@@ -255,6 +320,7 @@ section.window-content{
   margin: 0;
 }
 
+
 .deltagreen .sheet-body,
 .deltagreen .sheet-body .tab,
 .deltagreen .sheet-body .tab .editor {
@@ -270,6 +336,15 @@ section.window-content{
 .sheet nav.sheet-tabs{
   border-bottom: transparent !important;
   border-top: transparent !important;
+}
+
+.deltagreen section.sheet-body{
+  border: #000 !important;
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-radius: 3px 3px 3px 3px;
+
+  padding: 5px;
 }
 
 .deltagreen .tabs {
@@ -290,7 +365,7 @@ section.window-content{
   border: gray;
   border-width: 1px 1px 0px 1px;
   border-style: solid;
-  background: rgba(173, 151, 101, 0.3);
+  /*background: rgba(173, 151, 101, 0.3);*/
 }
 
 .deltagreen .tabs .item.active {
@@ -299,6 +374,16 @@ section.window-content{
   border: #000;
   border-width: 2px 2px 0px 2px;
   border-style: solid;
+}
+
+.deltagreen .program-style .tabs .item.active {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.deltagreen .cowboy-style .tabs .item.active {
+  background-color: rgba(156, 115, 18, 0.3);
+  color: #000000;
 }
 
 .deltagreen .items-list {
@@ -454,7 +539,7 @@ div span.bio-grid-label{
 }
 
 .bio-grid-top-border{
-  border-top: 1px solid #AAA;
+  border-top: 0px solid #AAA;
   padding-top: 10px;
 }
 
@@ -479,7 +564,7 @@ div span.bio-grid-label{
 .breaking-point-grid-3col{
   display: grid;
   grid-template-columns: 100px 70px 65px;
-  border-top: 1px solid #AAA;
+  border-top: 0px solid #AAA;
   margin-bottom: 10px;
   border-bottom: 1px solid #AAA;
   align-content: center;
@@ -498,7 +583,7 @@ div span.bio-grid-label{
   justify-content: left;
   align-items: center;
   padding-bottom: 5px;
-  border-bottom: 1px solid #AAA;
+  border-bottom: 0px solid #AAA;
 }
 
 .adapted-label{
@@ -550,7 +635,7 @@ div .first-aid-received-section{
 }
 
 .bonds-section-header{
-  border-top: 1px solid #AAA;
+  /* border-top: 1px solid #AAA; */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -583,10 +668,11 @@ textarea.wounds{
   grid-template-columns: 100%;
   align-items: center;
   justify-content: center;
-  border: 1px solid #999;
+  border: 1.5px solid #000000;
   padding: 5px;
   grid-gap: 3px;
   text-align: center;
+  border-radius: 2px;
 }
 
 div.max-resource-value{
@@ -608,16 +694,65 @@ div.max-resource-value{
   grid-gap: 5px;
 }
 
-div.gear-section-header{
+.physical-stats-and-feature{
+  border-radius: 2px;
+  border: 1.5px solid #000000;
+}
+
+div.horizontal-bar-section-divider{
   display: grid;
   grid-template-columns: 100%;
   justify-content: center;
   align-items: center;
   text-align: center;
 
+  margin-bottom: 3px;
+
   background: #000;
   color: #fff;
   height: 30px;
+
+  border-radius: 3px 3px 3px 3px;
+}
+
+div.horizontal-bar-section-divider.contains-hide-button {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  margin-bottom: 3px;
+
+  background: #000;
+  color: #fff;
+  height: 30px;
+
+  border-radius: 3px 3px 3px 3px;
+}
+
+.horizontal-bar-section-divider .contains-hide-button-title {
+  grid-column: 2;
+}
+
+.horizontal-bar-section-divider .toggle-untrained {
+  grid-column: 3;
+  padding-right: 0.5rem;
+  justify-self: end;
+}
+
+div.horizontal-bar-section-header{
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  margin-bottom: 3px;
+
+  background: #000;
+  color: #fff;
+  height: 50px;
 }
 
 .physical-description-label{
@@ -632,7 +767,6 @@ div.motivation-editor-container div.editor{
 .editor-host .tox .tox-editor-container {
   background: none !important;
 }
-
 
 .deltagreen .tox-editor-header {
   background: none !important;
@@ -826,7 +960,7 @@ input.item-sheet-short-input{
 
 .weapon-sheet-horizontal-grid-left-2col{
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 50% 50%;
   align-items: center;
   text-align: left;
   padding-bottom: 10px;

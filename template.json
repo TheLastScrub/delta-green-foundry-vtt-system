@@ -537,10 +537,12 @@
                 "base"
             ],
             "skill": "",
+            "skillModifier": 0,
+            "customSkillTarget": 50,
             "range": "10M",
             "damage": "1D8",
             "armorPiercing": 0,
-            "lethality": 0,
+            "lethality": 10,
             "isLethal": false,
             "killRadius": "N/A",
             "ammo": "",

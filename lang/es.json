@@ -128,7 +128,6 @@
     "DG.CV.NationalityPlaceholder": "Nacionalidad",
     "DG.CV.Education": "Educación",
     "DG.CV.EducationPlaceholder": "Educación o Entrenamiento",
-    "DG.CV.PhysicalDescriptionLabel": "Descripción Física/Notas",
 
     "DG.Bonds.Bond": "Vínculo",
     "DG.Bonds.Name": "Nombre",
@@ -227,6 +226,16 @@
 
     "DG.TypeSkills.Subskills.Painting": "Cuadro",
 
+    "DG.Sheet.BlockHeaders.Attributes": "ATTRIBUTES",
+    "DG.Sheet.BlockHeaders.Statistics": "STATISTICS",
+    "DG.Sheet.BlockHeaders.PhysicalDescriptionNotes": "Descripción Física/Notas",
+    "DG.Sheet.BlockHeaders.SkillsAndTraining": "SKILLS AND TRAINING",
+    "DG.Sheet.BlockHeaders.Injuries": "INJURIES",
+    "DG.Sheet.BlockHeaders.BreakingPointAndAdaptations": "BREAKING POINT AND ADAPTATIONS",
+    "DG.Sheet.BlockHeaders.MotivationsAndDisorders": "MOTIVATIONS AND DISDORDERS",
+    "DG.Sheet.BlockHeaders.PersonalInfoCV": "PERSONAL INFORMATION / CV",
+    "DG.Sheet.BlockHeaders.BondsRelationshipsContacts": "BONDS / RELATIONSHIPS / CONTACTS",
+
     "DG.UnnaturalSheet.HideUntrainedSkillsLabel": "Hide Untrained Skills",
     "DG.UnnaturalSheet.NotesLabel": "Notes",
     "DG.UnnaturalSheet.ShortDescriptionFallbackText": "Description of creature or creature type",
@@ -260,5 +269,9 @@
     "DG.Generic.CheckDamagedBondsBoxUntilNextHomeScene": "Check a damaged Bond's box until the next Home Scene ends.",
     "DG.Generic.ClearAll": "Clear All",
 
-    "DG.Generic.SanDamage": "SAN Damage"
+    "DG.Generic.SanDamage": "SAN Damage",
+
+    "DG.ItemWindow.Weapons.CustomSkillTarget": "Target",
+    "DG.ItemWindow.Weapons.SkillModifier": "Skill Modifier",
+    "DG.ItemWindow.Custom": "Custom"
 }

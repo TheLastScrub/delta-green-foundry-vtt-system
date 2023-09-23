@@ -1,13 +1,15 @@
+/* globals $ Hooks game CONFIG Actors Items ActorSheet ItemSheet Handlebars Macro ChatMessage ui duplicate */
+
 // Import Modules
 import { DeltaGreenActor } from "./actor/actor.js";
 import { DeltaGreenActorSheet } from "./actor/actor-sheet.js";
 import { DeltaGreenItem } from "./item/item.js";
 import { DeltaGreenItemSheet } from "./item/item-sheet.js";
-import { sendPercentileTestToChat, sendLethalityTestToChat, sendDamageRollToChat } from "./roll/roll.js";
+import * as DGRolls from "./roll/roll.js";
 import { registerSystemSettings } from "./settings.js"
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { ParseDeltaGreenStatBlock } from "./other/stat-parser-macro.js";
-import { localizeWithFallback } from "./other/utility-functions.js";
+import DGUtils from "./other/utility-functions.js";
 
 Hooks.once('init', async function() {
 
@@ -29,6 +31,9 @@ Hooks.once('init', async function() {
     decimals: 0
   };
 
+  // Register custom dice rolls
+  Object.values(DGRolls).forEach((cls) =>  CONFIG.Dice.rolls.push(cls))
+
   // Register System Settings
   registerSystemSettings();
 
@@ -47,7 +52,7 @@ Hooks.once('init', async function() {
 
   // Add Handlebars helpers
   Handlebars.registerHelper('localizeWithFallback', function(value, fallbackValue) {
-    return localizeWithFallback(value, fallbackValue);
+    return DGUtils.localizeWithFallback(value, fallbackValue);
   });
 
   Handlebars.registerHelper('concat', function() {
@@ -98,7 +103,7 @@ Hooks.once('init', async function() {
   });
 
   Handlebars.registerHelper('cite_ahb', function(page) {
-    return "See page " + str(page) + " of the Agent's Handbook.";
+    return `See page ${page} of the Agent's Handbook.`;
   });
 
   Handlebars.registerHelper('formatLethality', function(lethality) {
@@ -179,6 +184,9 @@ Hooks.once('init', async function() {
       if(skill === 'dex'){
         label = game.i18n.localize("DG.Attributes.dex");
       }
+      if(skill === 'DG.Skills.custom'){
+        label = game.i18n.localize('DG.ItemWindow.Custom');
+      }
       else{
         label = game.i18n.localize("DG.Skills." + skill);
       }      
@@ -217,7 +225,10 @@ Hooks.once('init', async function() {
   // generates the character sheet.
   Handlebars.registerHelper('getFontFamilySystemSettingClass', function() {
     let setting = game.settings.get("deltagreen", "characterSheetFont");
+
+    let characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
     
+    /*
     if(setting === "TypeWriterCondensed"){
       return "typewriter-condensed-font";
     }
@@ -233,8 +244,36 @@ Hooks.once('init', async function() {
     else if(setting === "SpecialElite"){
       return "special-elite-font";
     }
+    else if(setting === "PublicSans"){
+      return "public-sans-font";
+    }
     else{
       return "martel-font";
+    }
+    */
+   
+    /*
+    if(characterSheetStyle === "cowboy"){
+      return "special-elite-font";
+    }
+    else{
+      return "public-sans-font";
+    }
+    */
+  });
+
+  Handlebars.registerHelper('getCharacterSheetStyle', function() {
+
+    let characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
+   
+    if(characterSheetStyle === "cowboy"){
+      return "cowboy-style";
+    }
+    else if(characterSheetStyle === "outlaw"){
+      return "outlaw-style";
+    }
+    else{
+      return "program-style";
     }
     
   });
@@ -282,13 +321,15 @@ Hooks.once("ready", async function() {
 
 Hooks.on("ready", ()=> {
   
-  let backgroundImageSetting = game.settings.get("deltagreen", "characterSheetBackgroundImageSetting");
+  //let backgroundImageSetting = game.settings.get("deltagreen", "characterSheetBackgroundImageSetting");
+  //let characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
 
-  let customCss = "";
+  //let customCss = "";
 
-  let customStyle = document.createElement("style");
-  customStyle.id = "dg-custom-css";
+  //let customStyle = document.createElement("style");
+  //customStyle.id = "dg-custom-css";
 
+  /*
   if(backgroundImageSetting === "OldPaper1"){
     customCss += `div.deltagreen.sheet.actor section.window-content{
           background: url("systems/deltagreen/assets/img/old_paper.jpg") !important;
@@ -299,13 +340,44 @@ Hooks.on("ready", ()=> {
           background-size: 100% !important;
     }`;
   }
+  */
+
+  /*
+  if(characterSheetStyle === "cowboy"){
+    customCss += `div.deltagreen.sheet.actor section.window-content{
+          background: url("systems/deltagreen/assets/img/old_paper.jpg") !important;
+    }`;
+  }
+  else if(characterSheetStyle === "program"){
+    customCss += `div.deltagreen.sheet.actor section.window-content{
+        background: url("systems/deltagreen/assets/img/CrumpledPlainPaper10.webp") !important;
+      }`;
+  }
 
   customStyle.innerHTML = customCss;
 
   if(customCss != ""){
-    document.querySelector("head").appendChild(customStyle);
+    //document.querySelector("head").appendChild(customStyle);
   }
+  */
   
+});
+
+Hooks.on("preCreateItem", (item) => {
+  console.log("preCreateItem");
+  console.log(item.img);
+  console.log(item.type);
+
+  if(item.img === 'icons/svg/item-bag.svg'){
+
+    if(item.type === 'bond'){
+      item.updateSource({ img: 'systems/deltagreen/assets/icons/person-black-bg.svg'});
+    }
+    else{
+      item.updateSource({ img: 'systems/deltagreen/assets/icons/swap-bag-black-bg.svg'});
+    }
+  }
+
 });
 
 Hooks.on("renderSidebarTab", async (app, html) => {
@@ -326,9 +398,9 @@ Hooks.on('createActor', async function(actor, options, userId){
     
     // use this to trap on if this hook is firing for the same user that triggered the create
     // can put logic specific to a particular user session below
-    if (userId != game.user.id) { return; };
+    if (userId !== game.user.id) return;
 
-    if(actor != null){
+    if (actor !== null){
 
       if(actor.type === 'agent'){
         // update the default type skill of Art - Painting's labels to try to be localized
@@ -348,7 +420,7 @@ Hooks.on('createActor', async function(actor, options, userId){
         actor.AddUnarmedAttackItemIfMissing();
       }
       else if(actor.type === 'unnatural'){
-      
+        // Do nothing.
       }
       else if(actor.type === 'vehicle'){
         actor.AddBaseVehicleItemsIfMissing();
@@ -374,14 +446,16 @@ Hooks.on('createActor', async function(actor, options, userId){
  * @returns {Promise}
  */
 async function createDeltaGreenMacro(data, slot) {
+  // Definitely should not be doing assignments in conditionals but if we fix this, it breaks macro creation.
+  // eslint-disable-next-line no-cond-assign
   if (data.type = "Item" && data.itemData.type !== "weapon") return;
   //if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
-  const item = data.itemData.system;
+  const item = data.itemData;
 
   // Create the macro command
   let command = '// Uncomment line below to also roll skill check if desired.'
-  command += '\n' + `//game.deltagreen.rollItemSkillCheckMacro("${data._id}");`;
-  command += '\n' + `game.deltagreen.rollItemMacro("${data._id}");`;
+  command += '\n' + `//game.deltagreen.rollItemSkillCheckMacro("${item._id}");`;
+  command += '\n' + `game.deltagreen.rollItemMacro("${item._id}");`;
 
   //let macro = game.macros.entities.find(m => (m.name === data.name) && (m.command === command));
   //if (!macro) {
@@ -422,7 +496,7 @@ async function rollItemMacro(itemId) {
   if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemId}`);
 
   // Trigger the item roll
-  let r = await item.roll();
+  const r = await item.roll();
 
   return r;
 }
@@ -433,7 +507,7 @@ function rollItemSkillCheckMacro(itemId) {
   if (speaker.token) actor = game.actors.tokens[speaker.token];
   if (!actor) actor = game.actors.get(speaker.actor);
 
-  if(!actor) return ui.notifications.warn('Must have an Actor selected first.');
+  if (!actor) return ui.notifications.warn('Must have an Actor selected first.');
 
   let item = actor ? actor.items.find(i => i._id === itemId) : null;
 
@@ -442,22 +516,12 @@ function rollItemSkillCheckMacro(itemId) {
     item = actor ? actor.items.find(i => i.name === itemId) : null;
   } 
 
-  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item '${itemName}'`);
+  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item '${item.name}'`);
 
   let skillName = item.system.skill.toString();
 
-  let skill = actor.system.skills[skillName];
-  let translatedSkillLabel = "";
-
-  try{
-    translatedSkillLabel = game.i18n.localize("DG.Skills." + skillName)
-  }
-  catch{
-    translatedSkillLabel = skillName;
-  }
-
-  sendPercentileTestToChat(actor, translatedSkillLabel, skill.proficiency);
-}
+  const roll = new DGRolls.DGPercentileRoll("1D100", {}, { rollType: "weapon", key: skillName, actor, item });
+  return actor.sheet.processRoll({}, roll)}
 
 function rollSkillMacro(skillName) {
   const speaker = ChatMessage.getSpeaker();
@@ -471,14 +535,7 @@ function rollSkillMacro(skillName) {
 
   if(!skill) return ui.notifications.warn('Bad skill name passed to macro.');
 
-  let translatedSkillLabel = "";
-
-  try{
-    translatedSkillLabel = game.i18n.localize("DG.Skills." + skillName)
-  }
-  catch{
-    translatedSkillLabel = skillName;
-  }
-
-  sendPercentileTestToChat(actor, translatedSkillLabel, skill.proficiency);
+  const roll = new DGRolls.DGPercentileRoll("1D100", {}, { rollType: "skill", key: skillName, actor });
+  actor.sheet.processRoll({}, roll)
+  // sendPercentileTestToChat(actor, translatedSkillLabel, skill.proficiency);
 }

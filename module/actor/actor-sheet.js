@@ -1,10 +1,10 @@
+/* globals $ game Roll ChatMessage AudioHelper ActorSheet mergeObject Dialog TextEditor ActiveEffect ui duplicate fromUuidSync */
+
 import { 
-  sendPercentileTestToChat, 
-  sendLethalityTestToChat, 
-  sendDamageRollToChat, 
-  showModifyPercentileTestDialogue, 
-  showModifyDamageRollDialogue,
-  sendSanityDamageToChat
+  DGPercentileRoll,
+  DGLethalityRoll,
+  DGDamageRoll,
+  DGSanityDamageRoll,
 } from "../roll/roll.js"
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -99,8 +99,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
     for (let i of sheetData.items) {
-      let item = i;
-      i.img = i.img || DEFAULT_TOKEN;
       // Append to armor.
       if (i.type === 'armor') {
         armor.push(i);
@@ -142,21 +140,30 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
   // This only exists to give a chance to activate the modifier dialogue if desired
   // Cannot seem to trigger the event on a right-click, so unfortunately only applies to a shift-click currently.
-  luckRollOnClick(event, actor, label){
+  async luckRollOnClick(event){
     if(event && event.which === 2){
       // probably don't want rolls to trigger from a middle mouse click so just kill it here
       return;
     }
-
-    let requestedModifyRoll = (event && event.shiftKey || event.which === 3);
-    let target = 50;
-
-    if(requestedModifyRoll){
-      showModifyPercentileTestDialogue(actor, label, target, false);
+    const rollOptions = {
+      rollType: "luck",
+      key: "luck",
+      actor: this.actor,
     }
-    else{      
-      sendPercentileTestToChat(actor, label, target, game.settings.get("core", "rollMode"));
-    }    
+
+    // Create a default 1d100 roll just in case.
+    let roll = new DGPercentileRoll("1D100", {}, rollOptions);
+    // Open dialog if user requests it.
+    if (event.shiftKey || event.which === 3) {
+      const dialogData = await roll.showDialog();
+      if (!dialogData) return;
+      roll.modifier += dialogData.targetModifier;
+      roll.options.rollMode = dialogData.rollMode;
+    }
+    // Evaluate the roll.
+    await roll.evaluate({ async: true });
+    // Send the roll to chat.
+    roll.toChat(); 
   }
 
   activeEffectTest(sheet){
@@ -211,8 +218,9 @@ export class DeltaGreenActorSheet extends ActorSheet {
     });
 
     // Rollable abilities - bind to everything with the 'Rollable' class
-    //html.find('.rollable').click(this._onRoll.bind(this));
-    html.find('.rollable').mouseup(this._onRoll.bind(this));
+    html.find('.rollable').click(this._onRoll.bind(this));
+
+    html.find('.toggle-untrained').click(() => this.actor.update({"system.showUntrainedSkills": !this.actor.system.showUntrainedSkills}));
 
     // Macro for toggling an item's equipped state
     html.find('.equipped-item').mousedown(this._onEquippedStatusChange.bind(this));
@@ -560,16 +568,17 @@ export class DeltaGreenActorSheet extends ActorSheet {
     };
 
     if(type == "weapon"){
-      itemData.system.skill = "firearms"; //default skill to firearms, since that will be most common
-      itemData.system.expense = "Standard";
+      //itemData.system.skill = "firearms"; //default skill to firearms, since that will be most common
+      //itemData.system.expense = "Standard";
     }
     else if(type == "armor"){
-      itemData.system.armor = 3;
-      itemData.system.expense = "Standard";
+      //itemData.system.armor = 3;
+      //itemData.system.expense = "Standard";
     }
     else if(type == "bond"){
+      // try to default bonds for an agent to their current CHA
       itemData.system.score = this.object.system.statistics.cha.value; // Can vary, but at character creation starting bond score is usually agent's charisma
-      itemData.img = "icons/svg/mystery-man.svg"
+      //itemData.img = "icons/svg/mystery-man.svg"
     }
     
     // create the item
@@ -578,133 +587,86 @@ export class DeltaGreenActorSheet extends ActorSheet {
 
   /**
    * Handle clickable rolls.
+   * 
    * @param {Event} event   The originating click event
+   * @async
    * @private
    */
-  _onRoll(event) {
+  async _onRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
-    const dataset = element.dataset;
+    const { dataset } = element;
 
-    if(event && event.which === 2){
+    if(event && event.which === 2) {
       // probably don't want rolls to trigger from a middle mouse click so just kill it here
       return;
     }
 
-    if (dataset.roll) {
-      
-      let key = dataset.label ? dataset.label : '';
-      let label = dataset.label ? `${dataset.label}` : '';
-      let targetVal = "";
-      let rollType = dataset.rolltype ? dataset.rolltype : '';
-      
-      let isDamageRoll = false;
-      let isLethalityRoll = false;
-      let isSanityDamageRoll = false;
-      
-      // if shift-click or right click, bring up roll editor dialog
-      let requestedModifyRoll = (event && event.shiftKey || event.which === 3); //(event && (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey));
+    const item = this.actor.items.get(dataset.iid);
+    const rollOptions = {
+      rollType: dataset.rolltype,
+      key: dataset.key,
+      actor: this.actor,
+      item
+    }
 
-      // check the 'data-target="something" property to determine how to grab the target for the roll
-      if(rollType === "skill" || rollType === "typeskill"){
-        targetVal = dataset.target;
-        label = game.i18n.localize(label).toUpperCase();
-      }
-      else if(rollType === "weaponskill"){
-        targetVal = dataset.target;        
-
-        // some weapons randomly can just use dexterity x5, so try to trap on that
-        // otherwise roll a regular skill test
-        if(targetVal === "dex"){
-          label = game.i18n.localize("DG.Attributes.dex").toUpperCase() + "x5";
-          targetVal = this.actor.system.statistics.dex.x5;
-        }
-        else if(targetVal === "int"){
-          label = game.i18n.localize("DG.Attributes.int").toUpperCase() + "x5";
-          targetVal = this.actor.system.statistics.int.x5;
-        }
-        else if(targetVal === "str"){
-          label = game.i18n.localize("DG.Attributes.str").toUpperCase() + "x5";
-          targetVal = this.actor.system.statistics.str.x5;
-        }
-        else if(targetVal === "con"){
-          label = game.i18n.localize("DG.Attributes.con").toUpperCase() + "x5";
-          targetVal = this.actor.system.statistics.con.x5;
-        }
-        else if(targetVal === "pow"){
-          label = game.i18n.localize("DG.Attributes.pow").toUpperCase() + "x5";
-          targetVal = this.actor.system.statistics.pow.x5;
-        }
-        else if(targetVal === "cha"){
-          label = game.i18n.localize("DG.Attributes.cha").toUpperCase() + "x5";
-          targetVal = this.actor.system.statistics.cha.x5;
-        }
-        else{
-          label = game.i18n.localize("DG.Skills." + targetVal).toUpperCase();          
-          targetVal = this.actor.system.skills[targetVal].proficiency;                    
-        }
-      }
-      else if(dataset.target === "statistic.x5"){
-        let stat = this.actor.system.statistics[key];
-        targetVal = stat.x5;
-        label = game.i18n.localize("DG.Attributes." + key).toUpperCase() + "x5";
-      }
-      else if(rollType === "sanity"){
-        targetVal = this.actor.system.sanity.value;
-        label = game.i18n.localize("DG.Attributes.SAN").toUpperCase();
-      }
-      else if(rollType === "damage"){
-        // damage roll, not a skill check
-        isDamageRoll = true;
-        label = dataset.label ? dataset.label : '';
-      }
-      else if(rollType === "lethality"){
-        // a lethality roll
-        isLethalityRoll = true;
-        targetVal = dataset.target;
-      }
-      else if(rollType === 'sanity-damage'){
-        isSanityDamageRoll = true;
-      }
-
-      if(isDamageRoll){
-
-        let diceFormula = dataset.roll;
-        let skillType = dataset.skill ? dataset.skill : '';
-
-        if(this.actor.type === 'agent' && (skillType === 'unarmed_combat' || skillType === 'melee_weapons')){
+    // Create a default 1d100 roll just in case.
+    let roll = new Roll("1d100", {});
+    switch (dataset.rolltype) {
+      case "stat":
+      case "skill":
+      case "sanity": 
+      case "weapon":
+        roll = new DGPercentileRoll("1D100", {}, rollOptions);
+        break;
+      case "lethality":
+        roll = new DGLethalityRoll("1D100", {}, rollOptions)
+        break;
+      case "damage": {
+        let diceFormula = item.system.damage;
+        const { skill } = item.system;
+        if(this.actor.type === 'agent' && (skill === 'unarmed_combat' || skill === 'melee_weapons')){
           diceFormula += this.actor.system.statistics.str.meleeDamageBonusFormula;
         }
-        
-        if(requestedModifyRoll){
-          showModifyDamageRollDialogue(this.actor, label, diceFormula);
-        }
-        else{
-          sendDamageRollToChat(this.actor, label, diceFormula, game.settings.get("core", "rollMode"));
-        }
+        roll = new DGDamageRoll(diceFormula, {}, rollOptions)
+        break;
       }
-      else if(isSanityDamageRoll){
-
-        let lowRollFormula = dataset.roll;
-        let highRollFormula = dataset.roll2;
-
-        sendSanityDamageToChat(this.actor, label, lowRollFormula, highRollFormula, game.settings.get("core", "rollMode"))
+      case "sanity-damage":{
+        const { successLoss, failedLoss } = this.actor.system.sanity;
+        const combinedFormula = `{${successLoss}, ${failedLoss}}`;
+        roll = new DGSanityDamageRoll(combinedFormula, {}, rollOptions);
+        break;
       }
-      else{
-        if(requestedModifyRoll){
-          showModifyPercentileTestDialogue(this.actor, label, targetVal, isLethalityRoll);
-        }
-        else{
-          if(isLethalityRoll)
-          {
-            sendLethalityTestToChat(this.actor, label, targetVal, game.settings.get("core", "rollMode"));
-          }
-          else{
-            sendPercentileTestToChat(this.actor, label, targetVal, game.settings.get("core", "rollMode"));
-          }
-        }
-      }
+      default:
+        break;
     }
+    return this.processRoll(event, roll, rollOptions)
+  }
+
+  /**
+   * Show a dialog for the roll and then send to chat.
+   * Broke this logic out from `_onRoll()` so that other files can call it,
+   * namely the macro logic.
+   * 
+   * @param {Event} event   The originating click event
+   * @param {Event} roll   The roll to show a dialog for and then send to chat.
+   * @async
+   */
+  async processRoll(event, roll) {
+    // Open dialog if user requests it (no dialog for Sanity Damage rolls)
+    if ((event.shiftKey || event.which === 3) && !(roll instanceof DGSanityDamageRoll)) {
+      const dialogData = await roll.showDialog();
+      if (!dialogData) return;
+      if (dialogData.newFormula) {
+        roll = new DGDamageRoll(dialogData.newFormula, {}, roll.options)
+      }
+      roll.modifier += dialogData.targetModifier;
+      roll.options.rollMode = dialogData.rollMode;
+    }
+    // Evaluate the roll.
+    await roll.evaluate({ async: true });
+    // Send the roll to chat.
+    return roll.toChat();
   }
 
   _resetBreakingPoint(event){
@@ -873,7 +835,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
       // This is from Foundry. It will get the item data from the event.
       const dragData = TextEditor.getDragEventData(event);
       // Make sure that we are dragging an item, otherwise this doesn't make sense.
-      if (dragData.type = "Item") {
+      if (dragData.type === "Item") {
         const item = fromUuidSync(dragData.uuid);
         await item.delete()
       }
@@ -883,6 +845,6 @@ export class DeltaGreenActorSheet extends ActorSheet {
   activateEditor(target, editorOptions, initialContent) {
     editorOptions.content_css = "./systems/deltagreen/css/editor.css";
     return super.activateEditor(target, editorOptions, initialContent);
-  };
+  }
 }
 

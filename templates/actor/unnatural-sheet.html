@@ -1,4 +1,4 @@
-<form class="{{cssClass}} {{getFontFamilySystemSettingClass}} flexcol" autocomplete="off">
+<form class="{{cssClass}} {{getCharacterSheetStyle}} flexcol" autocomplete="off">
   {{!-- Sheet Header --}}
   <header class="sheet-header">
       
@@ -17,7 +17,7 @@
         </div>
       </div>
     
-      <div class="resources grid grid-3col">
+      <div class="resources grid grid-3col bottom-margin-5px">
         
         {{!-- HP --}}
         <div class="resource-outer-grid-1col">
@@ -41,7 +41,7 @@
 
         {{!-- Sanity Damage --}}
         <div class="resource-outer-grid-1col">
-          <label for="system.wp.value" class="resource-label rollable" data-roll="{{actor.system.sanity.successLoss}}" data-roll2="{{actor.system.sanity.failedLoss}}" data-rolltype="sanity-damage">{{localize 'DG.Attributes.SAN'}} <i class="fas fa-dice"></i></label>
+          <label class="resource-label rollable" data-rolltype="sanity-damage">{{localize 'DG.Attributes.SAN'}} <i class="fas fa-dice"></i></label>
           <div class="resource-inner-grid-3col">
             <input type="text" name="system.sanity.successLoss" value="{{actor.system.sanity.successLoss}}" />
             <span> / </span>
@@ -50,18 +50,21 @@
         </div>
       </div>
 
-      <br>
+      
 
       {{!-- Physical Statistics like STR, CON, etc. --}}
       <div class="">
+        <div class="horizontal-bar-section-divider">
+          <span>{{localize "DG.Sheet.BlockHeaders.Statistics"}}</span>                                                    
+        </div>
         <div class="grid grid-3col">
           {{#each actor.system.statistics as |statistic key|}}
-            <div class="flex-group-center">
+            <div class="flex-group-center flex-mid-border">
               <div class="">
                 <div class="physical-stats-outer-grid-3col">
-                  <label class="rollable" data-rolltype="statistic.x5" data-roll="d100" data-target="statistic.x5" data-label="{{key}}" for="system.statistics.{{key}}.value" class="resource-label">{{localize (concat 'DG.Attributes.' key)}}</label>
+                  <label class="rollable resource-label" data-rolltype="stat" data-key="{{key}}" for="system.statistics.{{key}}.value">{{localize (concat 'DG.Attributes.' key)}}</label>
                   <input type="text" name="system.statistics.{{key}}.value" value="{{statistic.value}}" data-dtype="Number"/>
-                  <span >({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
+                  <span class="rollable" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}">({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
                 </div >
               </div>
             </div>
@@ -83,19 +86,27 @@
   <section class="sheet-body">
 
     {{!-- Descriptions/Notes/Skills Tab --}}
-    <div class="tab skills top-div-border" data-group="primary" data-tab="skills">
-      {{!-- Checkbox to hide/show skills that are at zero --}}
-      <div>
-        <span class="resource-label" for="system.showUntrainedSkills">{{localize 'DG.UnnaturalSheet.HideUntrainedSkillsLabel'}}:</label>
-        <input class="labeled-resource-checkbox" type="checkbox" name="system.showUntrainedSkills" {{checked actor.system.showUntrainedSkills}} data-dtype="Boolean" />
+    <div class="tab skills" data-group="primary" data-tab="skills">
+      <div class="horizontal-bar-section-divider contains-hide-button"> 
+        <span class="contains-hide-button-title">
+          {{localize "DG.Sheet.BlockHeaders.SkillsAndTraining"}}
+          {{!-- Checkbox to hide/show skills that are at zero --}}
+        </span>
+        <a class="toggle-untrained">
+          {{#if actor.system.showUntrainedSkills}}
+            {{localize 'DG.UnnaturalSheet.ShowUntrainedSkillsLabel'}}
+          {{else}}
+            {{localize 'DG.UnnaturalSheet.HideUntrainedSkillsLabel'}}
+          {{/if}}&nbsp;
+          <i class="far fa-eye{{#if actor.system.showUntrainedSkills}}-slash{{/if}}"></i>
+        </a>
       </div>
-
       <div class="grid grid-3col">
         {{#each actor.system.skills as |skill key|}}
           
           {{#if (hideSkillBasedOnProficiencyAndUserChoice ../actor.system.showUntrainedSkills skill.proficiency)}}
-          <div class="flexrow flex-group-center">
-            <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{localize (concat 'DG.Skills.' key)}}" for="system.skills.{{key}}.value" 
+          <div class="flexrow flex-group-center flex-thin-border">
+            <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-key="{{key}}" for="system.skills.{{key}}.value" 
                 {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
                 {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}}
               >
@@ -116,8 +127,8 @@
         <div class="grid-2col">
           {{#each actor.system.typedSkills as |skill key|}}
             {{#if (hideSkillBasedOnProficiencyAndUserChoice ../actor.system.showUntrainedSkills skill.proficiency)}}
-            <div class="item flexrow flex-group-center">
-              <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-roll="d100" data-target="{{skill.proficiency}}" data-label="{{skill.label}}" 
+            <div class="item flexrow flex-group-center flex-thin-border">
+              <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-key="{{key}}" 
                   {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
                   {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}} 
                 >
@@ -126,6 +137,7 @@
               <input class="percentile-skill-input" type="text" name="system.typedSkills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
               
               <div class="item-controls">
+                  <a class="item-control typed-skill-edit" title="Edit Skill"><i class="fas fa-edit" data-typedskill="{{key}}" ></i></a>
                   <a class="item-control typed-skill-delete" title="Delete Skill"><i class="fas fa-trash" data-typedskill="{{key}}" ></i></a>
               </div>
             </div>
@@ -149,7 +161,7 @@
     <div class="tab items" data-group="primary" data-tab="gear">
       <div>
                     
-        <div class="gear-section-header">
+        <div class="horizontal-bar-section-divider">
             <span>{{localize 'DG.Gear.Weapons'}}</span>                                                    
         </div>
 
@@ -172,34 +184,37 @@
                 <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
                 
                 <h4 style="word-wrap: break-word;" 
-                  
                   class="item-name rollable" 
-                  data-roll="d100"
-                  data-rolltype="weaponskill" 
-                  data-target="{{item.system.skill}}"                         
-                  data-label="{{localizeWeaponSkill item.system.skill}}"
+                  data-rolltype="weapon" 
+                  data-key="{{item.system.skill}}"
+                  data-iid="{{item._id}}"
                   title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.system.skill}})"
                   >
                     {{item.name}}
                 </h4>
 
-                {{#unless item.system.isLethal}}
-                <span class="rollable centered-item-property" 
-                  
-                  data-rolltype="damage" 
-                  data-target="damage" 
-                  data-label="{{toUpperCase item.name}}" 
-                  data-roll="{{toUpperCase item.system.damage}}"
-                  data-skill="{{item.system.skill}}"
-                  >                      
-                  {{toUpperCase item.system.damage}}</span>
-                {{/unless}}
+                <span class="centered-item-property">
+                  {{#unless item.system.isLethal}}
+                    <span class="rollable" data-rolltype="damage" data-iid="{{item._id}}">                      
+                      {{toUpperCase item.system.damage}}
+                    </span>
+                  {{/unless}}
 
-                {{#if item.system.isLethal}}
-                <span class="rollable  centered-item-property" data-rolltype="lethality" data-target="{{item.system.lethality}}" data-label="{{item.name}}" data-roll="d100"
-                  title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}"
-                  >{{formatLethality item.system.lethality}}</span>
-                {{/if}}
+                  {{#if item.system.isLethal}}
+                  <span class="rollable" data-rolltype="lethality" data-iid="{{item._id}}"
+                    title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}"
+                    >{{formatLethality item.system.lethality}}</span>
+                  {{/if}}
+
+                  {{#if item.system.lethality}}
+                    - 
+                    {{#if item.system.isLethal}}
+                      <a class="item-control toggle-lethality dg-red" title="Toggle Lethality (Current Lethality: {{item.system.lethality}}%)"><i class="fas fa-skull-crossbones" item-id="{{item.id}}" is-lethal="true"></i></a>
+                    {{else}}
+                      <a class="item-control toggle-lethality" title="Toggle Lethality (Currently No Lethality)"><i class="fas fa-user-injured" item-id="{{item.id}}" is-lethal="false"></i></a>
+                    {{/if}}
+                  {{/if}}
+                </span>
 
                 <span class="centered-item-property">{{item.system.armorPiercing}}</span>
 
@@ -216,7 +231,7 @@
       </div>
       <div>
 
-        <div class="gear-section-header">
+        <div class="horizontal-bar-section-divider">
           <span>{{localize 'DG.Gear.Armor'}}</span>
         </div>
 
@@ -260,7 +275,7 @@
       </div>
       <div>
 
-        <div class="gear-section-header">
+        <div class="horizontal-bar-section-divider">
           <span>{{localize 'DG.Gear.OtherGear'}}</span>
         </div>
 
