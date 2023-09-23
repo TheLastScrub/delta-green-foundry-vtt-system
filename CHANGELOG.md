@@ -1,5 +1,9 @@
 ## Release/Patch Notes
 
+### Version 1.3.1 - 2023-09-23
+
+* Enhancement - Changed pause icon to be Delta Green logo.
+
 ### Version 1.3.0 - 2023-09-23
 
 * Enhancement - Refactor roll system to make future changes easier.

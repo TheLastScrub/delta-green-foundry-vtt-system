@@ -15,7 +15,7 @@
       "discord": "jalensailin"
     }  
   ],
-  "version": "1.3.0",
+  "version": "1.3.1",
   "compatibility": {
     "minimum": "11",
     "verified": "11"
@@ -134,7 +134,7 @@
     }
   ],
   "manifest": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/raw/master/system.json",
-  "download": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/releases/download/v1.3.0/deltagreen.zip",
+  "download": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/releases/download/v1.3.1/deltagreen.zip",
   "gridDistance": 1,
   "gridUnits": "m",
   "primaryTokenAttribute": "health",

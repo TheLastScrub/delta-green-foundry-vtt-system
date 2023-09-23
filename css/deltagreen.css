@@ -79,12 +79,9 @@ form.program-style{
   background: rgba(138, 136, 133, 0.3);
 }
 
-
-/*
 #pause img {
   content: url(../assets/img/DG_Pause_Icon.webp);
 }
-*/
 
 .old-paper-background{
   background: url("../assets/img/StainedPlainPaper10.webp") !important;
