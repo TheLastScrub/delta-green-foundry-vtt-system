@@ -16,7 +16,7 @@
 
 Most labels can be clicked to roll a check or test of some kind. If they can be clicked, they should glow red when the mouse is hovered over them.
 
-![Sanity Roll](./images/sanity_roll.png)
+![Sanity Roll](./images/sanity_roll.webp)
 
 * Click on _SAN_ (label above current/max sanity) to roll a Sanity check.
 * Click on any of the skill labels (such as _Accounting_) to roll a skill test.
@@ -29,7 +29,7 @@ Most labels can be clicked to roll a check or test of some kind. If they can be 
 
 Shift-clicking or right-clicking will bring up a dialogue to allow modifying the roll.
 
-![Modify Roll Window](./images/modify_roll_dialogue.png)
+![Modify Roll Window](./images/modify_roll_dialogue.webp)
 
 <a name="type-skills"></a>
 ## Where are the Specialized Skills Like 'Science' and 'Pilot'?
@@ -38,7 +38,7 @@ Only one 'Typed' skill is shown for an Agent by default, that being Art (Paintin
 
 This allows adding any number of skills as needed, without having dead space for unused skills.
 
-![Type Skills Section](./images/type_skill_example.png)
+![Type Skills Section](./images/type_skill_example.webp)
 
 <a name="lethality"></a>
 ## Why Does the 'Lethality' Roll Show Damage Even on a Success?
@@ -71,7 +71,7 @@ Note there are a few limitations of this calculation.  For instance the system i
 
 In the example below, the vest is equipped but the helmet is not.  As such total armor is only 4 rather than 5. Note that currently only 'Armor' type items can increase the calculated protection value.
 
-![Armor Calculation](./images/equipped_armor.png)
+![Armor Calculation](./images/equipped_armor.webp)
 
 <a name="item-macros"></a>
 ## Item Macros
@@ -82,7 +82,7 @@ Currently there are two built-in item macros, that allow rolling the associated 
 game.deltagreen.rollItemMacro("Combat Dagger");
 ```
 
-![Armor Calculation](./images/item_damage_macro.png)
+![Armor Calculation](./images/item_damage_macro.webp)
 
 You can get a macro that rolls the appropriate skill check instead however with this command:
 
