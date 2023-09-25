@@ -1,4 +1,5 @@
-# _Delta Green: The Role-Playing Game_ System for Foundry VTT
+# Official Implementation of _Delta Green: The Role-Playing Game_ System for Foundry Virtual Tabletop
+
 Officially supported rules implementation (system) for [Foundry Virtual Tabletop](https://foundryvtt.com/) system for Delta Green: The Role-Playing Game, based on the _Agent's Handbook_ rule set from Arc Dream Publishing (_**not** the Call of Cthulu rules_).
 
 Published by Arc Dream Publishing by arrangement with the Delta Green Partnership. The intellectual property known as Delta Green is a trademark and copyright owned by the Delta Green Parternship, who has licensed its use here.
@@ -7,7 +8,7 @@ The contents of this system are licensed under the terms of the included [licens
 
 Please consider supporting the publisher by buying a copy of the official rule book, which can be done here:
 
-https://shop.arcdream.com/
+https://shop.arcdream.com/collections/role-playing-games/products/delta-green-agents-handbook
 
 https://www.drivethrurpg.com/product/181674/Delta-Green-Agents-Handbook
 
