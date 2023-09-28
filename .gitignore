@@ -1,3 +1,4 @@
+# Ignore binary compendia packs.
 packs/armor
 packs/armor*
 packs/firearms
@@ -10,3 +11,6 @@ packs/operation-code-name-generator-macro
 packs/operation-code-name-generator-macro*
 packs/pregens
 packs/pregens*
+
+# Ignore npm modules
+node_modules
