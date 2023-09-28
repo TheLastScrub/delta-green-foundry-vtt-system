@@ -6,20 +6,19 @@ import { DeltaGreenActorSheet } from "./actor/actor-sheet.js";
 import { DeltaGreenItem } from "./item/item.js";
 import { DeltaGreenItemSheet } from "./item/item-sheet.js";
 import * as DGRolls from "./roll/roll.js";
-import { registerSystemSettings } from "./settings.js"
+import { registerSystemSettings } from "./settings.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { ParseDeltaGreenStatBlock } from "./other/stat-parser-macro.js";
 import DGUtils from "./other/utility-functions.js";
 
-Hooks.once('init', async function() {
-
+Hooks.once("init", async function () {
   game.deltagreen = {
     DeltaGreenActor,
     DeltaGreenItem,
     rollItemMacro,
     rollItemSkillCheckMacro,
     rollSkillMacro,
-    ParseDeltaGreenStatBlock
+    ParseDeltaGreenStatBlock,
   };
 
   /**
@@ -28,11 +27,11 @@ Hooks.once('init', async function() {
    */
   CONFIG.Combat.initiative = {
     formula: "@statistics.dex.value",
-    decimals: 0
+    decimals: 0,
   };
 
   // Register custom dice rolls
-  Object.values(DGRolls).forEach((cls) =>  CONFIG.Dice.rolls.push(cls))
+  Object.values(DGRolls).forEach((cls) => CONFIG.Dice.rolls.push(cls));
 
   // Register System Settings
   registerSystemSettings();
@@ -44,28 +43,33 @@ Hooks.once('init', async function() {
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
   Items.unregisterSheet("core", ItemSheet);
-  Actors.registerSheet("deltagreen", DeltaGreenActorSheet, { makeDefault: true });
+  Actors.registerSheet("deltagreen", DeltaGreenActorSheet, {
+    makeDefault: true,
+  });
   Items.registerSheet("deltagreen", DeltaGreenItemSheet, { makeDefault: true });
-  
+
   // Preload Handlebars Templates
   preloadHandlebarsTemplates();
 
   // Add Handlebars helpers
-  Handlebars.registerHelper('localizeWithFallback', function(value, fallbackValue) {
-    return DGUtils.localizeWithFallback(value, fallbackValue);
-  });
+  Handlebars.registerHelper(
+    "localizeWithFallback",
+    function (value, fallbackValue) {
+      return DGUtils.localizeWithFallback(value, fallbackValue);
+    },
+  );
 
-  Handlebars.registerHelper('concat', function() {
-    var outStr = '';
-    for (var arg in arguments) {
-      if (typeof arguments[arg] != 'object') {
+  Handlebars.registerHelper("concat", function () {
+    let outStr = "";
+    for (let arg in arguments) {
+      if (typeof arguments[arg] !== "object") {
         outStr += arguments[arg];
       }
     }
     return outStr;
   });
 
-  Handlebars.registerHelper('toLowerCase', function(str) {
+  Handlebars.registerHelper("toLowerCase", function (str) {
     try {
       return str.toLowerCase();
     } catch (error) {
@@ -73,7 +77,7 @@ Hooks.once('init', async function() {
     }
   });
 
-  Handlebars.registerHelper('toUpperCase', function(str) {
+  Handlebars.registerHelper("toUpperCase", function (str) {
     try {
       return str.toUpperCase();
     } catch (error) {
@@ -81,62 +85,62 @@ Hooks.once('init', async function() {
     }
   });
 
-  Handlebars.registerHelper('if_eq', function(a, b, opts) {
+  Handlebars.registerHelper("if_eq", function (a, b, opts) {
     if (a == b) {
-        return opts.fn(this);
+      return opts.fn(this);
     } else {
-        return opts.inverse(this);
+      return opts.inverse(this);
     }
   });
 
-  Handlebars.registerHelper('if_not_eq', function(a, b, opts) {
-    if (a != b) { return opts.fn(this); }
+  Handlebars.registerHelper("if_not_eq", function (a, b, opts) {
+    if (a != b) {
+      return opts.fn(this);
+    }
     return opts.inverse(this);
   });
 
-  Handlebars.registerHelper('if_gt', function(a, b, trueVal, falseVal) {
+  Handlebars.registerHelper("if_gt", function (a, b, trueVal, falseVal) {
     if (a > b) {
-        return trueVal;
+      return trueVal;
     } else {
-        return falseVal;
+      return falseVal;
     }
   });
 
-  Handlebars.registerHelper('cite_ahb', function(page) {
+  Handlebars.registerHelper("cite_ahb", function (page) {
     return `See page ${page} of the Agent's Handbook.`;
   });
 
-  Handlebars.registerHelper('formatLethality', function(lethality) {
+  Handlebars.registerHelper("formatLethality", function (lethality) {
     if (lethality > 0) {
-      return lethality.toString() + "%";
-    }
-    else {
+      return `${lethality.toString()  }%`;
+    } else {
       return "";
     }
   });
-
 
   // Is this used anywhere?
-  Handlebars.registerHelper('getActorSkillProp', function(actorData, skillName, prop) {
-    try{
-      if(skillName != "" && prop != ""){
-        let skills = actorData.data.skills;
-        let skill = skills[skillName];
-        let propVal = skill[prop];
-        return propVal;
-      }
-      else{
+  Handlebars.registerHelper(
+    "getActorSkillProp",
+    function (actorData, skillName, prop) {
+      try {
+        if (skillName != "" && prop != "") {
+          const skills = actorData.data.skills;
+          let skill = skills[skillName];
+          const propVal = skill[prop];
+          return propVal;
+        } else {
+          return "";
+        }
+      } catch (ex) {
+        console.log(ex);
         return "";
       }
-    }
-    catch(ex){
-      console.log(ex);
-      return "";
-    }
-    
-  });
+    },
+  );
 
-  Handlebars.registerHelper('getAvailableRollModes', function() {
+  Handlebars.registerHelper("getAvailableRollModes", function () {
     try {
       return CONFIG.Dice.rollModes;
     } catch (error) {
@@ -144,7 +148,7 @@ Hooks.once('init', async function() {
     }
   });
 
-  Handlebars.registerHelper('getDefaultRollMode', function() {
+  Handlebars.registerHelper("getDefaultRollMode", function () {
     try {
       return game.settings.get("core", "rollMode");
     } catch (error) {
@@ -152,44 +156,41 @@ Hooks.once('init', async function() {
     }
   });
 
-  Handlebars.registerHelper('calculateHandToHandCombatDamageFormulaBonus', function(strength) {
-    try {
-      let bonus = "";
+  Handlebars.registerHelper(
+    "calculateHandToHandCombatDamageFormulaBonus",
+    function (strength) {
+      try {
+        let bonus = "";
 
-      if(strength.value < 5){
-        bonus = " - 2";
-      }
-      else if(strength.value < 9){
-        bonus = " - 1";
-      }
-      else if(strength.value > 12 && strength < 17){
-        bonus = " + 1";
-      }
-      else if(strength.value > 16){
-        bonus = " + 2";
-      }
-      
-      return bonus;
+        if (strength.value < 5) {
+          bonus = " - 2";
+        } else if (strength.value < 9) {
+          bonus = " - 1";
+        } else if (strength.value > 12 && strength < 17) {
+          bonus = " + 1";
+        } else if (strength.value > 16) {
+          bonus = " + 2";
+        }
 
-    } catch (error) {
-      console.log(error);
-    }
-  });
+        return bonus;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  );
 
-  Handlebars.registerHelper('localizeWeaponSkill', function(skill) {
+  Handlebars.registerHelper("localizeWeaponSkill", function (skill) {
     let label = skill;
 
     try {
-      
-      if(skill === 'dex'){
+      if (skill === "dex") {
         label = game.i18n.localize("DG.Attributes.dex");
       }
-      if(skill === 'DG.Skills.custom'){
-        label = game.i18n.localize('DG.ItemWindow.Custom');
+      if (skill === "DG.Skills.custom") {
+        label = game.i18n.localize("DG.ItemWindow.Custom");
+      } else {
+        label = game.i18n.localize(`DG.Skills.${  skill}`);
       }
-      else{
-        label = game.i18n.localize("DG.Skills." + skill);
-      }      
     } catch (error) {
       console.log(error);
     }
@@ -197,37 +198,37 @@ Hooks.once('init', async function() {
     return label;
   });
 
-  Handlebars.registerHelper('hideSkillBasedOnProficiencyAndUserChoice', function(hideUntrainedSkills, proficiency) {
-    let showValue = true;
+  Handlebars.registerHelper(
+    "hideSkillBasedOnProficiencyAndUserChoice",
+    function (hideUntrainedSkills, proficiency) {
+      let showValue = true;
 
-    try {
-      
-      if(hideUntrainedSkills === false){
-        showValue = true;
-      }
-      else{
-        if(proficiency > 0){
+      try {
+        if (hideUntrainedSkills === false) {
           showValue = true;
+        } else {
+          if (proficiency > 0) {
+            showValue = true;
+          } else {
+            showValue = false;
+          }
         }
-        else{
-          showValue = false;
-        }
-      }      
-    } catch (error) {
-      console.log(error);
-    }
+      } catch (error) {
+        console.log(error);
+      }
 
-    return showValue;
+      return showValue;
+    },
+  );
 
-  });
-
-  // looks at system setting for what font to use and returns the class that is then used in the handlebars template that 
+  // looks at system setting for what font to use and returns the class that is then used in the handlebars template that
   // generates the character sheet.
-  Handlebars.registerHelper('getFontFamilySystemSettingClass', function() {
-    let setting = game.settings.get("deltagreen", "characterSheetFont");
+  Handlebars.registerHelper("getFontFamilySystemSettingClass", function () {
+    const setting = game.settings.get("deltagreen", "characterSheetFont");
 
-    let characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
-    
+    const characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
+    );
+
     /*
     if(setting === "TypeWriterCondensed"){
       return "typewriter-condensed-font";
@@ -251,7 +252,7 @@ Hooks.once('init', async function() {
       return "martel-font";
     }
     */
-   
+
     /*
     if(characterSheetStyle === "cowboy"){
       return "special-elite-font";
@@ -262,35 +263,29 @@ Hooks.once('init', async function() {
     */
   });
 
-  Handlebars.registerHelper('getCharacterSheetStyle', function() {
+  Handlebars.registerHelper("getCharacterSheetStyle", function () {
+    const characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
+    );
 
-    let characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
-   
-    if(characterSheetStyle === "cowboy"){
+    if (characterSheetStyle === "cowboy") {
       return "cowboy-style";
-    }
-    else if(characterSheetStyle === "outlaw"){
+    } else if (characterSheetStyle === "outlaw") {
       return "outlaw-style";
-    }
-    else{
+    } else {
       return "program-style";
     }
-    
   });
 
-  Handlebars.registerHelper('keepSanityPrivate', function() {
-
+  Handlebars.registerHelper("keepSanityPrivate", function () {
     let setting = false;
 
-    try{
+    try {
       setting = game.settings.get("deltagreen", "keepSanityPrivate");
 
-      if(game.user.isGM){
+      if (game.user.isGM) {
         setting = false;
       }
-
-    }
-    catch(ex){
+    } catch (ex) {
       setting = false;
     }
 
@@ -298,37 +293,34 @@ Hooks.once('init', async function() {
   });
 });
 
-Handlebars.registerHelper('playerHasGamemasterPrivileges', function(){
+Handlebars.registerHelper("playerHasGamemasterPrivileges", function () {
   return game.user.isGM;
 });
 
-Handlebars.registerHelper('showImpossibleLandscapesContent', function() {
-
+Handlebars.registerHelper("showImpossibleLandscapesContent", function () {
   let result = false;
-  let setting = game.settings.get("deltagreen", "showImpossibleLandscapesContent");
+  const setting = game.settings.get("deltagreen", "showImpossibleLandscapesContent");
 
-  if(game.user.isGM === true && setting === true){
+  if (game.user.isGM === true && setting === true) {
     result = true;
   }
-  
-  return result
+
+  return result;
 });
 
-Hooks.once("ready", async function() {
+Hooks.once("ready", async function () {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) => createDeltaGreenMacro(data, slot));
+  Hooks.on("hotbarDrop", (bar, data, slot) =>
+    createDeltaGreenMacro(data, slot),
+  );
 });
 
-Hooks.on("ready", ()=> {
-  
-  //let backgroundImageSetting = game.settings.get("deltagreen", "characterSheetBackgroundImageSetting");
-  //let characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
-
+Hooks.on("ready", () => {
+  // let backgroundImageSetting = game.settings.get("deltagreen", "characterSheetBackgroundImageSetting");
+  // let characterSheetStyle = game.settings.get("deltagreen", "characterSheetStyle");
   //let customCss = "";
-
-  //let customStyle = document.createElement("style");
-  //customStyle.id = "dg-custom-css";
-
+  // let customStyle = document.createElement("style");
+  // customStyle.id = "dg-custom-css";
   /*
   if(backgroundImageSetting === "OldPaper1"){
     customCss += `div.deltagreen.sheet.actor section.window-content{
@@ -341,7 +333,6 @@ Hooks.on("ready", ()=> {
     }`;
   }
   */
-
   /*
   if(characterSheetStyle === "cowboy"){
     customCss += `div.deltagreen.sheet.actor section.window-content{
@@ -360,7 +351,6 @@ Hooks.on("ready", ()=> {
     //document.querySelector("head").appendChild(customStyle);
   }
   */
-  
 });
 
 Hooks.on("preCreateItem", (item) => {
@@ -368,68 +358,62 @@ Hooks.on("preCreateItem", (item) => {
   console.log(item.img);
   console.log(item.type);
 
-  if(item.img === 'icons/svg/item-bag.svg'){
-
-    if(item.type === 'bond'){
-      item.updateSource({ img: 'systems/deltagreen/assets/icons/person-black-bg.svg'});
-    }
-    else{
-      item.updateSource({ img: 'systems/deltagreen/assets/icons/swap-bag-black-bg.svg'});
+  if (item.img === "icons/svg/item-bag.svg") {
+    if (item.type === "bond") {
+      item.updateSource({
+        img: "systems/deltagreen/assets/icons/person-black-bg.svg",
+      });
+    } else {
+      item.updateSource({
+        img: "systems/deltagreen/assets/icons/swap-bag-black-bg.svg",
+      });
     }
   }
-
 });
 
 Hooks.on("renderSidebarTab", async (app, html) => {
   if (app.options.id == "actors") {
-    let button = $("<button class='import-cd'><i class='fas fa-file-import'></i> Parse Stat Block</button>")
+    const button = $("<button class='import-cd'><i class='fas fa-file-import'></i> Parse Stat Block</button>")
 
     button.click(function () {
-      ParseDeltaGreenStatBlock()
+      ParseDeltaGreenStatBlock();
     });
 
     html.find(".directory-footer").append(button);
   }
-})
+});
 
 // Note - this event is fired on ALL connected clients...
-Hooks.on('createActor', async function(actor, options, userId){
-  try{
-    
+Hooks.on("createActor", async function (actor, options, userId) {
+  try {
     // use this to trap on if this hook is firing for the same user that triggered the create
     // can put logic specific to a particular user session below
     if (userId !== game.user.id) return;
 
-    if (actor !== null){
-
-      if(actor.type === 'agent'){
+    if (actor !== null) {
+      if (actor.type === "agent") {
         // update the default type skill of Art - Painting's labels to try to be localized
         // since I really backed myself into a corner on this with my implementation of it...
-        console.log('createActor Hook');
+        console.log("createActor Hook");
 
-        let artLabel = game.i18n.translations.DG?.TypeSkills?.Art ?? "Art";
-        let paintingLabel = game.i18n.translations.DG?.TypeSkills?.Subskills?.Painting ?? "Painting";
+        const artLabel = game.i18n.translations.DG?.TypeSkills?.Art ?? "Art";
+        const paintingLabel = game.i18n.translations.DG?.TypeSkills?.Subskills?.Painting ?? "Painting";
 
-        let updatedData = duplicate(actor.system);
+        const updatedData = duplicate(actor.system);
         updatedData.typedSkills.tskill_01.group = artLabel;
         updatedData.typedSkills.tskill_01.label = paintingLabel;
-        
-        actor.update({"data": updatedData});
-        
+
+        actor.update({ data: updatedData });
+
         // throw on an unarmed strike item for convenience
         actor.AddUnarmedAttackItemIfMissing();
-      }
-      else if(actor.type === 'unnatural'){
+      } else if (actor.type === "unnatural") {
         // Do nothing.
-      }
-      else if(actor.type === 'vehicle'){
+      } else if (actor.type === "vehicle") {
         actor.AddBaseVehicleItemsIfMissing();
       }
-      
     }
-    
-  }
-  catch(ex){
+  } catch (ex) {
     console.log(ex);
   }
 });
@@ -448,25 +432,25 @@ Hooks.on('createActor', async function(actor, options, userId){
 async function createDeltaGreenMacro(data, slot) {
   // Definitely should not be doing assignments in conditionals but if we fix this, it breaks macro creation.
   // eslint-disable-next-line no-cond-assign
-  if (data.type = "Item" && data.itemData.type !== "weapon") return;
-  //if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
+  if ((data.type = "Item" && data.itemData.type !== "weapon")) return;
+  // if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
   const item = data.itemData;
 
   // Create the macro command
-  let command = '// Uncomment line below to also roll skill check if desired.'
-  command += '\n' + `//game.deltagreen.rollItemSkillCheckMacro("${item._id}");`;
-  command += '\n' + `game.deltagreen.rollItemMacro("${item._id}");`;
+  let command = "// Uncomment line below to also roll skill check if desired.";
+  command += "\n" + `//game.deltagreen.rollItemSkillCheckMacro("${item._id}");`;
+  command += "\n" + `game.deltagreen.rollItemMacro("${item._id}");`;
 
-  //let macro = game.macros.entities.find(m => (m.name === data.name) && (m.command === command));
-  //if (!macro) {
-  let macro = await Macro.create({
+  // let macro = game.macros.entities.find(m => (m.name === data.name) && (m.command === command));
+  // if (!macro) {
+  const macro = await Macro.create({
       name: data.itemData.name,
       type: "script",
       img: data.itemData.img,
       command: command,
       flags: { "deltagreen.itemMacro": true }
     });
-  //}
+  // }
 
   game.user.assignHotbarMacro(macro, slot);
   return false;
@@ -483,17 +467,21 @@ async function rollItemMacro(itemId) {
   let actor;
   if (speaker.token) actor = game.actors.tokens[speaker.token];
   if (!actor) actor = game.actors.get(speaker.actor);
-  
-  if(!actor) return ui.notifications.warn('Must have an Actor selected first.');
 
-  let item = actor ? actor.items.find(i => i._id === itemId) : null;
+  if (!actor)
+    return ui.notifications.warn("Must have an Actor selected first.");
+
+  let item = actor ? actor.items.find((i) => i._id === itemId) : null;
 
   // for backwards compatibility with older macros, where I unwisely set it to use name instead of id
-  if(!item){
-    item = actor ? actor.items.find(i => i.name === itemId) : null;
-  } 
+  if (!item) {
+    item = actor ? actor.items.find((i) => i.name === itemId) : null;
+  }
 
-  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item named ${itemId}`);
+  if (!item)
+    return ui.notifications.warn(
+      `Your controlled Actor does not have an item named ${itemId}`,
+    );
 
   // Trigger the item roll
   const r = await item.roll();
@@ -507,35 +495,49 @@ function rollItemSkillCheckMacro(itemId) {
   if (speaker.token) actor = game.actors.tokens[speaker.token];
   if (!actor) actor = game.actors.get(speaker.actor);
 
-  if (!actor) return ui.notifications.warn('Must have an Actor selected first.');
+  if (!actor)
+    return ui.notifications.warn("Must have an Actor selected first.");
 
-  let item = actor ? actor.items.find(i => i._id === itemId) : null;
+  let item = actor ? actor.items.find((i) => i._id === itemId) : null;
 
   // for backwards compatibility with older macros, where I unwisely set it to use name instead of id
-  if(!item){
-    item = actor ? actor.items.find(i => i.name === itemId) : null;
-  } 
+  if (!item) {
+    item = actor ? actor.items.find((i) => i.name === itemId) : null;
+  }
 
-  if (!item) return ui.notifications.warn(`Your controlled Actor does not have an item '${item.name}'`);
+  if (!item)
+    return ui.notifications.warn(
+      `Your controlled Actor does not have an item '${item.name}'`,
+    );
 
-  let skillName = item.system.skill.toString();
+  const skillName = item.system.skill.toString();
 
-  const roll = new DGRolls.DGPercentileRoll("1D100", {}, { rollType: "weapon", key: skillName, actor, item });
-  return actor.sheet.processRoll({}, roll)}
+  const roll = new DGRolls.DGPercentileRoll(
+    "1D100",
+    {},
+    { rollType: "weapon", key: skillName, actor, item },
+  );
+  return actor.sheet.processRoll({}, roll);
+}
 
 function rollSkillMacro(skillName) {
   const speaker = ChatMessage.getSpeaker();
   let actor;
   if (speaker.token) actor = game.actors.tokens[speaker.token];
   if (!actor) actor = game.actors.get(speaker.actor);
-  
-  if(!actor) return ui.notifications.warn('Must have an Actor selected first.');
 
-  let skill = actor.system.skills[skillName];
+  if (!actor)
+    return ui.notifications.warn("Must have an Actor selected first.");
 
-  if(!skill) return ui.notifications.warn('Bad skill name passed to macro.');
+  const skill = actor.system.skills[skillName];
 
-  const roll = new DGRolls.DGPercentileRoll("1D100", {}, { rollType: "skill", key: skillName, actor });
-  actor.sheet.processRoll({}, roll)
+  if (!skill) return ui.notifications.warn("Bad skill name passed to macro.");
+
+  const roll = new DGRolls.DGPercentileRoll(
+    "1D100",
+    {},
+    { rollType: "skill", key: skillName, actor },
+  );
+  actor.sheet.processRoll({}, roll);
   // sendPercentileTestToChat(actor, translatedSkillLabel, skill.proficiency);
 }

@@ -3,21 +3,26 @@
  * @extends {ItemSheet}
  */
 export class DeltaGreenItemSheet extends ItemSheet {
-
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["deltagreen", "sheet", "item"],
       width: 520,
       height: 600,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "attributes" }]
+      tabs: [
+        {
+          navSelector: ".sheet-tabs",
+          contentSelector: ".sheet-body",
+          initial: "attributes",
+        },
+      ],
     });
   }
 
   /** @override */
   get template() {
     const path = "systems/deltagreen/templates/item";
-    
+
     // unique item sheet by type, like `weapon-sheet.html`.
     return `${path}/item-${this.item.type}-sheet.html`;
   }
@@ -27,7 +32,10 @@ export class DeltaGreenItemSheet extends ItemSheet {
   /** @override */
   async getData() {
     const data = super.getData();
-    data.enrichedDescription = await TextEditor.enrichHTML(this.object.system.description, {async: true});
+    data.enrichedDescription = await TextEditor.enrichHTML(
+      this.object.system.description,
+      { async: true },
+    );
     return data;
   }
 
