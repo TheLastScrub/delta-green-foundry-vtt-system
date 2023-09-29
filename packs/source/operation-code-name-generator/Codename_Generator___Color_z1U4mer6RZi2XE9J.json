@@ -8,10 +8,7 @@
       "type": 0,
       "text": "Amber",
       "weight": 1,
-      "range": [
-        1,
-        1
-      ],
+      "range": [1, 1],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -24,10 +21,7 @@
       "type": 0,
       "text": "Aquamarine",
       "weight": 1,
-      "range": [
-        2,
-        2
-      ],
+      "range": [2, 2],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -40,10 +34,7 @@
       "type": 0,
       "text": "Auburn",
       "weight": 1,
-      "range": [
-        3,
-        3
-      ],
+      "range": [3, 3],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -56,10 +47,7 @@
       "type": 0,
       "text": "Azure",
       "weight": 1,
-      "range": [
-        4,
-        4
-      ],
+      "range": [4, 4],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -72,10 +60,7 @@
       "type": 0,
       "text": "Beige",
       "weight": 1,
-      "range": [
-        5,
-        5
-      ],
+      "range": [5, 5],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -88,10 +73,7 @@
       "type": 0,
       "text": "Black",
       "weight": 1,
-      "range": [
-        6,
-        6
-      ],
+      "range": [6, 6],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -104,10 +86,7 @@
       "type": 0,
       "text": "Blue",
       "weight": 1,
-      "range": [
-        7,
-        7
-      ],
+      "range": [7, 7],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -120,10 +99,7 @@
       "type": 0,
       "text": "Bronze",
       "weight": 1,
-      "range": [
-        8,
-        8
-      ],
+      "range": [8, 8],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -136,10 +112,7 @@
       "type": 0,
       "text": "Brown",
       "weight": 1,
-      "range": [
-        9,
-        9
-      ],
+      "range": [9, 9],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -152,10 +125,7 @@
       "type": 0,
       "text": "Burgundy",
       "weight": 1,
-      "range": [
-        10,
-        10
-      ],
+      "range": [10, 10],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -168,10 +138,7 @@
       "type": 0,
       "text": "Carmine",
       "weight": 1,
-      "range": [
-        11,
-        11
-      ],
+      "range": [11, 11],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -184,10 +151,7 @@
       "type": 0,
       "text": "Chocolate",
       "weight": 1,
-      "range": [
-        12,
-        12
-      ],
+      "range": [12, 12],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -200,10 +164,7 @@
       "type": 0,
       "text": "Cobalt",
       "weight": 1,
-      "range": [
-        13,
-        13
-      ],
+      "range": [13, 13],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -216,10 +177,7 @@
       "type": 0,
       "text": "Coffee",
       "weight": 1,
-      "range": [
-        14,
-        14
-      ],
+      "range": [14, 14],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -232,10 +190,7 @@
       "type": 0,
       "text": "Copper",
       "weight": 1,
-      "range": [
-        15,
-        15
-      ],
+      "range": [15, 15],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -248,10 +203,7 @@
       "type": 0,
       "text": "Crimson",
       "weight": 1,
-      "range": [
-        16,
-        16
-      ],
+      "range": [16, 16],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -264,10 +216,7 @@
       "type": 0,
       "text": "Cyan",
       "weight": 1,
-      "range": [
-        17,
-        17
-      ],
+      "range": [17, 17],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -280,10 +229,7 @@
       "type": 0,
       "text": "Emerald",
       "weight": 1,
-      "range": [
-        18,
-        18
-      ],
+      "range": [18, 18],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -296,10 +242,7 @@
       "type": 0,
       "text": "Gold",
       "weight": 1,
-      "range": [
-        19,
-        19
-      ],
+      "range": [19, 19],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -312,10 +255,7 @@
       "type": 0,
       "text": "Gray",
       "weight": 1,
-      "range": [
-        20,
-        20
-      ],
+      "range": [20, 20],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -328,10 +268,7 @@
       "type": 0,
       "text": "Green",
       "weight": 1,
-      "range": [
-        21,
-        21
-      ],
+      "range": [21, 21],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -344,10 +281,7 @@
       "type": 0,
       "text": "Ivory",
       "weight": 1,
-      "range": [
-        22,
-        22
-      ],
+      "range": [22, 22],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -360,10 +294,7 @@
       "type": 0,
       "text": "Jade",
       "weight": 1,
-      "range": [
-        23,
-        23
-      ],
+      "range": [23, 23],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -376,10 +307,7 @@
       "type": 0,
       "text": "Lemon",
       "weight": 1,
-      "range": [
-        24,
-        24
-      ],
+      "range": [24, 24],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -392,10 +320,7 @@
       "type": 0,
       "text": "Lilac",
       "weight": 1,
-      "range": [
-        25,
-        25
-      ],
+      "range": [25, 25],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -408,10 +333,7 @@
       "type": 0,
       "text": "Lime",
       "weight": 1,
-      "range": [
-        26,
-        26
-      ],
+      "range": [26, 26],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -424,10 +346,7 @@
       "type": 0,
       "text": "Magenta",
       "weight": 1,
-      "range": [
-        27,
-        27
-      ],
+      "range": [27, 27],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -440,10 +359,7 @@
       "type": 0,
       "text": "Maroon",
       "weight": 1,
-      "range": [
-        28,
-        28
-      ],
+      "range": [28, 28],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -456,10 +372,7 @@
       "type": 0,
       "text": "Obsidian",
       "weight": 1,
-      "range": [
-        29,
-        29
-      ],
+      "range": [29, 29],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -472,10 +385,7 @@
       "type": 0,
       "text": "Ochre",
       "weight": 1,
-      "range": [
-        30,
-        30
-      ],
+      "range": [30, 30],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -488,10 +398,7 @@
       "type": 0,
       "text": "Olive",
       "weight": 1,
-      "range": [
-        31,
-        31
-      ],
+      "range": [31, 31],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -504,10 +411,7 @@
       "type": 0,
       "text": "Orchid",
       "weight": 1,
-      "range": [
-        32,
-        32
-      ],
+      "range": [32, 32],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -520,10 +424,7 @@
       "type": 0,
       "text": "Pink",
       "weight": 1,
-      "range": [
-        33,
-        33
-      ],
+      "range": [33, 33],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -536,10 +437,7 @@
       "type": 0,
       "text": "Purple",
       "weight": 1,
-      "range": [
-        34,
-        34
-      ],
+      "range": [34, 34],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -552,10 +450,7 @@
       "type": 0,
       "text": "Red",
       "weight": 1,
-      "range": [
-        35,
-        35
-      ],
+      "range": [35, 35],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -568,10 +463,7 @@
       "type": 0,
       "text": "Rose",
       "weight": 1,
-      "range": [
-        36,
-        36
-      ],
+      "range": [36, 36],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -584,10 +476,7 @@
       "type": 0,
       "text": "Rouge",
       "weight": 1,
-      "range": [
-        37,
-        37
-      ],
+      "range": [37, 37],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -600,10 +489,7 @@
       "type": 0,
       "text": "Ruby",
       "weight": 1,
-      "range": [
-        38,
-        38
-      ],
+      "range": [38, 38],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -616,10 +502,7 @@
       "type": 0,
       "text": "Sapphire",
       "weight": 1,
-      "range": [
-        39,
-        39
-      ],
+      "range": [39, 39],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -632,10 +515,7 @@
       "type": 0,
       "text": "Scarlet",
       "weight": 1,
-      "range": [
-        40,
-        40
-      ],
+      "range": [40, 40],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -648,10 +528,7 @@
       "type": 0,
       "text": "Silver",
       "weight": 1,
-      "range": [
-        41,
-        41
-      ],
+      "range": [41, 41],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -664,10 +541,7 @@
       "type": 0,
       "text": "Slate",
       "weight": 1,
-      "range": [
-        42,
-        42
-      ],
+      "range": [42, 42],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -680,10 +554,7 @@
       "type": 0,
       "text": "Tan",
       "weight": 1,
-      "range": [
-        43,
-        43
-      ],
+      "range": [43, 43],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -696,10 +567,7 @@
       "type": 0,
       "text": "Teal",
       "weight": 1,
-      "range": [
-        44,
-        44
-      ],
+      "range": [44, 44],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -712,10 +580,7 @@
       "type": 0,
       "text": "Turquoise",
       "weight": 1,
-      "range": [
-        45,
-        45
-      ],
+      "range": [45, 45],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -728,10 +593,7 @@
       "type": 0,
       "text": "Ultramarine",
       "weight": 1,
-      "range": [
-        46,
-        46
-      ],
+      "range": [46, 46],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -744,10 +606,7 @@
       "type": 0,
       "text": "Violet",
       "weight": 1,
-      "range": [
-        47,
-        47
-      ],
+      "range": [47, 47],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -760,10 +619,7 @@
       "type": 0,
       "text": "Viridian",
       "weight": 1,
-      "range": [
-        48,
-        48
-      ],
+      "range": [48, 48],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -776,10 +632,7 @@
       "type": 0,
       "text": "White",
       "weight": 1,
-      "range": [
-        49,
-        49
-      ],
+      "range": [49, 49],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -792,10 +645,7 @@
       "type": 0,
       "text": "Yellow",
       "weight": 1,
-      "range": [
-        50,
-        50
-      ],
+      "range": [50, 50],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
