@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 /* globals game Roll ChatMessage AudioHelper renderTemplate Dialog */
 
 import DGUtils from "../other/utility-functions.js";
@@ -151,10 +152,10 @@ export class DGPercentileRoll extends DGRoll {
 
     const template =
       "systems/deltagreen/templates/dialog/modify-percentile-roll.html";
-    const html = await renderTemplate(template, backingData);
+    const content = await renderTemplate(template, backingData);
     return new Promise((resolve, reject) => {
       new Dialog({
-        content: html,
+        content,
         title: DGUtils.localizeWithFallback(
           "DG.ModifySkillRollDialogue.Title",
           "Modify Roll",
@@ -171,11 +172,14 @@ export class DGPercentileRoll extends DGRoll {
 
                 const plusMinus = html.find("[name='plusOrMinus']").val();
 
-                if (targetModifier.trim() != "" && !isNaN(targetModifier)) {
+                if (
+                  targetModifier.trim() !== "" &&
+                  !Number.isNaN(targetModifier)
+                ) {
                   targetModifier = Math.abs(parseInt(targetModifier));
 
                   if (plusMinus === "-") {
-                    targetModifier = -1 * targetModifier;
+                    targetModifier *= -1;
                   }
                 }
                 resolve({ targetModifier, rollMode });
@@ -520,10 +524,10 @@ export class DGDamageRoll extends DGRoll {
       },
     };
 
-    const html = await renderTemplate(template, backingData);
+    const content = await renderTemplate(template, backingData);
     return new Promise((resolve, reject) => {
       new Dialog({
-        content: html,
+        content,
         title: game.i18n.localize("DG.ModifySkillRollDialogue.Title"),
         default: "roll",
         buttons: {
@@ -544,7 +548,7 @@ export class DGDamageRoll extends DGRoll {
                 }
 
                 let newFormula = "";
-                if (outerModifier.trim() != "") {
+                if (outerModifier.trim() !== "") {
                   newFormula += `${outerModifier}(${modifiedBaseRoll}${innerModifier.trim()})`;
                 } else {
                   newFormula += modifiedBaseRoll + innerModifier.trim();

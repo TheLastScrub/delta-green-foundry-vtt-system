@@ -6,7 +6,7 @@ import { DGDamageRoll, DGLethalityRoll } from "../roll/roll.js";
  * Extend the basic Item with some very simple modifications.
  * @extends {Item}
  */
-export class DeltaGreenItem extends Item {
+export default class DeltaGreenItem extends Item {
   /**
    * Augment the basic Item data model with additional dynamic data.
    */

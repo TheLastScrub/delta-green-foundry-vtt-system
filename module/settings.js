@@ -1,4 +1,6 @@
-export const registerSystemSettings = function () {
+/* global game */
+
+export default function registerSystemSettings() {
   game.settings.register("deltagreen", "characterSheetStyle", {
     name: "Character Sheet Style",
     hint: "Choose how actor sheets should be styled. 'Program' is a more modern government style, where 'Cowboy/Outlaw' is an older, grittier looking typewriter style.",
@@ -99,4 +101,4 @@ export const registerSystemSettings = function () {
       // console.log(value)
     },
   });
-};
+}

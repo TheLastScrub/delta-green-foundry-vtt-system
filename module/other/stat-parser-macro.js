@@ -1,3 +1,5 @@
+/* global Dialog Actor */
+
 // call this within a world as: game.deltagreen.ParseDeltaGreenStatBlock()
 function GetTypeSkillRatingsFromInput(inputText) {
   const matchStr =
@@ -11,6 +13,9 @@ function GetTypeSkillRatingsFromInput(inputText) {
   let match;
 
   try {
+    // This is probably one of the few times where its recommended to assign within a while loop.
+    // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec
+    // eslint-disable-next-line no-cond-assign
     while ((match = re.exec(inputText))) {
       matches.push({
         group: match[1],
@@ -86,8 +91,7 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
   tempStr = inputStr.split(/\r?\n/);
 
   if (tempStr.length > 1) {
-    actorData.name = tempStr[0];
-    shortDescription = tempStr[1];
+    [actorData.name, shortDescription] = tempStr;
   } else {
     actorData.name = "Unknown";
   }
@@ -353,7 +357,7 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
 
   arr = GetTypeSkillRatingsFromInput(inputStr);
 
-  for (let index = 0; index < arr.length; ++index) {
+  for (let index = 0; index < arr.length; index += 1) {
     const element = arr[index];
     actorData.data.typedSkills[`tskill_${index.toString()}`] = element;
   }
@@ -403,6 +407,6 @@ async function GetUserInput() {
   }).render(true);
 }
 
-export async function ParseDeltaGreenStatBlock() {
+export default async function ParseDeltaGreenStatBlock() {
   GetUserInput();
 }

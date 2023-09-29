@@ -1,8 +1,10 @@
+/* global ItemSheet mergeObject TextEditor */
+
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
-export class DeltaGreenItemSheet extends ItemSheet {
+export default class DeltaGreenItemSheet extends ItemSheet {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
@@ -57,6 +59,7 @@ export class DeltaGreenItemSheet extends ItemSheet {
     super.activateListeners(html);
 
     // Everything below here is only needed if the sheet is editable
+    // eslint-disable-next-line no-useless-return
     if (!this.options.editable) return;
 
     // Roll handlers, click handlers, etc. would go here.

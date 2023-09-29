@@ -10,7 +10,7 @@ import {
  * Extend the basic ActorSheet with some very simple modifications
  * @extends {ActorSheet}
  */
-export class DeltaGreenActorSheet extends ActorSheet {
+export default class DeltaGreenActorSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
@@ -62,7 +62,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     const data = super.getData();
 
     // Prepare items.
-    if (this.actor.type == "agent") {
+    if (this.actor.type === "agent") {
       this._prepareCharacterItems(data);
     }
 
@@ -673,7 +673,8 @@ export class DeltaGreenActorSheet extends ActorSheet {
     if (
       newSkillLabel !== null &&
       newSkillLabel !== "" &&
-      (newSkillGroup !== null) & (newSkillGroup !== "")
+      newSkillGroup !== null &&
+      newSkillGroup !== ""
     ) {
       const updatedData = duplicate(this.actor.system);
 
@@ -710,13 +711,13 @@ export class DeltaGreenActorSheet extends ActorSheet {
       system: {},
     };
 
-    if (type == "weapon") {
+    if (type === "weapon") {
       // itemData.system.skill = "firearms"; //default skill to firearms, since that will be most common
       // itemData.system.expense = "Standard";
-    } else if (type == "armor") {
+    } else if (type === "armor") {
       // itemData.system.armor = 3;
       // itemData.system.expense = "Standard";
-    } else if (type == "bond") {
+    } else if (type === "bond") {
       // try to default bonds for an agent to their current CHA
       itemData.system.score = this.object.system.statistics.cha.value; // Can vary, but at character creation starting bond score is usually agent's charisma
       // itemData.img = "icons/svg/mystery-man.svg"
@@ -785,13 +786,15 @@ export class DeltaGreenActorSheet extends ActorSheet {
       default:
         break;
     }
-    return this.processRoll(event, roll, rollOptions);
+    this.processRoll(event, roll, rollOptions);
   }
 
   /**
    * Show a dialog for the roll and then send to chat.
    * Broke this logic out from `_onRoll()` so that other files can call it,
    * namely the macro logic.
+   *
+   * TODO: Move this logic to the roll.js.
    *
    * @param {Event} event   The originating click event
    * @param {Event} roll   The roll to show a dialog for and then send to chat.
@@ -814,7 +817,7 @@ export class DeltaGreenActorSheet extends ActorSheet {
     // Evaluate the roll.
     await roll.evaluate({ async: true });
     // Send the roll to chat.
-    return roll.toChat();
+    roll.toChat();
   }
 
   _resetBreakingPoint(event) {

@@ -1,9 +1,11 @@
+/* global loadTemplates */
+
 /**
  * Define a set of template paths to pre-load
  * Pre-loaded templates are compiled and cached for fast access when rendering
  * @return {Promise}
  */
-export const preloadHandlebarsTemplates = async function () {
+export default async function preloadHandlebarsTemplates() {
   return loadTemplates([
     "systems/deltagreen/templates/actor/actor-sheet.html",
     "systems/deltagreen/templates/actor/limited-sheet.html",
@@ -14,4 +16,4 @@ export const preloadHandlebarsTemplates = async function () {
     "systems/deltagreen/templates/actor/vehicle-sheet.html",
     "systems/deltagreen/templates/actor/help-and-licensing-partial.html",
   ]);
-};
+}

@@ -12,7 +12,7 @@ export default class DGUtils {
   static localizeWithFallback(key, fallback) {
     try {
       const translatedValue = game.i18n.localize(key);
-      if (translatedValue != key) {
+      if (translatedValue !== key) {
         return translatedValue;
       }
       console.warn(`Untranslated localization key '${key}'.`);
