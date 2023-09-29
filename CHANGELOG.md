@@ -1,5 +1,9 @@
 ## Release/Patch Notes
 
+### Version 1.3.2 - 2023-XX-XX
+
+- Fix [Github #87] - SAN rolls are hidden properly again if GM chooses.
+
 ### Version 1.3.1 - 2023-09-23
 
 - Enhancement - Changed pause icon to be Delta Green logo.
