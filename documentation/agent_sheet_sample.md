@@ -21,16 +21,21 @@ The "Cowboys" setting gives the oldest feel, with a typewriter font and an weath
 ![Character Sheet Screenshot - Program - Skills](./images/agent_sheet_program_skills_tab.webp)
 
 ## Physical
+
 ![Character Sheet Screenshot](./images/agent_sheet_program_statistics_tab.webp)
 
 ## Mental
+
 ![Character Sheet Screenshot](./images/agent_sheet_program_psychological_tab.webp)
 
 ## Gear
+
 ![Character Sheet Screenshot](./images/agent_sheet_program_equipment_tab.webp)
 
 ## CV
+
 ![Character Sheet Screenshot](./images/agent_sheet_program_personal_tab.webp)
 
 ## Contacts
+
 ![Character Sheet Screenshot](./images/agent_sheet_program_bonds_tab.webp)

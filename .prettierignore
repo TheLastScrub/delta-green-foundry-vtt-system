@@ -1,0 +1,25 @@
+# These are generated automatically by external packages. Let them do their thing.
+**/.git
+**/node_modules
+**/package-lock.json
+
+# These contain fonts, icons, and images, which are static files.
+**/assets
+**/documentation/images
+
+# Ignore binary compendia packs.
+packs/armor
+packs/armor*
+packs/firearms
+packs/firearms*
+packs/hand-to-hand-weapons
+packs/hand-to-hand-weapons*
+packs/operation-code-name-generator
+packs/operation-code-name-generator*
+packs/operation-code-name-generator-macro
+packs/operation-code-name-generator-macro*
+packs/pregens
+packs/pregens*
+
+# Ignore handlebars files as Prettier cannot handle these currently.
+**/*.html

@@ -8,10 +8,7 @@
       "type": 0,
       "text": "Ace",
       "weight": 1,
-      "range": [
-        1,
-        1
-      ],
+      "range": [1, 1],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -24,10 +21,7 @@
       "type": 0,
       "text": "Aegis",
       "weight": 1,
-      "range": [
-        2,
-        2
-      ],
+      "range": [2, 2],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -40,10 +34,7 @@
       "type": 0,
       "text": "Angel",
       "weight": 1,
-      "range": [
-        3,
-        3
-      ],
+      "range": [3, 3],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -56,10 +47,7 @@
       "type": 0,
       "text": "Anvil",
       "weight": 1,
-      "range": [
-        4,
-        4
-      ],
+      "range": [4, 4],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -72,10 +60,7 @@
       "type": 0,
       "text": "Archer",
       "weight": 1,
-      "range": [
-        5,
-        5
-      ],
+      "range": [5, 5],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -88,10 +73,7 @@
       "type": 0,
       "text": "Azimuth",
       "weight": 1,
-      "range": [
-        6,
-        6
-      ],
+      "range": [6, 6],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -104,10 +86,7 @@
       "type": 0,
       "text": "Ballgame",
       "weight": 1,
-      "range": [
-        7,
-        7
-      ],
+      "range": [7, 7],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -120,10 +99,7 @@
       "type": 0,
       "text": "Bells",
       "weight": 1,
-      "range": [
-        8,
-        8
-      ],
+      "range": [8, 8],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -136,10 +112,7 @@
       "type": 0,
       "text": "Branch",
       "weight": 1,
-      "range": [
-        9,
-        9
-      ],
+      "range": [9, 9],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -152,10 +125,7 @@
       "type": 0,
       "text": "Breath",
       "weight": 1,
-      "range": [
-        10,
-        10
-      ],
+      "range": [10, 10],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -168,10 +138,7 @@
       "type": 0,
       "text": "Buckle",
       "weight": 1,
-      "range": [
-        11,
-        11
-      ],
+      "range": [11, 11],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -184,10 +151,7 @@
       "type": 0,
       "text": "Buzz",
       "weight": 1,
-      "range": [
-        12,
-        12
-      ],
+      "range": [12, 12],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -200,10 +164,7 @@
       "type": 0,
       "text": "Castle",
       "weight": 1,
-      "range": [
-        13,
-        13
-      ],
+      "range": [13, 13],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -216,10 +177,7 @@
       "type": 0,
       "text": "Chance",
       "weight": 1,
-      "range": [
-        14,
-        14
-      ],
+      "range": [14, 14],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -232,10 +190,7 @@
       "type": 0,
       "text": "Cobra",
       "weight": 1,
-      "range": [
-        15,
-        15
-      ],
+      "range": [15, 15],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -248,10 +203,7 @@
       "type": 0,
       "text": "Crown",
       "weight": 1,
-      "range": [
-        16,
-        16
-      ],
+      "range": [16, 16],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -264,10 +216,7 @@
       "type": 0,
       "text": "Daze",
       "weight": 1,
-      "range": [
-        17,
-        17
-      ],
+      "range": [17, 17],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -280,10 +229,7 @@
       "type": 0,
       "text": "Doughnut",
       "weight": 1,
-      "range": [
-        18,
-        18
-      ],
+      "range": [18, 18],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -296,10 +242,7 @@
       "type": 0,
       "text": "Dream",
       "weight": 1,
-      "range": [
-        19,
-        19
-      ],
+      "range": [19, 19],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -312,10 +255,7 @@
       "type": 0,
       "text": "Drive",
       "weight": 1,
-      "range": [
-        20,
-        20
-      ],
+      "range": [20, 20],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -328,10 +268,7 @@
       "type": 0,
       "text": "Engine",
       "weight": 1,
-      "range": [
-        21,
-        21
-      ],
+      "range": [21, 21],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -344,10 +281,7 @@
       "type": 0,
       "text": "Exchange",
       "weight": 1,
-      "range": [
-        22,
-        22
-      ],
+      "range": [22, 22],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -360,10 +294,7 @@
       "type": 0,
       "text": "Express",
       "weight": 1,
-      "range": [
-        23,
-        23
-      ],
+      "range": [23, 23],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -376,10 +307,7 @@
       "type": 0,
       "text": "Eye",
       "weight": 1,
-      "range": [
-        24,
-        24
-      ],
+      "range": [24, 24],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -392,10 +320,7 @@
       "type": 0,
       "text": "Flash",
       "weight": 1,
-      "range": [
-        25,
-        25
-      ],
+      "range": [25, 25],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -408,10 +333,7 @@
       "type": 0,
       "text": "Forge",
       "weight": 1,
-      "range": [
-        26,
-        26
-      ],
+      "range": [26, 26],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -424,10 +346,7 @@
       "type": 0,
       "text": "Frost",
       "weight": 1,
-      "range": [
-        27,
-        27
-      ],
+      "range": [27, 27],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -440,10 +359,7 @@
       "type": 0,
       "text": "Furrow",
       "weight": 1,
-      "range": [
-        28,
-        28
-      ],
+      "range": [28, 28],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -456,10 +372,7 @@
       "type": 0,
       "text": "Gate",
       "weight": 1,
-      "range": [
-        29,
-        29
-      ],
+      "range": [29, 29],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -472,10 +385,7 @@
       "type": 0,
       "text": "Glacier",
       "weight": 1,
-      "range": [
-        30,
-        30
-      ],
+      "range": [30, 30],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -488,10 +398,7 @@
       "type": 0,
       "text": "Glory",
       "weight": 1,
-      "range": [
-        31,
-        31
-      ],
+      "range": [31, 31],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -504,10 +411,7 @@
       "type": 0,
       "text": "Griffin",
       "weight": 1,
-      "range": [
-        32,
-        32
-      ],
+      "range": [32, 32],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -520,10 +424,7 @@
       "type": 0,
       "text": "Hammer",
       "weight": 1,
-      "range": [
-        33,
-        33
-      ],
+      "range": [33, 33],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -536,10 +437,7 @@
       "type": 0,
       "text": "Harvest",
       "weight": 1,
-      "range": [
-        34,
-        34
-      ],
+      "range": [34, 34],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -552,10 +450,7 @@
       "type": 0,
       "text": "Hat",
       "weight": 1,
-      "range": [
-        35,
-        35
-      ],
+      "range": [35, 35],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -568,10 +463,7 @@
       "type": 0,
       "text": "Hoop",
       "weight": 1,
-      "range": [
-        36,
-        36
-      ],
+      "range": [36, 36],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -584,10 +476,7 @@
       "type": 0,
       "text": "Honey",
       "weight": 1,
-      "range": [
-        37,
-        37
-      ],
+      "range": [37, 37],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -600,10 +489,7 @@
       "type": 0,
       "text": "Horizon",
       "weight": 1,
-      "range": [
-        38,
-        38
-      ],
+      "range": [38, 38],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -616,10 +502,7 @@
       "type": 0,
       "text": "Jackal",
       "weight": 1,
-      "range": [
-        39,
-        39
-      ],
+      "range": [39, 39],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -632,10 +515,7 @@
       "type": 0,
       "text": "Jewell",
       "weight": 1,
-      "range": [
-        40,
-        40
-      ],
+      "range": [40, 40],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -648,10 +528,7 @@
       "type": 0,
       "text": "Jukebox",
       "weight": 1,
-      "range": [
-        41,
-        41
-      ],
+      "range": [41, 41],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -664,10 +541,7 @@
       "type": 0,
       "text": "Junction",
       "weight": 1,
-      "range": [
-        42,
-        42
-      ],
+      "range": [42, 42],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -680,10 +554,7 @@
       "type": 0,
       "text": "Keystone",
       "weight": 1,
-      "range": [
-        43,
-        43
-      ],
+      "range": [43, 43],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -696,10 +567,7 @@
       "type": 0,
       "text": "Knight",
       "weight": 1,
-      "range": [
-        44,
-        44
-      ],
+      "range": [44, 44],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -712,10 +580,7 @@
       "type": 0,
       "text": "Lift",
       "weight": 1,
-      "range": [
-        45,
-        45
-      ],
+      "range": [45, 45],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -728,10 +593,7 @@
       "type": 0,
       "text": "Line",
       "weight": 1,
-      "range": [
-        46,
-        46
-      ],
+      "range": [46, 46],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -744,10 +606,7 @@
       "type": 0,
       "text": "Light",
       "weight": 1,
-      "range": [
-        47,
-        47
-      ],
+      "range": [47, 47],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -760,10 +619,7 @@
       "type": 0,
       "text": "Lotus",
       "weight": 1,
-      "range": [
-        48,
-        48
-      ],
+      "range": [48, 48],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -776,10 +632,7 @@
       "type": 0,
       "text": "Mile",
       "weight": 1,
-      "range": [
-        49,
-        49
-      ],
+      "range": [49, 49],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -792,10 +645,7 @@
       "type": 0,
       "text": "Mist",
       "weight": 1,
-      "range": [
-        50,
-        50
-      ],
+      "range": [50, 50],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -808,10 +658,7 @@
       "type": 0,
       "text": "Mongoose",
       "weight": 1,
-      "range": [
-        51,
-        51
-      ],
+      "range": [51, 51],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -824,10 +671,7 @@
       "type": 0,
       "text": "Moon",
       "weight": 1,
-      "range": [
-        52,
-        52
-      ],
+      "range": [52, 52],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -840,10 +684,7 @@
       "type": 0,
       "text": "Mosaic",
       "weight": 1,
-      "range": [
-        53,
-        53
-      ],
+      "range": [53, 53],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -856,10 +697,7 @@
       "type": 0,
       "text": "Mountain",
       "weight": 1,
-      "range": [
-        54,
-        54
-      ],
+      "range": [54, 54],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -872,10 +710,7 @@
       "type": 0,
       "text": "Nickel",
       "weight": 1,
-      "range": [
-        55,
-        55
-      ],
+      "range": [55, 55],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -888,10 +723,7 @@
       "type": 0,
       "text": "Night",
       "weight": 1,
-      "range": [
-        56,
-        56
-      ],
+      "range": [56, 56],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -904,10 +736,7 @@
       "type": 0,
       "text": "Nimbus",
       "weight": 1,
-      "range": [
-        57,
-        57
-      ],
+      "range": [57, 57],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -920,10 +749,7 @@
       "type": 0,
       "text": "Nugget",
       "weight": 1,
-      "range": [
-        58,
-        58
-      ],
+      "range": [58, 58],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -936,10 +762,7 @@
       "type": 0,
       "text": "Octave",
       "weight": 1,
-      "range": [
-        59,
-        59
-      ],
+      "range": [59, 59],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -952,10 +775,7 @@
       "type": 0,
       "text": "Odyssey",
       "weight": 1,
-      "range": [
-        60,
-        60
-      ],
+      "range": [60, 60],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -968,10 +788,7 @@
       "type": 0,
       "text": "Palace",
       "weight": 1,
-      "range": [
-        61,
-        61
-      ],
+      "range": [61, 61],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -984,10 +801,7 @@
       "type": 0,
       "text": "Paladin",
       "weight": 1,
-      "range": [
-        62,
-        62
-      ],
+      "range": [62, 62],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1000,10 +814,7 @@
       "type": 0,
       "text": "Pipe",
       "weight": 1,
-      "range": [
-        63,
-        63
-      ],
+      "range": [63, 63],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1016,10 +827,7 @@
       "type": 0,
       "text": "Player",
       "weight": 1,
-      "range": [
-        64,
-        64
-      ],
+      "range": [64, 64],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1032,10 +840,7 @@
       "type": 0,
       "text": "Quartz",
       "weight": 1,
-      "range": [
-        65,
-        65
-      ],
+      "range": [65, 65],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1048,10 +853,7 @@
       "type": 0,
       "text": "Quest",
       "weight": 1,
-      "range": [
-        66,
-        66
-      ],
+      "range": [66, 66],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1064,10 +866,7 @@
       "type": 0,
       "text": "Rain",
       "weight": 1,
-      "range": [
-        67,
-        67
-      ],
+      "range": [67, 67],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1080,10 +879,7 @@
       "type": 0,
       "text": "Reach",
       "weight": 1,
-      "range": [
-        68,
-        68
-      ],
+      "range": [68, 68],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1096,10 +892,7 @@
       "type": 0,
       "text": "Ride",
       "weight": 1,
-      "range": [
-        69,
-        69
-      ],
+      "range": [69, 69],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1112,10 +905,7 @@
       "type": 0,
       "text": "Ring",
       "weight": 1,
-      "range": [
-        70,
-        70
-      ],
+      "range": [70, 70],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1128,10 +918,7 @@
       "type": 0,
       "text": "Safari",
       "weight": 1,
-      "range": [
-        71,
-        71
-      ],
+      "range": [71, 71],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1144,10 +931,7 @@
       "type": 0,
       "text": "Sentry",
       "weight": 1,
-      "range": [
-        72,
-        72
-      ],
+      "range": [72, 72],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1160,10 +944,7 @@
       "type": 0,
       "text": "Shadow",
       "weight": 1,
-      "range": [
-        73,
-        73
-      ],
+      "range": [73, 73],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1176,10 +957,7 @@
       "type": 0,
       "text": "Shield",
       "weight": 1,
-      "range": [
-        74,
-        74
-      ],
+      "range": [74, 74],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1192,10 +970,7 @@
       "type": 0,
       "text": "Siren",
       "weight": 1,
-      "range": [
-        75,
-        75
-      ],
+      "range": [75, 75],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1208,10 +983,7 @@
       "type": 0,
       "text": "Slugger",
       "weight": 1,
-      "range": [
-        76,
-        76
-      ],
+      "range": [76, 76],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1224,10 +996,7 @@
       "type": 0,
       "text": "Smoke",
       "weight": 1,
-      "range": [
-        77,
-        77
-      ],
+      "range": [77, 77],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1240,10 +1009,7 @@
       "type": 0,
       "text": "Sonnet",
       "weight": 1,
-      "range": [
-        78,
-        78
-      ],
+      "range": [78, 78],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1256,10 +1022,7 @@
       "type": 0,
       "text": "Spark",
       "weight": 1,
-      "range": [
-        79,
-        79
-      ],
+      "range": [79, 79],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1272,10 +1035,7 @@
       "type": 0,
       "text": "Star",
       "weight": 1,
-      "range": [
-        80,
-        80
-      ],
+      "range": [80, 80],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1288,10 +1048,7 @@
       "type": 0,
       "text": "Stare",
       "weight": 1,
-      "range": [
-        81,
-        81
-      ],
+      "range": [81, 81],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1304,10 +1061,7 @@
       "type": 0,
       "text": "Storm",
       "weight": 1,
-      "range": [
-        82,
-        82
-      ],
+      "range": [82, 82],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1320,10 +1074,7 @@
       "type": 0,
       "text": "Stranger",
       "weight": 1,
-      "range": [
-        83,
-        83
-      ],
+      "range": [83, 83],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1336,10 +1087,7 @@
       "type": 0,
       "text": "Summer",
       "weight": 1,
-      "range": [
-        84,
-        84
-      ],
+      "range": [84, 84],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1352,10 +1100,7 @@
       "type": 0,
       "text": "Swap",
       "weight": 1,
-      "range": [
-        85,
-        85
-      ],
+      "range": [85, 85],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1368,10 +1113,7 @@
       "type": 0,
       "text": "Sword",
       "weight": 1,
-      "range": [
-        86,
-        86
-      ],
+      "range": [86, 86],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1384,10 +1126,7 @@
       "type": 0,
       "text": "Talisman",
       "weight": 1,
-      "range": [
-        87,
-        87
-      ],
+      "range": [87, 87],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1400,10 +1139,7 @@
       "type": 0,
       "text": "Tears",
       "weight": 1,
-      "range": [
-        88,
-        88
-      ],
+      "range": [88, 88],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1416,10 +1152,7 @@
       "type": 0,
       "text": "Thorn",
       "weight": 1,
-      "range": [
-        89,
-        89
-      ],
+      "range": [89, 89],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1432,10 +1165,7 @@
       "type": 0,
       "text": "Throne",
       "weight": 1,
-      "range": [
-        90,
-        90
-      ],
+      "range": [90, 90],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1448,10 +1178,7 @@
       "type": 0,
       "text": "Trip",
       "weight": 1,
-      "range": [
-        91,
-        91
-      ],
+      "range": [91, 91],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1464,10 +1191,7 @@
       "type": 0,
       "text": "Thunder",
       "weight": 1,
-      "range": [
-        92,
-        92
-      ],
+      "range": [92, 92],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1480,10 +1204,7 @@
       "type": 0,
       "text": "Urge",
       "weight": 1,
-      "range": [
-        93,
-        93
-      ],
+      "range": [93, 93],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1496,10 +1217,7 @@
       "type": 0,
       "text": "Usher",
       "weight": 1,
-      "range": [
-        94,
-        94
-      ],
+      "range": [94, 94],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1512,10 +1230,7 @@
       "type": 0,
       "text": "Vanguard",
       "weight": 1,
-      "range": [
-        95,
-        95
-      ],
+      "range": [95, 95],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1528,10 +1243,7 @@
       "type": 0,
       "text": "Venture",
       "weight": 1,
-      "range": [
-        96,
-        96
-      ],
+      "range": [96, 96],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1544,10 +1256,7 @@
       "type": 0,
       "text": "Vision",
       "weight": 1,
-      "range": [
-        97,
-        97
-      ],
+      "range": [97, 97],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1560,10 +1269,7 @@
       "type": 0,
       "text": "Voice",
       "weight": 1,
-      "range": [
-        98,
-        98
-      ],
+      "range": [98, 98],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1576,10 +1282,7 @@
       "type": 0,
       "text": "Watch",
       "weight": 1,
-      "range": [
-        99,
-        99
-      ],
+      "range": [99, 99],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -1592,10 +1295,7 @@
       "type": 0,
       "text": "Whisper",
       "weight": 1,
-      "range": [
-        100,
-        100
-      ],
+      "range": [100, 100],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",

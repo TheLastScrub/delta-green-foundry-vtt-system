@@ -8,10 +8,7 @@
       "type": 0,
       "text": "Color-Noun",
       "weight": 1,
-      "range": [
-        1,
-        1
-      ],
+      "range": [1, 1],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -24,10 +21,7 @@
       "type": 0,
       "text": "Adjective-Noun",
       "weight": 1,
-      "range": [
-        2,
-        2
-      ],
+      "range": [2, 2],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -40,10 +34,7 @@
       "type": 0,
       "text": "Noun-Noun",
       "weight": 1,
-      "range": [
-        3,
-        3
-      ],
+      "range": [3, 3],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",
@@ -56,10 +47,7 @@
       "type": 0,
       "text": "Phonetic-Noun",
       "weight": 1,
-      "range": [
-        4,
-        4
-      ],
+      "range": [4, 4],
       "drawn": false,
       "flags": {},
       "img": "icons/svg/d20-black.svg",

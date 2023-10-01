@@ -1,4 +1,6 @@
-export const registerSystemSettings = function () {
+/* global game */
+
+export default function registerSystemSettings() {
   game.settings.register("deltagreen", "characterSheetStyle", {
     name: "Character Sheet Style",
     hint: "Choose how actor sheets should be styled. 'Program' is a more modern government style, where 'Cowboy/Outlaw' is an older, grittier looking typewriter style.",
@@ -15,7 +17,7 @@ export const registerSystemSettings = function () {
     default: "program", // The default value for the setting
     onChange: (value) => {
       // A callback function which triggers when the setting is changed
-      //console.log(value)
+      // console.log(value)
     },
   });
 
@@ -44,10 +46,9 @@ export const registerSystemSettings = function () {
     default: "1d4", // The default value for the setting, per the most recent errata.
     onChange: (value) => {
       // A callback function which triggers when the setting is changed
-      //console.log(value)
+      // console.log(value)
     },
   });
-
 
   // These two settings are obsolete now
   game.settings.register("deltagreen", "showImpossibleLandscapesContent", {
@@ -73,12 +74,12 @@ export const registerSystemSettings = function () {
       TypeWriterCondensed:
         "Condensed Typewriter (Modern, Small Typewriter Font)",
       PublicSans: "Public Sans (US Government-style sans serif font)",
-      //"atwriter": "Another Typewriter (Alternate Old-style Typewriter Font)"
+      // "atwriter": "Another Typewriter (Alternate Old-style Typewriter Font)"
     },
     default: "SpecialElite", // The default value for the setting
     onChange: (value) => {
       // A callback function which triggers when the setting is changed
-      //console.log(value)
+      // console.log(value)
     },
   });
 
@@ -97,7 +98,7 @@ export const registerSystemSettings = function () {
     default: "OldPaper1", // The default value for the setting
     onChange: (value) => {
       // A callback function which triggers when the setting is changed
-      //console.log(value)
+      // console.log(value)
     },
   });
-};
+}

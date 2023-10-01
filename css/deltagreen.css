@@ -2,76 +2,79 @@
 @import url("https://fonts.googleapis.com/css2?family=Didact+Gothic");
 
 @font-face {
-  font-family: 'atwriter';
-  src: url('../assets/font/another-typewriter/atwriter.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+  font-family: "atwriter";
+  src: url("../assets/font/another-typewriter/atwriter.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }
 
 @font-face {
   font-family: TypeWriterCondensed;
-  src: url("../assets/font/typewriter-condensed/typewcond_regular.otf") format("opentype");
+  src: url("../assets/font/typewriter-condensed/typewcond_regular.otf")
+    format("opentype");
 }
 
 @font-face {
   font-family: TypeWriterCondensed;
   font-weight: bold;
-  src: url("../assets/font/typewriter-condensed/typewcond_bold.otf") format("opentype");
+  src: url("../assets/font/typewriter-condensed/typewcond_bold.otf")
+    format("opentype");
 }
 
 @font-face {
   font-family: TypeWriterCondensed;
   font-weight: 600;
-  src: url("../assets/font/typewriter-condensed/typewcond_demi.otf") format("opentype");
+  src: url("../assets/font/typewriter-condensed/typewcond_demi.otf")
+    format("opentype");
 }
 
 @font-face {
-  font-family: 'SpecialElite';
-  src: url('../assets/font/special_elite/SpecialElite-Regular.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+  font-family: "SpecialElite";
+  src: url("../assets/font/special_elite/SpecialElite-Regular.ttf")
+    format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }
 
 @font-face {
-  font-family: 'PublicSans';
-  src: url('../assets/font/public-sans/PublicSans-VariableFont_wght.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+  font-family: "PublicSans";
+  src: url("../assets/font/public-sans/PublicSans-VariableFont_wght.ttf")
+    format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }
 
 /* Global styles */
 
-
 /* Hacky overrides of outer Foundry stuff */
 
 /* Override default foundry CSS to remove padding, so that our background image can take up the whole window */
-.deltagreen section.window-content{
+.deltagreen section.window-content {
   padding: 0 !important;
 }
 
 /* Override the default Foundry CSS to add the padding we removed from the outer window back in */
-.deltagreen section.window-content form.editable{
+.deltagreen section.window-content form.editable {
   padding: 6px 6px 6px 6px !important;
 }
 
 /* Character Sheet Style Options */
 
 form.outlaw-style,
-form.cowboy-style{
+form.cowboy-style {
   background: url("../assets/img/StainedPlainPaper10b.webp") !important;
   background-size: 100% !important;
 }
 
-form.program-style{
+form.program-style {
   background: url("../assets/img/StainedPlainPaper10a.webp") !important;
   background-size: 100% !important;
 }
 
-.cowboy-style{
+.cowboy-style {
   font-family: "SpecialElite", sans-serif !important;
 }
 
 .outlaw-style,
-.program-style{
+.program-style {
   font-family: "PublicSans", sans-serif !important;
 }
 
-.outlaw-style
-.cowboy-style .tabs .item {
+.outlaw-style .cowboy-style .tabs .item {
   background: rgba(173, 151, 101, 0.3);
 }
 
@@ -83,59 +86,57 @@ form.program-style{
   content: url(../assets/img/DG_Pause_Icon.webp);
 }
 
-.old-paper-background{
+.old-paper-background {
   background: url("../assets/img/StainedPlainPaper10.webp") !important;
 }
-.default-parchment-background{
+.default-parchment-background {
   background: url("/ui/parchment.jpg") repeat !important;
 }
 
-.typewriter-condensed-font{
+.typewriter-condensed-font {
   font-family: "TypeWriterCondensed", sans-serif !important;
 }
 
-.martel-font{
+.martel-font {
   font-family: "Martel", sans-serif !important;
 }
 
-.signika-font{
+.signika-font {
   font-family: "Signika", sans-serif !important;
 }
 
-.atwriter-font{
+.atwriter-font {
   font-family: "atwriter", sans-serif !important;
 }
 
-.special-elite-font{
+.special-elite-font {
   font-family: "SpecialElite", sans-serif !important;
 }
 
-.public-sans-font{
+.public-sans-font {
   font-family: "PublicSans", sans-serif !important;
 }
 
-
-
-
-.rollable:hover, .rollable:focus {
+.rollable:hover,
+.rollable:focus {
   color: #000;
   text-shadow: 0 0 10px red;
   cursor: pointer;
 }
 
-.not-rollable{
+.not-rollable {
   color: #999999;
 }
 
-.dg-red{
-  color:rgb(117, 0, 0);
+.dg-red {
+  color: rgb(117, 0, 0);
 }
 
-.bottom-margin-5px{
+.bottom-margin-5px {
   margin-bottom: 5px !important;
 }
 
-.grid-1col{
+.grid-1col {
   display: grid;
   grid-column: span 1 / span 1;
   gap: 3px;
@@ -212,15 +213,14 @@ form.program-style{
   align-items: center;
   text-align: center;
   padding: 2px;
-  
 }
 
-.flex-thin-border{
+.flex-thin-border {
   border: 1px solid #999;
   border-radius: 2px;
 }
 
-.flex-mid-border{
+.flex-mid-border {
   border: 1.5px solid rgb(0, 0, 0);
   border-radius: 2px;
 }
@@ -255,7 +255,7 @@ form.program-style{
   justify-content: space-between;
 }
 
-.horizontal-flex-column{
+.horizontal-flex-column {
   display: flex;
   flex-direction: column;
 }
@@ -295,7 +295,7 @@ form.program-style{
   margin-right: 5px;
 }
 
-.profile-img{
+.profile-img {
   margin-bottom: 5px;
 }
 
@@ -317,7 +317,6 @@ form.program-style{
   margin: 0;
 }
 
-
 .deltagreen .sheet-body,
 .deltagreen .sheet-body .tab,
 .deltagreen .sheet-body .tab .editor {
@@ -330,12 +329,12 @@ form.program-style{
   text-transform: uppercase;
 }
 
-.sheet nav.sheet-tabs{
+.sheet nav.sheet-tabs {
   border-bottom: transparent !important;
   border-top: transparent !important;
 }
 
-.deltagreen section.sheet-body{
+.deltagreen section.sheet-body {
   border: #000 !important;
   border-width: 2px !important;
   border-style: solid !important;
@@ -401,7 +400,7 @@ form.program-style{
   min-height: 30px;
   line-height: 24px;
   padding: 3px 0;
-  border-bottom: 1px solid #BBB;
+  border-bottom: 1px solid #bbb;
 }
 
 .deltagreen .items-list .item .item-image {
@@ -416,7 +415,6 @@ form.program-style{
   -ms-flex: 0 0 24px;
   flex: 0 0 24px;
   margin-left: 6px;
-  
 }
 
 .deltagreen .items-list .item img {
@@ -436,7 +434,7 @@ form.program-style{
   text-align: right;
 }
 
-a.btn-tiny{
+a.btn-tiny {
   height: 26px;
   margin-left: 5px;
   margin-right: 5px;
@@ -445,11 +443,11 @@ a.btn-tiny{
   padding-bottom: 1px;
   padding-right: 5px;
   padding-left: 5px;
-  
+
   text-decoration: none;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   color: #333333;
-  
+
   border-radius: 4px;
   line-height: 25px;
   border: 1px solid #333333;
@@ -457,12 +455,12 @@ a.btn-tiny{
   text-align: center;
 }
 
-span.left-aligned-label{
+span.left-aligned-label {
   justify-content: left;
   margin-left: 5px;
 }
 
-span.max-attribute-value-label{
+span.max-attribute-value-label {
   border: 1px solid rgb(122, 121, 113);
   border-radius: 3px;
   padding-top: 3px;
@@ -472,34 +470,34 @@ span.max-attribute-value-label{
   height: 26px;
 }
 
-.deltagreen .skill-label{
+.deltagreen .skill-label {
   margin: 2px;
   align-content: flex-start;
 }
 
-.deltagreen .skill-type-label{
+.deltagreen .skill-type-label {
   margin: 2px;
 }
 
-.typed-skill-flexrow{
+.typed-skill-flexrow {
   display: flex;
   flex-direction: row;
   margin: 1px;
 }
 
-input.percentile-skill-input{
+input.percentile-skill-input {
   flex: 0 0 40px;
   margin-right: 5px;
   margin-left: 5px;
 }
 
-input.checkbox-skill-input{
+input.checkbox-skill-input {
   /*flex: 0 0 10px;*/
   width: 15px;
   height: 15px;
 }
 
-.deltagreen .sheet-header h2.profession{
+.deltagreen .sheet-header h2.profession {
   border-bottom: 0px;
   margin-top: 5px;
   margin-right: 0px;
@@ -511,23 +509,23 @@ input.checkbox-skill-input{
   margin: 0;
 }
 
-div .simple-centered-flex-div{
+div .simple-centered-flex-div {
   display: flex;
   align-items: center;
 }
 
-div input.fill-remaining-space{
+div input.fill-remaining-space {
   flex: 1;
   margin: 1px;
   text-align: left;
 }
 
-div span.bio-grid-label{
+div span.bio-grid-label {
   margin: 1px;
   text-align: left;
 }
 
-.bio-grid-2col{
+.bio-grid-2col {
   display: grid;
   grid-template-columns: 100px auto;
   align-items: center;
@@ -535,35 +533,35 @@ div span.bio-grid-label{
   row-gap: 10px;
 }
 
-.bio-grid-top-border{
-  border-top: 0px solid #AAA;
+.bio-grid-top-border {
+  border-top: 0px solid #aaa;
   padding-top: 10px;
 }
 
-.bio-grid-5col{
+.bio-grid-5col {
   display: grid;
   grid-template-columns: 100px 100px 20px 120px auto;
   align-items: center;
   padding-bottom: 10px;
 }
 
-.bonds-grid-3col{
+.bonds-grid-3col {
   display: grid;
   grid-template-columns: auto 50px max-content;
   align-items: center;
   padding-bottom: 10px;
 }
 
-.centered-input-value{
+.centered-input-value {
   text-align: center !important;
 }
 
-.breaking-point-grid-3col{
+.breaking-point-grid-3col {
   display: grid;
   grid-template-columns: 100px 70px 65px;
-  border-top: 0px solid #AAA;
+  border-top: 0px solid #aaa;
   margin-bottom: 10px;
-  border-bottom: 1px solid #AAA;
+  border-bottom: 1px solid #aaa;
   align-content: center;
   justify-content: left;
   align-items: center;
@@ -571,7 +569,7 @@ div span.bio-grid-label{
   padding-top: 10px;
 }
 
-.adaptation-grid-5col{
+.adaptation-grid-5col {
   display: grid;
   grid-template-columns: 100px 50px 50px 50px 200px;
   margin-top: 10px;
@@ -580,16 +578,16 @@ div span.bio-grid-label{
   justify-content: left;
   align-items: center;
   padding-bottom: 5px;
-  border-bottom: 0px solid #AAA;
+  border-bottom: 0px solid #aaa;
 }
 
-.adapted-label{
+.adapted-label {
   font-weight: bold;
   font-style: italic;
   color: rgb(139, 0, 0);
 }
 
-.weapon-grid-2col{
+.weapon-grid-2col {
   display: grid;
   grid-template-columns: 48% 48%;
   margin-top: 10px;
@@ -600,38 +598,38 @@ div span.bio-grid-label{
   column-gap: 4%;
 }
 
-.centered-item-property{
+.centered-item-property {
   text-align: center;
 }
 
-.bolded-label{
+.bolded-label {
   font-weight: bold;
 }
 
-.resource .labeled-resource-checkbox{
+.resource .labeled-resource-checkbox {
   vertical-align: middle;
 }
 
-.resource .first-aid-label{
+.resource .first-aid-label {
   vertical-align: bottom;
 }
 
-div .motivation-section{
-  border-bottom: 1px solid #AAA;
+div .motivation-section {
+  border-bottom: 1px solid #aaa;
   margin-bottom: 10px;
 }
 
-div .bottom-left-justified-resource{
+div .bottom-left-justified-resource {
   vertical-align: bottom;
   text-align: left;
 }
 
-div .first-aid-received-section{
-  border-bottom: 1px solid #AAA;
+div .first-aid-received-section {
+  border-bottom: 1px solid #aaa;
   margin-bottom: 10px;
 }
 
-.bonds-section-header{
+.bonds-section-header {
   /* border-top: 1px solid #AAA; */
   width: 100%;
   display: flex;
@@ -640,8 +638,8 @@ div .first-aid-received-section{
   margin-bottom: 5px;
 }
 
-.about-section-header{
-  border-top: 1px solid #AAA;
+.about-section-header {
+  border-top: 1px solid #aaa;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -649,18 +647,18 @@ div .first-aid-received-section{
   margin-bottom: 5px;
 }
 
-textarea.wounds{
+textarea.wounds {
   resize: none;
 }
 
-.resource-inner-grid-3col{
+.resource-inner-grid-3col {
   display: grid;
   grid-template-columns: 35% 30% 35%;
   align-items: center;
   text-align: center;
 }
 
-.resource-outer-grid-1col{
+.resource-outer-grid-1col {
   display: grid;
   grid-template-columns: 100%;
   align-items: center;
@@ -672,7 +670,7 @@ textarea.wounds{
   border-radius: 2px;
 }
 
-div.max-resource-value{
+div.max-resource-value {
   border: 1px solid rgb(122, 121, 113);
   border-radius: 3px;
   height: 100%;
@@ -681,7 +679,7 @@ div.max-resource-value{
   align-items: center;
 }
 
-.physical-stats-outer-grid-3col{
+.physical-stats-outer-grid-3col {
   display: grid;
   grid-template-columns: 33% 34% 33%;
   align-items: center;
@@ -691,12 +689,12 @@ div.max-resource-value{
   grid-gap: 5px;
 }
 
-.physical-stats-and-feature{
+.physical-stats-and-feature {
   border-radius: 2px;
   border: 1.5px solid #000000;
 }
 
-div.horizontal-bar-section-divider{
+div.horizontal-bar-section-divider {
   display: grid;
   grid-template-columns: 100%;
   justify-content: center;
@@ -738,7 +736,7 @@ div.horizontal-bar-section-divider.contains-hide-button {
   justify-self: end;
 }
 
-div.horizontal-bar-section-header{
+div.horizontal-bar-section-header {
   display: grid;
   grid-template-columns: 100%;
   justify-content: center;
@@ -752,11 +750,11 @@ div.horizontal-bar-section-header{
   height: 50px;
 }
 
-.physical-description-label{
+.physical-description-label {
   font-weight: bold;
 }
 
-div.motivation-editor-container div.editor{
+div.motivation-editor-container div.editor {
   height: 400px;
   min-height: 100% !important;
 }
@@ -778,13 +776,13 @@ div.motivation-editor-container div.editor{
 }
 
 .deltagreen .editor-host .tox {
-  height:100% !important;
-  display:block;
+  height: 100% !important;
+  display: block;
 }
 
 .deltagreen .editor-host .tox-tinymce {
-  height:100% !important;
-  display:block;
+  height: 100% !important;
+  display: block;
 }
 
 .deltagreen .editor-host .tox .tox-edit-area {
@@ -805,14 +803,14 @@ div.motivation-editor-container div.editor{
   border: 0px solid black;
 }
 
-input.item-sheet-short-input{
+input.item-sheet-short-input {
   width: 75px;
   margin-right: 5px;
   margin-left: 5px;
   text-align: center !important;
 }
 
-.item-grid-button-row{
+.item-grid-button-row {
   vertical-align: middle !important;
   line-height: inherit;
   padding: 5px 0px 0px 10px;
@@ -822,7 +820,7 @@ input.item-sheet-short-input{
   Bonds Item Sheet
 */
 
-.bond-sheet-grid-2col{
+.bond-sheet-grid-2col {
   display: grid;
   grid-template-columns: 25% 75%;
   align-items: center;
@@ -832,7 +830,7 @@ input.item-sheet-short-input{
   grid-gap: 5px;
 }
 
-.bond-sheet-horizontal-grid-2col{
+.bond-sheet-horizontal-grid-2col {
   display: grid;
   grid-template-columns: 150px auto;
   align-items: center;
@@ -847,9 +845,9 @@ input.item-sheet-short-input{
   Motivation Item Sheet
 */
 
-.motivation-sheet-horizontal-grid-2col{
+.motivation-sheet-horizontal-grid-2col {
   display: grid;
-  grid-template-columns:50% 50%;
+  grid-template-columns: 50% 50%;
   align-items: center;
   justify-content: center;
   text-align: left;
@@ -861,7 +859,7 @@ input.item-sheet-short-input{
   Armor Item Sheet
 */
 
-.armor-sheet-grid-2col{
+.armor-sheet-grid-2col {
   display: grid;
   grid-template-columns: 25% 75%;
   align-items: center;
@@ -872,7 +870,7 @@ input.item-sheet-short-input{
   padding-left: 5px;
 }
 
-.armor-sheet-horizontal-grid-2col{
+.armor-sheet-horizontal-grid-2col {
   display: grid;
   grid-template-columns: 100px auto;
   align-items: center;
@@ -883,7 +881,7 @@ input.item-sheet-short-input{
   padding-right: 5px;
 }
 
-.armor-sheet-secondary-grid-2col{
+.armor-sheet-secondary-grid-2col {
   display: grid;
   grid-template-columns: 25% 75%;
   align-items: center;
@@ -897,7 +895,7 @@ input.item-sheet-short-input{
   Gear Item Sheet
 */
 
-.gear-sheet-grid-2col{
+.gear-sheet-grid-2col {
   display: grid;
   grid-template-columns: 25% 75%;
   align-items: center;
@@ -907,7 +905,7 @@ input.item-sheet-short-input{
   padding-left: 5px;
 }
 
-.gear-sheet-horizontal-grid-2col{
+.gear-sheet-horizontal-grid-2col {
   display: grid;
   grid-template-columns: 100px auto;
   align-items: center;
@@ -922,7 +920,7 @@ input.item-sheet-short-input{
   Weapon Item Sheet
 */
 
-.weapon-sheet-grid-2col{
+.weapon-sheet-grid-2col {
   display: grid;
   grid-template-columns: 25% 75%;
   align-items: center;
@@ -932,7 +930,7 @@ input.item-sheet-short-input{
   padding-left: 5px;
 }
 
-.weapon-sheet-horizontal-grid-2col{
+.weapon-sheet-horizontal-grid-2col {
   display: grid;
   grid-template-columns: 100px auto;
   align-items: center;
@@ -943,9 +941,9 @@ input.item-sheet-short-input{
   padding-right: 5px;
 }
 
-.weapon-sheet-outer-grid-2col{
+.weapon-sheet-outer-grid-2col {
   display: grid;
-  grid-template-columns: 60% 40% ;
+  grid-template-columns: 60% 40%;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -955,7 +953,7 @@ input.item-sheet-short-input{
   row-gap: 5px;
 }
 
-.weapon-sheet-horizontal-grid-left-2col{
+.weapon-sheet-horizontal-grid-left-2col {
   display: grid;
   grid-template-columns: 50% 50%;
   align-items: center;
@@ -966,7 +964,7 @@ input.item-sheet-short-input{
   padding-right: 10px;
 }
 
-.weapon-sheet-horizontal-grid-right-2col{
+.weapon-sheet-horizontal-grid-right-2col {
   display: grid;
   grid-template-columns: 60% 40%;
   align-items: center;
@@ -977,7 +975,7 @@ input.item-sheet-short-input{
   padding-right: 10px;
 }
 
-.weapon-sheet-secondary-grid-2col{
+.weapon-sheet-secondary-grid-2col {
   display: grid;
   grid-template-columns: 40% 60%;
   align-items: center;
@@ -991,7 +989,7 @@ input.item-sheet-short-input{
   Unnatural Character Sheet Specific Classes
 */
 
-.unnatural-notes-section{
+.unnatural-notes-section {
   display: grid;
   grid-template-columns: 100%;
   align-items: left;
@@ -1002,69 +1000,71 @@ input.item-sheet-short-input{
   text-align: left;
 }
 
-
-.skill-util-buttons{
+.skill-util-buttons {
   margin: 5px;
 }
 
-.apply-skill-improvements{
+.apply-skill-improvements {
   float: right;
 }
 
-.yellow-king{
+.yellow-king {
   color: #a0912f;
 }
 
-.yellow-sign{
+.yellow-sign {
   font-weight: bold;
   text-shadow: 1px 1px #313a00;
 }
 
-.yellow-king-rotate1{
+.yellow-king-rotate1 {
   transform: rotate(3deg);
 }
 
-.yellow-king-rotate4{
+.yellow-king-rotate4 {
   transform: rotate(4deg);
 }
 
-.yellow-king-rotate2{
+.yellow-king-rotate2 {
   transform: rotate(-1deg);
 }
 
-.yellow-king-rotate3{
+.yellow-king-rotate3 {
   transform: rotate(5deg);
 }
 
-.yellow-king-grid-9col{
+.yellow-king-grid-9col {
   display: grid;
   grid-template-columns: max-content 5px max-content max-content 20px max-content max-content 10px 35px;
   align-items: center;
   padding-bottom: 10px;
 }
 
-.yellow-king-grid-5col{
+.yellow-king-grid-5col {
   display: grid;
   grid-template-columns: min-content 275px 20px min-content auto;
   align-items: center;
   padding-bottom: 10px;
 }
 
-.yellow-king-label{
+.yellow-king-label {
   margin-right: 10px;
 }
 
-.yellow-king input, .yellow-king select, .yellow-king textarea{
+.yellow-king input,
+.yellow-king select,
+.yellow-king textarea {
   color: #a0912f;
   font-weight: bold;
 }
 
-.yellow-king textarea:focus, .yellow-king input:focus{
+.yellow-king textarea:focus,
+.yellow-king input:focus {
   color: #a0912f;
 }
 
-.top-div-border{
-  border-top: 1px solid #AAA;
+.top-div-border {
+  border-top: 1px solid #aaa;
   margin-bottom: 10px;
   padding-bottom: 10px;
   padding-top: 10px;

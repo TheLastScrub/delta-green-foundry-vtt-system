@@ -20,7 +20,7 @@ http://www.delta-green.com/
 
 Whatever system documentation currently exists can be found [here.](https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/blob/master/documentation/home.md)
 
-*NOTE* - There is a system setting that controls the styling of the sheets. The current default is "Program" which gives a more modern look. To look more like the way the system looked prior to v1.3.0, choose the 'Cowboys' option.
+_NOTE_ - There is a system setting that controls the styling of the sheets. The current default is "Program" which gives a more modern look. To look more like the way the system looked prior to v1.3.0, choose the 'Cowboys' option.
 
 ![Config Screenshot](./documentation/images/system-settings.webp)
 
@@ -28,7 +28,7 @@ See samples of all tabs in the main agent character sheet [here](./documentation
 
 ![Character Sheet Skills Section Screenshot](./documentation/images/agent_sheet_program_skills_tab.webp)
 
-The system automates most of the calculations on the sheet such as maximum HP/WP/SAN.  Recalculating break points can be done by clicking a button.  Clicking on labels for skills, sanity, x5 skill tests or weapon damage/lethality will automatically roll those tests or damage.
+The system automates most of the calculations on the sheet such as maximum HP/WP/SAN. Recalculating break points can be done by clicking a button. Clicking on labels for skills, sanity, x5 skill tests or weapon damage/lethality will automatically roll those tests or damage.
 
 ![Example Rolls In Chat Window](./documentation/images/chat_rolls.webp)
 
@@ -46,7 +46,7 @@ There are also some compendiums currently available with some of the more common
 
 # System Status
 
-The system is now largely stable and publicably available in Foundry as an official system!  There will still be tweaks here and there, but no major changes are currently planned. 
+The system is now largely stable and publicably available in Foundry as an official system! There will still be tweaks here and there, but no major changes are currently planned.
 
 If there is specific functionality you would like incorporated in the system, please open an issue on the [Issues](https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/issues) tab in Github.
 
@@ -54,7 +54,7 @@ If there is specific functionality you would like incorporated in the system, pl
 
 The system is now included in the list of official Foundry VTT game systems, and as such can be installed directly from within Foundry.
 
-If there is a need to manually install the system, go to _Game Systems_ and click _Install System_.  Then in the _Manifest URL_ input field, paste the following link and then click _Install_:
+If there is a need to manually install the system, go to _Game Systems_ and click _Install System_. Then in the _Manifest URL_ input field, paste the following link and then click _Install_:
 
 https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/raw/master/system.json
 
@@ -76,7 +76,7 @@ https://gitlab.com/asacolips-projects/foundry-mods/foundryvtt-system-tutorial
 
 ## Delta Green Agent Pregen List
 
-Comes from a character generator created by jimstorch, who graciously posted the results on Reddit for all to use.  See the GitHub page for more information:  https://github.com/jimstorch/DGGen
+Comes from a character generator created by jimstorch, who graciously posted the results on Reddit for all to use. See the GitHub page for more information: https://github.com/jimstorch/DGGen
 
 ## Operation Code Name Generator
 
@@ -85,7 +85,7 @@ The roll tables added to generate operation code names comes from Reddit user /u
 ## Localization
 
 Portugese (BR) Translation submitted by IgorAK25
-Spanish Translation submitted by CthulhuRol 
+Spanish Translation submitted by CthulhuRol
 Catalonian Translation submitted by trombonecot
 
 ## Fonts (Some in use, others that I would like to use at some point)
@@ -103,7 +103,7 @@ https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 By Astigmatic (Principal Design)
 https://fonts.google.com/specimen/Special+Elite?sidebar.open&selection.family=Special+Elite#standard-styles
 
-License:  Apache License, Version 2.0
+License: Apache License, Version 2.0
 http://www.apache.org/licenses/LICENSE-2.0
 
 ### DIDACT GOTHIC FONT
@@ -134,47 +134,47 @@ https://github.com/uswds/public-sans
 
 ## Game Icons
 
-ICONS -  https://game-icons.net/
+ICONS - https://game-icons.net/
 https://creativecommons.org/licenses/by/3.0/
 
-* Sawed-off shotgun icon by Delapouite under CC BY 3.0
-* Crosshair icon by Delapouite under CC BY 3.0
-* Two handed sword icon by Delapouite under CC BY 3.0
-* Katana icon by Delapouite under CC BY 3.0
-* Baseball bat icon by Delapouite under CC BY 3.0
-* Hatchet icon by Delapouite under CC BY 3.0
-* Wood axe icon by Delapouite under CC BY 3.0
-* Brass knuckles icon by Delapouite under CC BY 3.0
-* Flashlight icon by Delapouite under CC BY 3.0
-* Wire icon by Delapouite under CC BY 3.0
-* Gun stock icon by Delapouite under CC BY 3.0
-* AK47 icon by Skoll under CC BY 3.0
-* Switchblade icon by Skoll under CC BY 3.0
-* Desert Eagle iconby Skoll under CC BY 3.0
-* Colt M1911 icon by Skoll under CC BY 3.0
-* Revolver icon by Skoll under CC BY 3.0
-* Lee Enfield icon by Skoll under CC BY 3.0
-* FN FAL icon by Skoll under CC BY 3.0
-* Walther PPK icon by Skoll under CC BY 3.0
-* Kevlar vest icon by Skoll under CC BY 3.0
-* Spectre M4 icon by Skoll under CC BY 3.0
-* FN Fal icon by Skoll under CC BY 3.0
-* Telescopic baton icon by Skoll under CC BY 3.0
-* Baton icon by Skoll under CC BY 3.0
-* Bayonet icon by Skoll under CC BY 3.0
-* Jaws icon by Skoll under CC BY 3.0
-* Helmet icon by sbed under CC BY 3.0
-* Kevlar icon by sbed under CC BY 3.0
-* Bowie knife icon by Lorc under CC BY 3.0
-* Space suit icon by Lorc under CC BY 3.0
-* Grenade icon by Lorc under CC BY 3.0
-* Stiletto icon by Lorc under CC BY 3.0
-* Punch icon by Lorc under CC BY 3.0.
-* Arrowhead icon by Lorc under CC BY 3.0
-* Claw Slashes icon by Lorc under CC BY 3.0
-* Magic Hand icon by Lorc under CC BY 3.0
-* Magic Shield icon by Lorc under CC BY 3.0
-* Sly icon by Lorc under CC BY 3.0
-* Swap Bag icon by Lorc under CC BY 3.0
-* Person icon by Delapouite under CC BY 3.0
-* Cowled icon by Lorc under CC BY 3.0
+- Sawed-off shotgun icon by Delapouite under CC BY 3.0
+- Crosshair icon by Delapouite under CC BY 3.0
+- Two handed sword icon by Delapouite under CC BY 3.0
+- Katana icon by Delapouite under CC BY 3.0
+- Baseball bat icon by Delapouite under CC BY 3.0
+- Hatchet icon by Delapouite under CC BY 3.0
+- Wood axe icon by Delapouite under CC BY 3.0
+- Brass knuckles icon by Delapouite under CC BY 3.0
+- Flashlight icon by Delapouite under CC BY 3.0
+- Wire icon by Delapouite under CC BY 3.0
+- Gun stock icon by Delapouite under CC BY 3.0
+- AK47 icon by Skoll under CC BY 3.0
+- Switchblade icon by Skoll under CC BY 3.0
+- Desert Eagle iconby Skoll under CC BY 3.0
+- Colt M1911 icon by Skoll under CC BY 3.0
+- Revolver icon by Skoll under CC BY 3.0
+- Lee Enfield icon by Skoll under CC BY 3.0
+- FN FAL icon by Skoll under CC BY 3.0
+- Walther PPK icon by Skoll under CC BY 3.0
+- Kevlar vest icon by Skoll under CC BY 3.0
+- Spectre M4 icon by Skoll under CC BY 3.0
+- FN Fal icon by Skoll under CC BY 3.0
+- Telescopic baton icon by Skoll under CC BY 3.0
+- Baton icon by Skoll under CC BY 3.0
+- Bayonet icon by Skoll under CC BY 3.0
+- Jaws icon by Skoll under CC BY 3.0
+- Helmet icon by sbed under CC BY 3.0
+- Kevlar icon by sbed under CC BY 3.0
+- Bowie knife icon by Lorc under CC BY 3.0
+- Space suit icon by Lorc under CC BY 3.0
+- Grenade icon by Lorc under CC BY 3.0
+- Stiletto icon by Lorc under CC BY 3.0
+- Punch icon by Lorc under CC BY 3.0.
+- Arrowhead icon by Lorc under CC BY 3.0
+- Claw Slashes icon by Lorc under CC BY 3.0
+- Magic Hand icon by Lorc under CC BY 3.0
+- Magic Shield icon by Lorc under CC BY 3.0
+- Sly icon by Lorc under CC BY 3.0
+- Swap Bag icon by Lorc under CC BY 3.0
+- Person icon by Delapouite under CC BY 3.0
+- Cowled icon by Lorc under CC BY 3.0
