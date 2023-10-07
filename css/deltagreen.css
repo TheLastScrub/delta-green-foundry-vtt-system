@@ -129,6 +129,11 @@ form.program-style {
   color: #999999;
 }
 
+input.breaking-point-hit{
+  color: rgb(117, 0, 0);
+  font-weight: bold;
+}
+
 .dg-red {
   color: rgb(117, 0, 0);
 }
