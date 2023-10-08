@@ -1,6 +1,6 @@
 ## Release/Patch Notes
 
-### Version 1.3.2 - 2023-XX-XX
+### Version 1.3.2 - 2023-10-07
 
 - Enhancement - When hitting a breakpoint, current SAN now turns bold and red, to help indicate you need to reset your breaking point.
 - Fix [Github #86] - You can now right-click again to get the modify roll dialog, instead of just shift-click.
