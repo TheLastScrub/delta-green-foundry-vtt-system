@@ -26,6 +26,7 @@ export default function registerSystemSettings() {
     hint: "Hide sanity from players on both character sheet and rolls.",
     scope: "world",
     config: true,
+    requiresReload: true,
     type: Boolean,
     default: false,
   });
@@ -56,10 +57,12 @@ export default function registerSystemSettings() {
     hint: "Show Impossible Landscapes-specific fields from character sheets.",
     scope: "world",
     config: true,
+    requiresReload: true,
     type: Boolean,
     default: true,
   });
 
+  // obsolete - will be removed at some point
   game.settings.register("deltagreen", "characterSheetFont", {
     name: "World Font Choice",
     hint: "Choose font style for use throughout this world.",
@@ -83,6 +86,7 @@ export default function registerSystemSettings() {
     },
   });
 
+  // obsolete - will be removed at some point
   game.settings.register("deltagreen", "characterSheetBackgroundImageSetting", {
     name: "World Sheet Background Image",
     hint: "Choose background image for use throughout this world. (Refresh page to see change.)",

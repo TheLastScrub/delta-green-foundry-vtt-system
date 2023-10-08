@@ -223,6 +223,13 @@ export default class DeltaGreenActor extends Actor {
       system.sanity.adaptations.helplessness.isAdapted = false;
     }
 
+    if(system.sanity.value <= system.sanity.currentBreakingPoint){
+      system.sanity.breakingPointHit = true;
+    }
+    else{
+      system.sanity.breakingPointHit = false;
+    }
+
     // calculate total armor rating
     let protection = 0;
     for (const i of agent.items) {

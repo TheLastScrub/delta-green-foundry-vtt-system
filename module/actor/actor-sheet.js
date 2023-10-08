@@ -237,7 +237,8 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
     // Rollable abilities - bind to everything with the 'Rollable' class
     html.find(".rollable").click(this._onRoll.bind(this));
-
+    html.find('.rollable').contextmenu(this._onRoll.bind(this)); // this is for right-click, which triggers the roll modifier dialogue for most rolls
+    
     html.find(".toggle-untrained").click(() =>
       this.actor.update({
         "system.showUntrainedSkills": !this.actor.system.showUntrainedSkills,

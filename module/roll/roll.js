@@ -132,12 +132,18 @@ export class DGPercentileRoll extends DGRoll {
    * @returns {Promise<Object|void>} - the results of the dialog.
    */
   async showDialog() {
-    let isSanCheck = false;
-    const hideSanTarget =
-      !game.user.isGM && game.settings.get("deltagreen", "keepSanityPrivate");
+    const privateSanSetting = game.settings.get(
+      "deltagreen",
+      "keepSanityPrivate",
+    );
 
-    if (this.key === "sanity" || this.key === "ritual") {
-      isSanCheck = true;
+    let hideSanTarget = false;
+    if (
+      privateSanSetting &&
+      (this.type === "sanity" || this.key === "ritual") &&
+      !game.user.isGM
+    ) {
+      hideSanTarget = true;
     }
 
     const backingData = {
@@ -145,7 +151,6 @@ export class DGPercentileRoll extends DGRoll {
         label: this.localizedKey,
         originalTarget: this.target,
         targetModifier: 20,
-        isSanCheck,
         hideTarget: hideSanTarget,
       },
     };
@@ -212,7 +217,7 @@ export class DGPercentileRoll extends DGRoll {
     );
     if (
       privateSanSetting &&
-      (this.key === "sanity" || this.key === "ritual") &&
+      (this.type === "sanity" || this.key === "ritual") &&
       !game.user.isGM
     ) {
       rollMode = "blindroll";
@@ -499,14 +504,10 @@ export class DGDamageRoll extends DGRoll {
       this.options.rollMode || game.settings.get("core", "rollMode");
     let label = this.formula;
     try {
-      label = `${this.item.name}: ${game.i18n.localize(
-        "DG.Roll.Rolling",
-      )} <b>${game.i18n
-        .localize("DG.Roll.Damage")
-        .toUpperCase()}</b> ${game.i18n.localize(
-        "DG.Roll.For",
-      )} <b>${label.toUpperCase()}</b>`;
-    } catch {
+      label = `${game.i18n.localize("DG.Roll.Rolling",)} <b>${game.i18n.localize("DG.Roll.Damage").
+        toUpperCase()}</b> ${game.i18n.localize("DG.Roll.For",)} ${this.item.name}`;
+    } catch(ex) {
+      //console.log(ex);
       label = `Rolling <b>DAMAGE</b> for <b>${label.toUpperCase()}</b>`;
     }
     return this.createMessage(this.total, label, rollMode);

@@ -1,5 +1,12 @@
 ## Release/Patch Notes
 
+### Version 1.3.2 - 2023-XX-XX
+
+- Enhancement - When hitting a breakpoint, current SAN now turns bold and red, to help indicate you need to reset your breaking point.
+- Fix [Github #86] - You can now right-click again to get the modify roll dialog, instead of just shift-click.
+- Fix [Github #87] - SAN rolls are hidden properly again if GM chooses.
+- Fix [Github #97] - Fixed broken tooltip on SAN that did not show current break point anymore.
+
 ### Version 1.3.1 - 2023-09-23
 
 - Enhancement - Changed pause icon to be Delta Green logo.

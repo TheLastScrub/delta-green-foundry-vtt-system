@@ -48,6 +48,7 @@
 }
 
 /* Override the default Foundry CSS to add the padding we removed from the outer window back in */
+.deltagreen section.window-content form.locked,
 .deltagreen section.window-content form.editable {
   padding: 6px 6px 6px 6px !important;
 }
@@ -126,6 +127,11 @@ form.program-style {
 
 .not-rollable {
   color: #999999;
+}
+
+input.breaking-point-hit{
+  color: rgb(117, 0, 0);
+  font-weight: bold;
 }
 
 .dg-red {
