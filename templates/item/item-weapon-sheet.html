@@ -50,8 +50,8 @@
 
         <div class="weapon-sheet-horizontal-grid-right-2col">
           {{#if_eq item.system.skill 'custom'}}
-          <span class="resource-label">{{localize 'DG.ItemWindow.Weapons.CustomSkillTarget'}}:</span>
-          <input type="text" name="system.customSkillTarget" value="{{item.system.customSkillTarget}}" data-dtype="Number"/>
+            <span class="resource-label">{{localize 'DG.ItemWindow.Weapons.CustomSkillTarget'}}:</span>
+            <input type="text" name="system.customSkillTarget" value="{{../item.system.customSkillTarget}}" data-dtype="Number"/>
           {{/if_eq}}
         </div>
 

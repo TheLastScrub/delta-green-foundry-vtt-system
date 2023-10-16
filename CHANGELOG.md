@@ -1,5 +1,9 @@
 ## Release/Patch Notes
 
+### Version 1.3.3 - 2023-XX-XX
+
+- Fix [Github #93] - Custom target numbers for weapons can now be set correctly.
+
 ### Version 1.3.2 - 2023-10-07
 
 - Enhancement - When hitting a breakpoint, current SAN now turns bold and red, to help indicate you need to reset your breaking point.
