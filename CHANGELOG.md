@@ -1,6 +1,6 @@
 ## Release/Patch Notes
 
-### Version 1.3.3 - 2023-XX-XX
+### Version 1.3.3 - 2023-10-17
 
 - Fix [Github #93] - Custom target numbers for weapons can now be set correctly.
 
