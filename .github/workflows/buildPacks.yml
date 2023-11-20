@@ -48,7 +48,6 @@ jobs:
           files: "system.json"
         env:
           version: ${{steps.get_version.outputs.version-without-v}}
-          manifest: https://github.com/${{github.repository}}/releases/latest/download/system.json
           download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/deltagreen.zip
       # 14. Zip up the branch with the LevelDB packs.
       - name: Zip
