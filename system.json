@@ -128,7 +128,7 @@
       }
     }
   ],
-  "manifest": "DUMMY_VALUE",
+  "manifest": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/releases/latest/download/system.json",
   "download": "DUMMY_VALUE",
   "gridDistance": 1,
   "gridUnits": "m",
