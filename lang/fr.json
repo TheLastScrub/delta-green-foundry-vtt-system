@@ -163,10 +163,10 @@
     "DG.Tooltip.FirstAidAttempted": "Dés qu'un Agent reçoit les premiers soins, il ne peut plus en bénéficier tant qu'il n'a pas reçu de nouveaux dégâts d'une autre source.",
     "DG.Tooltip.AdaptedToViolence": "Être adapté à la violence signifie que l'empathie de votre Agent souffre lorsqu'il en vient à considérer la violence comme un outil de plus à manier. Il ou elle perd définitivement 1D6 CHA et le même montant dans chacun de ses Liens.",
     "DG.Tooltip.AdaptedToHelplessness": "Être adapté à l'impuissance signifie que la motivation personnelle de votre agent souffre lorsqu'il se retire du monde qui l'entoure. Dès que votre agent s'adapte à l'impuissance, il ou elle perd définitivement 1D6 POU.",
-	  "DG.Tooltip.ToggleEquippedState": "Cliquez pour indiquer si cet élément est équipé ou non.",
+    "DG.Tooltip.ToggleEquippedState": "Cliquez pour indiquer si cet élément est équipé ou non.",
 
     "DG.Gear.Expense.NA": "N/A ou Aucun",
-  	"DG.Gear.Expense.Incidental": "Courant",
+    "DG.Gear.Expense.Incidental": "Courant",
     "DG.Gear.Expense.Standard": "Standard",
     "DG.Gear.Expense.Unusual": "Inhabituel",
     "DG.Gear.Expense.Major": "Important",
@@ -232,20 +232,20 @@
 
     "DG.TypeSkills.Subskills.Painting": "Peinture",
 
-	  "DG.Sheet.BlockHeaders.Attributes": "ATTRIBUTS",
+    "DG.Sheet.BlockHeaders.Attributes": "ATTRIBUTS",
     "DG.Sheet.BlockHeaders.Statistics": "STATISTIQUES",
-  	"DG.Sheet.BlockHeaders.PhysicalDescriptionNotes": "DESCRIPTION PHYSIQUE / NOTES",
-	  "DG.Sheet.BlockHeaders.SkillsAndTraining": "COMPETENCES ET FORMATION",
-	  "DG.Sheet.BlockHeaders.Injuries": "BLESSURES",
-	  "DG.Sheet.BlockHeaders.BreakingPointAndAdaptations": "POINT DE RUPTURE ET ADAPTATIONS",
-	  "DG.Sheet.BlockHeaders.MotivationsAndDisorders": "MOTIVATIONS AND DESORDRES MENTAUX",
-	  "DG.Sheet.BlockHeaders.PersonalInfoCV": "INFORMATION PERSONNELLE / CV",
-	  "DG.Sheet.BlockHeaders.BondsRelationshipsContacts": "LIENS / RELATIONS / CONTACTS",
+    "DG.Sheet.BlockHeaders.PhysicalDescriptionNotes": "DESCRIPTION PHYSIQUE / NOTES",
+    "DG.Sheet.BlockHeaders.SkillsAndTraining": "COMPETENCES ET FORMATION",
+    "DG.Sheet.BlockHeaders.Injuries": "BLESSURES",
+    "DG.Sheet.BlockHeaders.BreakingPointAndAdaptations": "POINT DE RUPTURE ET ADAPTATIONS",
+    "DG.Sheet.BlockHeaders.MotivationsAndDisorders": "MOTIVATIONS AND DESORDRES MENTAUX",
+    "DG.Sheet.BlockHeaders.PersonalInfoCV": "INFORMATION PERSONNELLE / CV",
+    "DG.Sheet.BlockHeaders.BondsRelationshipsContacts": "LIENS / RELATIONS / CONTACTS",
 
     "DG.UnnaturalSheet.HideUntrainedSkillsLabel": "Caché compétences non connues",
     "DG.UnnaturalSheet.NotesLabel": "Notes",
     "DG.UnnaturalSheet.ShortDescriptionFallbackText": "Description de créature ou du type de créature",
-	  "DG.UnnaturalSheet.ShowUntrainedSkillsLabel": "Voir compétences non connues",
+    "DG.UnnaturalSheet.ShowUntrainedSkillsLabel": "Voir compétences non connues",
     "DG.UnnaturalSheet.Tabs.NotesTabLabel": "Compétences & Notes",
     "DG.UnnaturalSheet.Tabs.ItemsTabLabel": "Attaques & Capacités",
     "DG.NPCSheet.BreakPointAbbreviation": "PR",
@@ -262,12 +262,12 @@
     "DG.VehicleSheet.NotesLabel": "NOTES",
     "DG.VehicleSheet.DescriptionPlaceHolder": "Description du Véhicule",
 	
-  	"DG.Generic.CheckDamagedBondsBoxUntilNextHomeScene": "Cochez la case d'un Lien endommagé jusqu'à la fin de la prochaine scène HOME.",
-  	"DG.Generic.ClearAll": "videz les coches",
+    "DG.Generic.CheckDamagedBondsBoxUntilNextHomeScene": "Cochez la case d'un Lien endommagé jusqu'à la fin de la prochaine scène HOME.",
+    "DG.Generic.ClearAll": "videz les coches",
 
-  	"DG.Generic.SanDamage": "Dégâts SAN",
+    "DG.Generic.SanDamage": "Dégâts SAN",
 
-  	"DG.ItemWindow.Weapons.CustomSkillTarget": "Cible",
-  	"DG.ItemWindow.Weapons.SkillModifier": "Modificateur de compétences",
-  	"DG.ItemWindow.Custom": "Custom"
+    "DG.ItemWindow.Weapons.CustomSkillTarget": "Cible",
+    "DG.ItemWindow.Weapons.SkillModifier": "Modificateur de compétences",
+    "DG.ItemWindow.Custom": "Custom"
 }
