@@ -708,8 +708,33 @@ export default class DeltaGreenActorSheet extends ActorSheet {
   }
 
   async _showSpecialTrainingDialog(action, targetID) {
+    const specialTraining = this.actor.system.specialTraining.find(
+      (training) => training.id === targetID,
+    );
+
+    const skillList = Object.entries(this.actor.system.skills).map(
+      ([k, v]) => ({
+        key: k,
+        label: v.label,
+        targetNumber: v.proficiency,
+      }),
+    );
+    const typedSkillList = Object.values(this.actor.system.typedSkills).map(
+      (skill) => ({
+        key: skill.label,
+        group: skill.group,
+        label: skill.label,
+        targetNumber: skill.proficiency,
+      }),
+    );
+    const combinedSkillList = [...skillList, ...typedSkillList];
     const content = await renderTemplate(
       "systems/deltagreen/templates/dialog/special-training.html",
+      {
+        name: specialTraining?.name || "",
+        currentSkill: specialTraining?.skill || "",
+        skillList: combinedSkillList,
+      },
     );
 
     const buttonLabel = game.i18n.localize(

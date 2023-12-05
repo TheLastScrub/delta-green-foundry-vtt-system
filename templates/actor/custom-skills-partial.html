@@ -25,7 +25,7 @@
   {{#each actor.system.specialTraining as |training|}}
     <div class="item flexrow flex-group-center flex-thin-border">
       <label class="">
-        {{training.name}}
+        {{training.name}} ({{training.skill}})
       </label>
       <div class="item-controls">
           <a class="item-control special-training-action" data-action="Edit" data-id="{{training.id}}" title="Edit Training"><i class="fas fa-edit"></i></a>

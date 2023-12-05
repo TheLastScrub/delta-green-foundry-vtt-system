@@ -3,12 +3,24 @@
     <label>
       {{localize "DG.SpecialTraining.Dialog.NameLabel"}}
     </label>
-    <input type="text" name="special-training-label" />
+    <input type="text" name="special-training-label" value="{{name}}"/>
   </div>
   <div class="flexrow">
     <label>
       {{localize "DG.SpecialTraining.Dialog.SkillLabel"}}
     </label>
-    <input type="text" name="special-training-skill" />
+    {{#select currentSkill}}
+      <select name="special-training-skill">
+        {{#each skillList as |skill|}}
+          <option value="{{skill.key}}">
+            {{#if skill.group}}
+              {{skill.group}} ({{skill.label}})
+            {{else}}
+              {{skill.label}}
+            {{/if}}
+          </option>
+        {{/each}}
+      </select>
+    {{/select}}
   </div>
 </form>
