@@ -121,41 +121,7 @@
       </div>
       <br>
       <div>
-        <div class="item-controls skill-util-buttons">
-          <a class="item-control typed-skill-add"><i class="fas fa-plus"></i>{{localize 'DG.Skills.AddTypedOrCustomSkill'}}</a>
-          <a class="item-control special-training-add"><i class="fas fa-plus"></i>{{localize 'Add Special Training'}}</a> 
-        </div>
-        <div class="grid-2col">
-          {{#each actor.system.typedSkills as |skill key|}}
-            {{#if (hideSkillBasedOnProficiencyAndUserChoice ../actor.system.showUntrainedSkills skill.proficiency)}}
-            <div class="item flexrow flex-group-center flex-thin-border">
-              <label class="{{if_gt skill.proficiency 0 'rollable' 'not-rollable'}} skill-label" data-rolltype="skill" data-key="{{key}}" 
-                  {{#if skill.proficiency}}title="{{localize 'DG.Tooltip.SkillLabel'}}"{{/if}}
-                  {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}} 
-                >
-                {{skill.group}} ({{skill.label}})
-              </label>
-              <input class="percentile-skill-input" type="text" name="system.typedSkills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
-              
-              <div class="item-controls">
-                  <a class="item-control typed-skill-edit" title="Edit Skill"><i class="fas fa-edit" data-typedskill="{{key}}" ></i></a>
-                  <a class="item-control typed-skill-delete" title="Delete Skill"><i class="fas fa-trash" data-typedskill="{{key}}" ></i></a>
-              </div>
-            </div>
-            {{/if}}
-          {{/each}}
-          {{#each actor.system.specialTraining as |training|}}
-            <div class="item flexrow flex-group-center flex-thin-border">
-              <label class="">
-                {{training.name}}
-              </label>
-              <div class="item-controls">
-                  <a class="item-control typed-skill-edit" title="Edit Skill"><i class="fas fa-edit" data-typedskill="{{key}}" ></i></a>
-                  <a class="item-control typed-skill-delete" title="Delete Skill"><i class="fas fa-trash" data-typedskill="{{key}}" ></i></a>
-              </div>
-            </div>
-          {{/each}}
-        </div>
+        {{> "systems/deltagreen/templates/actor/custom-skills-partial.html"}}
       </div>
       <br>
       <div>
