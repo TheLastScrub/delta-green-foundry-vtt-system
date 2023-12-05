@@ -237,8 +237,8 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
     // Rollable abilities - bind to everything with the 'Rollable' class
     html.find(".rollable").click(this._onRoll.bind(this));
-    html.find('.rollable').contextmenu(this._onRoll.bind(this)); // this is for right-click, which triggers the roll modifier dialogue for most rolls
-    
+    html.find(".rollable").contextmenu(this._onRoll.bind(this)); // this is for right-click, which triggers the roll modifier dialogue for most rolls
+
     html.find(".toggle-untrained").click(() =>
       this.actor.update({
         "system.showUntrainedSkills": !this.actor.system.showUntrainedSkills,
@@ -645,6 +645,9 @@ export default class DeltaGreenActorSheet extends ActorSheet {
   }
 
   _addNewTypedSkill(newSkillLabel, newSkillGroup) {
+    const specialTraining = [
+      { name: "lockpicking", skill: "dex", id: randomID() },
+    ];
     const updatedData = duplicate(this.actor.system);
     const { typedSkills } = updatedData;
 
