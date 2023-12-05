@@ -128,8 +128,9 @@
       </div>
       <br>
       <div>
-        <div class="item-controls">
+        <div class="item-controls skill-util-buttons">
           <a class="item-control typed-skill-add"><i class="fas fa-plus"></i>{{localize 'DG.Skills.AddTypedOrCustomSkill'}}</a>
+          <a class="item-control special-training-add"><i class="fas fa-plus"></i>{{localize 'Add Special Training'}}</a> 
         </div>
         <div class="grid-2col">
           {{#each actor.system.typedSkills as |skill key|}}
@@ -149,6 +150,17 @@
               </div>
             </div>
             {{/if}}
+          {{/each}}
+          {{#each actor.system.specialTraining as |training|}}
+            <div class="item flexrow flex-group-center flex-thin-border">
+              <label class="">
+                {{training.name}}
+              </label>
+              <div class="item-controls">
+                  <a class="item-control typed-skill-edit" title="Edit Skill"><i class="fas fa-edit" data-typedskill="{{key}}" ></i></a>
+                  <a class="item-control typed-skill-delete" title="Delete Skill"><i class="fas fa-trash" data-typedskill="{{key}}" ></i></a>
+              </div>
+            </div>
           {{/each}}
         </div>
       </div>
