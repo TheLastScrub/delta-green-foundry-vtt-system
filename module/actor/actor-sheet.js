@@ -1,4 +1,4 @@
-/* globals $ game Roll ChatMessage AudioHelper ActorSheet mergeObject Dialog TextEditor ActiveEffect ui duplicate fromUuidSync */
+/* globals $ game Roll ChatMessage AudioHelper ActorSheet mergeObject Dialog TextEditor ActiveEffect ui duplicate fromUuidSync renderTemplate */
 
 import {
   DGPercentileRoll,
@@ -304,7 +304,13 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       this.actor.update({ [`system.typedSkills.-=${targetskill}`]: null });
     });
 
-    // Handle deletion of
+    html.find(".special-training-add").click((event) => {
+      event.preventDefault();
+      const targetID = event.target.getAttribute("data-id");
+      this._showSpecialTrainingDialog(targetID);
+    });
+
+    // Handle deletion of Special Training
     html.find(".special-training-delete").click((event) => {
       event.preventDefault();
       const targetID = event.target.getAttribute("data-id");
@@ -659,9 +665,6 @@ export default class DeltaGreenActorSheet extends ActorSheet {
   }
 
   _addNewTypedSkill(newSkillLabel, newSkillGroup) {
-    const specialTraining = [
-      { name: "lockpicking", skill: "dex", id: randomID() },
-    ];
     const updatedData = duplicate(this.actor.system);
     const { typedSkills } = updatedData;
 
@@ -701,6 +704,37 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
       this.actor.update({ data: updatedData });
     }
+  }
+
+  async _showSpecialTrainingDialog(targetskill) {
+    const content = await renderTemplate(
+      "systems/deltagreen/templates/dialog/special-training.html",
+    );
+
+    new Dialog({
+      content,
+      title: game.i18n.localize("DG.SpecialTraining.Dialog.Title"),
+      default: "add",
+      buttons: {
+        add: {
+          label: game.i18n.localize(
+            "DG.SpecialTraining.Dialog.AddSpecialTraining",
+          ),
+          callback: (btn) => {
+            const specialTrainingLabel = btn
+              .find("[name='special-training-label']")
+              .val();
+            const specialTrainingSkill = btn
+              .find("[name='special-training-skill']")
+              .val();
+            this._addSpecialTraining(
+              specialTrainingLabel,
+              specialTrainingSkill,
+            );
+          },
+        },
+      },
+    }).render(true);
   }
 
   /**
