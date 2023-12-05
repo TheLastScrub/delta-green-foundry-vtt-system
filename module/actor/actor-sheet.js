@@ -306,8 +306,8 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
     html.find(".special-training-action").click((event) => {
       event.preventDefault();
-      const action = event.target.getAttribute("data-action");
-      const targetID = event.target.getAttribute("data-id");
+      const action = event.currentTarget.getAttribute("data-action");
+      const targetID = event.currentTarget.getAttribute("data-id");
       this._showSpecialTrainingDialog(action, targetID);
     });
 
@@ -730,24 +730,40 @@ export default class DeltaGreenActorSheet extends ActorSheet {
             const specialTrainingSkill = btn
               .find("[name='special-training-skill']")
               .val();
-            this._addSpecialTraining(
-              specialTrainingLabel,
-              specialTrainingSkill,
-              targetID,
-            );
+            if (action === "Create")
+              this._createSpecialTraining(
+                specialTrainingLabel,
+                specialTrainingSkill,
+              );
+            if (action === "Edit")
+              this._editSpecialTraining(
+                specialTrainingLabel,
+                specialTrainingSkill,
+                targetID,
+              );
           },
         },
       },
     }).render(true);
   }
 
-  _addSpecialTraining(label, skill) {
+  _createSpecialTraining(label, skill) {
     const specialTrainingArray = duplicate(this.actor.system.specialTraining);
     specialTrainingArray.push({
       name: label,
       skill,
       id: randomID(),
     });
+    this.actor.update({ "system.specialTraining": specialTrainingArray });
+  }
+
+  _editSpecialTraining(label, skill, id) {
+    const specialTrainingArray = duplicate(this.actor.system.specialTraining);
+    const specialTraining = specialTrainingArray.find(
+      (training) => training.id === id,
+    );
+    specialTraining.name = label;
+    specialTraining.skill = skill;
     this.actor.update({ "system.specialTraining": specialTrainingArray });
   }
 
