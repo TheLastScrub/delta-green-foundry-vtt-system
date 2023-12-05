@@ -129,7 +129,7 @@ form.program-style {
   color: #999999;
 }
 
-input.breaking-point-hit{
+input.breaking-point-hit {
   color: rgb(117, 0, 0);
   font-weight: bold;
 }
@@ -438,6 +438,13 @@ input.breaking-point-hit{
   -ms-flex: 0 0 86px;
   flex: 0 0 86px;
   text-align: right;
+}
+
+.item-controls .item-control {
+  padding: 2px;
+  border-radius: 2.5px;
+  font-size: 0.8rem;
+  background-color: rgba(0, 0, 0, 0.185);
 }
 
 a.btn-tiny {
