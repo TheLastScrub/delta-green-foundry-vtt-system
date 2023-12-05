@@ -304,6 +304,20 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       this.actor.update({ [`system.typedSkills.-=${targetskill}`]: null });
     });
 
+    // Handle deletion of
+    html.find(".special-training-delete").click((event) => {
+      event.preventDefault();
+      const targetID = event.target.getAttribute("data-id");
+      const specialTrainingArray = duplicate(this.actor.system.specialTraining);
+      // Get the index of the training to be deleted
+      const index = specialTrainingArray.findIndex(
+        (training) => training.id === targetID,
+      );
+
+      specialTrainingArray.splice(index, 1);
+      this.actor.update({ "system.specialTraining": specialTrainingArray });
+    });
+
     html.find(".apply-skill-improvements").click((event) => {
       event.preventDefault();
 
