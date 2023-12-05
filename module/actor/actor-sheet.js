@@ -1,4 +1,4 @@
-/* globals $ game Roll ChatMessage AudioHelper ActorSheet mergeObject Dialog TextEditor ActiveEffect ui duplicate fromUuidSync renderTemplate */
+/* globals $ game Roll ChatMessage AudioHelper ActorSheet mergeObject Dialog TextEditor ActiveEffect ui duplicate fromUuidSync renderTemplate randomID */
 
 import {
   DGPercentileRoll,
@@ -304,10 +304,11 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       this.actor.update({ [`system.typedSkills.-=${targetskill}`]: null });
     });
 
-    html.find(".special-training-add").click((event) => {
+    html.find(".special-training-action").click((event) => {
       event.preventDefault();
+      const action = event.target.getAttribute("data-action");
       const targetID = event.target.getAttribute("data-id");
-      this._showSpecialTrainingDialog(targetID);
+      this._showSpecialTrainingDialog(action, targetID);
     });
 
     // Handle deletion of Special Training
@@ -706,20 +707,22 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     }
   }
 
-  async _showSpecialTrainingDialog(targetskill) {
+  async _showSpecialTrainingDialog(action, targetID) {
     const content = await renderTemplate(
       "systems/deltagreen/templates/dialog/special-training.html",
+    );
+
+    const buttonLabel = game.i18n.localize(
+      `DG.SpecialTraining.Dialog.${action}SpecialTraining`,
     );
 
     new Dialog({
       content,
       title: game.i18n.localize("DG.SpecialTraining.Dialog.Title"),
-      default: "add",
+      default: "confirm",
       buttons: {
-        add: {
-          label: game.i18n.localize(
-            "DG.SpecialTraining.Dialog.AddSpecialTraining",
-          ),
+        confirm: {
+          label: buttonLabel,
           callback: (btn) => {
             const specialTrainingLabel = btn
               .find("[name='special-training-label']")
@@ -730,11 +733,22 @@ export default class DeltaGreenActorSheet extends ActorSheet {
             this._addSpecialTraining(
               specialTrainingLabel,
               specialTrainingSkill,
+              targetID,
             );
           },
         },
       },
     }).render(true);
+  }
+
+  _addSpecialTraining(label, skill) {
+    const specialTrainingArray = duplicate(this.actor.system.specialTraining);
+    specialTrainingArray.push({
+      name: label,
+      skill,
+      id: randomID(),
+    });
+    this.actor.update({ "system.specialTraining": specialTrainingArray });
   }
 
   /**

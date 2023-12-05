@@ -65,7 +65,8 @@
   "DG.TypeSkills.Science": "Science",
   "DG.TypeSkills.Other": "Other",
 
-  "DG.SpecialTraining.Dialog.AddSpecialTraining": "Add Special Training",
+  "DG.SpecialTraining.Dialog.CreateSpecialTraining": "Add Special Training",
+  "DG.SpecialTraining.Dialog.EditSpecialTraining": "Edit Special Training",
   "DG.SpecialTraining.Dialog.NameLabel": "Name",
   "DG.SpecialTraining.Dialog.SkillLabel": "Skill or Stat",
   "DG.SpecialTraining.Dialog.Title": "Create/Edit Special Training",
