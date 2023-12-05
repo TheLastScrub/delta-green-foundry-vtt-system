@@ -234,7 +234,8 @@
             "proficiency": 0,
             "failure": false
           }
-        }
+        },
+        "specialTraining": []
       },
       "unnatural_skills": {
         "skills": {
@@ -423,7 +424,8 @@
             "proficiency": 0
           }
         },
-        "typedSkills": {}
+        "typedSkills": {},
+        "specialTraining": []
       }
     },
     "unnatural": {
