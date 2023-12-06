@@ -440,10 +440,11 @@ input.breaking-point-hit {
   text-align: right;
 }
 
-.item-controls .item-control {
+.deltagreen .action-pill {
   padding: 2px;
   border-radius: 2.5px;
   font-size: 0.8rem;
+  font-weight: bold;
   background-color: rgba(0, 0, 0, 0.185);
 }
 
