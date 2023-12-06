@@ -76,16 +76,16 @@ export default class DeltaGreenActorSheet extends ActorSheet {
         };
         // Convert the machine-readable name to a human-readable one.
         switch (true) {
-          case DG.statistics.includes(training.skill):
-            simplifiedTraining.skill = training.skill.toUpperCase();
+          case DG.statistics.includes(training.attribute):
+            simplifiedTraining.attribute = training.attribute.toUpperCase();
             break;
-          case DG.skills.includes(training.skill):
-            simplifiedTraining.skill =
-              this.actor.system.skills[training.skill].label;
+          case DG.skills.includes(training.attribute):
+            simplifiedTraining.attribute =
+              this.actor.system.skills[training.attribute].label;
             break;
           default:
-            simplifiedTraining.skill =
-              this.actor.system.typedSkills[training.skill].label;
+            simplifiedTraining.attribute =
+              this.actor.system.typedSkills[training.attribute].label;
             break;
         }
         return simplifiedTraining;
@@ -772,7 +772,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       "systems/deltagreen/templates/dialog/special-training.html",
       {
         name: specialTraining?.name || "",
-        currentSkill: specialTraining?.skill || "",
+        currentAttribute: specialTraining?.attribute || "",
         statList,
         skillList,
         typedSkillList,
@@ -795,18 +795,18 @@ export default class DeltaGreenActorSheet extends ActorSheet {
             const specialTrainingLabel = btn
               .find("[name='special-training-label']")
               .val();
-            const specialTrainingSkill = btn
+            const specialTrainingAttribute = btn
               .find("[name='special-training-skill']")
               .val();
             if (action === "Create")
               this._createSpecialTraining(
                 specialTrainingLabel,
-                specialTrainingSkill,
+                specialTrainingAttribute,
               );
             if (action === "Edit")
               this._editSpecialTraining(
                 specialTrainingLabel,
-                specialTrainingSkill,
+                specialTrainingAttribute,
                 targetID,
               );
           },
@@ -815,23 +815,23 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     }).render(true);
   }
 
-  _createSpecialTraining(label, skill) {
+  _createSpecialTraining(label, attribute) {
     const specialTrainingArray = duplicate(this.actor.system.specialTraining);
     specialTrainingArray.push({
       name: label,
-      skill,
+      attribute,
       id: randomID(),
     });
     this.actor.update({ "system.specialTraining": specialTrainingArray });
   }
 
-  _editSpecialTraining(label, skill, id) {
+  _editSpecialTraining(label, attribute, id) {
     const specialTrainingArray = duplicate(this.actor.system.specialTraining);
     const specialTraining = specialTrainingArray.find(
       (training) => training.id === id,
     );
     specialTraining.name = label;
-    specialTraining.skill = skill;
+    specialTraining.attribute = attribute;
     this.actor.update({ "system.specialTraining": specialTrainingArray });
   }
 
