@@ -66,6 +66,9 @@
   "DG.TypeSkills.Other": "Other",
 
   "DG.SpecialTraining.Dialog.CreateSpecialTraining": "Add Special Training",
+  "DG.SpecialTraining.Dialog.DropDown.CustomSkills": "Custom/Typed Skills",
+  "DG.SpecialTraining.Dialog.DropDown.Skills": "Skills",
+  "DG.SpecialTraining.Dialog.DropDown.Statistics": "Statistics",
   "DG.SpecialTraining.Dialog.EditSpecialTraining": "Edit Special Training",
   "DG.SpecialTraining.Dialog.NameLabel": "Name",
   "DG.SpecialTraining.Dialog.SkillLabel": "Skill or Stat",

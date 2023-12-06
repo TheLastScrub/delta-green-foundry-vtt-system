@@ -1,5 +1,6 @@
 /* globals $ game Roll ChatMessage AudioHelper ActorSheet mergeObject Dialog TextEditor ActiveEffect ui duplicate fromUuidSync renderTemplate randomID */
 
+import DG from "../config.js";
 import {
   DGPercentileRoll,
   DGLethalityRoll,
@@ -65,6 +66,32 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     if (this.actor.type === "agent") {
       this._prepareCharacterItems(data);
     }
+
+    // Prepare a simplified version of the special training for display on sheet.
+    const specialTraining = this.actor.system.specialTraining.map(
+      (training) => {
+        const simplifiedTraining = {
+          name: training.name,
+          id: training.id,
+        };
+        // Convert the machine-readable name to a human-readable one.
+        switch (true) {
+          case DG.statistics.includes(training.skill):
+            simplifiedTraining.skill = training.skill.toUpperCase();
+            break;
+          case DG.skills.includes(training.skill):
+            simplifiedTraining.skill =
+              this.actor.system.skills[training.skill].label;
+            break;
+          default:
+            simplifiedTraining.skill =
+              this.actor.system.typedSkills[training.skill].label;
+            break;
+        }
+        return simplifiedTraining;
+      },
+    );
+    data.specialTraining = specialTraining;
 
     switch (this.actor.type) {
       case "agent":
@@ -712,28 +739,43 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       (training) => training.id === targetID,
     );
 
-    const skillList = Object.entries(this.actor.system.skills).map(
-      ([k, v]) => ({
-        key: k,
-        label: v.label,
-        targetNumber: v.proficiency,
+    // Prepare simplified stat list
+    const statList = Object.entries(this.actor.system.statistics).map(
+      ([key, stat]) => ({
+        key,
+        label: game.i18n.localize(`DG.Attributes.${key}`),
+        targetNumber: stat.value * 5,
       }),
     );
-    const typedSkillList = Object.values(this.actor.system.typedSkills).map(
-      (skill) => ({
-        key: skill.label,
+
+    // Prepare simplified skill list
+    const skillList = Object.entries(this.actor.system.skills).map(
+      ([key, skill]) => ({
+        key,
+        label: skill.label,
+        targetNumber: skill.proficiency,
+      }),
+    );
+
+    // Prepare simplified typed/custom skill list
+    const typedSkillList = Object.entries(this.actor.system.typedSkills).map(
+      ([key, skill]) => ({
+        key,
         group: skill.group,
         label: skill.label,
         targetNumber: skill.proficiency,
       }),
     );
-    const combinedSkillList = [...skillList, ...typedSkillList];
+
+    // Prepare the template to feed to Dialog.
     const content = await renderTemplate(
       "systems/deltagreen/templates/dialog/special-training.html",
       {
         name: specialTraining?.name || "",
         currentSkill: specialTraining?.skill || "",
-        skillList: combinedSkillList,
+        statList,
+        skillList,
+        typedSkillList,
       },
     );
 
@@ -741,6 +783,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       `DG.SpecialTraining.Dialog.${action}SpecialTraining`,
     );
 
+    // Prepare and render dialog with above template.
     new Dialog({
       content,
       title: game.i18n.localize("DG.SpecialTraining.Dialog.Title"),

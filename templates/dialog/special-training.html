@@ -11,15 +11,27 @@
     </label>
     {{#select currentSkill}}
       <select name="special-training-skill">
-        {{#each skillList as |skill|}}
-          <option value="{{skill.key}}">
-            {{#if skill.group}}
-              {{skill.group}} ({{skill.label}})
-            {{else}}
+        <optgroup label="{{localize "DG.SpecialTraining.Dialog.DropDown.Statistics"}}"> 
+          {{#each statList as |stat|}}
+            <option value="{{stat.key}}" data-type="stat">
+              {{stat.label}}
+            </option>
+          {{/each}}
+        </optgroup>  
+        <optgroup label="{{localize "DG.SpecialTraining.Dialog.DropDown.Skills"}}"> 
+          {{#each skillList as |skill|}}
+            <option value="{{skill.key}}" data-type="skill">
               {{skill.label}}
-            {{/if}}
-          </option>
-        {{/each}}
+            </option>
+          {{/each}}
+        </optgroup>        
+        <optgroup label="{{localize "DG.SpecialTraining.Dialog.DropDown.CustomSkills"}}"> 
+          {{#each typedSkillList as |skill|}}
+            <option value="{{skill.key}}" data-type="typedSkill">
+              {{skill.group}} ({{skill.label}})
+            </option>
+          {{/each}}
+        </optgroup>
       </select>
     {{/select}}
   </div>
