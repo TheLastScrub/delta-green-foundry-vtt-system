@@ -448,6 +448,10 @@ input.breaking-point-hit {
   text-align: right;
 }
 
+.deltagreen .skill-and-training-controls {
+  flex: 0 0 80px;
+}
+
 .deltagreen .action-pill {
   padding: 2px;
   border-radius: 2.5px;
