@@ -68,39 +68,41 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     }
 
     // Prepare a simplified version of the special training for display on sheet.
-    const specialTraining = this.actor.system.specialTraining.map(
-      (training) => {
-        const simplifiedTraining = {
-          name: training.name,
-          id: training.id,
-          key: training.attribute,
-          rollType: "skill",
-        };
-        // Convert the machine-readable name to a human-readable one.
-        switch (true) {
-          case DG.statistics.includes(training.attribute):
-            simplifiedTraining.attribute = training.attribute.toUpperCase();
-            simplifiedTraining.targetNumber =
-              this.actor.system.statistics[training.attribute].value;
-            simplifiedTraining.rollType = "stat";
-            break;
-          case DG.skills.includes(training.attribute):
-            simplifiedTraining.attribute =
-              this.actor.system.skills[training.attribute].label;
-            simplifiedTraining.targetNumber =
-              this.actor.system.skills[training.attribute].proficiency;
-            break;
-          default:
-            simplifiedTraining.attribute =
-              this.actor.system.typedSkills[training.attribute].label;
-            simplifiedTraining.targetNumber =
-              this.actor.system.typedSkills[training.attribute].proficiency;
-            break;
-        }
-        return simplifiedTraining;
-      },
-    );
-    data.specialTraining = specialTraining;
+    if (this.actor.type !== "vehicle") {
+      const specialTraining = this.actor.system.specialTraining.map(
+        (training) => {
+          const simplifiedTraining = {
+            name: training.name,
+            id: training.id,
+            key: training.attribute,
+            rollType: "skill",
+          };
+          // Convert the machine-readable name to a human-readable one.
+          switch (true) {
+            case DG.statistics.includes(training.attribute):
+              simplifiedTraining.attribute = training.attribute.toUpperCase();
+              simplifiedTraining.targetNumber =
+                this.actor.system.statistics[training.attribute].value;
+              simplifiedTraining.rollType = "stat";
+              break;
+            case DG.skills.includes(training.attribute):
+              simplifiedTraining.attribute =
+                this.actor.system.skills[training.attribute].label;
+              simplifiedTraining.targetNumber =
+                this.actor.system.skills[training.attribute].proficiency;
+              break;
+            default:
+              simplifiedTraining.attribute =
+                this.actor.system.typedSkills[training.attribute].label;
+              simplifiedTraining.targetNumber =
+                this.actor.system.typedSkills[training.attribute].proficiency;
+              break;
+          }
+          return simplifiedTraining;
+        },
+      );
+      data.specialTraining = specialTraining;
+    }
 
     switch (this.actor.type) {
       case "agent":
