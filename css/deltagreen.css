@@ -224,6 +224,14 @@ input.breaking-point-hit {
 .flex-thin-border {
   border: 1px solid #999;
   border-radius: 2px;
+  border-left-color: darkslategray;
+  border-left-width: 4px;
+}
+
+/* Make sure Special Training boxes are the same height
+   as all other skill boxes */
+.flex-thin-border.special-training-box {
+  min-height: 27px;
 }
 
 .flex-mid-border {
@@ -503,6 +511,7 @@ input.percentile-skill-input {
   flex: 0 0 40px;
   margin-right: 5px;
   margin-left: 5px;
+  height: unset;
 }
 
 input.checkbox-skill-input {
