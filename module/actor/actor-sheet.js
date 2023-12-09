@@ -75,22 +75,23 @@ export default class DeltaGreenActorSheet extends ActorSheet {
             name: training.name,
             id: training.id,
             key: training.attribute,
-            rollType: "skill",
           };
           // Convert the machine-readable name to a human-readable one.
           switch (true) {
+            // Stats
             case DG.statistics.includes(training.attribute):
               simplifiedTraining.attribute = training.attribute.toUpperCase();
               simplifiedTraining.targetNumber =
                 this.actor.system.statistics[training.attribute].value;
-              simplifiedTraining.rollType = "stat";
               break;
+            // Skills
             case DG.skills.includes(training.attribute):
               simplifiedTraining.attribute =
                 this.actor.system.skills[training.attribute].label;
               simplifiedTraining.targetNumber =
                 this.actor.system.skills[training.attribute].proficiency;
               break;
+            // Typed Skills
             default:
               simplifiedTraining.attribute =
                 this.actor.system.typedSkills[training.attribute].label;
@@ -910,6 +911,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       rollType: dataset.rolltype,
       key: dataset.key,
       actor: this.actor,
+      specialTrainingName: dataset?.name || null, // Only applies to Special Training Rolls
       item,
     };
 
@@ -919,6 +921,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       case "stat":
       case "skill":
       case "sanity":
+      case "special-training":
       case "weapon":
         roll = new DGPercentileRoll("1D100", {}, rollOptions);
         break;

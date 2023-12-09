@@ -97,6 +97,24 @@ export class DGPercentileRoll extends DGRoll {
           this.localizedKey = `${skill.group} (${skill.label})`;
         }
         break;
+      case "special-training": {
+        this.specialTrainingName = options.specialTrainingName;
+        if (statKeys.includes(this.key)) {
+          this.target = this.actor.system.statistics[this.key].x5;
+          this.localizedKey = game.i18n.localize(`DG.Attributes.${this.key}`);
+        }
+        if (skillKeys.includes(this.key)) {
+          this.target = this.actor.system.skills[this.key].proficiency;
+          this.localizedKey = game.i18n.localize(`DG.Skills.${this.key}`);
+        }
+        if (typedSkillKeys.includes(this.key)) {
+          const skill = this.actor.system.typedSkills[this.key];
+          this.target = skill.proficiency;
+          this.localizedKey = `${skill.group} (${skill.label})`;
+        }
+        this.localizedKey = `${this.specialTrainingName} - (${this.localizedKey})`;
+        break;
+      }
       case "sanity":
         this.target = this.actor.system.sanity.value;
         this.localizedKey = game.i18n.localize("DG.Attributes.SAN");

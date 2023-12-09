@@ -28,7 +28,7 @@
   {{/each}}
   {{#each specialTraining as |training|}}
     <div class="item flexrow flex-group-center flex-thin-border special-training-box">
-      <label class="{{if_gt training.targetNumber 0 'rollable' 'not-rollable'}}" data-key="{{training.key}}" data-rolltype="{{training.rollType}}">
+      <label class="{{if_gt training.targetNumber 0 'rollable' 'not-rollable'}}" data-key="{{training.key}}" data-name="{{training.name}}" data-rolltype="special-training">
         {{training.name}} ({{training.attribute}} - {{training.targetNumber}})
       </label>
       <div class="item-controls skill-and-training-controls">
