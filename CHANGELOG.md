@@ -1,5 +1,10 @@
 ## Release/Patch Notes
 
+### Version 1.4.0 - TBD
+
+- Feature [Github #70] - Added ability to track and roll Special Training.
+- Enhancement - Slight restyle of Skill section of sheet, saving space.
+
 ### Version 1.3.5 - 2023-11-20
 
 - Working on improving the process for packing a new build, but some things have gone wrong. So no actual changes here, just iterating forward on the build to avoid some issues that cropped up.
