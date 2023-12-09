@@ -72,68 +72,37 @@ export class DGPercentileRoll extends DGRoll {
    * @param {String}          [options.key]      The key of the skill, stat, etc. to use as a basis for this roll.
    * @param {DeltaGreenActor} [options.actor]    The actor that this roll originates from.
    * @param {DeltaGreenItem}  [options.item]     Optional - The item from which the roll originates.
+   * @param {DeltaGreenItem}  [options.specialTrainingName] Optional - Special training rolls have names that are different from the roll key.
    */
   constructor(formula = "1D100", data = {}, options) {
     super("1D100", {}, options);
 
-    const skillKeys = Object.keys(this.actor.system.skills);
-    const typedSkillKeys = Object.keys(this.actor.system.typedSkills);
-    const statKeys = Object.keys(this.actor.system.statistics);
+    // Set roll info for Skill, Stat, Typed Skill, and non-custom Weapon Percentile rolls.
+    const { target, localizedKey } = this.getRollInfoFromKey(
+      this.key,
+      this.actor.system,
+    );
+    this.target = target;
+    this.localizedKey = localizedKey;
 
+    // Set roll info for other Percentile rolls
     switch (this.type) {
-      case "stat":
-        this.target = this.actor.system.statistics[this.key].x5;
-        this.localizedKey = game.i18n.localize(`DG.Attributes.${this.key}`);
-        break;
-      case "skill":
-        // Set up a target number and localized roll based on whether the skill is regular or typed.
-        if (skillKeys.includes(this.key)) {
-          this.target = this.actor.system.skills[this.key].proficiency;
-          this.localizedKey = game.i18n.localize(`DG.Skills.${this.key}`);
-        }
-        if (typedSkillKeys.includes(this.key)) {
-          const skill = this.actor.system.typedSkills[this.key];
-          this.target = skill.proficiency;
-          this.localizedKey = `${skill.group} (${skill.label})`;
-        }
-        break;
-      case "special-training": {
+      case "special-training":
         this.specialTrainingName = options.specialTrainingName;
-        if (statKeys.includes(this.key)) {
-          this.target = this.actor.system.statistics[this.key].x5;
-          this.localizedKey = game.i18n.localize(`DG.Attributes.${this.key}`);
-        }
-        if (skillKeys.includes(this.key)) {
-          this.target = this.actor.system.skills[this.key].proficiency;
-          this.localizedKey = game.i18n.localize(`DG.Skills.${this.key}`);
-        }
-        if (typedSkillKeys.includes(this.key)) {
-          const skill = this.actor.system.typedSkills[this.key];
-          this.target = skill.proficiency;
-          this.localizedKey = `${skill.group} (${skill.label})`;
-        }
         this.localizedKey = `${this.specialTrainingName} - (${this.localizedKey})`;
         break;
-      }
-      case "sanity":
-        this.target = this.actor.system.sanity.value;
-        this.localizedKey = game.i18n.localize("DG.Attributes.SAN");
-        break;
       case "weapon":
-        // Set up target number and localized key depending on whether the weapon uses a custom number,
-        // a skill, or a stat for its roll.
+        // If this weapon uses a custom target for rolls, we set that explicitly.
         if (this.key === "custom") {
           this.target = this.item.system.customSkillTarget;
           this.localizedKey = game.i18n.localize("DG.ItemWindow.Custom");
-        } else if (skillKeys.includes(this.key)) {
-          this.target = this.actor.system.skills[this.key].proficiency;
-          this.localizedKey = game.i18n.localize(`DG.Skills.${this.key}`);
-        } else if (statKeys.includes(this.key)) {
-          this.target = this.actor.system.statistics[this.key].x5;
-          this.localizedKey = game.i18n.localize(`DG.Attributes.${this.key}`);
         }
         // Add a the weapon's internal modifier.
         this.modifier += this.item.system.skillModifier;
+        break;
+      case "sanity":
+        this.target = this.actor.system.sanity.value;
+        this.localizedKey = game.i18n.localize("DG.Attributes.SAN");
         break;
       case "luck":
         this.target = 50;
@@ -307,6 +276,39 @@ export class DGPercentileRoll extends DGRoll {
     html += `</div>`;
 
     return this.createMessage(html, label, rollMode);
+  }
+
+  /**
+   * Utility function, called in the DGPercentileRoll constructor.
+   * If this roll key corresponds to a stat, skill,
+   * or typedSkill, get pertinent info.
+   *
+   * This is used for Stat, Skill, Typed Skill, Weapon, and Special Training Rolls.
+   *
+   * @returns {Object} - Contains the roll target and localized version of the key.
+   */
+  getRollInfoFromKey() {
+    const actorData = this.actor.system;
+    const skillKeys = Object.keys(actorData.skills);
+    const typedSkillKeys = Object.keys(actorData.typedSkills);
+    const statKeys = Object.keys(actorData.statistics);
+
+    let target = null;
+    let localizedKey = null;
+    if (statKeys.includes(this.key)) {
+      target = actorData.statistics[this.key].x5;
+      localizedKey = game.i18n.localize(`DG.Attributes.${this.key}`);
+    }
+    if (skillKeys.includes(this.key)) {
+      target = actorData.skills[this.key].proficiency;
+      localizedKey = game.i18n.localize(`DG.Skills.${this.key}`);
+    }
+    if (typedSkillKeys.includes(this.key)) {
+      const skill = actorData.typedSkills[this.key];
+      target = skill.proficiency;
+      localizedKey = `${skill.group} (${skill.label})`;
+    }
+    return { target, localizedKey };
   }
 
   /**
