@@ -44,7 +44,7 @@
   "DG.Skills.unarmed_combat": "Unarmed Combat",
   "DG.Skills.unnatural": "Unnatural",
 
-  "DG.Skills.AddTypedOrCustomSkill": "Add Typed or Custom Skill",
+  "DG.Skills.AddTypedOrCustomSkill": "Add Typed/Custom Skill",
   "DG.Skills.AddSkill": "Add Skill",
   "DG.Skills.Apply": "Apply",
   "DG.Skills.ApplySkillImprovements": "Apply Skill Improvements",
@@ -64,6 +64,15 @@
   "DG.TypeSkills.Pilot": "Pilot",
   "DG.TypeSkills.Science": "Science",
   "DG.TypeSkills.Other": "Other",
+
+  "DG.SpecialTraining.Dialog.CreateSpecialTraining": "Add Special Training",
+  "DG.SpecialTraining.Dialog.DropDown.CustomSkills": "Custom/Typed Skills",
+  "DG.SpecialTraining.Dialog.DropDown.Skills": "Skills",
+  "DG.SpecialTraining.Dialog.DropDown.Statistics": "Statistics",
+  "DG.SpecialTraining.Dialog.EditSpecialTraining": "Edit Special Training",
+  "DG.SpecialTraining.Dialog.NameLabel": "Name",
+  "DG.SpecialTraining.Dialog.SkillLabel": "Skill or Stat",
+  "DG.SpecialTraining.Dialog.Title": "Create/Edit Special Training",
 
   "DG.Attributes.HP": "HP",
   "DG.Attributes.WP": "WP",

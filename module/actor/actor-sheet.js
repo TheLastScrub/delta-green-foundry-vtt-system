@@ -1,5 +1,6 @@
-/* globals $ game Roll ChatMessage AudioHelper ActorSheet mergeObject Dialog TextEditor ActiveEffect ui duplicate fromUuidSync */
+/* globals $ game Roll ChatMessage AudioHelper ActorSheet mergeObject Dialog TextEditor ActiveEffect ui duplicate fromUuidSync renderTemplate randomID */
 
+import DG from "../config.js";
 import {
   DGPercentileRoll,
   DGLethalityRoll,
@@ -17,7 +18,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       classes: ["deltagreen", "sheet", "actor"],
       template: "systems/deltagreen/templates/actor/actor-sheet.html",
       width: 700,
-      height: 800,
+      height: 770,
       tabs: [
         {
           navSelector: ".sheet-tabs",
@@ -64,6 +65,44 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     // Prepare items.
     if (this.actor.type === "agent") {
       this._prepareCharacterItems(data);
+    }
+
+    // Prepare a simplified version of the special training for display on sheet.
+    if (this.actor.type !== "vehicle") {
+      const specialTraining = this.actor.system.specialTraining.map(
+        (training) => {
+          const simplifiedTraining = {
+            name: training.name,
+            id: training.id,
+            key: training.attribute,
+          };
+          // Convert the machine-readable name to a human-readable one.
+          switch (true) {
+            // Stats
+            case DG.statistics.includes(training.attribute):
+              simplifiedTraining.attribute = training.attribute.toUpperCase();
+              simplifiedTraining.targetNumber =
+                this.actor.system.statistics[training.attribute].value;
+              break;
+            // Skills
+            case DG.skills.includes(training.attribute):
+              simplifiedTraining.attribute =
+                this.actor.system.skills[training.attribute].label;
+              simplifiedTraining.targetNumber =
+                this.actor.system.skills[training.attribute].proficiency;
+              break;
+            // Typed Skills
+            default:
+              simplifiedTraining.attribute =
+                this.actor.system.typedSkills[training.attribute].label;
+              simplifiedTraining.targetNumber =
+                this.actor.system.typedSkills[training.attribute].proficiency;
+              break;
+          }
+          return simplifiedTraining;
+        },
+      );
+      data.specialTraining = specialTraining;
     }
 
     switch (this.actor.type) {
@@ -237,8 +276,8 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
     // Rollable abilities - bind to everything with the 'Rollable' class
     html.find(".rollable").click(this._onRoll.bind(this));
-    html.find('.rollable').contextmenu(this._onRoll.bind(this)); // this is for right-click, which triggers the roll modifier dialogue for most rolls
-    
+    html.find(".rollable").contextmenu(this._onRoll.bind(this)); // this is for right-click, which triggers the roll modifier dialogue for most rolls
+
     html.find(".toggle-untrained").click(() =>
       this.actor.update({
         "system.showUntrainedSkills": !this.actor.system.showUntrainedSkills,
@@ -302,6 +341,27 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
       // many bothans died to bring us this information on how to delete a property on an entity
       this.actor.update({ [`system.typedSkills.-=${targetskill}`]: null });
+    });
+
+    html.find(".special-training-action").click((event) => {
+      event.preventDefault();
+      const action = event.currentTarget.getAttribute("data-action");
+      const targetID = event.currentTarget.getAttribute("data-id");
+      this._showSpecialTrainingDialog(action, targetID);
+    });
+
+    // Handle deletion of Special Training
+    html.find(".special-training-delete").click((event) => {
+      event.preventDefault();
+      const targetID = event.target.getAttribute("data-id");
+      const specialTrainingArray = duplicate(this.actor.system.specialTraining);
+      // Get the index of the training to be deleted
+      const index = specialTrainingArray.findIndex(
+        (training) => training.id === targetID,
+      );
+
+      specialTrainingArray.splice(index, 1);
+      this.actor.update({ "system.specialTraining": specialTrainingArray });
     });
 
     html.find(".apply-skill-improvements").click((event) => {
@@ -686,6 +746,107 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     }
   }
 
+  async _showSpecialTrainingDialog(action, targetID) {
+    const specialTraining = this.actor.system.specialTraining.find(
+      (training) => training.id === targetID,
+    );
+
+    // Prepare simplified stat list
+    const statList = Object.entries(this.actor.system.statistics).map(
+      ([key, stat]) => ({
+        key,
+        label: game.i18n.localize(`DG.Attributes.${key}`),
+        targetNumber: stat.value * 5,
+      }),
+    );
+
+    // Prepare simplified skill list
+    const skillList = Object.entries(this.actor.system.skills).map(
+      ([key, skill]) => ({
+        key,
+        label: skill.label,
+        targetNumber: skill.proficiency,
+      }),
+    );
+
+    // Prepare simplified typed/custom skill list
+    const typedSkillList = Object.entries(this.actor.system.typedSkills).map(
+      ([key, skill]) => ({
+        key,
+        group: skill.group,
+        label: skill.label,
+        targetNumber: skill.proficiency,
+      }),
+    );
+
+    // Prepare the template to feed to Dialog.
+    const content = await renderTemplate(
+      "systems/deltagreen/templates/dialog/special-training.html",
+      {
+        name: specialTraining?.name || "",
+        currentAttribute: specialTraining?.attribute || "",
+        statList,
+        skillList,
+        typedSkillList,
+      },
+    );
+
+    const buttonLabel = game.i18n.localize(
+      `DG.SpecialTraining.Dialog.${action}SpecialTraining`,
+    );
+
+    // Prepare and render dialog with above template.
+    new Dialog({
+      content,
+      title: game.i18n.localize("DG.SpecialTraining.Dialog.Title"),
+      default: "confirm",
+      buttons: {
+        confirm: {
+          label: buttonLabel,
+          callback: (btn) => {
+            const specialTrainingLabel = btn
+              .find("[name='special-training-label']")
+              .val();
+            const specialTrainingAttribute = btn
+              .find("[name='special-training-skill']")
+              .val();
+            if (action === "Create")
+              this._createSpecialTraining(
+                specialTrainingLabel,
+                specialTrainingAttribute,
+              );
+            if (action === "Edit")
+              this._editSpecialTraining(
+                specialTrainingLabel,
+                specialTrainingAttribute,
+                targetID,
+              );
+          },
+        },
+      },
+    }).render(true);
+  }
+
+  _createSpecialTraining(label, attribute) {
+    const specialTrainingArray = duplicate(this.actor.system.specialTraining);
+    specialTrainingArray.push({
+      name: label,
+      attribute,
+      id: randomID(),
+    });
+    this.actor.update({ "system.specialTraining": specialTrainingArray });
+  }
+
+  _editSpecialTraining(label, attribute, id) {
+    const specialTrainingArray = duplicate(this.actor.system.specialTraining);
+    const specialTraining = specialTrainingArray.find(
+      (training) => training.id === id,
+    );
+    specialTraining.name = label;
+    specialTraining.attribute = attribute;
+    this.actor.update({ "system.specialTraining": specialTrainingArray });
+  }
+
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
    * @param {Event} event   The originating click event
@@ -750,6 +911,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       rollType: dataset.rolltype,
       key: dataset.key,
       actor: this.actor,
+      specialTrainingName: dataset?.name || null, // Only applies to Special Training Rolls
       item,
     };
 
@@ -759,6 +921,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       case "stat":
       case "skill":
       case "sanity":
+      case "special-training":
       case "weapon":
         roll = new DGPercentileRoll("1D100", {}, rollOptions);
         break;
