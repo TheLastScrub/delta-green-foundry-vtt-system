@@ -16,7 +16,7 @@
           {{skill.group}} ({{skill.label}})
         </label>
         <input class="percentile-skill-input" type="text" name="system.typedSkills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
-        {{#if_eq actorType "agent"}}
+        {{#if_eq ../actorType "agent"}}
           <input class="checkbox-skill-input" type="checkbox" name="system.typedSkills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} />
         {{/if_eq}}
       </div>

@@ -516,12 +516,14 @@ input.percentile-skill-input {
   margin-right: 5px;
   margin-left: 5px;
   height: unset;
+  align-self: center;
 }
 
 input.checkbox-skill-input {
   /*flex: 0 0 10px;*/
   width: 15px;
   height: 15px;
+  align-self: center;
 }
 
 .deltagreen .sheet-header h2.profession {
