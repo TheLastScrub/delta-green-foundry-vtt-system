@@ -520,7 +520,7 @@
       "range": "10M",
       "damage": "1D8",
       "armorPiercing": 0,
-      "lethality": 10,
+      "lethality": 0,
       "isLethal": false,
       "killRadius": "N/A",
       "ammo": "",
