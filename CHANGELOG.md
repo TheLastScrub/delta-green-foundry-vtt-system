@@ -1,6 +1,11 @@
 ## Release/Patch Notes
 
-### Version 1.4.0 - TBD
+### Version 1.4.1 - 2023-12-13
+
+- Fix [Github #99] - Last round of changes caused checkbox for improvement on type (Art - XXX) skills to disappear, fixed.
+- Fix - Pointed out that since items default in with a lethality of 10%, they get a toggle to swap to this on the character sheet from whatever damage was set, and it isn't intuitive that you must set the lethality to 0% to hide this toggle.
+
+### Version 1.4.0 - 2023-12-10
 
 - Feature [Github #70] - Added ability to track and roll Special Training.
 - Enhancement - Slight restyle of Skill section of sheet, saving space.
