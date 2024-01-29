@@ -58,6 +58,12 @@
       "name": "Português (Brasil)",
       "path": "lang/pt-BR.json",
       "flags": {}
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "lang/de.json",
+      "flags": {}
     }
   ],
   "packs": [
