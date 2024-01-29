@@ -96,37 +96,42 @@ Hooks.on("renderSidebarTab", async (app, html) => {
   }
 });
 
+/**
+ * We use this hook to translate the sample Typed Skill
+ * Note - this event is fired on only the client who did the create action.
+ */
+Hooks.on("preCreateActor", async (actor, creationData, options, userId) => {
+  // On brand new actors, creationData only has properties: `name`, and `type`.
+  // If creationData has `system` then the new actor is either duplicated or imported,
+  // We only want to translate the sample Typed Skill on brand new actors,
+  // thus we return early if creationData has the `system` property so we do not override anything.
+  if (creationData?.system) return;
+
+  // Only translate for actor types with a default Typed Skill (agents and NPCs)
+  if (!["agent", "npc"].includes(actor.type)) return;
+
+  // Translate the default typed skill for brand new actors.
+  const artLabel = game.i18n.translations.DG?.TypeSkills?.Art ?? "Art";
+  const paintingLabel =
+    game.i18n.translations.DG?.TypeSkills?.Subskills?.Painting ?? "Painting";
+
+  actor.updateSource({ "system.typedSkills.tskill_01.group": artLabel });
+  actor.updateSource({ "system.typedSkills.tskill_01.label": paintingLabel });
+});
+
 // Note - this event is fired on ALL connected clients...
 Hooks.on("createActor", async (actor, options, userId) => {
   try {
     // use this to trap on if this hook is firing for the same user that triggered the create
     // can put logic specific to a particular user session below
     if (userId !== game.user.id) return;
+    if (actor === null) return;
 
-    if (actor !== null) {
-      if (actor.type === "agent") {
-        // update the default type skill of Art - Painting's labels to try to be localized
-        // since I really backed myself into a corner on this with my implementation of it...
-        console.log("createActor Hook");
-
-        const artLabel = game.i18n.translations.DG?.TypeSkills?.Art ?? "Art";
-        const paintingLabel =
-          game.i18n.translations.DG?.TypeSkills?.Subskills?.Painting ??
-          "Painting";
-
-        const updatedData = duplicate(actor.system);
-        updatedData.typedSkills.tskill_01.group = artLabel;
-        updatedData.typedSkills.tskill_01.label = paintingLabel;
-
-        actor.update({ data: updatedData });
-
-        // throw on an unarmed strike item for convenience
-        actor.AddUnarmedAttackItemIfMissing();
-      } else if (actor.type === "unnatural") {
-        // Do nothing.
-      } else if (actor.type === "vehicle") {
-        actor.AddBaseVehicleItemsIfMissing();
-      }
+    if (actor.type === "agent") {
+      // throw on an unarmed strike item for convenience
+      actor.AddUnarmedAttackItemIfMissing();
+    } else if (actor.type === "vehicle") {
+      actor.AddBaseVehicleItemsIfMissing();
     }
   } catch (ex) {
     console.log(ex);
