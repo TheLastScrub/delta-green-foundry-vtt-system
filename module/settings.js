@@ -21,6 +21,16 @@ export default function registerSystemSettings() {
     },
   });
 
+  game.settings.register("deltagreen", "sortSkills", {
+    name: "Sort Skills By Column?",
+    hint: "Checked sorts by column. Unchecked sorts by row.",
+    scope: "client",
+    config: true,
+    requiresReload: false,
+    type: Boolean,
+    default: false,
+  });
+
   game.settings.register("deltagreen", "keepSanityPrivate", {
     name: "Keep Sanity Private",
     hint: "Hide sanity from players on both character sheet and rolls.",

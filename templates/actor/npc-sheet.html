@@ -108,7 +108,7 @@
           <i class="far fa-eye{{#if actor.system.showUntrainedSkills}}-slash{{/if}}"></i>
         </a>
       </div>
-      <div class="grid grid-3col">
+      <div class="grid grid-3col {{#if sortSkillsSetting}}grid-13row{{/if}}">
         {{#each actor.system.skills as |skill key|}}
           
           {{#if (hideSkillBasedOnProficiencyAndUserChoice ../actor.system.showUntrainedSkills skill.proficiency)}}

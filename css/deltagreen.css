@@ -208,6 +208,14 @@ input.breaking-point-hit {
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
+/* If the user wishes to sort skills by column, we need to 
+explicitly define a number of rows, rather than columns. */
+.grid-13row {
+  grid-template-rows: repeat(13, minmax(0, auto)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr)) !important;
+  grid-auto-flow: column !important;
+}
+
 .flex-group-center,
 .flex-group-left,
 .flex-group-right {
