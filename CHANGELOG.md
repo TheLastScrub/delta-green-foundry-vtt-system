@@ -1,5 +1,14 @@
 ## Release/Patch Notes
 
+### Version 1.4.3 - ???
+
+- Feature [Github #101] - New user setting: Sort skills by column, rather than row.
+
+### Version 1.4.2 - 2024-01-28
+
+- Fix for issues around skills reverting to "Art - Painting".
+- Added German Translation provided by KarstenW76.
+
 ### Version 1.4.1 - 2023-12-13
 
 - Fix [Github #99] - Last round of changes caused checkbox for improvement on type (Art - XXX) skills to disappear, fixed.
