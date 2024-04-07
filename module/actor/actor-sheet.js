@@ -67,6 +67,9 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       this._prepareCharacterItems(data);
     }
 
+    // Make it easy for the sheet handlebars to understand how to sort the skills.
+    data.sortSkillsSetting = game.settings.get("deltagreen", "sortSkills");
+
     // Prepare a simplified version of the special training for display on sheet.
     if (this.actor.type !== "vehicle") {
       const specialTraining = this.actor.system.specialTraining.map(
