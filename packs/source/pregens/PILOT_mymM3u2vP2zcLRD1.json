@@ -1,0 +1,18 @@
+{
+  "name": "PILOT",
+  "type": "Actor",
+  "_id": "mymM3u2vP2zcLRD1",
+  "folder": null,
+  "sorting": "a",
+  "sort": 0,
+  "flags": {},
+  "_stats": {
+    "systemId": "deltagreen",
+    "systemVersion": "1.3.5",
+    "coreVersion": "11.315",
+    "createdTime": 1712467175684,
+    "modifiedTime": 1712467175684,
+    "lastModifiedBy": "Me2IHORQXIfCsD03"
+  },
+  "_key": "!folders!mymM3u2vP2zcLRD1"
+}
