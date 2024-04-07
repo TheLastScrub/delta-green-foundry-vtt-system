@@ -1,14 +1,10 @@
 ## Release/Patch Notes
 
-### Version 1.4.4 - 2024-04-07
+### Version 1.4.3 - 2024-04-07
 
 - Enhancement [Github #101] - Thanks to 16-Bits and jalensailen for putting together a way to change the sorting to be alphabetical by column instead of by row. Note - you must opt into this behaviour by changing a setting for the system, the default is the original behavior that sorts by rows. Enabling the column sort option better mathes the standard character sheet (although 'type' skills are still in their current position).
 - Fix [Github #106] - A bug in the system would change the first 'type' skill's label to the localized version of 'Art - Painting' if it still had the original name that comes with a new character, regardless of it had been edited to something else entirely like 'Science - Physics' or whatnot. This bug unfortuanately effected the import of all the 1001 pregenerated agents in the compendium pack, leading to in some cases even the most harded Special Operator having near world class painting skills. The pregenerated agents were deleted and reformed to fix this. 
 - Enhancement [Github #106] while doing previous fix, changed agents so they had the profession stripped off their names ("NURSE-LastName, FirstName" now just "LastName, FirstName). This was originally done to make it easier to see in the compendium which agents were for which profession at a glance. But since compendium packs (and the Foundry VTT CLI) support folders natively now, they were instead sorted into folders matching their profession to make perusing them easier and to clean up the overall list, as picking through 1001 entries could be a bit challenging.
-
-### Version 1.4.3 - 2024-01-28
-
-- Feature [Github #101] - New user setting: Sort skills by column, rather than row.
 
 ### Version 1.4.2 - 2024-01-28
 
