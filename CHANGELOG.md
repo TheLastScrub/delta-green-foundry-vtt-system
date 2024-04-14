@@ -1,5 +1,10 @@
 ## Release/Patch Notes
 
+### Version 1.4.4 - 2024-04-14
+
+- Fix [GitHub #109] - Typo in Disorder header
+- Fix [GitHub #110] - Pregen Agents have wrong skill for "Unarmed Combat" attack, was using "Melee Weapons" insted of "Unarmed Combat". Also changed the expense on it from "Incidental" to "NA".
+
 ### Version 1.4.3 - 2024-04-07
 
 - Enhancement [Github #101] - Thanks to 16-Bits and jalensailen for putting together a way to change the sorting to be alphabetical by column instead of by row. Note - you must opt into this behaviour by changing a setting for the system, the default is the original behavior that sorts by rows. Enabling the column sort option better mathes the standard character sheet (although 'type' skills are still in their current position).
