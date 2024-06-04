@@ -1,5 +1,24 @@
 /* global Dialog Actor */
 
+function GetNotesFromInput(inputText){
+  const matchStr = '(?:ATTACKS:[\\S\\s]*?\\.\\n)([\\S\\s]*)';
+  const re = new RegExp(matchStr, "gi");
+  const results = inputText.match(re);
+  let notes = "";
+
+  try {
+    if (results != null && results.length > 0) {
+      notes = results[0];
+      notes = notes.replace("\n", "&nbsp;")
+    }
+  } catch (ex) {
+    console.log("GetNotesFromInput Error");
+    console.log(ex);
+  }
+
+  return notes;
+}
+
 // call this within a world as: game.deltagreen.ParseDeltaGreenStatBlock()
 function GetTypeSkillRatingsFromInput(inputText) {
   const matchStr =
@@ -53,7 +72,7 @@ function GetAttributeFromInput(inputText, attribute) {
 }
 
 function GetSkillRatingsFromInput(inputText, skill) {
-  const matchStr = `(?:${skill}\\s)(\\d\\d?)`;
+  const matchStr = `(?:${skill}\\n?\\s?\\n?)(\\d\\d?)`;
   const re = new RegExp(matchStr, "i");
   const results = inputText.match(re);
   let skillValue = 0;
@@ -90,8 +109,15 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
 
   tempStr = inputStr.split(/\r?\n/);
 
-  if (tempStr.length > 1) {
-    [actorData.name, shortDescription] = tempStr;
+  if (tempStr.length > 0) {
+    actorData.name = tempStr[0];
+    
+    // set the alternate description/profession/etc.
+    // if this doesn't exist, the next line should be the attributes starting with strength
+    // so if the second line starts with "STR" then just leave it be.
+    if (tempStr.length > 1 && tempStr[1].substring(0, 3) != "STR" && tempStr[1].substring(0, 3) != "CON" && tempStr[1].substring(0, 3) != "DEX" && tempStr[1].substring(0, 3) != "INT" && tempStr[1].substring(0, 3) != "POW" && tempStr[1].substring(0, 3) != "CHA") {
+      shortDescription = tempStr[1];
+    }
   } else {
     actorData.name = "Unknown";
   }
@@ -216,7 +242,7 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
     failure: false,
   };
 
-  // Impossible Landscapes seems to favor 'Driving' as the name for this instead for some
+  // Impossible Landscapes seems to favor 'Driving' as the name for this instead for some reason
   if (actorData.data.skills.drive.proficiency === 0) {
     actorData.data.skills.drive = {
       label: "Drive",
@@ -362,6 +388,10 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
     actorData.data.typedSkills[`tskill_${index.toString()}`] = element;
   }
 
+  if(actorType === "npc" || actorType === "unnatural"){
+    actorData.data.notes = GetNotesFromInput(inputStr);
+  }
+
   console.log(actorData);
 
   const newActors = await Actor.createDocuments([actorData]);
@@ -372,7 +402,7 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
 async function GetUserInput() {
   const content = `<form>
             <div class="form-group">
-                <label>Actor Type: </label>
+                <label>Output Actor Type: </label>
                 <div class="form-fields">
                     <select name="actor-type">                        
                         <option value="npc" selected>NPC</option>
@@ -381,16 +411,17 @@ async function GetUserInput() {
                     </select>
                 </div>
             </div>
+            <br>
+            <label>Stat Block Text (English Only): </label>
             <div class="form-group">
-                <label>Input: </label>
                 <div class="form-fields">
-                    <textarea name="parse-input"></textarea>
+                    <textarea class="stat-block-input" name="parse-input"></textarea>
                 </div>
             </div>
     </form>`;
 
   new Dialog({
-    title: "Stat Block Parser", // Change the title if you want.
+    title: "Stat Block Parser",
     content,
     buttons: {
       roll: {

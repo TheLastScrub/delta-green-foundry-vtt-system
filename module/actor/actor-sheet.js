@@ -982,7 +982,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       roll.options.rollMode = dialogData.rollMode;
     }
     // Evaluate the roll.
-    await roll.evaluate({ async: true });
+    await roll.evaluate();
     // Send the roll to chat.
     roll.toChat();
   }

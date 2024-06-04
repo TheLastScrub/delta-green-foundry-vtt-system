@@ -74,9 +74,15 @@ export default class DeltaGreenActor extends Actor {
 
     system.wp.max = system.statistics.pow.value;
 
-    system.health.max = Math.ceil(
-      (system.statistics.con.value + system.statistics.str.value) / 2,
-    );
+    try{
+      system.health.max = Math.ceil(
+        (system.statistics.con.value + system.statistics.str.value) / 2,
+      );
+    }
+    catch(ex){
+      system.health.max = 10;
+    }
+    
 
     system.skills.ritual = {
       label: "Ritual",

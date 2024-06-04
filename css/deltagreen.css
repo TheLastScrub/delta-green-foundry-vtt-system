@@ -1106,3 +1106,9 @@ input.item-sheet-short-input {
   padding-bottom: 10px;
   padding-top: 10px;
 }
+
+
+.stat-block-input{
+  min-height: 300px;
+  resize: none;
+}
