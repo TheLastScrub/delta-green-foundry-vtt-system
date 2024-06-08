@@ -29,27 +29,25 @@ export class DGRoll extends Roll {
 
   /**
    * Simple function that actually creates the message and sends it to chat.
+   * We override this to have a little more control over certain aspects of the message,
+   * right now, its `speaker` and `rollMode`.
    *
-   * Broke this out so multiple functions can use it.
-   *
-   * @returns {Promise<ChatMessage>} - the created chat message.
+   * @override
+   * The following `@param` descriptions comes from the Foundry VTT code.
+   * @param {object} messageData          The data object to use when creating the message
+   * @param {options} [options]           Additional options which modify the created message.
+   * @param {string} [options.rollMode]   The template roll mode to use for the message from CONFIG.Dice.rollModes
+   * @param {boolean} [options.create=true]   Whether to automatically create the chat message, or only return the
+   *                                          prepared chatData object.
+   * @returns {Promise<ChatMessage|object>} A promise which resolves to the created ChatMessage document if create is
+   *                                        true, or the Object of prepared chatData otherwise.
    */
-  async createMessage(content, flavor, rollMode) {
-    const chatData = {
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      content,
-      flavor,
-      type: 5, // CHAT_MESSAGE_TYPES.ROLL,
-      roll: this,
-      rollMode,
-    };
-
-    // play the dice rolling sound, like a regular in-chat roll
-    AudioHelper.play(
-      { src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false },
-      true,
-    );
-    return ChatMessage.create(chatData);
+  async toMessage(messageData = {}, { rollMode, create = true } = {}) {
+    messageData.speaker = ChatMessage.getSpeaker({ actor: this.actor });
+    return super.toMessage(messageData, {
+      rollMode: this.options.rollMode || rollMode,
+      create,
+    });
   }
 }
 
@@ -194,9 +192,6 @@ export class DGPercentileRoll extends DGRoll {
    * @returns {Promise<ChatMessage>} - the created chat message.
    */
   async toChat() {
-    let rollMode =
-      this.options.rollMode || game.settings.get("core", "rollMode");
-
     // if using private san rolls, must hide any SAN roll unless user is a GM
     const privateSanSetting = game.settings.get(
       "deltagreen",
@@ -207,7 +202,7 @@ export class DGPercentileRoll extends DGRoll {
       (this.type === "sanity" || this.key === "ritual") &&
       !game.user.isGM
     ) {
-      rollMode = "blindroll";
+      this.options.rollMode = "blindroll";
     }
 
     let label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${
@@ -275,7 +270,7 @@ export class DGPercentileRoll extends DGRoll {
     html += `     <h4 class="dice-total">${this.total}</h4>`;
     html += `</div>`;
 
-    return this.createMessage(html, label, rollMode);
+    return this.toMessage({ content: html, flavor: label });
   }
 
   /**
@@ -401,8 +396,6 @@ export class DGLethalityRoll extends DGPercentileRoll {
    * @override
    */
   async toChat() {
-    const rollMode =
-      this.options.rollMode || game.settings.get("core", "rollMode");
     let resultString = "";
     let styleOverride = "";
     if (this.total <= this.target) {
@@ -463,7 +456,7 @@ export class DGLethalityRoll extends DGPercentileRoll {
     } ${game.i18n.localize("DG.Roll.Damage")})</h4>`;
     html += `</div>`;
 
-    return this.createMessage(html, label, rollMode);
+    return this.toMessage({ content: html, flavor: label });
   }
 
   /**
@@ -520,8 +513,6 @@ export class DGDamageRoll extends DGRoll {
    * @override
    */
   async toChat() {
-    const rollMode =
-      this.options.rollMode || game.settings.get("core", "rollMode");
     let label = this.formula;
     try {
       label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${game.i18n
@@ -533,7 +524,7 @@ export class DGDamageRoll extends DGRoll {
       // console.log(ex);
       label = `Rolling <b>DAMAGE</b> for <b>${label.toUpperCase()}</b>`;
     }
-    return this.createMessage(this.total, label, rollMode);
+    return this.toMessage({ content: this.total, flavor: label });
   }
 
   async showDialog() {
@@ -599,9 +590,6 @@ export class DGSanityDamageRoll extends DGRoll {
    * @override
    */
   async toChat() {
-    const rollMode =
-      this.options.rollMode || game.settings.get("core", "rollMode");
-
     const [lowDie, highDie] = this.terms[0].terms.map((formula) => {
       return Roll.parse(formula)[0] || { faces: parseInt(formula), number: 1 };
     });
@@ -648,7 +636,7 @@ export class DGSanityDamageRoll extends DGRoll {
     html += `     </div>`;
     html += `     <h4 class="dice-total">${lowResult} / ${highResult}</h4>`;
     html += `</div>`;
-    return this.createMessage(html, flavor, rollMode);
+    return this.toMessage({ content: html, flavor });
   }
 
   /**
