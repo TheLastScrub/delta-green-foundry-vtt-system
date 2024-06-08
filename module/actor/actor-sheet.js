@@ -14,7 +14,7 @@ import {
 export default class DeltaGreenActorSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["deltagreen", "sheet", "actor"],
       template: "systems/deltagreen/templates/actor/actor-sheet.html",
       width: 700,
