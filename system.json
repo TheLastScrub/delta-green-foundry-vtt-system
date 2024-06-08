@@ -144,6 +144,10 @@
   "download": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/releases/latest/download/deltagreen.zip",
   "gridDistance": 1,
   "gridUnits": "m",
+  "grid": {
+    "distance": 1,
+    "units": "m"
+  },
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "wp"
 }
