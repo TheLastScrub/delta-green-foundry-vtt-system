@@ -860,7 +860,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     specialTrainingArray.push({
       name: label,
       attribute,
-      id: randomID(),
+      id: foundry.utils.randomID(),
     });
     this.actor.update({ "system.specialTraining": specialTrainingArray });
   }
