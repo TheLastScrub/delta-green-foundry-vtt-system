@@ -754,10 +754,22 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       (training) => training.id === targetID,
     );
 
+    // Define the option groups for our drop-down menu.
+    const optionGroups = {
+      stats: game.i18n.localize(
+        "DG.SpecialTraining.Dialog.DropDown.Statistics",
+      ),
+      skills: game.i18n.localize("DG.SpecialTraining.Dialog.DropDown.Skills"),
+      typedSkills: game.i18n.localize(
+        "DG.SpecialTraining.Dialog.DropDown.CustomSkills",
+      ),
+    };
+
     // Prepare simplified stat list
     const statList = Object.entries(this.actor.system.statistics).map(
       ([key, stat]) => ({
-        key,
+        value: key,
+        group: optionGroups.stats,
         label: game.i18n.localize(`DG.Attributes.${key}`),
         targetNumber: stat.value * 5,
       }),
@@ -766,7 +778,8 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     // Prepare simplified skill list
     const skillList = Object.entries(this.actor.system.skills).map(
       ([key, skill]) => ({
-        key,
+        value: key,
+        group: optionGroups.skills,
         label: skill.label,
         targetNumber: skill.proficiency,
       }),
@@ -775,18 +788,26 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     // Prepare simplified typed/custom skill list
     const typedSkillList = Object.entries(this.actor.system.typedSkills).map(
       ([key, skill]) => ({
-        key,
-        group: skill.group,
-        label: skill.label,
+        value: key,
+        group: optionGroups.typedSkills,
+        label: `${skill.group} (${skill.label})`,
         targetNumber: skill.proficiency,
       }),
     );
+
+    // Prepare the Select element
+    const selectElement = foundry.applications.fields.createSelectInput({
+      name: "special-training-skill",
+      options: [...statList, ...skillList, ...typedSkillList],
+      groups: Object.values(optionGroups),
+    }).outerHTML;
 
     // Prepare the template to feed to Dialog.
     const content = await renderTemplate(
       "systems/deltagreen/templates/dialog/special-training.html",
       {
         name: specialTraining?.name || "",
+        selectElement,
         currentAttribute: specialTraining?.attribute || "",
         statList,
         skillList,
