@@ -1080,7 +1080,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     let roll;
     if (rollFormula !== 1) {
       roll = new Roll(rollFormula, actorData);
-      roll.evaluate({ async: true });
+      await roll.evaluate();
       // Put the results into a list.
       roll.terms[0].results.forEach((result) =>
         resultList.push(
@@ -1161,14 +1161,11 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       rollMode: game.settings.get("core", "rollMode"),
     };
 
-    // play the dice rolling sound, like a regular in-chat roll
-    if (roll)
-      AudioHelper.play(
-        { src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false },
-        true,
-      );
+    // Create a message from this roll, if there is one.
+    if (roll) return roll.toMessage(chatData);
 
-    ChatMessage.create(chatData, {});
+    // If no roll, create a chat message directly.
+    return ChatMessage.create(chatData, {});
   }
 
   /** @override */
