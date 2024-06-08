@@ -312,7 +312,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
       const updatedData = foundry.utils.duplicate(this.actor.system);
       updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
-      this.actor.update({ data: updatedData });
+      this.actor.update({ system: updatedData });
     });
 
     html.find(".typed-skill-add").click((event) => {
@@ -732,7 +732,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
     updatedData.typedSkills = typedSkills;
 
-    this.actor.update({ data: updatedData });
+    this.actor.update({ system: updatedData });
   }
 
   _updateTypedSkill(targetSkill, newSkillLabel, newSkillGroup) {
@@ -747,7 +747,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       updatedData.typedSkills[targetSkill].label = newSkillLabel;
       updatedData.typedSkills[targetSkill].group = newSkillGroup;
 
-      this.actor.update({ data: updatedData });
+      this.actor.update({ system: updatedData });
     }
   }
 
@@ -1033,7 +1033,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
     updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
 
-    this.actor.update({ data: updatedData });
+    this.actor.update({ system: updatedData });
   }
 
   _onEquippedStatusChange(event) {
@@ -1046,7 +1046,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       const item = this.actor.items.get(dataset.id);
       let isEquipped = item.system.equipped;
       isEquipped = !isEquipped;
-      item.update({ data: { equipped: isEquipped } });
+      item.update({ system: { equipped: isEquipped } });
     } catch (ex) {
       console.log(ex);
     }
