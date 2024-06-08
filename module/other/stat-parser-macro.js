@@ -6,7 +6,7 @@ function GetNotesFromInput(inputText) {
 
   try {
     if (results != null && results.length > 0) {
-      notes = results[0];
+      [notes] = results;
       notes = notes.replace("\n", "&nbsp;");
     }
   } catch (ex) {
@@ -108,21 +108,21 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
   tempStr = inputStr.split(/\r?\n/);
 
   if (tempStr.length > 0) {
-    actorData.name = tempStr[0];
+    [actorData.name] = tempStr;
 
     // set the alternate description/profession/etc.
     // if this doesn't exist, the next line should be the attributes starting with strength
     // so if the second line starts with "STR" then just leave it be.
     if (
       tempStr.length > 1 &&
-      tempStr[1].substring(0, 3) != "STR" &&
-      tempStr[1].substring(0, 3) != "CON" &&
-      tempStr[1].substring(0, 3) != "DEX" &&
-      tempStr[1].substring(0, 3) != "INT" &&
-      tempStr[1].substring(0, 3) != "POW" &&
-      tempStr[1].substring(0, 3) != "CHA"
+      tempStr[1].substring(0, 3) !== "STR" &&
+      tempStr[1].substring(0, 3) !== "CON" &&
+      tempStr[1].substring(0, 3) !== "DEX" &&
+      tempStr[1].substring(0, 3) !== "INT" &&
+      tempStr[1].substring(0, 3) !== "POW" &&
+      tempStr[1].substring(0, 3) !== "CHA"
     ) {
-      shortDescription = tempStr[1];
+      [, shortDescription] = tempStr;
     }
   } else {
     actorData.name = "Unknown";
