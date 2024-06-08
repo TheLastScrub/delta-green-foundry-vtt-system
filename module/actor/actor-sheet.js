@@ -356,7 +356,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     // Handle deletion of Special Training
     html.find(".special-training-delete").click((event) => {
       event.preventDefault();
-      const targetID = event.target.getAttribute("data-id");
+      const targetID = event.currentTarget.getAttribute("data-id");
       const specialTrainingArray = foundry.utils.duplicate(
         this.actor.system.specialTraining,
       );
