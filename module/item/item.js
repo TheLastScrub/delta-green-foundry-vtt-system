@@ -1,5 +1,3 @@
-/* globals Item */
-
 import { DGDamageRoll, DGLethalityRoll } from "../roll/roll.js";
 
 /**

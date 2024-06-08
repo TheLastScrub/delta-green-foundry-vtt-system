@@ -1,5 +1,4 @@
 /* eslint-disable max-classes-per-file */
-/* globals game Roll ChatMessage AudioHelper renderTemplate Dialog */
 
 import DGUtils from "../other/utility-functions.js";
 

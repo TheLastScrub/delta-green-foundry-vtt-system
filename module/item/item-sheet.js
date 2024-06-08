@@ -1,5 +1,3 @@
-/* global ItemSheet mergeObject TextEditor */
-
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}

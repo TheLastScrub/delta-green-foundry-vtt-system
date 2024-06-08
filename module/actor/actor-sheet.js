@@ -1,5 +1,3 @@
-/* globals $ game Roll ChatMessage AudioHelper ActorSheet mergeObject Dialog TextEditor ActiveEffect ui duplicate fromUuidSync renderTemplate randomID */
-
 import DG from "../config.js";
 import {
   DGPercentileRoll,
