@@ -310,7 +310,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       currentBreakingPoint =
         this.actor.system.sanity.value - this.actor.system.statistics.pow.value;
 
-      const updatedData = duplicate(this.actor.system);
+      const updatedData = foundry.utils.duplicate(this.actor.system);
       updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
       this.actor.update({ data: updatedData });
     });
@@ -357,7 +357,9 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     html.find(".special-training-delete").click((event) => {
       event.preventDefault();
       const targetID = event.target.getAttribute("data-id");
-      const specialTrainingArray = duplicate(this.actor.system.specialTraining);
+      const specialTrainingArray = foundry.utils.duplicate(
+        this.actor.system.specialTraining,
+      );
       // Get the index of the training to be deleted
       const index = specialTrainingArray.findIndex(
         (training) => training.id === targetID,
@@ -708,7 +710,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
   }
 
   _addNewTypedSkill(newSkillLabel, newSkillGroup) {
-    const updatedData = duplicate(this.actor.system);
+    const updatedData = foundry.utils.duplicate(this.actor.system);
     const { typedSkills } = updatedData;
 
     const d = new Date();
@@ -740,7 +742,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       newSkillGroup !== null &&
       newSkillGroup !== ""
     ) {
-      const updatedData = duplicate(this.actor.system);
+      const updatedData = foundry.utils.duplicate(this.actor.system);
 
       updatedData.typedSkills[targetSkill].label = newSkillLabel;
       updatedData.typedSkills[targetSkill].group = newSkillGroup;
@@ -852,7 +854,9 @@ export default class DeltaGreenActorSheet extends ActorSheet {
   }
 
   _createSpecialTraining(label, attribute) {
-    const specialTrainingArray = duplicate(this.actor.system.specialTraining);
+    const specialTrainingArray = foundry.utils.duplicate(
+      this.actor.system.specialTraining,
+    );
     specialTrainingArray.push({
       name: label,
       attribute,
@@ -862,7 +866,9 @@ export default class DeltaGreenActorSheet extends ActorSheet {
   }
 
   _editSpecialTraining(label, attribute, id) {
-    const specialTrainingArray = duplicate(this.actor.system.specialTraining);
+    const specialTrainingArray = foundry.utils.duplicate(
+      this.actor.system.specialTraining,
+    );
     const specialTraining = specialTrainingArray.find(
       (training) => training.id === id,
     );
@@ -1023,7 +1029,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       currentBreakingPoint = 0;
     }
 
-    const updatedData = duplicate(this.actor.system);
+    const updatedData = foundry.utils.duplicate(this.actor.system);
 
     updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
 
@@ -1087,7 +1093,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     let improvedSkillList = "";
 
     // Get copy of current system data, will update this and then apply all changes at once synchronously at the end.
-    const updatedData = duplicate(actorData);
+    const updatedData = foundry.utils.duplicate(actorData);
 
     failedSkills.forEach(([skill], value) => {
       updatedData.skills[skill].proficiency += resultList[value] ?? 1; // Increase proficiency by die result or by 1 if there is no dice roll.
