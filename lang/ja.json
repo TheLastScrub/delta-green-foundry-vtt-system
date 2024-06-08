@@ -134,13 +134,6 @@
   "DG.Bonds.Score": "スコア",
   "DG.Bonds.NewBond": "新しい絆",
 
-  "DG.ItemTypes.weapon": "武器",
-  "DG.ItemTypes.armor": "武具",
-  "DG.ItemTypes.motivation": "モチベーション",
-  "DG.ItemTypes.bond": "絆",
-  "DG.ItemTypes.gear": "装備",
-  "DG.ItemTypes.NewPrefix": "新",
-
   "DG.Tooltip.HP": "２HPにエージェントは気を失い、０HPに死ぬ。",
   "DG.Tooltip.MaximumHP": "最大のヒットポイントは筋力と耐久力の平均(切り上げする)。",
   "DG.Tooltip.WP": "WPとは精神の燃料。疲れた時と精神的に厳しい時に必要です。",
@@ -262,5 +255,11 @@
 
   "DG.ItemWindow.Weapons.CustomSkillTarget": "ターゲット",
   "DG.ItemWindow.Weapons.SkillModifier": "ターゲットに加えて",
-  "DG.ItemWindow.Custom": "カスタム"
+  "DG.ItemWindow.Custom": "カスタム",
+
+  "TYPES.Item.weapon": "武器",
+  "TYPES.Item.armor": "武具",
+  "TYPES.Item.motivation": "モチベーション",
+  "TYPES.Item.bond": "絆",
+  "TYPES.Item.gear": "装備"
 }

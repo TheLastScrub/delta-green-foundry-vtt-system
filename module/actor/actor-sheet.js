@@ -865,9 +865,12 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
     // Initialize a default name.
     // const name = `New ${type.capitalize()}`;
-    const name =
-      game.i18n.localize("DG.ItemTypes.NewPrefix") +
-      game.i18n.localize(`DG.ItemTypes.${type}`);
+    const name = game.i18n.format(
+      game.i18n.translations.DOCUMENT?.New || "DG.FallbackText.newItem",
+      {
+        type: game.i18n.localize(`TYPES.Item.${type}`),
+      },
+    );
 
     // Prepare the item object.
     const itemData = {
