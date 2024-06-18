@@ -1,5 +1,3 @@
-/* global game Macro ChatMessage ui */
-
 import * as DGRolls from "../roll/roll.js";
 
 /* -------------------------------------------- */

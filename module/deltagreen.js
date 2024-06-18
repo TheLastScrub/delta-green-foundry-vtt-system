@@ -1,5 +1,3 @@
-/* globals $ Hooks game CONFIG Actors Items ActorSheet ItemSheet duplicate */
-
 // Import Modules
 import DeltaGreenActor from "./actor/actor.js";
 import DeltaGreenActorSheet from "./actor/actor-sheet.js";

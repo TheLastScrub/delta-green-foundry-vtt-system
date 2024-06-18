@@ -17,8 +17,9 @@
   ],
   "version": "1.3.5",
   "compatibility": {
-    "minimum": "11",
-    "verified": "11"
+    "minimum": "12",
+    "verified": "12",
+    "maximum": "12"
   },
   "esmodules": ["module/deltagreen.js"],
   "styles": ["css/deltagreen.css", "css/dialogue.css"],
@@ -144,6 +145,10 @@
   "download": "https://github.com/TheLastScrub/delta-green-foundry-vtt-system-unofficial/releases/latest/download/deltagreen.zip",
   "gridDistance": 1,
   "gridUnits": "m",
+  "grid": {
+    "distance": 1,
+    "units": "m"
+  },
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "wp"
 }

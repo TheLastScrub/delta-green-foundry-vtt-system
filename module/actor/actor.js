@@ -1,5 +1,3 @@
-/* global Actor Item mergeObject game */
-
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
  * @extends {Actor}
@@ -74,9 +72,13 @@ export default class DeltaGreenActor extends Actor {
 
     system.wp.max = system.statistics.pow.value;
 
-    system.health.max = Math.ceil(
-      (system.statistics.con.value + system.statistics.str.value) / 2,
-    );
+    try {
+      system.health.max = Math.ceil(
+        (system.statistics.con.value + system.statistics.str.value) / 2,
+      );
+    } catch (ex) {
+      system.health.max = 10;
+    }
 
     system.skills.ritual = {
       label: "Ritual",
@@ -223,10 +225,9 @@ export default class DeltaGreenActor extends Actor {
       system.sanity.adaptations.helplessness.isAdapted = false;
     }
 
-    if(system.sanity.value <= system.sanity.currentBreakingPoint){
+    if (system.sanity.value <= system.sanity.currentBreakingPoint) {
       system.sanity.breakingPointHit = true;
-    }
-    else{
+    } else {
       system.sanity.breakingPointHit = false;
     }
 
@@ -271,7 +272,7 @@ export default class DeltaGreenActor extends Actor {
   static async create(data, options = {}) {
     data.prototypeToken = data.prototypeToken || {};
     if (data.type === "agent") {
-      mergeObject(
+      foundry.utils.mergeObject(
         data.prototypeToken,
         {
           actorLink: true, // this will make the 'Link Actor Data' option for a token is checked by default. So changes to the token sheet will reflect to the actor sheet.

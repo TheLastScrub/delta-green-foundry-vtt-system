@@ -5,6 +5,7 @@
   "DG.Luck": "Luck",
 
   "DG.FallbackText.ProfessionAndOrRank": "PROFESSION (RANK IF APPLICABLE)",
+  "DG.FallbackText.newItem": "New {type}",
 
   "DG.Skills.accounting": "Accounting",
   "DG.Skills.alertness": "Alertness",
@@ -149,13 +150,6 @@
   "DG.Bonds.Score": "Score",
   "DG.Bonds.NewBond": "New Bond",
 
-  "DG.ItemTypes.weapon": "Weapon",
-  "DG.ItemTypes.armor": "Armor",
-  "DG.ItemTypes.motivation": "Motivation",
-  "DG.ItemTypes.bond": "Bond",
-  "DG.ItemTypes.gear": "Gear",
-  "DG.ItemTypes.NewPrefix": "New ",
-
   "DG.Tooltip.HP": "Hit points, a character becomes unconsious at 2 HP, and dies at 0 HP.",
   "DG.Tooltip.MaximumHP": "Maximum health is the average of STR + CON, rounded UP.",
   "DG.Tooltip.WP": "Willpower Points are mental fuel. Agents require Willpower Points to keep going despite exhaustion or mentally taxing situations.  See page 47 of the Agent's Handbook for more detail.",
@@ -278,5 +272,16 @@
 
   "DG.ItemWindow.Weapons.CustomSkillTarget": "Target",
   "DG.ItemWindow.Weapons.SkillModifier": "Skill Modifier",
-  "DG.ItemWindow.Custom": "Custom"
+  "DG.ItemWindow.Custom": "Custom",
+
+  "TYPES.Actor.agent": "Agent",
+  "TYPES.Actor.npc": "NPC",
+  "TYPES.Actor.unnatural": "Unnatural",
+  "TYPES.Actor.vehicle": "Vehicle",
+
+  "TYPES.Item.armor": "Armor",
+  "TYPES.Item.bond": "Bond",
+  "TYPES.Item.gear": "Gear",
+  "TYPES.Item.motivation": "Motivation",
+  "TYPES.Item.weapon": "Weapon"
 }

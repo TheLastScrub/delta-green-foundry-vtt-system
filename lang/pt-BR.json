@@ -119,12 +119,7 @@
   "DG.Bonds.Name": "Nome",
   "DG.Bonds.Score": "Pontuação",
   "DG.Bonds.NewBond": "Novo Vínculo",
-  "DG.ItemTypes.weapon": "Arma",
-  "DG.ItemTypes.armor": "Armadura",
-  "DG.ItemTypes.motivation": "Motivação",
-  "DG.ItemTypes.bond": "Vinculo",
-  "DG.ItemTypes.gear": "Equipamento",
-  "DG.ItemTypes.NewPrefix": "Novo ",
+
   "DG.Tooltip.HP": "Pontos de Vida, um personagem fica inconsciente com 2 PV e morre com 0 PV.",
   "DG.Tooltip.MaximumHP": "A Vida máxima é a média de FOR + CON, arredondado para CIMA.",
   "DG.Tooltip.WP": "Pontos de Força de Vontade são combustível mental. Os agentes precisam de Pontos de Força de Vontade para continuar, apesar da exaustão ou situações mentalmente desgastantes. Consulte a página 47 do Manual do Agente para obter mais detalhes.",
@@ -227,5 +222,11 @@
 
   "DG.Generic.SanDamage": "SAN Damage",
 
-  "DG.Generic.Custom": "Custom"
+  "DG.Generic.Custom": "Custom",
+
+  "TYPES.Item.weapon": "Arma",
+  "TYPES.Item.armor": "Armadura",
+  "TYPES.Item.motivation": "Motivação",
+  "TYPES.Item.bond": "Vinculo",
+  "TYPES.Item.gear": "Equipamento"
 }

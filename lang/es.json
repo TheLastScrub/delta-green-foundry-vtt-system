@@ -134,13 +134,6 @@
   "DG.Bonds.Score": "Puntuación",
   "DG.Bonds.NewBond": "Nuevo Vínculo",
 
-  "DG.ItemTypes.weapon": "Arma",
-  "DG.ItemTypes.armor": "Armadura",
-  "DG.ItemTypes.motivation": "Motivación",
-  "DG.ItemTypes.bond": "Vínculo",
-  "DG.ItemTypes.gear": "Equipo",
-  "DG.ItemTypes.NewPrefix": "Nuevo ",
-
   "DG.Tooltip.HP": "Puntos de Vida, un personaje cae inconsciente a los 2 PV, y muere con 0 PV.",
   "DG.Tooltip.MaximumHP": "La salud máxima es el promedio de FUE + CON, redondeado hacia arriba.",
   "DG.Tooltip.WP": "Los Puntos de Voluntad son el combustible mental. Los agentes requieren puntos de voluntad para seguir adelante a pesar del agotamiento o en situaciones mentalmente graves.  Consulte la página 47 del Manual del Agente para obtener más detalles.",
@@ -255,17 +248,6 @@
   "DG.VehicleSheet.NotesLabel": "NOTES",
   "DG.VehicleSheet.DescriptionPlaceHolder": "Vehicle Description",
 
-  "TYPES.Actor.agent": "Agent",
-  "TYPES.Actor.unnatural": "Unnatural",
-  "TYPES.Actor.npc": "NPC",
-  "TYPES.Actor.vehicle": "Vehicle",
-
-  "TYPES.Item.weapon": "Weapon",
-  "TYPES.Item.armor": "Armor",
-  "TYPES.Item.motivation": "Motivation",
-  "TYPES.Item.bond": "Bond",
-  "TYPES.Item.gear": "Gear",
-
   "DG.Generic.CheckDamagedBondsBoxUntilNextHomeScene": "Check a damaged Bond's box until the next Home Scene ends.",
   "DG.Generic.ClearAll": "Clear All",
 
@@ -273,5 +255,16 @@
 
   "DG.ItemWindow.Weapons.CustomSkillTarget": "Target",
   "DG.ItemWindow.Weapons.SkillModifier": "Skill Modifier",
-  "DG.ItemWindow.Custom": "Custom"
+  "DG.ItemWindow.Custom": "Custom",
+
+  "TYPES.Actor.agent": "Agent",
+  "TYPES.Actor.unnatural": "Unnatural",
+  "TYPES.Actor.npc": "NPC",
+  "TYPES.Actor.vehicle": "Vehicle",
+
+  "TYPES.Item.weapon": "Arma",
+  "TYPES.Item.armor": "Armadura",
+  "TYPES.Item.motivation": "Motivación",
+  "TYPES.Item.bond": "Vínculo",
+  "TYPES.Item.gear": "Equipo"
 }

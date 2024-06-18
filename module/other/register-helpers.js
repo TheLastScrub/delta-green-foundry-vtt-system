@@ -1,5 +1,3 @@
-/* global Handlebars CONFIG game */
-
 import DGUtils from "./utility-functions.js";
 
 export default function registerHandlebarsHelpers() {

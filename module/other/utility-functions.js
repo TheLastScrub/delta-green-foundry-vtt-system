@@ -1,5 +1,3 @@
-/* globals game */
-
 export default class DGUtils {
   /**
    * Attempt to localize a keyword, and gracefully fallback to something else if the key does not exist.

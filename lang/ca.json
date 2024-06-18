@@ -134,13 +134,6 @@
   "DG.Bonds.Score": "Puntuació",
   "DG.Bonds.NewBond": "Nou vincle",
 
-  "DG.ItemTypes.weapon": "Arma",
-  "DG.ItemTypes.armor": "Armadura",
-  "DG.ItemTypes.motivation": "Motivació",
-  "DG.ItemTypes.bond": "Vincle",
-  "DG.ItemTypes.gear": "Equip",
-  "DG.ItemTypes.NewPrefix": "Nou ",
-
   "DG.Tooltip.HP": "Punts de vida, un personatge cau inconscient ales 2 PV i mor amb 0 PV.",
   "DG.Tooltip.MaximumHP": "La salut màxima és el promig de FOR + CON, arrodonint avall.",
   "DG.Tooltip.WP": "Els punts de voluntat són el combustible mental. Els necessiten per tirar endavant tot i l'esgotament o le situacions mentals greus. Consulta la pàgina 47 del manual de l'agent per més detalls.",
@@ -262,5 +255,11 @@
 
   "DG.ItemWindow.Weapons.CustomSkillTarget": "Target",
   "DG.ItemWindow.Weapons.SkillModifier": "Skill Modifier",
-  "DG.ItemWindow.Custom": "Custom"
+  "DG.ItemWindow.Custom": "Custom",
+
+  "TYPES.Item.weapon": "Arma",
+  "TYPES.Item.armor": "Armadura",
+  "TYPES.Item.motivation": "Motivació",
+  "TYPES.Item.bond": "Vincle",
+  "TYPES.Item.gear": "Equip"
 }

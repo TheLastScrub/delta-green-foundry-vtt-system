@@ -1,5 +1,3 @@
-/* globals $ game Roll ChatMessage AudioHelper ActorSheet mergeObject Dialog TextEditor ActiveEffect ui duplicate fromUuidSync renderTemplate randomID */
-
 import DG from "../config.js";
 import {
   DGPercentileRoll,
@@ -14,7 +12,7 @@ import {
 export default class DeltaGreenActorSheet extends ActorSheet {
   /** @override */
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["deltagreen", "sheet", "actor"],
       template: "systems/deltagreen/templates/actor/actor-sheet.html",
       width: 700,
@@ -216,7 +214,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       roll.options.rollMode = dialogData.rollMode;
     }
     // Evaluate the roll.
-    await roll.evaluate({ async: true });
+    await roll.evaluate();
     // Send the roll to chat.
     roll.toChat();
   }
@@ -310,9 +308,9 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       currentBreakingPoint =
         this.actor.system.sanity.value - this.actor.system.statistics.pow.value;
 
-      const updatedData = duplicate(this.actor.system);
+      const updatedData = foundry.utils.duplicate(this.actor.system);
       updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
-      this.actor.update({ data: updatedData });
+      this.actor.update({ system: updatedData });
     });
 
     html.find(".typed-skill-add").click((event) => {
@@ -356,8 +354,10 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     // Handle deletion of Special Training
     html.find(".special-training-delete").click((event) => {
       event.preventDefault();
-      const targetID = event.target.getAttribute("data-id");
-      const specialTrainingArray = duplicate(this.actor.system.specialTraining);
+      const targetID = event.currentTarget.getAttribute("data-id");
+      const specialTrainingArray = foundry.utils.duplicate(
+        this.actor.system.specialTraining,
+      );
       // Get the index of the training to be deleted
       const index = specialTrainingArray.findIndex(
         (training) => training.id === targetID,
@@ -502,7 +502,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     const itemId = event.target.getAttribute("item-id");
     const isLethal = event.target.getAttribute("is-lethal") === "true";
     const item = this.actor.items.find((i) => i.id === itemId);
-    item.update({ "data.isLethal": !isLethal });
+    item.update({ "system.isLethal": !isLethal });
   }
 
   _showNewEditTypeSkillDialog(targetSkill, currentLabel, currentGroup) {
@@ -708,7 +708,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
   }
 
   _addNewTypedSkill(newSkillLabel, newSkillGroup) {
-    const updatedData = duplicate(this.actor.system);
+    const updatedData = foundry.utils.duplicate(this.actor.system);
     const { typedSkills } = updatedData;
 
     const d = new Date();
@@ -730,7 +730,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
     updatedData.typedSkills = typedSkills;
 
-    this.actor.update({ data: updatedData });
+    this.actor.update({ system: updatedData });
   }
 
   _updateTypedSkill(targetSkill, newSkillLabel, newSkillGroup) {
@@ -740,12 +740,12 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       newSkillGroup !== null &&
       newSkillGroup !== ""
     ) {
-      const updatedData = duplicate(this.actor.system);
+      const updatedData = foundry.utils.duplicate(this.actor.system);
 
       updatedData.typedSkills[targetSkill].label = newSkillLabel;
       updatedData.typedSkills[targetSkill].group = newSkillGroup;
 
-      this.actor.update({ data: updatedData });
+      this.actor.update({ system: updatedData });
     }
   }
 
@@ -754,10 +754,22 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       (training) => training.id === targetID,
     );
 
+    // Define the option groups for our drop-down menu.
+    const optionGroups = {
+      stats: game.i18n.localize(
+        "DG.SpecialTraining.Dialog.DropDown.Statistics",
+      ),
+      skills: game.i18n.localize("DG.SpecialTraining.Dialog.DropDown.Skills"),
+      typedSkills: game.i18n.localize(
+        "DG.SpecialTraining.Dialog.DropDown.CustomSkills",
+      ),
+    };
+
     // Prepare simplified stat list
     const statList = Object.entries(this.actor.system.statistics).map(
       ([key, stat]) => ({
-        key,
+        value: key,
+        group: optionGroups.stats,
         label: game.i18n.localize(`DG.Attributes.${key}`),
         targetNumber: stat.value * 5,
       }),
@@ -766,7 +778,8 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     // Prepare simplified skill list
     const skillList = Object.entries(this.actor.system.skills).map(
       ([key, skill]) => ({
-        key,
+        value: key,
+        group: optionGroups.skills,
         label: skill.label,
         targetNumber: skill.proficiency,
       }),
@@ -775,18 +788,26 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     // Prepare simplified typed/custom skill list
     const typedSkillList = Object.entries(this.actor.system.typedSkills).map(
       ([key, skill]) => ({
-        key,
-        group: skill.group,
-        label: skill.label,
+        value: key,
+        group: optionGroups.typedSkills,
+        label: `${skill.group} (${skill.label})`,
         targetNumber: skill.proficiency,
       }),
     );
+
+    // Prepare the Select element
+    const selectElement = foundry.applications.fields.createSelectInput({
+      name: "special-training-skill",
+      options: [...statList, ...skillList, ...typedSkillList],
+      groups: Object.values(optionGroups),
+    }).outerHTML;
 
     // Prepare the template to feed to Dialog.
     const content = await renderTemplate(
       "systems/deltagreen/templates/dialog/special-training.html",
       {
         name: specialTraining?.name || "",
+        selectElement,
         currentAttribute: specialTraining?.attribute || "",
         statList,
         skillList,
@@ -831,17 +852,21 @@ export default class DeltaGreenActorSheet extends ActorSheet {
   }
 
   _createSpecialTraining(label, attribute) {
-    const specialTrainingArray = duplicate(this.actor.system.specialTraining);
+    const specialTrainingArray = foundry.utils.duplicate(
+      this.actor.system.specialTraining,
+    );
     specialTrainingArray.push({
       name: label,
       attribute,
-      id: randomID(),
+      id: foundry.utils.randomID(),
     });
     this.actor.update({ "system.specialTraining": specialTrainingArray });
   }
 
   _editSpecialTraining(label, attribute, id) {
-    const specialTrainingArray = duplicate(this.actor.system.specialTraining);
+    const specialTrainingArray = foundry.utils.duplicate(
+      this.actor.system.specialTraining,
+    );
     const specialTraining = specialTrainingArray.find(
       (training) => training.id === id,
     );
@@ -865,9 +890,12 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
     // Initialize a default name.
     // const name = `New ${type.capitalize()}`;
-    const name =
-      game.i18n.localize("DG.ItemTypes.NewPrefix") +
-      game.i18n.localize(`DG.ItemTypes.${type}`);
+    const name = game.i18n.format(
+      game.i18n.translations.DOCUMENT?.New || "DG.FallbackText.newItem",
+      {
+        type: game.i18n.localize(`TYPES.Item.${type}`),
+      },
+    );
 
     // Prepare the item object.
     const itemData = {
@@ -982,7 +1010,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       roll.options.rollMode = dialogData.rollMode;
     }
     // Evaluate the roll.
-    await roll.evaluate({ async: true });
+    await roll.evaluate();
     // Send the roll to chat.
     roll.toChat();
   }
@@ -999,11 +1027,11 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       currentBreakingPoint = 0;
     }
 
-    const updatedData = duplicate(this.actor.system);
+    const updatedData = foundry.utils.duplicate(this.actor.system);
 
     updatedData.sanity.currentBreakingPoint = currentBreakingPoint;
 
-    this.actor.update({ data: updatedData });
+    this.actor.update({ system: updatedData });
   }
 
   _onEquippedStatusChange(event) {
@@ -1016,7 +1044,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       const item = this.actor.items.get(dataset.id);
       let isEquipped = item.system.equipped;
       isEquipped = !isEquipped;
-      item.update({ data: { equipped: isEquipped } });
+      item.update({ system: { equipped: isEquipped } });
     } catch (ex) {
       console.log(ex);
     }
@@ -1050,7 +1078,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     let roll;
     if (rollFormula !== 1) {
       roll = new Roll(rollFormula, actorData);
-      roll.evaluate({ async: true });
+      await roll.evaluate();
       // Put the results into a list.
       roll.terms[0].results.forEach((result) =>
         resultList.push(
@@ -1063,7 +1091,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     let improvedSkillList = "";
 
     // Get copy of current system data, will update this and then apply all changes at once synchronously at the end.
-    const updatedData = duplicate(actorData);
+    const updatedData = foundry.utils.duplicate(actorData);
 
     failedSkills.forEach(([skill], value) => {
       updatedData.skills[skill].proficiency += resultList[value] ?? 1; // Increase proficiency by die result or by 1 if there is no dice roll.
@@ -1131,14 +1159,11 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       rollMode: game.settings.get("core", "rollMode"),
     };
 
-    // play the dice rolling sound, like a regular in-chat roll
-    if (roll)
-      AudioHelper.play(
-        { src: "sounds/dice.wav", volume: 0.8, autoplay: true, loop: false },
-        true,
-      );
+    // Create a message from this roll, if there is one.
+    if (roll) return roll.toMessage(chatData);
 
-    ChatMessage.create(chatData, {});
+    // If no roll, create a chat message directly.
+    return ChatMessage.create(chatData, {});
   }
 
   /** @override */

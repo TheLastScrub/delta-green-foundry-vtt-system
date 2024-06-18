@@ -1,5 +1,3 @@
-/* global game */
-
 export default function registerSystemSettings() {
   game.settings.register("deltagreen", "characterSheetStyle", {
     name: "Character Sheet Style",
