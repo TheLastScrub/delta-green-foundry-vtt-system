@@ -1,6 +1,6 @@
 ## Release/Patch Notes
 
-### Version 1.4.5 - 2024-??-??
+### Version 1.4.5 - 2024-06-17 (FOUNDRY V12+ COMPATIBLE ONLY)
 
 - Fix [GitHub #111] - v12 Compatibility. There are various issues that have arisen in the change to v12, the Agent sheet being broken being the most obvious. But several issues with rolls and with Dice So Nice were also fixed.
 - Fix - Lethality toggle not updating properly.
