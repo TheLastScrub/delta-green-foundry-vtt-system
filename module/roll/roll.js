@@ -422,6 +422,7 @@ export class DGPercentileRoll extends DGRoll {
   /**
    * Actual target for the roll accounting for modifier if present.
    * Floored to 1 if a negative modifier would bring it below 1.
+   * Capped at 99 unless it is an inhuman stat test.
    *
    * @returns {null|integer}
    */
