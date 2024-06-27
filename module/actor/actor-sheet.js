@@ -174,7 +174,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       label = game.i18n.translations.DG.RollLuck;
       label2 = game.i18n.translations.DG.Luck;
     } catch {
-      ui.notifications.warn(
+      console.error(
         "Missing translation key for either DG.RollLuck or DG.Luck key.",
       );
     }
