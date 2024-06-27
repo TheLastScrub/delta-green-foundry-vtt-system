@@ -218,7 +218,7 @@
   "DG.ModifySkillRollDialogue.Title": "Modify Roll",
   "DG.ModifySkillRollDialogue.Test": "Test:",
   "DG.ModifySkillRollDialogue.OriginalTarget": "Original Target:",
-  "DG.ModifySkillRollDialogue.TargetModifier": "Modify Target (+/-):",
+  "DG.ModifySkillRollDialogue.TargetModifier": "Modify Target:",
   "DG.ModifySkillRollDialogue.ModifierTooltip": "Give a positive or negative modifier here to add/subtract from the target for the skill check.",
 
   "DG.ModifyDamageRollDialogue.Weapon": "Weapon:",

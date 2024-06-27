@@ -177,6 +177,54 @@ export class DGPercentileRoll extends DGRoll {
               }
             },
           },
+          roll40Negative: {
+            label: "-40",
+            callback: (html) => {
+              try {
+                const rollMode = html.find("[name='rollMode']").val();
+                const targetModifier = -40;
+                resolve({ targetModifier, rollMode });
+              } catch (ex) {
+                reject(console.log(ex));
+              }
+            },
+          },
+          roll20Negative: {
+            label: "-20",
+            callback: (html) => {
+              try {
+                const rollMode = html.find("[name='rollMode']").val();
+                const targetModifier = -20;
+                resolve({ targetModifier, rollMode });
+              } catch (ex) {
+                reject(console.log(ex));
+              }
+            },
+          },
+          roll20Positive: {
+            label: "+20",
+            callback: (html) => {
+              try {
+                const rollMode = html.find("[name='rollMode']").val();
+                const targetModifier = 20;
+                resolve({ targetModifier, rollMode });
+              } catch (ex) {
+                reject(console.log(ex));
+              }
+            },
+          },
+          roll40Positive: {
+            label: "+40",
+            callback: (html) => {
+              try {
+                const rollMode = html.find("[name='rollMode']").val();
+                const targetModifier = 40;
+                resolve({ targetModifier, rollMode });
+              } catch (ex) {
+                reject(console.log(ex));
+              }
+            },
+          },
         },
       }).render(true);
     });
@@ -206,9 +254,7 @@ export class DGPercentileRoll extends DGRoll {
 
     let label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${
       this.localizedKey
-    }</b> ${game.i18n.localize("DG.Roll.Target")} ${
-      this.target + this.modifier
-    }`;
+    }</b> ${game.i18n.localize("DG.Roll.Target")} ${this.effectiveTarget}%`;
     // "Inhuman" stat being rolled. See function for details.
     if (this.isInhuman) {
       label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${
@@ -216,11 +262,13 @@ export class DGPercentileRoll extends DGRoll {
       } [${game.i18n
         .localize("DG.Roll.Inhuman")
         .toUpperCase()}]</b> ${game.i18n.localize("DG.Roll.Target")} ${
-        this.target + this.modifier
+        this.effectiveTarget
       }`;
     }
     if (this.modifier) {
-      label += ` (${DGUtils.formatStringWithLeadingPlus(this.modifier)}%)`;
+      label += ` (${this.target}${DGUtils.formatStringWithLeadingPlus(
+        this.modifier,
+      )}%)`;
     }
 
     let resultString = "";
@@ -315,7 +363,12 @@ export class DGPercentileRoll extends DGRoll {
    * @returns {Boolean}
    */
   get isInhuman() {
-    if (this.target + this.modifier > 99 && this.type === "stat") {
+    /* 
+      Changing this to only consider the base x5 stat target for whether something is 'inhuman'
+      beecause I do not think the intent was an Agent with a high strength getting a +40% bonus to be considered 'inhuman' 
+      and therefore benefit from the increased crit threshold, although could be wrong about this.
+    */
+    if (this.target > 99 && this.type === "stat") {
       return true;
     }
     return false;
@@ -342,7 +395,7 @@ export class DGPercentileRoll extends DGRoll {
 
     // If inhuman and the roll is below the regular (non-x5) value of the stat, it is a critical.
     // E.g. a CON of 25, a d100 roll of 21 would be a critical.
-    if (this.isInhuman && this.total <= (this.target + this.modifier) / 5) {
+    if (this.isInhuman && this.total <= this.target / 5) {
       isCritical = true;
     }
 
@@ -363,7 +416,40 @@ export class DGPercentileRoll extends DGRoll {
 
     // A roll of 100 always (critically) fails, even for inhuman rolls.
     if (this.total === 100) return false;
-    return this.total <= this.target + this.modifier;
+    return this.total <= this.effectiveTarget;
+  }
+
+  /**
+   * Actual target for the roll accounting for modifier if present.
+   * Floored to 1 if a negative modifier would bring it below 1.
+   * Capped at 99 unless it is an inhuman stat test.
+   *
+   * @returns {null|integer}
+   */
+  get effectiveTarget() {
+    let target = 1;
+
+    if (!this.target || Number.isNaN(this.target)) {
+      return null;
+    }
+
+    target = parseInt(this.target);
+
+    if (this.modifier && !Number.isNaN(this.modifier)) {
+      const modifier = parseInt(this.modifier);
+
+      target += modifier;
+
+      // per agent's handbook (pg.43), a negative modifier can't lower a target below 1%
+      target = Math.max(target, 1);
+    }
+
+    // an 'inhuman' stat test can exceed 99% as a target, but skill tests otherwise cannot (agents handbook pg.43)
+    if (!this.isInhuman) {
+      target = Math.min(target, 99);
+    }
+
+    return target;
   }
 }
 
