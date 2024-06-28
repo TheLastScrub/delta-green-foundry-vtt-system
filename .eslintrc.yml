@@ -6,6 +6,7 @@ parserOptions:
   ecmaVersion: latest
   sourceType: module
 rules:
+  no-console: "off"
   no-await-in-loop:
     - warn
   radix:
