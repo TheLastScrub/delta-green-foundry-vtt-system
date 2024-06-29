@@ -671,14 +671,15 @@ div .exhausted-section {
   margin-bottom: 10px;
 }
 
-.exhausted-section input {
+.exhausted-section input[type="number"] {
   width: 75px;
   text-align: center;
   border: 1px solid rgb(122, 121, 113);
   border-radius: 3px;
   height: 100%;
   margin-left: 10px;
-  min-height: 23px;
+  margin-bottom: 5px;
+  min-height: 25px;
   color: rgb(139, 0, 0);
   background-color: rgba(0, 0, 0, 0.05);
 }
