@@ -97,6 +97,7 @@
   "DG.Physical.Wounds": "Ferides",
   "DG.Physical.FirstAidLabel": "Primers auxilis ja aplicats: ",
   "DG.Physical.Exhausted": "Exhausted:",
+  "DG.Physical.ExhaustionPenalty": "Penalty:",
 
   "DG.Generic.AddButtonLabel": "Afegir",
 

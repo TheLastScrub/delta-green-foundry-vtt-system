@@ -88,6 +88,7 @@
   "DG.Physical.Wounds": "Ferimentos",
   "DG.Physical.FirstAidLabel": "Primeiros socorros já foi tentado: ",
   "DG.Physical.Exhausted": "Exhausted:",
+  "DG.Physical.ExhaustionPenalty": "Penalty:",
   "DG.Generic.AddButtonLabel": "Adicionar",
   "DG.Mental.BreakingPoint": "Ponto de Ruptura: ",
   "DG.Mental.Reset": "Resetar",

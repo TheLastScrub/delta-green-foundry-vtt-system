@@ -112,6 +112,7 @@
   "DG.Physical.Wounds": "Verletzungen",
   "DG.Physical.FirstAidLabel": "Erste Hilfe bereits geleistet: ",
   "DG.Physical.Exhausted": "Exhausted:",
+  "DG.Physical.ExhaustionPenalty": "Penalty:",
 
   "DG.Generic.AddButtonLabel": "Hinzufügen",
 

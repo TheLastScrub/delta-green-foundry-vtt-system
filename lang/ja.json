@@ -97,6 +97,7 @@
   "DG.Physical.Wounds": "傷",
   "DG.Physical.FirstAidLabel": "応急処置は既に施された",
   "DG.Physical.Exhausted": "疲れ果てた:",
+  "DG.Physical.ExhaustionPenalty": "Penalty:",
 
   "DG.Generic.AddButtonLabel": "加える",
 

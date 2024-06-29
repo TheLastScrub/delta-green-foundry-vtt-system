@@ -487,7 +487,8 @@
         "description": "(Physical description of agent)",
         "wounds": "",
         "firstAidAttempted": false,
-        "exhausted": false
+        "exhausted": false,
+        "exhaustedPenalty": -20
       },
       "biography": {
         "profession": "",
