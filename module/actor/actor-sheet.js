@@ -316,9 +316,9 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     html.find(".typed-skill-add").click((event) => {
       event.preventDefault();
 
-      const targetskill = event.target.getAttribute("data-typeskill");
+      // const targetskill = event.target.getAttribute("data-typeskill");
 
-      this._showNewTypeSkillDialog(targetskill);
+      this._showNewTypeSkillDialog();
     });
 
     html.find(".typed-skill-edit").click((event) => {
@@ -643,7 +643,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     }).render(true);
   }
 
-  _showNewTypeSkillDialog(targetskill) {
+  _showNewTypeSkillDialog() {
     let htmlContent = "";
 
     htmlContent += `<div>`;

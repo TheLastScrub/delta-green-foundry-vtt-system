@@ -98,6 +98,7 @@ Hooks.on("renderSidebarTab", async (app, html) => {
  * We use this hook to translate the sample Typed Skill
  * Note - this event is fired on only the client who did the create action.
  */
+// eslint-disable-next-line no-unused-vars
 Hooks.on("preCreateActor", async (actor, creationData, options, userId) => {
   // On brand new actors, creationData only has properties: `name`, and `type`.
   // If creationData has `system` then the new actor is either duplicated or imported,

@@ -7,6 +7,7 @@ parserOptions:
   sourceType: module
 rules:
   no-console: "off"
+  no-param-reassign: "off"
   no-await-in-loop:
     - warn
   radix:

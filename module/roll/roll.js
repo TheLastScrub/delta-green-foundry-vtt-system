@@ -42,6 +42,7 @@ export class DGRoll extends Roll {
    *                                        true, or the Object of prepared chatData otherwise.
    */
   async toMessage(messageData = {}, { rollMode, create = true } = {}) {
+    // eslint-disable-next-line no-param-reassign
     messageData.speaker = ChatMessage.getSpeaker({ actor: this.actor });
     return super.toMessage(messageData, {
       rollMode: this.options.rollMode || rollMode,
@@ -71,6 +72,7 @@ export class DGPercentileRoll extends DGRoll {
    * @param {DeltaGreenItem}  [options.item]     Optional - The item from which the roll originates.
    * @param {DeltaGreenItem}  [options.specialTrainingName] Optional - Special training rolls have names that are different from the roll key.
    */
+  // eslint-disable-next-line default-param-last, no-unused-vars
   constructor(formula = "1D100", data = {}, options) {
     super("1D100", {}, options);
 
