@@ -666,6 +666,11 @@ div .first-aid-received-section {
   margin-bottom: 10px;
 }
 
+div .exhausted-section {
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 10px;
+}
+
 .bonds-section-header {
   /* border-top: 1px solid #AAA; */
   width: 100%;
@@ -1107,8 +1112,7 @@ input.item-sheet-short-input {
   padding-top: 10px;
 }
 
-
-.stat-block-input{
+.stat-block-input {
   min-height: 300px;
   resize: none;
 }
