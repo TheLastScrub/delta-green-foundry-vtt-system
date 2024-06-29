@@ -171,6 +171,12 @@
               >{{localize 'DG.Physical.FirstAidLabel'}}</label>
               <input class="labeled-resource-checkbox" type="checkbox" name="system.physical.firstAidAttempted" {{checked actor.system.physical.firstAidAttempted}} data-dtype="Boolean" title="{{localize 'DG.Tooltip.FirstAidAttempted'}}" />
             </div>
+            <div class="first-aid-received-section resource">
+              <label class="bolded-label first-aid-label"
+                title="{{localize 'DG.Tooltip.Exhaustion'}}"
+              >{{localize 'DG.Physical.Exhausted'}}</label>
+              <input class="labeled-resource-checkbox" type="checkbox" name="system.physical.exhausted" {{checked actor.system.physical.exhausted}} data-dtype="Boolean" title="{{localize 'DG.Tooltip.Exhaustion'}}" />
+            </div>
             <div>
               <label class="bolded-label">{{localize 'DG.Physical.Wounds'}}</label>
               <!--<input class="fill-remaining-space" type="text" name="system.physical.wounds" value="{{system.physical.wounds}}" data-dtype="String" /> -->
