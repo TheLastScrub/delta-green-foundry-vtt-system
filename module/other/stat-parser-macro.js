@@ -93,14 +93,14 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
   let shortDescription = "";
 
   actorData.type = actorType;
-  actorData.data = {};
-  actorData.data.statistics = {};
-  actorData.data.skills = {};
-  actorData.data.typedSkills = {};
-  actorData.data.physical = {};
+  actorData.system = {};
+  actorData.system.statistics = {};
+  actorData.system.skills = {};
+  actorData.system.typedSkills = {};
+  actorData.system.physical = {};
 
-  actorData.data.health = { value: 10, min: 0, max: 10 };
-  actorData.data.wp = { value: 10, min: 0, max: 10 };
+  actorData.system.health = { value: 10, min: 0, max: 10 };
+  actorData.system.wp = { value: 10, min: 0, max: 10 };
 
   let tempStr = "";
   let arr = [];
@@ -129,250 +129,250 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
   }
 
   if (actorType === "agent") {
-    actorData.data.physical = {
+    actorData.system.physical = {
       description: shortDescription,
       wounds: "",
       firstAidAttempted: false,
     };
   } else if (actorType === "npc" || actorType === "unnatural") {
-    actorData.data.shortDescription = shortDescription;
+    actorData.system.shortDescription = shortDescription;
   }
 
-  actorData.data.statistics.str = {
+  actorData.system.statistics.str = {
     value: GetAttributeFromInput(inputStr, "STR"),
     distinguishing_feature: "",
   };
-  actorData.data.statistics.con = {
+  actorData.system.statistics.con = {
     value: GetAttributeFromInput(inputStr, "CON"),
     distinguishing_feature: "",
   };
-  actorData.data.statistics.dex = {
+  actorData.system.statistics.dex = {
     value: GetAttributeFromInput(inputStr, "DEX"),
     distinguishing_feature: "",
   };
-  actorData.data.statistics.int = {
+  actorData.system.statistics.int = {
     value: GetAttributeFromInput(inputStr, "INT"),
     distinguishing_feature: "",
   };
-  actorData.data.statistics.pow = {
+  actorData.system.statistics.pow = {
     value: GetAttributeFromInput(inputStr, "POW"),
     distinguishing_feature: "",
   };
-  actorData.data.statistics.cha = {
+  actorData.system.statistics.cha = {
     value: GetAttributeFromInput(inputStr, "CHA"),
     distinguishing_feature: "",
   };
 
   if (actorType === "npc" || actorType === "unnatural") {
     // don't want to try to set HP/SAN for player characters
-    actorData.data.health = {
+    actorData.system.health = {
       min: 0,
       max: GetAttributeFromInput(inputStr, "HP"),
       value: GetAttributeFromInput(inputStr, "HP"),
     };
-    actorData.data.sanity = {
-      max: actorData.data.statistics.pow.value * 5,
+    actorData.system.sanity = {
+      max: actorData.system.statistics.pow.value * 5,
       value: GetAttributeFromInput(inputStr, "SAN"),
       currentBreakingPoint: GetAttributeFromInput(inputStr, "BREAKING POINT"),
     };
-    actorData.data.wp = {
-      max: actorData.data.statistics.pow.value,
+    actorData.system.wp = {
+      max: actorData.system.statistics.pow.value,
       value: GetAttributeFromInput(inputStr, "WP"),
       min: 0,
     };
   }
 
-  actorData.data.skills.accounting = {
+  actorData.system.skills.accounting = {
     label: "Accounting",
     proficiency: GetSkillRatingsFromInput(inputStr, "ACCOUNTING"),
     failure: false,
   };
-  actorData.data.skills.alertness = {
+  actorData.system.skills.alertness = {
     label: "Alertness",
     proficiency: GetSkillRatingsFromInput(inputStr, "ALERTNESS"),
     failure: false,
   };
-  actorData.data.skills.anthropology = {
+  actorData.system.skills.anthropology = {
     label: "Anthropology",
     proficiency: GetSkillRatingsFromInput(inputStr, "ANTHROPOLOGY"),
     failure: false,
   };
-  actorData.data.skills.archeology = {
+  actorData.system.skills.archeology = {
     label: "Archeology",
     proficiency: GetSkillRatingsFromInput(inputStr, "ARCHEOLOGY|ARCHAEOLOGY"),
     failure: false,
   }; // damn you british spellings
-  actorData.data.skills.artillery = {
+  actorData.system.skills.artillery = {
     label: "Artillery",
     proficiency: GetSkillRatingsFromInput(inputStr, "ARTILLERY"),
     failure: false,
   };
-  actorData.data.skills.athletics = {
+  actorData.system.skills.athletics = {
     label: "Athletics",
     proficiency: GetSkillRatingsFromInput(inputStr, "ATHLETICS"),
     failure: false,
   };
-  actorData.data.skills.bureaucracy = {
+  actorData.system.skills.bureaucracy = {
     label: "Bureaucracy",
     proficiency: GetSkillRatingsFromInput(inputStr, "BUREAUCRACY"),
     failure: false,
   };
-  actorData.data.skills.computer_science = {
+  actorData.system.skills.computer_science = {
     label: "Computer Science",
     proficiency: GetSkillRatingsFromInput(inputStr, "COMPUTER SCIENCE"),
     failure: false,
   };
-  actorData.data.skills.criminology = {
+  actorData.system.skills.criminology = {
     label: "Criminology",
     proficiency: GetSkillRatingsFromInput(inputStr, "CRIMINOLOGY"),
     failure: false,
   };
-  actorData.data.skills.demolitions = {
+  actorData.system.skills.demolitions = {
     label: "Demolitions",
     proficiency: GetSkillRatingsFromInput(inputStr, "DEMOLITIONS"),
     failure: false,
   };
-  actorData.data.skills.disguise = {
+  actorData.system.skills.disguise = {
     label: "Disguise",
     proficiency: GetSkillRatingsFromInput(inputStr, "DISGUISE"),
     failure: false,
   };
-  actorData.data.skills.dodge = {
+  actorData.system.skills.dodge = {
     label: "Dodge",
     proficiency: GetSkillRatingsFromInput(inputStr, "DODGE"),
     failure: false,
   };
-  actorData.data.skills.drive = {
+  actorData.system.skills.drive = {
     label: "Drive",
     proficiency: GetSkillRatingsFromInput(inputStr, "DRIVE"),
     failure: false,
   };
 
   // Impossible Landscapes seems to favor 'Driving' as the name for this instead for some reason
-  if (actorData.data.skills.drive.proficiency === 0) {
-    actorData.data.skills.drive = {
+  if (actorData.system.skills.drive.proficiency === 0) {
+    actorData.system.skills.drive = {
       label: "Drive",
       proficiency: GetSkillRatingsFromInput(inputStr, "DRIVING"),
       failure: false,
     };
   }
 
-  actorData.data.skills.firearms = {
+  actorData.system.skills.firearms = {
     label: "Firearms",
     proficiency: GetSkillRatingsFromInput(inputStr, "FIREARMS"),
     failure: false,
   };
-  actorData.data.skills.first_aid = {
+  actorData.system.skills.first_aid = {
     label: "First Adi",
     proficiency: GetSkillRatingsFromInput(inputStr, "FIRST AID"),
     failure: false,
   };
-  actorData.data.skills.forensics = {
+  actorData.system.skills.forensics = {
     label: "Forensics",
     proficiency: GetSkillRatingsFromInput(inputStr, "FORENSICS"),
     failure: false,
   };
-  actorData.data.skills.heavy_machinery = {
+  actorData.system.skills.heavy_machinery = {
     label: "Heavy Machinery",
     proficiency: GetSkillRatingsFromInput(inputStr, "HEAVY MACHINERY"),
     failure: false,
   }; // template.json has typo on heavy machinery...
-  actorData.data.skills.heavy_weapons = {
+  actorData.system.skills.heavy_weapons = {
     label: "Heavy Weapons",
     proficiency: GetSkillRatingsFromInput(inputStr, "HEAVY WEAPONS"),
     failure: false,
   };
-  actorData.data.skills.history = {
+  actorData.system.skills.history = {
     label: "History",
     proficiency: GetSkillRatingsFromInput(inputStr, "HISTORY"),
     failure: false,
   };
-  actorData.data.skills.humint = {
+  actorData.system.skills.humint = {
     label: "HUMINT",
     proficiency: GetSkillRatingsFromInput(inputStr, "HUMINT"),
     failure: false,
   };
-  actorData.data.skills.law = {
+  actorData.system.skills.law = {
     label: "Law",
     proficiency: GetSkillRatingsFromInput(inputStr, "LAW"),
     failure: false,
   };
-  actorData.data.skills.medicine = {
+  actorData.system.skills.medicine = {
     label: "Medicine",
     proficiency: GetSkillRatingsFromInput(inputStr, "MEDICINE"),
     failure: false,
   };
-  actorData.data.skills.melee_weapons = {
+  actorData.system.skills.melee_weapons = {
     label: "Melee Weapons",
     proficiency: GetSkillRatingsFromInput(inputStr, "MELEE WEAPONS"),
     failure: false,
   };
-  actorData.data.skills.navigate = {
+  actorData.system.skills.navigate = {
     label: "Navigate",
     proficiency: GetSkillRatingsFromInput(inputStr, "NAVIGATE"),
     failure: false,
   };
-  actorData.data.skills.occult = {
+  actorData.system.skills.occult = {
     label: "Occult",
     proficiency: GetSkillRatingsFromInput(inputStr, "OCCULT"),
     failure: false,
   };
-  actorData.data.skills.persuade = {
+  actorData.system.skills.persuade = {
     label: "Persuade",
     proficiency: GetSkillRatingsFromInput(inputStr, "PERSUADE"),
     failure: false,
   };
-  actorData.data.skills.pharmacy = {
+  actorData.system.skills.pharmacy = {
     label: "Pharmacy",
     proficiency: GetSkillRatingsFromInput(inputStr, "PHARMACY"),
     failure: false,
   };
-  actorData.data.skills.psychotherapy = {
+  actorData.system.skills.psychotherapy = {
     label: "Psychotherapy",
     proficiency: GetSkillRatingsFromInput(inputStr, "PSYCHOTHERAPY"),
     failure: false,
   };
-  actorData.data.skills.ride = {
+  actorData.system.skills.ride = {
     label: "Ride",
     proficiency: GetSkillRatingsFromInput(inputStr, "RIDE"),
     failure: false,
   };
-  actorData.data.skills.search = {
+  actorData.system.skills.search = {
     label: "Search",
     proficiency: GetSkillRatingsFromInput(inputStr, "SEARCH"),
     failure: false,
   };
-  actorData.data.skills.sigint = {
+  actorData.system.skills.sigint = {
     label: "SIGINT",
     proficiency: GetSkillRatingsFromInput(inputStr, "SIGINT"),
     failure: false,
   };
-  actorData.data.skills.stealth = {
+  actorData.system.skills.stealth = {
     label: "Stealth",
     proficiency: GetSkillRatingsFromInput(inputStr, "STEALTH"),
     failure: false,
   };
-  actorData.data.skills.surgery = {
+  actorData.system.skills.surgery = {
     label: "Surgery",
     proficiency: GetSkillRatingsFromInput(inputStr, "SURGERY"),
     failure: false,
   };
-  actorData.data.skills.survival = {
+  actorData.system.skills.survival = {
     label: "Survival",
     proficiency: GetSkillRatingsFromInput(inputStr, "SURVIVAL"),
     failure: false,
   };
-  actorData.data.skills.swim = {
+  actorData.system.skills.swim = {
     label: "Swim",
     proficiency: GetSkillRatingsFromInput(inputStr, "SWIM"),
     failure: false,
   };
-  actorData.data.skills.unarmed_combat = {
+  actorData.system.skills.unarmed_combat = {
     label: "Unarmed Combat",
     proficiency: GetSkillRatingsFromInput(inputStr, "UNARMED COMBAT"),
     failure: false,
   };
-  actorData.data.skills.unnatural = {
+  actorData.system.skills.unnatural = {
     label: "Unnatural",
     proficiency: GetSkillRatingsFromInput(inputStr, "UNNATURAL"),
     failure: false,
@@ -380,7 +380,7 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
 
   // some npcs/unnatural have other skills
   if (GetSkillRatingsFromInput(inputStr, "FLIGHT") > 0) {
-    actorData.data.skills.flight = {
+    actorData.system.skills.flight = {
       label: "Flight",
       proficiency: GetSkillRatingsFromInput(inputStr, "FLIGHT"),
       failure: false,
@@ -391,11 +391,11 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
 
   for (let index = 0; index < arr.length; index += 1) {
     const element = arr[index];
-    actorData.data.typedSkills[`tskill_${index.toString()}`] = element;
+    actorData.system.typedSkills[`tskill_${index.toString()}`] = element;
   }
 
   if (actorType === "npc" || actorType === "unnatural") {
-    actorData.data.notes = GetNotesFromInput(inputStr);
+    actorData.system.notes = GetNotesFromInput(inputStr);
   }
 
   console.log(actorData);
