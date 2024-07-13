@@ -1,3 +1,135 @@
+function GetAttacksFromInput(inputText) {
+  const attacks = [];
+  try {
+    // some attacks split onto multiple lines, usually separated by semicolons,
+    // try to get these back on the same line before splitting...
+    const lines = inputText
+      .replace("; \r\n", ";")
+      .replace(";\r\n", ";")
+      .replace(";\n", ";")
+      .replace("; \n", ";")
+      .split(/\r?\n/);
+
+    let isInAttackSection = false;
+
+    if (lines !== null && lines.length > 0) {
+      for (var i = 0; i < lines.length; i++) {
+        if (lines[i].toString().toUpperCase().indexOf("ATTACKS:") >= 0) {
+          isInAttackSection = true;
+        } else if (
+          isInAttackSection &&
+          lines[i].toString().toUpperCase().indexOf(":") > 0
+        ) {
+          isInAttackSection = false;
+        }
+
+        if (isInAttackSection) {
+          const attackLine = lines[i]
+            .toString()
+            .toUpperCase()
+            .replace("ATTACKS:", "");
+
+          console.log(attackLine);
+
+          const weaponData = {
+            type: "weapon",
+            name: "New Attack",
+            description: attackLine,
+            system: {
+              skill: "custom",
+              skillModifier: 0,
+              customSkillTarget: 0,
+              range: "0M",
+              damage: "1D10",
+              armorPiercing: 0,
+              lethality: 0,
+              isLethal: false,
+              killRadius: "N/A",
+              ammo: "N/A",
+              expense: "NA",
+              equipped: true,
+            },
+          };
+
+          // try to determine if it's a lethality attack, as those will have two % values in them
+          if (attackLine.indexOf("LETHALITY") >= 0) {
+            weaponData.isLethal = true;
+
+            const lethalityMatchStr = "(\\w.*?)(\\d\\d?%)"; // test with 'Black box 50%, Lethality 40% (see BLACK BOX).'
+            const re = new RegExp(lethalityMatchStr, "i");
+            const lethalityResults = attackLine.match(re);
+
+            if (
+              lethalityResults !== null &&
+              lethalityResults.length > 0 &&
+              lethalityResults[1] !== null &&
+              lethalityResults[1] !== undefined
+            ) {
+              weaponData.name = lethalityResults[1].toString().trim();
+
+              weaponData.lethality = parseInt(
+                lethalityResults[2]
+                  .toString()
+                  .replace("%", "")
+                  .replace(";", ""),
+              );
+            }
+          } else {
+            // assume only percent value will be the skill test associated with it
+            const skillMatchStr = `(\\w.*?)(\\d?\\d%)([\\S\\s]*?damage\\s.*?)?(\\d?d\\d?\\d?\\d([\\+\\-]\\d+)?)?`; // test with 'SIG Sauer P228 pistol 94%, damage 1D10.'
+            const re1 = new RegExp(skillMatchStr, "i");
+            const skillResults = attackLine.match(re1);
+
+            if (
+              skillResults !== null &&
+              skillResults.length > 0 &&
+              skillResults[1] !== null &&
+              skillResults[1] !== undefined
+            ) {
+              weaponData.name = skillResults[1].toString().trim();
+
+              if (
+                skillResults.length > 2 &&
+                skillResults[2] !== null &&
+                skillResults[2] !== undefined
+              ) {
+                weaponData.customSkillTarget = parseInt(
+                  skillResults[2].toString().replace("%", "").replace(";", ""),
+                );
+              }
+
+              // have to be careful, some unnatural attacks don't actually deal damage, they just grab or something.
+              // don't have a great way to indicate that in the system, so just set it to zero if we can't find it.
+              if (
+                skillResults.length > 4 &&
+                skillResults[4] !== null &&
+                skillResults[4] !== undefined
+              ) {
+                weaponData.damage = skillResults[4].toString().replace(";", "");
+              } else {
+                weaponData.damage = 0;
+              }
+            }
+
+            // look for armor piercing
+            if (attackLine.indexOf("ARMOR PIERCING") >= 0) {
+            }
+          }
+
+          if (weaponData.customSkillTarget > 0 || weaponData.isLethal) {
+            attacks.push(weaponData);
+          }
+        }
+      }
+    }
+  } catch (ex) {
+    console.log("GetAttacksFromInput Error");
+    console.log(ex);
+  }
+
+  return attacks;
+}
+
 function GetNotesFromInput(inputText) {
   const matchStr = "(?:ATTACKS:[\\S\\s]*?\\.\\n)([\\S\\s]*)";
   const re = new RegExp(matchStr, "gi");
@@ -17,6 +149,55 @@ function GetNotesFromInput(inputText) {
   return notes;
 }
 
+function GetArmorFromInput(inputText) {
+  try {
+    let armor = { name: "Armor", description: "", armor: 0 };
+
+    const lines = inputText.split(/\r?\n/);
+
+    if (lines !== null && lines.length > 0) {
+      for (var i = 0; i < lines.length; i++) {
+        if (lines[i].toString().toUpperCase().indexOf("ARMOR:") >= 0) {
+          armor.description = lines[i]
+            .replace("Armor:", "")
+            .replace("ARMOR:", "")
+            .trim();
+
+          const matchStr = `(\\d\\d?)`;
+          const re = new RegExp(matchStr, "i");
+          const results = lines[i].match(re);
+
+          try {
+            if (results != null && results.length > 0) {
+              armor.armor = parseInt(results[0]);
+
+              armor.name = armor.description
+                .replace(`(Armor ${armor.armor})`, "")
+                .trim();
+
+              armor.name = armor.name
+                .replace(`${armor.armor} points of`, "")
+                .replace(`${armor.armor} point of`, "")
+                .replace(".", "")
+                .trim();
+            }
+          } catch (ex) {
+            console.log("GetArmorFromInput Error");
+            console.log(ex);
+          }
+
+          return armor;
+        }
+      }
+    }
+  } catch (ex) {
+    console.log("GetArmorFromInput Error");
+    console.log(ex);
+  }
+  return null;
+}
+
+// this is the main stat call, it's exposed as part of the system itself for users to access
 // call this within a world as: game.deltagreen.ParseDeltaGreenStatBlock()
 function GetTypeSkillRatingsFromInput(inputText) {
   const matchStr =
@@ -126,6 +307,14 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
     }
   } else {
     actorData.name = "Unknown";
+  }
+
+  let armor = GetArmorFromInput(inputStr);
+
+  let attacks = GetAttacksFromInput(inputStr);
+
+  if (armor !== null) {
+    console.log(armor);
   }
 
   if (actorType === "agent") {
@@ -401,6 +590,40 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
   console.log(actorData);
 
   const newActors = await Actor.createDocuments([actorData]);
+
+  if (armor !== null) {
+    if (armor.description === null || armor.description.trim() === "") {
+      armor.description = "Armor";
+    }
+
+    await newActors[0].AddArmorItemToSheet(
+      armor.name,
+      armor.description,
+      armor.armor,
+      true,
+    );
+  }
+
+  if (attacks !== null && attacks.length > 0) {
+    for (const a of attacks) {
+      await newActors[0].AddWeaponItemToSheet(
+        a.name,
+        a.description,
+        a.damage,
+        a.skill,
+        a.skillModifier,
+        a.customSkillTarget,
+        a.armorPiercing,
+        a.lethality,
+        a.isLethal,
+        a.range,
+        a.killRadius,
+        a.ammo,
+        a.expense,
+        a.equipped,
+      );
+    }
+  }
 
   newActors[0].sheet.render(true);
 }
