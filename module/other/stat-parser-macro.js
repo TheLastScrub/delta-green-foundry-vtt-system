@@ -138,15 +138,22 @@ function GetNotesFromInput(inputText) {
 
   try {
     if (results != null && results.length > 0) {
-      [notes] = results;
-      notes = notes.replace("\n", "&nbsp;");
+      let output = "";
+
+      const lines = results[0].split(/\r?\n/);
+
+      for (var i = 0; i < lines.length; i++) {
+        output += lines[i] + "<br>";
+      }
+
+      notes = output;
     }
   } catch (ex) {
     console.log("GetNotesFromInput Error");
     console.log(ex);
   }
 
-  return notes;
+  return [notes];
 }
 
 function GetArmorFromInput(inputText) {
