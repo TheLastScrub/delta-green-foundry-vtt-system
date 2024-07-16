@@ -41,6 +41,8 @@
   "DG.Skills.swim": "Nadar",
   "DG.Skills.unarmed_combat": "Combate Desarmado",
   "DG.Skills.unnatural": "Antinatural",
+  "DG.Skills.flight": "Flight",
+
   "DG.Skills.AddTypedOrCustomSkill": "Adicionar Habilidade Personalizada",
   "DG.Skills.AddSkill": "Adicionar Habilidade",
   "DG.Skills.EditTypedOrCustomSkill": "Edit Typed or Custom Skill",

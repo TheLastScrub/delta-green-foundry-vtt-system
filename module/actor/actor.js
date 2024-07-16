@@ -363,4 +363,64 @@ export default class DeltaGreenActor extends Actor {
       console.log(ex);
     }
   }
+
+  async AddArmorItemToSheet(
+    name,
+    description,
+    protection,
+    isEquipped,
+    expense = "NA",
+  ) {
+    const armorData = {
+      type: "armor",
+      name: name,
+      system: {
+        description: description,
+        protection: protection,
+        equipped: isEquipped,
+        expense: expense,
+      },
+    };
+
+    await this.createEmbeddedDocuments("Item", [armorData]);
+  }
+
+  async AddWeaponItemToSheet(
+    name,
+    description,
+    damage,
+    skill = "custom",
+    skillModifier = 0,
+    customSkillTarget = 50,
+    armorPiercing = 0,
+    lethality = 0,
+    isLethal = false,
+    range = "10M",
+    killRadius = "N/A",
+    ammo = "",
+    expense = "NA",
+    equipped = true,
+  ) {
+    const weaponData = {
+      type: "weapon",
+      name: name,
+      system: {
+        description: description,
+        skill: skill, //custom
+        skillModifier: skillModifier,
+        customSkillTarget: customSkillTarget,
+        range: range,
+        damage: damage,
+        armorPiercing: armorPiercing,
+        lethality: lethality,
+        isLethal: isLethal,
+        killRadius: killRadius,
+        ammo: ammo,
+        expense: expense,
+        equipped: equipped,
+      },
+    };
+
+    await this.createEmbeddedDocuments("Item", [weaponData]);
+  }
 }
