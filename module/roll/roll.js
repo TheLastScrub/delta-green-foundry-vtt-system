@@ -256,7 +256,7 @@ export class DGPercentileRoll extends DGRoll {
 
     let label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${
       this.localizedKey
-    }</b> ${game.i18n.localize("DG.Roll.Target")} ${this.effectiveTarget}%`;
+    }</b><br> ${game.i18n.localize("DG.Roll.Target")} ${this.effectiveTarget}%`;
     // "Inhuman" stat being rolled. See function for details.
     if (this.isInhuman) {
       label = `${game.i18n.localize("DG.Roll.Rolling")} <b>${
@@ -284,14 +284,14 @@ export class DGPercentileRoll extends DGRoll {
     }
 
     if (this.modifier || isExhausted) {
-      label += ` (${this.target}`;
+      label += ` (${this.target}%`;
 
       if (this.modifier) {
-        label += ` ${DGUtils.formatStringWithLeadingPlus(this.modifier)}%`;
+        label += `${DGUtils.formatStringWithLeadingPlus(this.modifier)}%`;
       }
 
       if (isExhausted) {
-        label += ` ${DGUtils.formatStringWithLeadingPlus(
+        label += `${DGUtils.formatStringWithLeadingPlus(
           exhaustedCheckPenalty,
         )}%`;
       }
