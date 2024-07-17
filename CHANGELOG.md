@@ -1,5 +1,13 @@
 ## Release/Patch Notes
 
+### Version 1.4.6 - 2024-07-16 (FOUNDRY V12+ COMPATIBLE ONLY)
+
+- Enhancement [GitHub #104] - Exhaustion Checkbox and automation. Added a field on the Agent sheet to note "Exhaustion" and to set the check penalty for skill, x5 stat, and SAN tests that come with it.
+- Fix [GitHub #120] - Character Sheet Localization Warning. If using a language that the system isn't translated to, you will get a warning popup every time you opened a character sheet. This has been changed to a less obtrusive console error.
+- Fix [GitHub #121] - Duplicated Shotgun Item in Compendium (Thanks to andrewbeard for pull request)
+- Enhancement [GitHub #124] - Added some quick roll options for the roll modifier dialogue for percentile rolls (such as +/-20 and +-40). Also spent some time to try to make it more clear in the chat card when modifiers are applied to a target.
+- Enhancement [GitHub #127] - NPC stat block parser macro was non-function in Foundry v12, this should be fixed now. Also attempted to improve the parser, added some limited functionality to grab the armor and attacks an NPC has. Although due to how much variation there is how this is notated across the various Arc Dream and fan works, this will likely be somewhat unreliable.
+
 ### Version 1.4.5 - 2024-06-17 (FOUNDRY V12+ COMPATIBLE ONLY)
 
 - Fix [GitHub #111] - v12 Compatibility. There are various issues that have arisen in the change to v12, the Agent sheet being broken being the most obvious. But several issues with rolls and with Dice So Nice were also fixed.
