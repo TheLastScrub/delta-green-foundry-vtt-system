@@ -97,6 +97,8 @@
 
   "DG.Physical.Wounds": "傷",
   "DG.Physical.FirstAidLabel": "応急処置は既に施された",
+  "DG.Physical.Exhausted": "疲れ果てた:",
+  "DG.Physical.ExhaustionPenalty": "Penalty:",
 
   "DG.Generic.AddButtonLabel": "加える",
 
@@ -152,6 +154,7 @@
   "DG.Tooltip.AdaptedToViolence": "暴力を道具としかみえない、暴力を見たり、使ったりするのをなんとも思えなくなって、もう精神ダメージは受けないが、永遠に１D6魅力とそれぞれの絆のスコアを失ってしまう。",
   "DG.Tooltip.AdaptedToHelplessness": "すべてが無意味と理解し、もう無力の精神ダメージはうけないが、執行するドライブが下がって、永遠に１D6判断力を失ってしまう。",
   "DG.Tooltip.ToggleEquippedState": "クリックすると、この装備を着るる／外す。",
+  "DG.Tooltip.Exhaustion": "An Agent who works too long or faces extreme danger and injury without resting becomes exhausted. When this comes into play is up to the Handler, but a good rule of thumb is that going a night without sleep or refusing to rest after losing SAN or Hit Points leads to exhaustion.",
 
   "DG.Gear.Expense.NA": "N/A",
   "DG.Gear.Expense.Incidental": "付帯費用",

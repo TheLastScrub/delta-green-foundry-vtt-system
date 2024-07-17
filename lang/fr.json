@@ -103,6 +103,8 @@
 
   "DG.Physical.Wounds": "Blessures",
   "DG.Physical.FirstAidLabel": "Les premiers secours ont déjà été tentés: ",
+  "DG.Physical.Exhausted": "Exhausted:",
+  "DG.Physical.ExhaustionPenalty": "Penalty:",
 
   "DG.Generic.AddButtonLabel": "Ajout",
 
@@ -158,6 +160,7 @@
   "DG.Tooltip.AdaptedToViolence": "Être adapté à la violence signifie que l'empathie de votre Agent souffre lorsqu'il en vient à considérer la violence comme un outil de plus à manier. Il ou elle perd définitivement 1D6 CHA et le même montant dans chacun de ses Liens.",
   "DG.Tooltip.AdaptedToHelplessness": "Être adapté à l'impuissance signifie que la motivation personnelle de votre agent souffre lorsqu'il se retire du monde qui l'entoure. Dès que votre agent s'adapte à l'impuissance, il ou elle perd définitivement 1D6 POU.",
   "DG.Tooltip.ToggleEquippedState": "Cliquez pour indiquer si cet élément est équipé ou non.",
+  "DG.Tooltip.Exhaustion": "An Agent who works too long or faces extreme danger and injury without resting becomes exhausted. When this comes into play is up to the Handler, but a good rule of thumb is that going a night without sleep or refusing to rest after losing SAN or Hit Points leads to exhaustion.",
 
   "DG.Gear.Expense.NA": "N/A ou Aucun",
   "DG.Gear.Expense.Incidental": "Courant",

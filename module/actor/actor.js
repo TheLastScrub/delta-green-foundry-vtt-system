@@ -265,6 +265,11 @@ export default class DeltaGreenActor extends Actor {
     system.statistics.str.meleeDamageBonus = bonus;
     system.statistics.str.meleeDamageBonusFormula = sbonus;
 
+    if (system.physical.exhaustedPenalty > 0) {
+      system.physical.exhaustedPenalty =
+        -1 * Math.abs(system.physical.exhaustedPenalty);
+    }
+
     console.log(agent);
   }
 

@@ -267,10 +267,36 @@ export class DGPercentileRoll extends DGRoll {
         this.effectiveTarget
       }`;
     }
-    if (this.modifier) {
-      label += ` (${this.target}${DGUtils.formatStringWithLeadingPlus(
-        this.modifier,
-      )}%)`;
+
+    let isExhausted = false;
+    let exhaustedCheckPenalty = -20;
+
+    try {
+      // I suspect (but am not entirely certain) that being tired doesn't make you less lucky)
+      if (this.type !== "luck") {
+        isExhausted = this.actor.system.physical.exhausted;
+        exhaustedCheckPenalty = this.actor.system.physical.exhaustedPenalty;
+        exhaustedCheckPenalty = -1 * Math.abs(exhaustedCheckPenalty);
+      }
+    } catch {
+      isExhausted = false;
+      exhaustedCheckPenalty = -20;
+    }
+
+    if (this.modifier || isExhausted) {
+      label += ` (${this.target}`;
+
+      if (this.modifier) {
+        label += ` ${DGUtils.formatStringWithLeadingPlus(this.modifier)}%`;
+      }
+
+      if (isExhausted) {
+        label += ` ${DGUtils.formatStringWithLeadingPlus(
+          exhaustedCheckPenalty,
+        )}%`;
+      }
+
+      label += `)`;
     }
 
     let resultString = "";
@@ -425,17 +451,38 @@ export class DGPercentileRoll extends DGRoll {
    * Actual target for the roll accounting for modifier if present.
    * Floored to 1 if a negative modifier would bring it below 1.
    * Capped at 99 unless it is an inhuman stat test.
+   * Also worth noting, per page 47 of the Agent's Handbook, Exhaustion penalties
+   * affect not only skill and stat tests, but SAN tests as well...
    *
    * @returns {null|integer}
    */
   get effectiveTarget() {
     let target = 1;
 
+    let isExhausted = false;
+    let exhaustedCheckPenalty = -20;
+
+    try {
+      // I suspect (but am not entirely certain) that being tired doesn't make you less lucky)
+      if (this.type !== "luck") {
+        isExhausted = this.actor.system.physical.exhausted;
+        exhaustedCheckPenalty = this.actor.system.physical.exhaustedPenalty;
+        exhaustedCheckPenalty = -1 * Math.abs(exhaustedCheckPenalty);
+      }
+    } catch {
+      isExhausted = false;
+      exhaustedCheckPenalty = -20;
+    }
+
     if (!this.target || Number.isNaN(this.target)) {
       return null;
     }
 
     target = parseInt(this.target);
+
+    if (isExhausted) {
+      target += exhaustedCheckPenalty;
+    }
 
     if (this.modifier && !Number.isNaN(this.modifier)) {
       const modifier = parseInt(this.modifier);
