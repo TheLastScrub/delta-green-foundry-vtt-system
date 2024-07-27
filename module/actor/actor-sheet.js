@@ -81,9 +81,10 @@ export default class DeltaGreenActorSheet extends ActorSheet {
           switch (true) {
             // Stats
             case DG.statistics.includes(training.attribute):
-              simplifiedTraining.attribute = training.attribute.toUpperCase();
+              simplifiedTraining.attribute =
+                training.attribute.toUpperCase() + "x5";
               simplifiedTraining.targetNumber =
-                this.actor.system.statistics[training.attribute].value;
+                this.actor.system.statistics[training.attribute].x5;
               break;
             // Skills
             case DG.skills.includes(training.attribute):
