@@ -77,33 +77,32 @@
               </div>
             </li>
   
-            {{#each actor.items as |item id|}}
-              {{#if_eq item.type 'armor'}}
-  
-                <li class="item flexrow" data-item-id="{{item.id}}">
-                  <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                  <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
-                  <span class="centered-item-property">{{item.system.protection}}</span>
-                  
-                  <span class="equipped-item centered-item-property" data-id="{{item.id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}">
-                    {{#if item.system.equipped}}
-                      <span class="fas fa-check"></span>
-                    {{else}}
-                      <span class="fas fa-times"></span>
-                    {{/if}}
-                  </span>
-  
-                  <div class="item-controls">
-                      <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                      <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                  </div>
-                </li>
-  
-              {{/if_eq}}
+            {{#each actor.armor as |item id|}}
+              
+              <li class="item flexrow" data-item-id="{{item._id}}">
+                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
+                <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
+                <span class="centered-item-property">{{item.system.protection}}</span>
+                
+                <span class="equipped-item centered-item-property" data-id="{{item._id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}">
+                  {{#if item.system.equipped}}
+                    <span class="fas fa-check"></span>
+                  {{else}}
+                    <span class="fas fa-times"></span>
+                  {{/if}}
+                </span>
+
+                <div class="item-controls">
+                    <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                    <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                </div>
+              </li>
+                
             {{/each}}
   
           </ol>
         </div>
+
         <div>
   
           <div class="horizontal-bar-section-divider">
@@ -121,37 +120,38 @@
               </div>
             </li>
   
-            {{#each actor.items as |item id|}}
-              {{#if_eq item.type 'gear'}}
+            {{#each actor.gear as |item id|}}              
   
-                <li class="item flexrow" data-item-id="{{item.id}}">
-                  <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
+              <li class="item flexrow" data-item-id="{{item._id}}">
+
+                <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
+                
+                <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
+
+                <span></span> <!-- This is just here to get things to align nicely with the other sections-->
+                
+                <span class="equipped-item centered-item-property" data-id="{{item._id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}" >
                   
-                  <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
+                  {{#if item.system.equipped}}
+                    <span class="fas fa-check"></span>
+                  {{else}}
+                    <span class="fas fa-times"></span>
+                  {{/if}}
+                
+                </span>
+
+                <div class="item-controls">
+                    <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
+                    <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
+                </div>
+              </li>
   
-                  <span></span> <!-- This is just here to get things to align nicely with the other sections-->
-                  
-                  <span class="equipped-item centered-item-property" data-id="{{item.id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}" >
-                    
-                    {{#if item.system.equipped}}
-                      <span class="fas fa-check"></span>
-                    {{else}}
-                      <span class="fas fa-times"></span>
-                    {{/if}}
-                  
-                  </span>
-  
-                  <div class="item-controls">
-                      <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                      <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                  </div>
-                </li>
-  
-              {{/if_eq}}
             {{/each}}
   
           </ol>
+
         </div>
+
       </div>
   
         {{!-- About Tab --}}
@@ -160,6 +160,7 @@
         </div>
   
     </section>
+
   </form>
   
   

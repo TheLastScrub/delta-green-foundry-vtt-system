@@ -61,9 +61,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     const data = super.getData();
 
     // Prepare items.
-    //if (this.actor.type === "agent") {
     this._prepareCharacterItems(data);
-    //}
 
     // Make it easy for the sheet handlebars to understand how to sort the skills.
     data.sortSkillsSetting = game.settings.get("deltagreen", "sortSkills");
