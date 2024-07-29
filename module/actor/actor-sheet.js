@@ -161,7 +161,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       }
     }
 
-    if (actorData.system.sorting.armorSortAlphabetical) {
+    if (actorData.system.settings.sorting.armorSortAlphabetical) {
       armor.sort(function (a, b) {
         let x = a.name.toLowerCase();
         let y = b.name.toLowerCase();
@@ -179,7 +179,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       });
     }
 
-    if (actorData.system.sorting.weaponSortAlphabetical) {
+    if (actorData.system.settings.sorting.weaponSortAlphabetical) {
       weapons.sort(function (a, b) {
         let x = a.name.toLowerCase();
         let y = b.name.toLowerCase();
@@ -197,7 +197,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       });
     }
 
-    if (actorData.system.sorting.gearSortAlphabetical) {
+    if (actorData.system.settings.sorting.gearSortAlphabetical) {
       gear.sort(function (a, b) {
         let x = a.name.toLowerCase();
         let y = b.name.toLowerCase();
@@ -553,18 +553,18 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
       if (itemType === "weapon") {
         this.actor.update({
-          "system.sorting.weaponSortAlphabetical":
-            !this.actor.system.sorting.weaponSortAlphabetical,
+          "system.settings.sorting.weaponSortAlphabetical":
+            !this.actor.system.settings.sorting.weaponSortAlphabetical,
         });
       } else if (itemType === "armor") {
         this.actor.update({
-          "system.sorting.armorSortAlphabetical":
-            !this.actor.system.sorting.armorSortAlphabetical,
+          "system.settings.sorting.armorSortAlphabetical":
+            !this.actor.system.settings.sorting.armorSortAlphabetical,
         });
       } else if (itemType === "gear") {
         this.actor.update({
-          "system.sorting.gearSortAlphabetical":
-            !this.actor.system.sorting.gearSortAlphabetical,
+          "system.settings.sorting.gearSortAlphabetical":
+            !this.actor.system.settings.sorting.gearSortAlphabetical,
         });
       }
     });
