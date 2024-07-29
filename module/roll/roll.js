@@ -132,11 +132,21 @@ export class DGPercentileRoll extends DGRoll {
       hideSanTarget = true;
     }
 
+    let customModifierTarget = 20;
+
+    if (this.actor != null) {
+      try {
+        customModifierTarget = parseInt(
+          this.actor.system.settings.rolling.defaultPercentileModifier,
+        );
+      } catch {}
+    }
+
     const backingData = {
       data: {
         label: this.localizedKey,
         originalTarget: this.target,
-        targetModifier: 20,
+        targetModifier: customModifierTarget,
         hideTarget: hideSanTarget,
       },
     };
@@ -171,6 +181,14 @@ export class DGPercentileRoll extends DGRoll {
 
                   if (plusMinus === "-") {
                     targetModifier *= -1;
+                  }
+
+                  // update the custom target modifier so it 'persists' between dialogs
+                  if (this.actor != null) {
+                    this.actor.update({
+                      "system.settings.rolling.defaultPercentileModifier":
+                        targetModifier,
+                    });
                   }
                 }
                 resolve({ targetModifier, rollMode });
