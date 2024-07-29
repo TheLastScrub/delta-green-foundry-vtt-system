@@ -9,9 +9,15 @@
     <ol class="items-list">
       
       <li class="item flexrow item-header">
-        <div class="item-image"></div>        
+        <div class="item-image">
+            {{#if actor.system.sorting.weaponSortAlphabetical}}
+                <a><i class="toggle-item-sorting-style fa-solid fa-solid fa-arrow-down-a-z" data-gear-type="weapon"></i></a>            
+            {{else}}
+                <a><i class="toggle-item-sorting-style fa-solid fa-arrow-down-short-wide" data-gear-type="weapon"></i></a>
+            {{/if}}
+        </div>
+
         <span class="">
-            <a><i class="fa-solid fa-arrow-down-a-z"></i></a>
             {{localize 'DG.Gear.Name'}} 
             <a><i class="weapon-browse fas fa-search"></i></a>
         </span>
@@ -100,7 +106,13 @@
 
       <li class="item flexrow item-header">
 
-        <div class="item-image"></div>
+        <div class="item-image">
+            {{#if actor.system.sorting.armorSortAlphabetical}}
+                <a><i class="toggle-item-sorting-style fa-solid fa-solid fa-arrow-down-a-z" data-gear-type="armor"></i></a>            
+            {{else}}
+                <a><i class="toggle-item-sorting-style fa-solid fa-arrow-down-short-wide" data-gear-type="armor"></i></a>
+            {{/if}}
+        </div>
         <div class="item-name"><span>{{localize 'DG.Gear.Name'}} <a><i class="armor-browse fas fa-search"></i></a></span></div>
         <span class="centered-item-property">{{localize 'DG.Gear.ArmorRating'}}</span>
         <span class="centered-item-property">{{localize 'DG.Gear.Equipped'}}</span>
@@ -152,7 +164,13 @@
 
       <li class="item flexrow item-header">
 
-        <div class="item-image"></div>
+        <div class="item-image">
+            {{#if actor.system.sorting.gearSortAlphabetical}}
+                <a><i class="toggle-item-sorting-style fa-solid fa-solid fa-arrow-down-a-z" data-gear-type="gear"></i></a>            
+            {{else}}
+                <a><i class="toggle-item-sorting-style fa-solid fa-arrow-down-short-wide" data-gear-type="gear"></i></a>
+            {{/if}}
+        </div>
 
         <div style="min-width: 55%;" class="item-name">{{localize 'DG.Gear.Name'}}</div>
         

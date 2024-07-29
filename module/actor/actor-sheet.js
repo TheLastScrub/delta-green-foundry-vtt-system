@@ -161,17 +161,59 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       }
     }
 
-    armor.sort(function (a, b) {
-      return a.sort - b.sort;
-    });
+    if (actorData.system.sorting.armorSortAlphabetical) {
+      armor.sort(function (a, b) {
+        let x = a.name.toLowerCase();
+        let y = b.name.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      armor.sort(function (a, b) {
+        return a.sort - b.sort;
+      });
+    }
 
-    weapons.sort(function (a, b) {
-      return a.sort - b.sort;
-    });
+    if (actorData.system.sorting.weaponSortAlphabetical) {
+      weapons.sort(function (a, b) {
+        let x = a.name.toLowerCase();
+        let y = b.name.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      weapons.sort(function (a, b) {
+        return a.sort - b.sort;
+      });
+    }
 
-    gear.sort(function (a, b) {
-      return a.sort - b.sort;
-    });
+    if (actorData.system.sorting.gearSortAlphabetical) {
+      gear.sort(function (a, b) {
+        let x = a.name.toLowerCase();
+        let y = b.name.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      gear.sort(function (a, b) {
+        return a.sort - b.sort;
+      });
+    }
 
     // Assign and return
     actorData.armor = armor;
@@ -501,6 +543,30 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
     html.find(".clear-all-bond-damage-checks").click((ev) => {
       this._updateBondsRemoveAllDamagedCheckmarks();
+    });
+
+    // item sorting toggles
+    html.find(".toggle-item-sorting-style").click((event) => {
+      event.preventDefault();
+
+      const itemType = event.currentTarget.getAttribute("data-gear-type");
+
+      if (itemType === "weapon") {
+        this.actor.update({
+          "system.sorting.weaponSortAlphabetical":
+            !this.actor.system.sorting.weaponSortAlphabetical,
+        });
+      } else if (itemType === "armor") {
+        this.actor.update({
+          "system.sorting.armorSortAlphabetical":
+            !this.actor.system.sorting.armorSortAlphabetical,
+        });
+      } else if (itemType === "gear") {
+        this.actor.update({
+          "system.sorting.gearSortAlphabetical":
+            !this.actor.system.sorting.gearSortAlphabetical,
+        });
+      }
     });
   }
 
