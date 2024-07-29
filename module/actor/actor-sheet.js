@@ -15,7 +15,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["deltagreen", "sheet", "actor"],
       template: "systems/deltagreen/templates/actor/actor-sheet.html",
-      width: 700,
+      width: 750,
       height: 770,
       tabs: [
         {
@@ -61,9 +61,9 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     const data = super.getData();
 
     // Prepare items.
-    if (this.actor.type === "agent") {
-      this._prepareCharacterItems(data);
-    }
+    //if (this.actor.type === "agent") {
+    this._prepareCharacterItems(data);
+    //}
 
     // Make it easy for the sheet handlebars to understand how to sort the skills.
     data.sortSkillsSetting = game.settings.get("deltagreen", "sortSkills");
@@ -146,6 +146,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     // Initialize containers.
     const armor = [];
     const weapons = [];
+    const gear = [];
 
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
@@ -157,12 +158,27 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       // Append to weapons.
       else if (i.type === "weapon") {
         weapons.push(i);
+      } else if (i.type === "gear") {
+        gear.push(i);
       }
     }
+
+    armor.sort(function (a, b) {
+      return a.sort - b.sort;
+    });
+
+    weapons.sort(function (a, b) {
+      return a.sort - b.sort;
+    });
+
+    gear.sort(function (a, b) {
+      return a.sort - b.sort;
+    });
 
     // Assign and return
     actorData.armor = armor;
     actorData.weapons = weapons;
+    actorData.gear = gear;
   }
 
   // Can add extra buttons to form header here if necessary

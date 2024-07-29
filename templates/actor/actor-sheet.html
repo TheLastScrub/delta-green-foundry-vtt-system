@@ -104,15 +104,18 @@
                     {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}}
                   >
                   {{localizeWithFallback (concat "DG.Skills." key) skill.label }}
+                  <i class="fas fa-dice"></i>
                 </label>
                 
                 {{#if_eq key 'ritual' }}
+
                   {{#if (keepSanityPrivate)}}
                     <input class="percentile-skill-input" type="text" name="system.skills.{{key}}.proficiency" value="??" data-dtype="Number" {{#if skill.isCalculatedValue}} disabled {{/if}}/>
                     <input class="checkbox-skill-input" type="checkbox" name="system.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} 
                       title="{{localize 'DG.Tooltip.SkillFailCheckbox'}}"
                       />
                   {{/if}}
+
                   {{#unless (keepSanityPrivate)}}
                     <input class="percentile-skill-input" type="text" name="system.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number" {{#if skill.isCalculatedValue}} disabled {{/if}}/>
                     <input class="checkbox-skill-input" type="checkbox" name="system.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} 
@@ -121,12 +124,14 @@
                   {{/unless}}
                   
                 {{/if_eq}}
+
                 {{#if_not_eq key 'ritual' }}
                   <input class="percentile-skill-input" type="text" name="system.skills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number" {{#if skill.isCalculatedValue}} disabled {{/if}}/>
                   <input class="checkbox-skill-input" type="checkbox" name="system.skills.{{key}}.failure" {{checked skill.failure}} data-dtype="Boolean" {{#if skill.cannotBeImprovedByFailure}} disabled {{/if}} 
                     title="{{localize 'DG.Tooltip.SkillFailCheckbox'}}"
                     />
                 {{/if_not_eq}}
+
               </div>
             {{/each}}
           </div>
@@ -148,7 +153,7 @@
               <div class="flex-group-center flex-mid-border">
                 <div class="">
                   <div class="physical-stats-outer-grid-3col">
-                    <label class="rollable resource-label" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}" for="system.statistics.{{key}}.value">{{localize (concat 'DG.Attributes.' key)}}</label>
+                    <label class="rollable resource-label" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}" for="system.statistics.{{key}}.value">{{localize (concat 'DG.Attributes.' key)}}<i class="fas fa-dice"></i></label>
                     <input type="text" name="system.statistics.{{key}}.value" value="{{statistic.value}}" data-dtype="Number"/>
                     <span  class="rollable" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}">({{numberFormat statistic.x5 decimals=0 sign=false}}%)</span>
                   </div >
@@ -283,167 +288,7 @@
 
         {{!-- GEAR Tab --}}
         <div class="tab items" data-group="primary" data-tab="gear">
-          <div>
-                        
-            <div class="horizontal-bar-section-divider">
-                <span>{{localize 'DG.Gear.Weapons'}}</span>                                                    
-            </div>
-
-            <ol class="items-list">
-              
-              <li class="item flexrow item-header">
-                <div class="item-image"></div>
-                <span class="">{{localize 'DG.Gear.Name'}} <a><i class="weapon-browse fas fa-search"></i></a></span>
-                <span class="centered-item-property">{{localize 'DG.Gear.DamageOrLethality'}}</span>
-                <span class="centered-item-property">{{localize 'DG.Gear.ArmorPiercing'}}</span>
-                <div class="item-controls">
-                  <a class="item-control item-create action-pill" title="Create item" data-type="weapon"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>                  
-                </div>
-              </li>
-
-              {{#each actor.items as |item id|}}
-                {{#if_eq item.type 'weapon'}}
-                  
-                  <li class="item flexrow" data-item-id="{{item._id}}">
-                    <div 
-                      class="flexrow rollable"
-                      data-iid="{{item._id}}"
-                      data-rolltype="weapon" 
-                      data-key="{{item.system.skill}}"                                          
-                      title="{{localize 'DG.Tooltip.SkillLabel'}} ({{localizeWeaponSkill item.system.skill}})"
-                    ><img class="item-image" src="{{item.img}}"  width="24" height="24"/>
-                    
-                    <h4 style="word-wrap: break-word;" class="item-name">
-                        {{item.name}}
-                    </h4>
-                    </div>
-
-                    <span class = "centered-item-property">
-                      {{#unless item.system.isLethal}}
-                        <span class="rollable" data-rolltype="damage" data-iid="{{item._id}}">                      
-                          {{toUpperCase item.system.damage}}{{#if_eq item.system.skill 'unarmed_combat'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}{{#if_eq item.system.skill 'melee_weapons'}}{{actor.system.statistics.str.meleeDamageBonusFormula}}{{/if_eq}}
-                        </span>
-                      {{/unless}}
-
-                      {{#if item.system.isLethal}}
-                      <span class="rollable" data-rolltype="lethality" data-iid="{{item._id}}"
-                        title="{{localize 'DG.ItemWindow.Weapons.LethalityTooltip'}}">
-                        {{item.system.lethality}}%</span>
-                      {{/if}}
-                      
-                      {{#if item.system.lethality}}
-                        - 
-                        {{#if item.system.isLethal}}
-                          <a class="item-control toggle-lethality dg-red" title="Toggle Lethality (Current Lethality: {{item.system.lethality}}%)"><i class="fas fa-skull-crossbones" item-id="{{item.id}}" is-lethal="true"></i></a>
-                        {{else}}
-                          <a class="item-control toggle-lethality" title="Toggle Lethality (Currently No Lethality)"><i class="fas fa-user-injured" item-id="{{item.id}}" is-lethal="false"></i></a>
-                        {{/if}}
-                      {{/if}}
-                    </span>
-
-                    <span class="centered-item-property">{{item.system.armorPiercing}}</span>
-
-                    <div class="item-controls">
-                        <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                    </div>
-                    
-                  </li>
-
-                {{/if_eq}}
-              {{/each}}
-            </ol>
-          </div>
-          <div>
-
-            <div class="horizontal-bar-section-divider">
-              <span>{{localize 'DG.Gear.Armor'}}</span>
-            </div>
-
-            <ol class="items-list">
-              <li class="item flexrow item-header">
-                <div class="item-image"></div>
-                <div class="item-name"><span>{{localize 'DG.Gear.Name'}} <a><i class="armor-browse fas fa-search"></i></a></span></div>
-                <span class="centered-item-property">{{localize 'DG.Gear.ArmorRating'}}</span>
-                <span class="centered-item-property">{{localize 'DG.Gear.Equipped'}}</span>
-                <div class="item-controls">
-                  <a class="item-control item-create action-pill" title="Create item" data-type="armor"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
-                </div>
-              </li>
-
-              {{#each actor.items as |item id|}}
-                {{#if_eq item.type 'armor'}}
-
-                  <li class="item flexrow" data-item-id="{{item.id}}">
-                    <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                    <h4 style="word-wrap: break-word;" class="item-name">{{item.name}}</h4>
-                    <span class="centered-item-property">{{item.system.protection}}</span>
-                    
-                    <span class="equipped-item centered-item-property" data-id="{{item.id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}">
-                      {{#if item.system.equipped}}
-                        <span class="fas fa-check"></span>
-                      {{else}}
-                        <span class="fas fa-times"></span>
-                      {{/if}}
-                    </span>
-
-                    <div class="item-controls">
-                        <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                    </div>
-                  </li>
-
-                {{/if_eq}}
-              {{/each}}
-
-            </ol>
-          </div>
-          <div>
-
-            <div class="horizontal-bar-section-divider">
-              <span>{{localize 'DG.Gear.OtherGear'}}</span>
-            </div>
-
-            <ol class="items-list">
-              <li class="item flexrow item-header">
-                <div class="item-image"></div>
-                <div style="min-width: 55%;" class="item-name">{{localize 'DG.Gear.Name'}}</div>
-                
-                <span class="centered-item-property">{{localize 'DG.Gear.Equipped'}}</span>
-                <div class="item-controls">
-                  <a class="item-control item-create action-pill" title="Create item" data-type="gear"><i class="fas fa-plus"></i> {{localize 'DG.Generic.AddButtonLabel'}}</a>
-                </div>
-              </li>
-
-              {{#each actor.items as |item id|}}
-
-                {{#if_eq item.type 'gear'}}
-
-                  <li class="item flexrow" data-item-id="{{item.id}}">
-                    <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                    <h4 style="word-wrap: break-word; min-width: 55%;" class="item-name">{{item.name}}</h4>                    
-                    
-                    <span class="equipped-item centered-item-property" data-id="{{item.id}}" title="{{localize 'DG.Tooltip.ToggleEquippedState'}}" >
-                      
-                      {{#if item.system.equipped}}
-                        <span class="fas fa-check"></span>
-                      {{else}}
-                        <span class="fas fa-times"></span>
-                      {{/if}}
-                    
-                    </span>
-
-                    <div class="item-controls">
-                        <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
-                        <a class="item-control item-delete" title="Delete Item"><i class="fas fa-trash"></i></a>
-                    </div>
-                  </li>
-
-                {{/if_eq}}
-              {{/each}}
-
-            </ol>
-          </div>
+          {{> "systems/deltagreen/templates/actor/equipment-partial.html" }}
         </div>
 
         {{!-- PERSONAL (Biography) Tab --}}

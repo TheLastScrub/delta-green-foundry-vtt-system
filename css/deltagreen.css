@@ -1133,3 +1133,16 @@ input.item-sheet-short-input {
   min-height: 300px;
   resize: none;
 }
+
+.weapon-name-flexcontainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  column-gap: 10px;
+}
+
+.weapon-name-flexitem {
+  flex: content;
+  align-self: flex-start;
+  text-align: left;
+}
