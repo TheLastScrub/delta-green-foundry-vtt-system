@@ -144,26 +144,13 @@
 
         {{!-- Physical Statistics like STR, CON, etc. --}}
         <div class="tab physical" data-group="primary" data-tab="physical">
+
           <div class="horizontal-bar-section-divider">
             <span>{{localize "DG.Sheet.BlockHeaders.Attributes"}}</span>                                                    
           </div>
           
-          <div class="grid grid-3col">
-            {{#each actor.system.statistics as |statistic key|}}
-              <div class="flex-group-center flex-mid-border">
-                <div class="">
-                  <div class="physical-stats-outer-grid-3col">
-                    <label class="rollable resource-label" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}" for="system.statistics.{{key}}.value">{{localize (concat 'DG.Attributes.' key)}}</i></label>
-                    <input type="text" name="system.statistics.{{key}}.value" value="{{statistic.value}}" data-dtype="Number"/>
-                    <span  class="rollable" data-rolltype="stat" data-key="{{key}}" title="{{localize 'DG.Tooltip.x5AttributeLabel'}}">({{numberFormat statistic.x5 decimals=0 sign=false}}% <i class="fas fa-dice"></i>)</span>
-                  </div >
-                  <div >
-                    <input type="text" name="system.statistics.{{key}}.distinguishing_feature" value="{{statistic.distinguishing_feature}}" data-dtype="String" title="{{localize 'DG.Tooltip.DistinguishingFeature'}}" />
-                  </div>
-                </div>
-              </div>
-            {{/each}}
-          </div>
+          {{> "systems/deltagreen/templates/actor/partials/attributes-grid-partial.html" actorType="agent"}}
+
           <br />
           <div class="horizontal-bar-section-divider">
             <span>{{localize "DG.Sheet.BlockHeaders.Injuries"}}</span>                                                    
@@ -288,7 +275,7 @@
 
         {{!-- GEAR Tab --}}
         <div class="tab items" data-group="primary" data-tab="gear">
-          {{> "systems/deltagreen/templates/actor/equipment-partial.html" }}
+          {{> "systems/deltagreen/templates/actor/partials/equipment-partial.html" }}
         </div>
 
         {{!-- PERSONAL (Biography) Tab --}}

@@ -14,6 +14,7 @@ export default async function preloadHandlebarsTemplates() {
     "systems/deltagreen/templates/dialog/modify-percentile-roll.html",
     "systems/deltagreen/templates/actor/vehicle-sheet.html",
     "systems/deltagreen/templates/actor/help-and-licensing-partial.html",
-    "systems/deltagreen/templates/actor/equipment-partial.html",
+    "systems/deltagreen/templates/actor/partials/equipment-partial.html",
+    "systems/deltagreen/templates/actor/partials/attributes-grid-partial.html",
   ]);
 }
