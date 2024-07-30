@@ -13,6 +13,7 @@ import {
   rollItemMacro,
   rollItemSkillCheckMacro,
   rollSkillMacro,
+  rollSkillTestForItemAndActor,
 } from "./other/macro-functions.js";
 
 Hooks.once("init", async () => {
@@ -23,6 +24,7 @@ Hooks.once("init", async () => {
     rollItemSkillCheckMacro,
     rollSkillMacro,
     ParseDeltaGreenStatBlock,
+    rollSkillTestForItemAndActor,
   };
 
   /**
@@ -80,18 +82,17 @@ Hooks.on("preCreateItem", (item) => {
   }
 });
 
-Hooks.on("renderSidebarTab", async (app, html) => {
-  if (app.options.id === "actors") {
-    const button = $(
-      "<button class='import-cd'><i class='fas fa-file-import'></i> Parse Stat Block</button>",
-    );
+// Hook into the render call for the Actors Directory to add an extra button
+Hooks.on("renderActorDirectory", (app, html) => {
+  let importButton = $(
+    '<button><i class="fas fa-file-import"></i> Delta Green Stat Block Parser</button>',
+  );
+  html.find(".directory-footer").append(importButton);
 
-    button.click(() => {
-      ParseDeltaGreenStatBlock();
-    });
-
-    html.find(".directory-footer").append(button);
-  }
+  // Handle button clicks
+  importButton.click((ev) => {
+    ParseDeltaGreenStatBlock();
+  });
 });
 
 /**
