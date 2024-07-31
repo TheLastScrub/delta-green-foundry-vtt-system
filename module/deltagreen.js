@@ -13,6 +13,7 @@ import {
   rollItemMacro,
   rollItemSkillCheckMacro,
   rollSkillMacro,
+  rollSkillTestAndDamageForOwnedItem,
 } from "./other/macro-functions.js";
 
 Hooks.once("init", async () => {
@@ -23,6 +24,7 @@ Hooks.once("init", async () => {
     rollItemSkillCheckMacro,
     rollSkillMacro,
     ParseDeltaGreenStatBlock,
+    rollSkillTestAndDamageForOwnedItem,
   };
 
   /**
@@ -61,9 +63,16 @@ Hooks.once("init", async () => {
 
 Hooks.once("ready", async () => {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) =>
-    createDeltaGreenMacro(data, slot),
-  );
+  Hooks.on("hotbarDrop", (bar, data, slot) => {
+    // note - if we don't limit this logic to just items, we'll break re-ording macros on the bar
+    if (data.type === "Item") {
+      // this is async!!
+      createDeltaGreenMacro(data, slot);
+      // this must return false here! This stops the default logic on item drop from occuring,
+      // which is a macro to open an item sheet
+      return false;
+    }
+  });
 });
 
 Hooks.on("preCreateItem", (item) => {
@@ -80,18 +89,17 @@ Hooks.on("preCreateItem", (item) => {
   }
 });
 
-Hooks.on("renderSidebarTab", async (app, html) => {
-  if (app.options.id === "actors") {
-    const button = $(
-      "<button class='import-cd'><i class='fas fa-file-import'></i> Parse Stat Block</button>",
-    );
+// Hook into the render call for the Actors Directory to add an extra button
+Hooks.on("renderActorDirectory", (app, html) => {
+  let importButton = $(
+    '<button><i class="fas fa-file-import"></i> Delta Green Stat Block Parser</button>',
+  );
+  html.find(".directory-footer").append(importButton);
 
-    button.click(() => {
-      ParseDeltaGreenStatBlock();
-    });
-
-    html.find(".directory-footer").append(button);
-  }
+  // Handle button clicks
+  importButton.click((ev) => {
+    ParseDeltaGreenStatBlock();
+  });
 });
 
 /**

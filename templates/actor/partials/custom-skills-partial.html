@@ -6,6 +6,7 @@
   {{/if_eq}}
 </div>
 <div class="grid-2col">
+
   {{#each actor.system.typedSkills as |skill key|}}
     <div class="item flexrow flex-group-center flex-thin-border">
       <div class="flexrow">
@@ -14,6 +15,7 @@
             {{#unless skill.proficiency}}title="{{localize 'DG.Tooltip.CannotRollSkillLabel'}}"{{/unless}} 
           >
           {{skill.group}} ({{skill.label}})
+          <i class="fas fa-dice"></i>
         </label>
         <input class="percentile-skill-input" type="text" name="system.typedSkills.{{key}}.proficiency" value="{{skill.proficiency}}" data-dtype="Number"/>
         {{#if_eq ../actorType "agent"}}
@@ -26,10 +28,12 @@
       </div>
     </div>
   {{/each}}
+
   {{#each specialTraining as |training|}}
     <div class="item flexrow flex-group-center flex-thin-border special-training-box">
       <label class="{{if_gt training.targetNumber 0 'rollable' 'not-rollable'}}" data-key="{{training.key}}" data-name="{{training.name}}" data-rolltype="special-training">
         {{training.name}} ({{training.attribute}}, {{training.targetNumber}}%)
+        <i class="fas fa-dice"></i>
       </label>
       <div class="item-controls skill-and-training-controls">
           <a class="item-control special-training-action" data-action="Edit" data-id="{{training.id}}" title="Edit Training"><i class="fas fa-edit"></i></a>
@@ -37,4 +41,5 @@
       </div>
     </div>
   {{/each}}
+
 </div>

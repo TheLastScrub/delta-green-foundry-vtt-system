@@ -15,7 +15,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["deltagreen", "sheet", "actor"],
       template: "systems/deltagreen/templates/actor/actor-sheet.html",
-      width: 700,
+      width: 750,
       height: 770,
       tabs: [
         {
@@ -61,9 +61,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     const data = super.getData();
 
     // Prepare items.
-    if (this.actor.type === "agent") {
-      this._prepareCharacterItems(data);
-    }
+    this._prepareCharacterItems(data);
 
     // Make it easy for the sheet handlebars to understand how to sort the skills.
     data.sortSkillsSetting = game.settings.get("deltagreen", "sortSkills");
@@ -146,6 +144,7 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     // Initialize containers.
     const armor = [];
     const weapons = [];
+    const gear = [];
 
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
@@ -157,12 +156,69 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       // Append to weapons.
       else if (i.type === "weapon") {
         weapons.push(i);
+      } else if (i.type === "gear") {
+        gear.push(i);
       }
+    }
+
+    if (actorData.system.settings.sorting.armorSortAlphabetical) {
+      armor.sort(function (a, b) {
+        let x = a.name.toLowerCase();
+        let y = b.name.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      armor.sort(function (a, b) {
+        return a.sort - b.sort;
+      });
+    }
+
+    if (actorData.system.settings.sorting.weaponSortAlphabetical) {
+      weapons.sort(function (a, b) {
+        let x = a.name.toLowerCase();
+        let y = b.name.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      weapons.sort(function (a, b) {
+        return a.sort - b.sort;
+      });
+    }
+
+    if (actorData.system.settings.sorting.gearSortAlphabetical) {
+      gear.sort(function (a, b) {
+        let x = a.name.toLowerCase();
+        let y = b.name.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      gear.sort(function (a, b) {
+        return a.sort - b.sort;
+      });
     }
 
     // Assign and return
     actorData.armor = armor;
     actorData.weapons = weapons;
+    actorData.gear = gear;
   }
 
   // Can add extra buttons to form header here if necessary
@@ -487,6 +543,30 @@ export default class DeltaGreenActorSheet extends ActorSheet {
 
     html.find(".clear-all-bond-damage-checks").click((ev) => {
       this._updateBondsRemoveAllDamagedCheckmarks();
+    });
+
+    // item sorting toggles
+    html.find(".toggle-item-sorting-style").click((event) => {
+      event.preventDefault();
+
+      const itemType = event.currentTarget.getAttribute("data-gear-type");
+
+      if (itemType === "weapon") {
+        this.actor.update({
+          "system.settings.sorting.weaponSortAlphabetical":
+            !this.actor.system.settings.sorting.weaponSortAlphabetical,
+        });
+      } else if (itemType === "armor") {
+        this.actor.update({
+          "system.settings.sorting.armorSortAlphabetical":
+            !this.actor.system.settings.sorting.armorSortAlphabetical,
+        });
+      } else if (itemType === "gear") {
+        this.actor.update({
+          "system.settings.sorting.gearSortAlphabetical":
+            !this.actor.system.settings.sorting.gearSortAlphabetical,
+        });
+      }
     });
   }
 

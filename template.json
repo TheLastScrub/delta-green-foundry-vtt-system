@@ -40,6 +40,18 @@
           }
         }
       },
+      "sheet-settings": {
+        "settings": {
+          "sorting": {
+            "weaponSortAlphabetical": false,
+            "armorSortAlphabetical": false,
+            "gearSortAlphabetical": false
+          },
+          "rolling": {
+            "defaultPercentileModifier": 20
+          }
+        }
+      },
       "human_skills": {
         "skills": {
           "accounting": {
@@ -429,7 +441,7 @@
       }
     },
     "unnatural": {
-      "templates": ["base", "unnatural_skills"],
+      "templates": ["base", "unnatural_skills", "sheet-settings"],
       "sanity": {
         "notes": "",
         "failedLoss": "1D4",
@@ -441,7 +453,7 @@
       "showUntrainedSkills": true
     },
     "npc": {
-      "templates": ["base", "human_skills"],
+      "templates": ["base", "human_skills", "sheet-settings"],
       "schemaVersion": 1.0,
       "sanity": {
         "value": 100,
@@ -452,6 +464,7 @@
       "showUntrainedSkills": true
     },
     "vehicle": {
+      "templates": ["sheet-settings"],
       "name": "",
       "description": "",
       "shortDescription": "",
@@ -465,7 +478,7 @@
       "passengers": []
     },
     "agent": {
-      "templates": ["base", "human_skills"],
+      "templates": ["base", "human_skills", "sheet-settings"],
       "schemaVersion": 1.0,
       "sanity": {
         "value": 100,
