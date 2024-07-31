@@ -22,7 +22,7 @@ export default class DeltaGreenItem extends Item {
    * @param {Event} event   The originating click event
    * @private
    */
-  async roll() {
+  async roll(isCrit = false) {
     // Basic template rendering data
     const item = this;
     const { actor } = this;
@@ -42,6 +42,10 @@ export default class DeltaGreenItem extends Item {
 
       if (skillType === "unarmed_combat" || skillType === "melee_weapons") {
         diceFormula += actorSystemData.statistics.str.meleeDamageBonusFormula;
+      }
+
+      if (isCrit) {
+        diceFormula = "2*(" + diceFormula + ")";
       }
 
       roll = new DGDamageRoll(

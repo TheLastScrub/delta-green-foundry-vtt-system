@@ -13,7 +13,7 @@ import {
   rollItemMacro,
   rollItemSkillCheckMacro,
   rollSkillMacro,
-  rollSkillTestForItemAndActor,
+  rollSkillTestAndDamageForOwnedItem,
 } from "./other/macro-functions.js";
 
 Hooks.once("init", async () => {
@@ -24,7 +24,7 @@ Hooks.once("init", async () => {
     rollItemSkillCheckMacro,
     rollSkillMacro,
     ParseDeltaGreenStatBlock,
-    rollSkillTestForItemAndActor,
+    rollSkillTestAndDamageForOwnedItem,
   };
 
   /**
@@ -63,9 +63,12 @@ Hooks.once("init", async () => {
 
 Hooks.once("ready", async () => {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on("hotbarDrop", (bar, data, slot) =>
-    createDeltaGreenMacro(data, slot),
-  );
+  Hooks.on("hotbarDrop", (bar, data, slot) => {
+    if (data.type === "Item") {
+      createDeltaGreenMacro(data, slot);
+      return false;
+    }
+  });
 });
 
 Hooks.on("preCreateItem", (item) => {

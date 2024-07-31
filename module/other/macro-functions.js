@@ -12,29 +12,38 @@ import * as DGRolls from "../roll/roll.js";
  * @returns {Promise}
  */
 export async function createDeltaGreenMacro(data, slot) {
-  // Definitely should not be doing assignments in conditionals but if we fix this, it breaks macro creation.
-  // eslint-disable-next-line no-cond-assign
-  if ((data.type = "Item" && data.itemData.type !== "weapon")) return;
-  // if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
-  const item = data.itemData;
+  if (data.type !== "Item") {
+    return true;
+  }
+
+  if (!data.uuid.includes("Actor.") && !data.uuid.includes("Token.")) {
+    ui.notifications.warn("You can only create macro buttons for owned Items");
+    return true;
+  }
+
+  const item = await fromUuid(data.uuid);
+
+  if (item.type !== "weapon") {
+    return true;
+  }
 
   // Create the macro command
-  let command = "// Uncomment line below to also roll skill check if desired.";
-  command += `\n//game.deltagreen.rollItemSkillCheckMacro("${item._id}");`;
-  command += `\ngame.deltagreen.rollItemMacro("${item._id}");`;
+  let command =
+    "// If a damage roll on a successful attack should not be automatically rolled, change the last argument from 'true' to 'false':";
+  command += `\ngame.deltagreen.rollSkillTestAndDamageForOwnedItem("${data.uuid}", true);`;
 
-  // let macro = game.macros.entities.find(m => (m.name === data.name) && (m.command === command));
-  // if (!macro) {
   const macro = await Macro.create({
-    name: data.itemData.name,
+    name: item.name,
     type: "script",
-    img: data.itemData.img,
-    command,
+    img: item.img,
+    thumbnail: item.img,
+    command: command,
     flags: { "deltagreen.itemMacro": true },
   });
-  // }
 
-  game.user.assignHotbarMacro(macro, slot);
+  await game.user.assignHotbarMacro(macro, slot);
+
+  return false;
 }
 
 /**
@@ -121,4 +130,53 @@ export function rollSkillMacro(skillName) {
   );
   return actor.sheet.processRoll({}, roll);
   // sendPercentileTestToChat(actor, translatedSkillLabel, skill.proficiency);
+}
+
+/**
+ * Roll a skill check for an item that is owned by a specific actor.
+ * @param {*} itemId
+ * @param {*} actorId
+ * @returns {null|Boolean}
+ */
+export async function rollSkillTestAndDamageForOwnedItem(
+  itemUuId,
+  rollDamageOnSuccess,
+) {
+  let item;
+
+  try {
+    item = await fromUuid(itemUuId);
+
+    if (item == null) {
+      return ui.notifications.warn("Invalid item targeted in macro.");
+    }
+
+    if (item.type !== "weapon") {
+      return ui.notifications.warn(
+        "Can only roll weapons/attacks as item macros.",
+      );
+    }
+  } catch {
+    return ui.notifications.warn("Invalid item targeted in macro.");
+  }
+
+  const rollOptions = {
+    rollType: "weapon",
+    key: item.system.skill,
+    actor: item.parent,
+    specialTrainingName: null, // Only applies to Special Training Rolls
+    item,
+  };
+
+  const roll = new DGRolls.DGPercentileRoll("1D100", {}, rollOptions);
+
+  await roll.evaluate();
+
+  roll.toChat();
+
+  if (roll.isSuccess && rollDamageOnSuccess) {
+    item.roll(roll.isCritical);
+  }
+
+  return roll.isSuccess;
 }
