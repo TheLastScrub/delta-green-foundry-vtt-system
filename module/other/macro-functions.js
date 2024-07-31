@@ -13,25 +13,32 @@ import * as DGRolls from "../roll/roll.js";
  */
 export async function createDeltaGreenMacro(data, slot) {
   if (data.type !== "Item") {
-    return true;
+    return;
   }
 
   if (!data.uuid.includes("Actor.") && !data.uuid.includes("Token.")) {
     ui.notifications.warn("You can only create macro buttons for owned Items");
-    return true;
+    return;
   }
 
   const item = await fromUuid(data.uuid);
 
-  if (item.type !== "weapon") {
-    return true;
+  if (item === null || typeof item === "undefined") {
+    ui.notifications.warn("Bad item passed to macro hotbar.");
+    return;
   }
 
-  // Create the macro command
-  let command =
-    "// If a damage roll on a successful attack should not be automatically rolled, change the last argument from 'true' to 'false':";
-  command += `\ngame.deltagreen.rollSkillTestAndDamageForOwnedItem("${data.uuid}", true);`;
+  let command = "";
+  if (item.type !== "weapon") {
+    // this should just open the item sheet for this item
+    command = `(await fromUuid("${data.uuid}")).sheet.render(true)`;
+  } else {
+    command =
+      "// If a damage roll on a successful attack should not be automatically rolled, change the last argument from 'true' to 'false':";
+    command += `\ngame.deltagreen.rollSkillTestAndDamageForOwnedItem("${data.uuid}", true);`;
+  }
 
+  // Create the weapon macro command
   const macro = await Macro.create({
     name: item.name,
     type: "script",
@@ -43,7 +50,7 @@ export async function createDeltaGreenMacro(data, slot) {
 
   await game.user.assignHotbarMacro(macro, slot);
 
-  return false;
+  return;
 }
 
 /**
