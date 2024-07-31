@@ -64,8 +64,12 @@ Hooks.once("init", async () => {
 Hooks.once("ready", async () => {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => {
+    // note - if we don't limit this logic to just items, we'll break re-ording macros on the bar
     if (data.type === "Item") {
+      // this is async!!
       createDeltaGreenMacro(data, slot);
+      // this must return false here! This stops the default logic on item drop from occuring,
+      // which is a macro to open an item sheet
       return false;
     }
   });
