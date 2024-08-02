@@ -292,5 +292,10 @@
   "DG.Tome.Name": "Name",
   "DG.ItemWindow.Tome.Description": "Description",
   "DG.ItemWindow.Tome.LanguagePlaceholder": "Language",
-  "DG.ItemWindow.Tome.StudyTime": "Study Time"
+  "DG.ItemWindow.Tome.StudyTime": "Study Time",
+  "DG.ItemWindow.Tome.OccultIncrease": "Occult Skill Increase",
+  "DG.ItemWindow.Tome.UnnaturalIncrease": "Unnatural Skill Increase",
+  "DG.ItemWindow.Tome.StudySanityDamage": "Study Sanity Damage",
+  "DG.ItemWindow.Tome.HandlerOnlyTabHeader": "Handler Only",
+  "DG.ItemWindow.Tome.HandlerNotes": "Handler"
 }
