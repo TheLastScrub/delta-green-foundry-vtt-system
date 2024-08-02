@@ -45,7 +45,7 @@ export default class DeltaGreenItemSheet extends ItemSheet {
       { async: true },
     );
 
-    if (data.item.type === "tome" || data.type === "ritual") {
+    if (data.item.type === "tome" || data.item.type === "ritual") {
       data.enrichedHandlerNotes = await TextEditor.enrichHTML(
         this.object.system.handlerNotes,
         { async: true },
@@ -144,10 +144,10 @@ export default class DeltaGreenItemSheet extends ItemSheet {
       }
       case "sanity-damage": {
         let combinedFormula;
-        if (this.item.type === "tome") {
-          const { successLoss, failedLoss } = this.item.system.sanity;
-          combinedFormula = `{${successLoss}, ${failedLoss}}`;
-        }
+
+        const { successLoss, failedLoss } = this.item.system.sanity;
+        combinedFormula = `{${successLoss}, ${failedLoss}}`;
+
         roll = new DGSanityDamageRoll(combinedFormula, {}, rollOptions);
         break;
       }

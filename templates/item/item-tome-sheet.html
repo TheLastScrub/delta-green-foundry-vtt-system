@@ -34,7 +34,7 @@
                             {{#if (playerHasGamemasterPrivileges)}}<a class="tome-show-hide-info"><i class="far fa-eye-slash"></i></a>{{/if}}
                             {{localize 'DG.Tome.Name'}}:
                         </span>
-                        <span>???<span>
+                        <span>???</span>
 
                         <span class="resource-label">Language:</span>
                         <span>???</span>
@@ -45,7 +45,6 @@
                 {{/if}}
             </div>
             
-            </div>
         </div>
         
     </header>
@@ -78,9 +77,9 @@
 
                 <span class="resource-label">{{localize 'DG.ItemWindow.Tome.StudySanityDamage'}}:</span>
                 <span>
-                    <input class="item-sheet-short-input" name="system.sanity.successLoss" type="text" value="{{item.system.sanity.successLoss}}" type="text" data-dtype="Text"/>
+                    <input class="item-sheet-short-input" name="system.sanity.successLoss" type="text" value="{{item.system.sanity.successLoss}}" type="text" />
                     /
-                    <input class="item-sheet-short-input" name="system.sanity.failedLoss" type="text" value="{{item.system.sanity.failedLoss}}" type="text" data-dtype="Text"/>
+                    <input class="item-sheet-short-input" name="system.sanity.failedLoss" type="text" value="{{item.system.sanity.failedLoss}}" type="text" />
                     <i class="fas fa-dice rollable" data-rolltype="sanity-damage"></i>            
                 </span>
             </div>

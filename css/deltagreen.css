@@ -1062,7 +1062,7 @@ input.item-sheet-short-input {
 .tome-sheet-handler-info-horizontal-grid-2col {
   display: grid;
   grid-template-columns: max-content auto;
-  align-items: left;
+  align-items: center;
   text-align: left;
   column-gap: 10px;
   row-gap: 10px;

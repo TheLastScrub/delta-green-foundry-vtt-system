@@ -582,7 +582,7 @@
       "sanity": {
         "notes": "",
         "failedLoss": "1D6",
-        "successLoss": "1"
+        "successLoss": "1D4"
       },
       "handlerNotes": "",
       "revealed": false
@@ -590,13 +590,17 @@
     "ritual": {
       "templates": ["base"],
       "studyTime": "weeks",
-      "studySanCost": "1D10",
-      "studyUnnaturalIncrease": 1,
-      "activationSanCost": "1D10",
+      "sanity": {
+        "notes": "",
+        "failedLoss": "1D10",
+        "successLoss": "0"
+      },
+      "unnaturalSkillIncrease": 1,
       "activationCosts": "6 WP, 0 POW, 0 HP",
-      "complexity": "Simple",
       "activationTime": "days",
-      "handlerNotes": ""
+      "complexity": "Simple",
+      "handlerNotes": "",
+      "revealed": false
     }
   }
 }
