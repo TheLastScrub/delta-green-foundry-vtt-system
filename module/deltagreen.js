@@ -81,6 +81,14 @@ Hooks.on("preCreateItem", (item) => {
       item.updateSource({
         img: "systems/deltagreen/assets/icons/person-black-bg.svg",
       });
+    } else if (item.type === "tome") {
+      item.updateSource({
+        img: "systems/deltagreen/assets/icons/book-cover.svg",
+      });
+    } else if (item.type === "ritual") {
+      item.updateSource({
+        img: "systems/deltagreen/assets/icons/bookmarklet.svg",
+      });
     } else {
       item.updateSource({
         img: "systems/deltagreen/assets/icons/swap-bag-black-bg.svg",

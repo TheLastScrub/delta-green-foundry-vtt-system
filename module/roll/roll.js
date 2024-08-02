@@ -671,7 +671,9 @@ export class DGDamageRoll extends DGRoll {
         .localize("DG.Roll.Damage")
         .toUpperCase()}</b> ${game.i18n.localize("DG.Roll.For")} ${
         this.item.name
-      }`;
+      } (<b>${
+        this.item.system.armorPiercing
+      } </b><img class="armor-piercing-chat-card-img" src="systems/deltagreen/assets/icons/supersonic-bullet.svg" alt="armor penetration"/>)`;
     } catch (ex) {
       // console.log(ex);
       label = `Rolling <b>DAMAGE</b> for <b>${label.toUpperCase()}</b>`;

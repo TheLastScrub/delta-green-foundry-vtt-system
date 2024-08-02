@@ -287,5 +287,10 @@
   "TYPES.Item.bond": "Bond",
   "TYPES.Item.gear": "Gear",
   "TYPES.Item.motivation": "Motivation",
-  "TYPES.Item.weapon": "Weapon"
+  "TYPES.Item.weapon": "Weapon",
+
+  "DG.Tome.Name": "Name",
+  "DG.ItemWindow.Tome.Description": "Description",
+  "DG.ItemWindow.Tome.LanguagePlaceholder": "Language",
+  "DG.ItemWindow.Tome.StudyTime": "Study Time"
 }
