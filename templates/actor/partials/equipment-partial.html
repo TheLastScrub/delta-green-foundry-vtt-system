@@ -247,7 +247,7 @@
 
             <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
 
-            <h4 style="word-wrap: break-word; min-width: 55%;" class="item-name">{{item.name}}</h4>                    
+            <h4 style="word-wrap: break-word; min-width: 55%;" class="item-name">{{#if item.system.revealed}}{{item.name}}{{else}}???{{#if (playerHasGamemasterPrivileges)}} ({{item.name}}){{/if}}{{/if}}</h4>                    
 
             <div class="item-controls">
                 <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
@@ -296,7 +296,7 @@
 
             <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
 
-            <h4 style="word-wrap: break-word; min-width: 55%;" class="item-name">{{item.name}}</h4>                    
+            <h4 style="word-wrap: break-word; min-width: 55%;" class="item-name">{{#if item.system.revealed}}{{item.name}}{{else}}???{{#if (playerHasGamemasterPrivileges)}} ({{item.name}}){{/if}}{{/if}}</h4>                    
 
             <div class="item-controls">
                 <a class="item-control item-edit" title="Edit Item"><i class="fas fa-edit"></i></a>
