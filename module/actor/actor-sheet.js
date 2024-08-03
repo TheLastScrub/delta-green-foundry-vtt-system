@@ -63,6 +63,10 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     // Prepare items.
     this._prepareCharacterItems(data);
 
+    data.showHyperGeometrySection = this.shouldShowHyperGeometrySection(
+      this.actor,
+    );
+
     // Make it easy for the sheet handlebars to understand how to sort the skills.
     data.sortSkillsSetting = game.settings.get("deltagreen", "sortSkills");
 
@@ -131,6 +135,31 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     return data;
   }
 
+  shouldShowHyperGeometrySection(actor) {
+    // always show for GM
+    if (game.user.isGM) {
+      return true;
+    }
+
+    // check system setting to see if it should always be shown
+    if (
+      game.settings.get(
+        "deltagreen",
+        "alwaysShowHypergeometrySectionForPlayers",
+      )
+    ) {
+      return true;
+    }
+
+    // otherwise only show if an actor has an item of that type added to their sheet.
+    for (const i of actor.items) {
+      if (i.type === "tome" || i.type === "ritual") {
+        return true;
+      }
+    }
+
+    return false;
+  }
   /**
    * Organize and classify Items for Character sheets.
    *
