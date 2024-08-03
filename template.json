@@ -45,7 +45,9 @@
           "sorting": {
             "weaponSortAlphabetical": false,
             "armorSortAlphabetical": false,
-            "gearSortAlphabetical": false
+            "gearSortAlphabetical": false,
+            "tomeSortAlphabetical": false,
+            "ritualSortAlphabetical": false
           },
           "rolling": {
             "defaultPercentileModifier": 20

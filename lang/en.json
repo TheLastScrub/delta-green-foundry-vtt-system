@@ -288,6 +288,14 @@
   "TYPES.Item.gear": "Gear",
   "TYPES.Item.motivation": "Motivation",
   "TYPES.Item.weapon": "Weapon",
+  "TYPES.Item.tome": "Tome",
+  "TYPES.Item.ritual": "Ritual",
+
+  "DG.Gear.Tomes": "TOMES",
+  "DG.Gear.Rituals": "RITUALS",
+
+  "DG.Tomes.Name": "Name",
+  "DG.Ritual.Name": "Name",
 
   "DG.Tome.Name": "Name",
   "DG.ItemWindow.Tome.Description": "Description",

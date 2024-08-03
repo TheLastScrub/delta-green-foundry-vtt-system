@@ -145,6 +145,8 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     const armor = [];
     const weapons = [];
     const gear = [];
+    const tomes = [];
+    const rituals = [];
 
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
@@ -158,6 +160,10 @@ export default class DeltaGreenActorSheet extends ActorSheet {
         weapons.push(i);
       } else if (i.type === "gear") {
         gear.push(i);
+      } else if (i.type === "tome") {
+        tomes.push(i);
+      } else if (i.type === "ritual") {
+        rituals.push(i);
       }
     }
 
@@ -215,10 +221,48 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       });
     }
 
+    if (actorData.system.settings.sorting.tomeSortAlphabetical) {
+      tomes.sort(function (a, b) {
+        let x = a.name.toLowerCase();
+        let y = b.name.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      tomes.sort(function (a, b) {
+        return a.sort - b.sort;
+      });
+    }
+
+    if (actorData.system.settings.sorting.ritualSortAlphabetical) {
+      rituals.sort(function (a, b) {
+        let x = a.name.toLowerCase();
+        let y = b.name.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      rituals.sort(function (a, b) {
+        return a.sort - b.sort;
+      });
+    }
+
     // Assign and return
     actorData.armor = armor;
     actorData.weapons = weapons;
     actorData.gear = gear;
+    actorData.rituals = rituals;
+    actorData.tomes = tomes;
   }
 
   // Can add extra buttons to form header here if necessary
@@ -565,6 +609,16 @@ export default class DeltaGreenActorSheet extends ActorSheet {
         this.actor.update({
           "system.settings.sorting.gearSortAlphabetical":
             !this.actor.system.settings.sorting.gearSortAlphabetical,
+        });
+      } else if (itemType === "tome") {
+        this.actor.update({
+          "system.settings.sorting.tomeSortAlphabetical":
+            !this.actor.system.settings.sorting.tomeSortAlphabetical,
+        });
+      } else if (itemType === "ritual") {
+        this.actor.update({
+          "system.settings.sorting.ritualSortAlphabetical":
+            !this.actor.system.settings.sorting.ritualSortAlphabetical,
         });
       }
     });
