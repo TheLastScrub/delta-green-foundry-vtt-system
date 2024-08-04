@@ -1,5 +1,16 @@
 ## Release/Patch Notes
 
+### Version 1.4.7 - 2024-08-04 (FOUNDRY V12+ COMPATIBLE ONLY)
+
+- Enhancement [GitHub #131] - The items sheet is now re-orderable by drag drop. Or, you can click the sort button by each item section, and set it to order them alphabetically. The easiest way to drag is to click on the name of the item, although most of the non-rollable part of the item row works as well.
+- Enhancement - As part of #131, to make dragging easier, and to provide a more intuitive user interface, all rollable values now have a clickable dice icon by them to indicate they trigger a roll.
+- Enhancement [Loosely GitHub #73 and #132] - Improved the item macro (for the hotbar) so that it can be used without having a token selected, and now by default it will also automatically roll damage on a successful test (or double damage on a critical success).
+- Enhancement - The custom modifier for the modify percentile roll dialogue (the popup you get from shift click or right click) is now persistent by character, so if you are commonly rolling +15% or something different than the normal ones like +/-20%, it will come up the same the next time you open the dialogue.
+- Enhancement [GitHub #135] - Updated Special Training target to be more clear that it is a x5 test, rather than the raw skill.
+- Enhancement [GitHub #107] - There are now item types for Tomes and Rituals (hypergeometry). These only show up for players if the Handler gives them at least one item of either type, or if the Handler sets a world setting that always shows it. These item sections always appear for the Handler. There are sections on the item sheets that are only visible to the Handler as well. Last, the "Ritual" invocation has been removed from the skills list, and moved to the Ritual item section instead.
+- Fix - The stat block parser macro was supposed to show up as a button in the Actors section of the HUD, but it was not.
+- Fix - Renamed repository to remove "Unofficial" from the repository name, which was the last vestige of the old 'unofficial' setup, but was left because it was in the system manifest and had other external links to it.
+
 ### Version 1.4.6 - 2024-07-16 (FOUNDRY V12+ COMPATIBLE ONLY)
 
 - Enhancement [GitHub #104] - Exhaustion Checkbox and automation. Added a field on the Agent sheet to note "Exhaustion" and to set the check penalty for skill, x5 stat, and SAN tests that come with it.
@@ -19,12 +30,12 @@
 ### Version 1.4.4 - 2024-04-14
 
 - Fix [GitHub #109] - Typo in Disorder header
-- Fix [GitHub #110] - Pregen Agents have wrong skill for "Unarmed Combat" attack, was using "Melee Weapons" insted of "Unarmed Combat". Also changed the expense on it from "Incidental" to "NA".
+- Fix [GitHub #110] - Pregen Agents have wrong skill for "Unarmed Combat" attack, was using "Melee Weapons" instead of "Unarmed Combat". Also changed the expense on it from "Incidental" to "NA".
 
 ### Version 1.4.3 - 2024-04-07
 
-- Enhancement [Github #101] - Thanks to 16-Bits and jalensailen for putting together a way to change the sorting to be alphabetical by column instead of by row. Note - you must opt into this behaviour by changing a setting for the system, the default is the original behavior that sorts by rows. Enabling the column sort option better mathes the standard character sheet (although 'type' skills are still in their current position).
-- Fix [Github #106] - A bug in the system would change the first 'type' skill's label to the localized version of 'Art - Painting' if it still had the original name that comes with a new character, regardless of it had been edited to something else entirely like 'Science - Physics' or whatnot. This bug unfortuanately effected the import of all the 1001 pregenerated agents in the compendium pack, leading to in some cases even the most harded Special Operator having near world class painting skills. The pregenerated agents were deleted and reformed to fix this.
+- Enhancement [Github #101] - Thanks to 16-Bits and jalensailen for putting together a way to change the sorting to be alphabetical by column instead of by row. Note - you must opt into this behavior by changing a setting for the system, the default is the original behavior that sorts by rows. Enabling the column sort option better matches the standard character sheet (although 'type' skills are still in their current position).
+- Fix [Github #106] - A bug in the system would change the first 'type' skill's label to the localized version of 'Art - Painting' if it still had the original name that comes with a new character, regardless of it had been edited to something else entirely like 'Science - Physics' or whatnot. This bug unfortunately effected the import of all the 1001 pregenerated agents in the compendium pack, leading to in some cases even the most hardened Special Operator having near world class painting skills. The pregenerated agents were deleted and reformed to fix this.
 - Enhancement [Github #106] while doing previous fix, changed agents so they had the profession stripped off their names ("NURSE-LastName, FirstName" now just "LastName, FirstName). This was originally done to make it easier to see in the compendium which agents were for which profession at a glance. But since compendium packs (and the Foundry VTT CLI) support folders natively now, they were instead sorted into folders matching their profession to make perusing them easier and to clean up the overall list, as picking through 1001 entries could be a bit challenging.
 
 ### Version 1.4.2 - 2024-01-28
