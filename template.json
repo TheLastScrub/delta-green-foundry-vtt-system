@@ -45,7 +45,9 @@
           "sorting": {
             "weaponSortAlphabetical": false,
             "armorSortAlphabetical": false,
-            "gearSortAlphabetical": false
+            "gearSortAlphabetical": false,
+            "tomeSortAlphabetical": false,
+            "ritualSortAlphabetical": false
           },
           "rolling": {
             "defaultPercentileModifier": 20
@@ -520,7 +522,15 @@
     }
   },
   "Item": {
-    "types": ["weapon", "armor", "motivation", "bond", "gear"],
+    "types": [
+      "weapon",
+      "armor",
+      "motivation",
+      "bond",
+      "gear",
+      "tome",
+      "ritual"
+    ],
     "templates": {
       "base": {
         "name": "",
@@ -564,6 +574,35 @@
       "templates": ["base"],
       "equipped": true,
       "expense": "Standard"
+    },
+    "tome": {
+      "templates": ["base"],
+      "language": "",
+      "studyTime": "days",
+      "unnaturalSkillIncrease": 5,
+      "occultSkillIncrease": 3,
+      "sanity": {
+        "notes": "",
+        "failedLoss": "1D6",
+        "successLoss": "1D4"
+      },
+      "handlerNotes": "",
+      "revealed": false
+    },
+    "ritual": {
+      "templates": ["base"],
+      "studyTime": "weeks",
+      "sanity": {
+        "notes": "",
+        "failedLoss": "1D10",
+        "successLoss": "0"
+      },
+      "unnaturalSkillIncrease": 1,
+      "activationCosts": "6 WP, 0 POW, 0 HP",
+      "activationTime": "days",
+      "complexity": "Simple",
+      "handlerNotes": "",
+      "revealed": false
     }
   }
 }

@@ -59,7 +59,20 @@ export default function registerSystemSettings() {
     },
   });
 
-  // These two settings are obsolete now
+  game.settings.register(
+    "deltagreen",
+    "alwaysShowHypergeometrySectionForPlayers",
+    {
+      name: "Always Show Hypergeometry Section for Players",
+      hint: "Always show Hypergeometry item section for players, even if they don't have any items of that type.",
+      scope: "world",
+      config: true,
+      requiresReload: true,
+      type: Boolean,
+      default: false,
+    },
+  );
+
   game.settings.register("deltagreen", "showImpossibleLandscapesContent", {
     name: "Show Impossible Landscapes Content",
     hint: "Show Impossible Landscapes-specific fields from character sheets.",

@@ -1044,6 +1044,32 @@ input.item-sheet-short-input {
   padding-right: 5px;
 }
 
+/* 
+  Tome Item Sheet
+*/
+
+.tome-sheet-horizontal-grid-2col {
+  display: grid;
+  grid-template-columns: 100px auto;
+  align-items: center;
+  text-align: left;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding-bottom: 10px;
+  padding-right: 5px;
+}
+
+.tome-sheet-handler-info-horizontal-grid-2col {
+  display: grid;
+  grid-template-columns: max-content auto;
+  align-items: center;
+  text-align: left;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding-bottom: 10px;
+  padding-right: 5px;
+}
+
 /*
   Unnatural Character Sheet Specific Classes
 */
@@ -1145,4 +1171,12 @@ input.item-sheet-short-input {
   flex: content;
   align-self: flex-start;
   text-align: left;
+}
+
+.armor-piercing-chat-card-img {
+  border-radius: 10%;
+  height: 20px !important;
+  width: 20px !important;
+  margin: 0px;
+  vertical-align: text-bottom;
 }

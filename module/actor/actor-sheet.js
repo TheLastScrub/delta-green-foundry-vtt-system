@@ -63,6 +63,10 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     // Prepare items.
     this._prepareCharacterItems(data);
 
+    data.showHyperGeometrySection = this.shouldShowHyperGeometrySection(
+      this.actor,
+    );
+
     // Make it easy for the sheet handlebars to understand how to sort the skills.
     data.sortSkillsSetting = game.settings.get("deltagreen", "sortSkills");
 
@@ -131,6 +135,33 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     return data;
   }
 
+  // some handlers may wish to avoid leading players to think they should be seeking out magic
+  // so control whether an actor sheet shows the hypergeometry (rituals and tomes) section
+  shouldShowHyperGeometrySection(actor) {
+    // always show for GM
+    if (game.user.isGM) {
+      return true;
+    }
+
+    // check system setting to see if it should always be shown
+    if (
+      game.settings.get(
+        "deltagreen",
+        "alwaysShowHypergeometrySectionForPlayers",
+      )
+    ) {
+      return true;
+    }
+
+    // otherwise only show if an actor has an item of that type added to their sheet.
+    for (const i of actor.items) {
+      if (i.type === "tome" || i.type === "ritual") {
+        return true;
+      }
+    }
+
+    return false;
+  }
   /**
    * Organize and classify Items for Character sheets.
    *
@@ -145,6 +176,8 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     const armor = [];
     const weapons = [];
     const gear = [];
+    const tomes = [];
+    const rituals = [];
 
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
@@ -158,6 +191,10 @@ export default class DeltaGreenActorSheet extends ActorSheet {
         weapons.push(i);
       } else if (i.type === "gear") {
         gear.push(i);
+      } else if (i.type === "tome") {
+        tomes.push(i);
+      } else if (i.type === "ritual") {
+        rituals.push(i);
       }
     }
 
@@ -215,10 +252,48 @@ export default class DeltaGreenActorSheet extends ActorSheet {
       });
     }
 
+    if (actorData.system.settings.sorting.tomeSortAlphabetical) {
+      tomes.sort(function (a, b) {
+        let x = a.name.toLowerCase();
+        let y = b.name.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      tomes.sort(function (a, b) {
+        return a.sort - b.sort;
+      });
+    }
+
+    if (actorData.system.settings.sorting.ritualSortAlphabetical) {
+      rituals.sort(function (a, b) {
+        let x = a.name.toLowerCase();
+        let y = b.name.toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      rituals.sort(function (a, b) {
+        return a.sort - b.sort;
+      });
+    }
+
     // Assign and return
     actorData.armor = armor;
     actorData.weapons = weapons;
     actorData.gear = gear;
+    actorData.rituals = rituals;
+    actorData.tomes = tomes;
   }
 
   // Can add extra buttons to form header here if necessary
@@ -565,6 +640,16 @@ export default class DeltaGreenActorSheet extends ActorSheet {
         this.actor.update({
           "system.settings.sorting.gearSortAlphabetical":
             !this.actor.system.settings.sorting.gearSortAlphabetical,
+        });
+      } else if (itemType === "tome") {
+        this.actor.update({
+          "system.settings.sorting.tomeSortAlphabetical":
+            !this.actor.system.settings.sorting.tomeSortAlphabetical,
+        });
+      } else if (itemType === "ritual") {
+        this.actor.update({
+          "system.settings.sorting.ritualSortAlphabetical":
+            !this.actor.system.settings.sorting.ritualSortAlphabetical,
         });
       }
     });

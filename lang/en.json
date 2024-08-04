@@ -287,5 +287,28 @@
   "TYPES.Item.bond": "Bond",
   "TYPES.Item.gear": "Gear",
   "TYPES.Item.motivation": "Motivation",
-  "TYPES.Item.weapon": "Weapon"
+  "TYPES.Item.weapon": "Weapon",
+  "TYPES.Item.tome": "Tome",
+  "TYPES.Item.ritual": "Ritual",
+
+  "DG.Gear.Tomes": "TOMES",
+  "DG.Gear.Rituals": "RITUALS",
+
+  "DG.Tomes.Name": "Name",
+  "DG.Ritual.Name": "Name",
+
+  "DG.Tome.Name": "Name",
+  "DG.ItemWindow.Tome.Description": "Description",
+  "DG.ItemWindow.Tome.LanguagePlaceholder": "Language",
+  "DG.ItemWindow.Tome.StudyTime": "Study Time",
+  "DG.ItemWindow.Tome.OccultIncrease": "Occult Skill Increase",
+  "DG.ItemWindow.Tome.UnnaturalIncrease": "Unnatural Skill Increase",
+  "DG.ItemWindow.Tome.StudySanityDamage": "Study Sanity Damage",
+  "DG.ItemWindow.Tome.HandlerOnlyTabHeader": "Handler Only",
+  "DG.ItemWindow.Tome.HandlerNotes": "Handler Notes",
+
+  "DG.ItemWindow.Ritual.ActivationSanityDamage": "Activation SAN Damage",
+  "DG.ItemWindow.Ritual.ActivationTime": "Activation Time",
+  "DG.ItemWindow.Ritual.ActivationCosts": "Activation Costs",
+  "DG.ItemWindow.Ritual.StudyTime": "Study Time"
 }

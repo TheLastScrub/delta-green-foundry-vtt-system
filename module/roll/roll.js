@@ -396,6 +396,10 @@ export class DGPercentileRoll extends DGRoll {
       target = skill.proficiency;
       localizedKey = `${skill.group} (${skill.label})`;
     }
+    if (this.key === "ritual") {
+      target = actorData.sanity.ritual;
+      localizedKey = game.i18n.localize(`DG.Skills.ritual`);
+    }
     return { target, localizedKey };
   }
 
@@ -411,7 +415,7 @@ export class DGPercentileRoll extends DGRoll {
   get isInhuman() {
     /* 
       Changing this to only consider the base x5 stat target for whether something is 'inhuman'
-      beecause I do not think the intent was an Agent with a high strength getting a +40% bonus to be considered 'inhuman' 
+      because I do not think the intent was an Agent with a high strength getting a +40% bonus to be considered 'inhuman' 
       and therefore benefit from the increased crit threshold, although could be wrong about this.
     */
     if (this.target > 99 && this.type === "stat") {
@@ -671,7 +675,9 @@ export class DGDamageRoll extends DGRoll {
         .localize("DG.Roll.Damage")
         .toUpperCase()}</b> ${game.i18n.localize("DG.Roll.For")} ${
         this.item.name
-      }`;
+      } (<b>${
+        this.item.system.armorPiercing
+      } </b><img class="armor-piercing-chat-card-img" src="systems/deltagreen/assets/icons/supersonic-bullet.svg" alt="armor penetration"/>)`;
     } catch (ex) {
       // console.log(ex);
       label = `Rolling <b>DAMAGE</b> for <b>${label.toUpperCase()}</b>`;
