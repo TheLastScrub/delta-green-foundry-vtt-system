@@ -80,17 +80,32 @@ export default class DeltaGreenActor extends Actor {
       system.health.max = 10;
     }
 
+    /*
     system.skills.ritual = {
       label: "Ritual",
       proficiency: 99 - system.sanity.value,
       cannotBeImprovedByFailure: true,
       failure: false,
-    };
+    };    
 
     if (system.skills.ritual.proficiency > 99) {
       system.skills.ritual.proficiency = 99;
     } else if (system.skills.ritual.proficiency < 1) {
       system.skills.ritual.proficiency = 1;
+    }
+
+    */
+
+    try {
+      delete system.skills.ritual; // try to remove legacy skill for ritual if it exists
+    } catch {}
+
+    system.sanity.ritual = 99 - system.sanity.value;
+
+    if (system.sanity.ritual > 99) {
+      system.sanity.ritual = 99;
+    } else if (system.sanity.ritual < 1) {
+      system.sanity.ritual = 1;
     }
 
     // calculate total armor rating
@@ -152,17 +167,32 @@ export default class DeltaGreenActor extends Actor {
 
     // The ritual skill is from the Handler's Guide, it is for activating a ritual and is always equal to 99 - current sanity.
     // The rules can be found on page 166, under 'Ritual Activation'.
+    /*
     system.skills.ritual = {
       label: "Ritual",
       proficiency: 99 - system.sanity.value,
       cannotBeImprovedByFailure: true,
       failure: false,
-    };
+    };    
 
     if (system.skills.ritual.proficiency > 99) {
       system.skills.ritual.proficiency = 99;
     } else if (system.skills.ritual.proficiency < 1) {
       system.skills.ritual.proficiency = 1;
+    }
+
+    */
+
+    try {
+      delete system.skills.ritual; // try to remove legacy skill for ritual if it exists
+    } catch {}
+
+    system.sanity.ritual = 99 - system.sanity.value;
+
+    if (system.sanity.ritual > 99) {
+      system.sanity.ritual = 99;
+    } else if (system.sanity.ritual < 1) {
+      system.sanity.ritual = 1;
     }
 
     // The unnatural skill is sort of special

@@ -135,6 +135,8 @@ export default class DeltaGreenActorSheet extends ActorSheet {
     return data;
   }
 
+  // some handlers may wish to avoid leading players to think they should be seeking out magic
+  // so control whether an actor sheet shows the hypergeometry (rituals and tomes) section
   shouldShowHyperGeometrySection(actor) {
     // always show for GM
     if (game.user.isGM) {
