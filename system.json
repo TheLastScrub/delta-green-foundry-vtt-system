@@ -65,6 +65,12 @@
       "name": "Deutsch",
       "path": "lang/de.json",
       "flags": {}
+    },
+    {
+      "lang": "sv",
+      "name": "Svenska",
+      "path": "lang/sv.json",
+      "flags": {}
     }
   ],
   "packs": [
