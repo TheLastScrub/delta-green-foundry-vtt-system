@@ -1,11 +1,12 @@
 ## Release/Patch Notes
 
-### Version 1.4.8 - TBD (FOUNDRY V12+ COMPATIBLE ONLY)
+### Version 1.4.8 - 2024-10-05 (FOUNDRY V12+ COMPATIBLE ONLY)
 
 - Fix [GitHub #147] - Vehicle Actor sheet broken from last set of changes, should open again.
 - Fix - Thanks to Iozanoje for fixing issue with Operation Code Name Generator macro.
 - Enhancement [GitHub #144] - Thanks to Mojo-89 for a Swedish localization pack for the system.
 - Fix [GitHub #148] - Fixed CSS issue with Ritual item sheet. May need to revisit rich text entry boxes on item sheets in general.
+- Fix [GitHub #141] - Added SAN loss for learning a ritual to item sheet
 
 ### Version 1.4.7 - 2024-08-04 (FOUNDRY V12+ COMPATIBLE ONLY)
 
