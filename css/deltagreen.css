@@ -342,7 +342,7 @@ explicitly define a number of rows, rather than columns. */
 .deltagreen .sheet-body,
 .deltagreen .sheet-body .tab,
 .deltagreen .sheet-body .tab .editor {
-  height: 100%;
+  height: 100% !important;
   flex: auto;
 }
 
