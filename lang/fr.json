@@ -272,5 +272,11 @@
   "TYPES.Item.armor": "Armure",
   "TYPES.Item.motivation": "Motivation",
   "TYPES.Item.bond": "Lien",
-  "TYPES.Item.gear": "Équipement"
+  "TYPES.Item.gear": "Équipement",
+
+  "DG.ItemWindow.Ritual.ActivationSanityDamage": "Activation SAN Damage",
+  "DG.ItemWindow.Ritual.ActivationTime": "Activation Time",
+  "DG.ItemWindow.Ritual.ActivationCosts": "Activation Costs",
+  "DG.ItemWindow.Ritual.StudyTime": "Study Time",
+  "DG.ItemWindow.Ritual.LearnedSanityDamage": "Learn SAN Damage"
 }

@@ -265,5 +265,11 @@
   "TYPES.Item.armor": "武具",
   "TYPES.Item.motivation": "モチベーション",
   "TYPES.Item.bond": "絆",
-  "TYPES.Item.gear": "装備"
+  "TYPES.Item.gear": "装備",
+
+  "DG.ItemWindow.Ritual.ActivationSanityDamage": "Activation SAN Damage",
+  "DG.ItemWindow.Ritual.ActivationTime": "Activation Time",
+  "DG.ItemWindow.Ritual.ActivationCosts": "Activation Costs",
+  "DG.ItemWindow.Ritual.StudyTime": "Study Time",
+  "DG.ItemWindow.Ritual.LearnedSanityDamage": "Learn SAN Damage"
 }

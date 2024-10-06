@@ -265,5 +265,11 @@
   "TYPES.Item.armor": "Armadura",
   "TYPES.Item.motivation": "Motivació",
   "TYPES.Item.bond": "Vincle",
-  "TYPES.Item.gear": "Equip"
+  "TYPES.Item.gear": "Equip",
+
+  "DG.ItemWindow.Ritual.ActivationSanityDamage": "Activation SAN Damage",
+  "DG.ItemWindow.Ritual.ActivationTime": "Activation Time",
+  "DG.ItemWindow.Ritual.ActivationCosts": "Activation Costs",
+  "DG.ItemWindow.Ritual.StudyTime": "Study Time",
+  "DG.ItemWindow.Ritual.LearnedSanityDamage": "Learn SAN Damage"
 }

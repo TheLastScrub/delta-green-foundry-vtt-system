@@ -310,5 +310,6 @@
   "DG.ItemWindow.Ritual.ActivationSanityDamage": "PSY-Skada för aktivering",
   "DG.ItemWindow.Ritual.ActivationTime": "Aktiveringstid",
   "DG.ItemWindow.Ritual.ActivationCosts": "Aktiveringskostnader",
-  "DG.ItemWindow.Ritual.StudyTime": "Studietid"
+  "DG.ItemWindow.Ritual.StudyTime": "Studietid",
+  "DG.ItemWindow.Ritual.LearnedSanityDamage": "Learn SAN Damage"
 }
