@@ -597,6 +597,11 @@
         "failedLoss": "1D10",
         "successLoss": "0"
       },
+      "learnedSanity": {
+        "notes": "",
+        "failedLoss": "1D10",
+        "successLoss": "0"
+      },
       "unnaturalSkillIncrease": 1,
       "activationCosts": "6 WP, 0 POW, 0 HP",
       "activationTime": "days",
