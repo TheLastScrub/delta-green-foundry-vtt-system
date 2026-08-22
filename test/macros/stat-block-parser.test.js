@@ -44,6 +44,16 @@ describe("groupEntriesUntilNextSection", () => {
     const results = groupEntriesUntilNextSection(input);
     expect(results).toEqual(expected);
   });
+
+  test("extracting multiple attacks when the attack terminator is buried in a quote", () => {
+    const entryOne = "kiss damage special see 'kiss.'".split(" ");
+    const entryTwo = "wrangle damage special see 'wrangle.'".split(" ");
+    const entryThree = "throttle damage special see 'throttle.'".split(" ");
+    const input = [...entryOne, ...entryTwo, ...entryThree];
+    const expected = [entryOne, entryTwo, entryThree];
+    const results = groupEntriesUntilNextSection(input);
+    expect(results).toEqual(expected);
+  });
 });
 
 describe("tokenize", () => {
@@ -416,11 +426,126 @@ describe("ParseStatBlock", () => {
       },
     },
     {
-      skip: true,
       testName: "Parsing the alien steward statblock",
       input: readStatblock("alien-steward-stats"),
       expected: {
-        notes: "",
+        name: "hope",
+        notes: [
+          // The notes don't parse perfectly like this. They will be all the lines
+          // lowercased, with spaces in between punctuation marks and percentage symbols
+          // removed.
+          // This is a known issue that will need to be addressed by skipping unparsable lines
+          // and grabbing the original text by line number.
+          "Hapless protomatter Steward, age 28",
+          "(use Hope's stats for any Steward)",
+          "Stewards are unharmed by all melee and unarmed blows.",
+          "Firearms have all damage reduced to 1, and Hope regenerates 1D4 HP per round",
+          "Fire, electricity, acid, chemical irritants and hypergeometric rituals inflict",
+          "damage normally and stop all regeneration for the remainder of combat.",
+          "ELECTRIC GUN: This weapon appears as a pulsing,",
+          "softball-sized glob with three dangling tendrils. When",
+          "the weapon is picked up, the tendrils wrap around",
+          "the user’s forearm. The weapon is a biomechanical organism that can eject bolts of electrical current, sort",
+          "of like an electric eel. The charge of lightning emitted",
+          "from the weapon is variable, but Hope has no need",
+          "for anything but the deadliest setting. The only reason",
+          "she would turn down the charge would be to protect",
+          "her beloved Valiant, but in such instances, she gives",
+          "her master the gun and attempts to suffocate or rend his",
+          "enemies up close. The electric gun ignores body armor",
+          "but can be blocked by cover.",
+          "DRAW CLOSE: After a successful grapple, a victim must",
+          "succeed on a STR×5 check opposing Hope’s successful",
+          "attack roll to break free. On a failure, they suffer either",
+          "Swallow or Kiss the next round.",
+          "KISS: Hope spurts protomatter down the grappled victim’s",
+          "throat and takes control of their body. Any Agent",
+          "subjected to the Kiss loses control of their character",
+          "until Hope is destroyed or withdraws her parasitic",
+          "protomatter. The victim loses 1/1D6 SAN due to",
+          "helplessness.",
+          "SWALLOW: After successfully grappling a victim, Hope",
+          "liquifies herself, surrounds, and engulfs the body in",
+          "a constricting protomatter sac. Hope can then inflict",
+          "2D6 damage to the victim with each action without an",
+          "attack roll. The victim must take an action and roll STR×5",
+          "to break free.",
+        ],
+        attributes: {
+          str: 26,
+          con: 23,
+          dex: 15,
+          int: 11,
+          pow: 10,
+          cha: 14,
+          hp: 19,
+          wp: 10,
+          san: 0,
+        },
+        sanloss: {
+          successLoss: "1",
+          failedLoss: "1d6",
+          type: "unnatural",
+          notes: "if seen as protomatter",
+        },
+        skills: {
+          "art (photography)": 53,
+          athletics: 93,
+          "computer science": 24,
+          "craft (electronics)": 64,
+          "craft (lockpick)": 74,
+          disguise: 74,
+          dodge: 38,
+          drive: 52,
+          persuade: 47,
+          sigint: 61,
+          stealth: 92,
+          "unarmed combat": 44,
+          unnatural: 14,
+        },
+        attacks: [
+          {
+            name: "Slam And Strangle",
+            skillModifier: 44,
+            damage: "2d6",
+            notes: "",
+          },
+          {
+            name: "Grapple",
+            skillModifier: 44,
+            notes: "see “draw close",
+          },
+          {
+            name: "Swallow See “swallow",
+            damage: "special",
+            skillModifier: 0,
+            notes: "",
+          },
+          {
+            name: "Kiss See “kiss",
+            damage: "special",
+            skillModifier: 0,
+            notes: "",
+          },
+          {
+            name: "Mi-go Electric Gun",
+            skillModifier: 27,
+            lethality: 2,
+            notes: "ignores armor",
+          },
+          {
+            name: "Mi-go Electric Gun",
+            skillModifier: 27,
+            lethality: 15,
+            notes: "ignores armor",
+          },
+          {
+            name: "Mi-go Electric Gun",
+            skillModifier: 27,
+            lethality: 25,
+            notes: "ignores armor",
+          },
+        ],
       },
     },
     {
@@ -565,7 +690,6 @@ describe("ParseStatBlock", () => {
     if (expected.notes.length > 0) {
       expect(actualStatBlock.notes.length).toBeGreaterThan(0);
     }
-    actualStatBlock.notes = null;
 
     delete actualStatBlock.notes;
     delete expectedStatBlock.notes;

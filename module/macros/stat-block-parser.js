@@ -4,11 +4,11 @@ const SKILL_SECTION = "skills:";
 const ATTACKS_SECTION = "attacks:";
 const COMMA = ",";
 const ENTRY_END = ".";
-const BREAKING = "breaking";
 // Make assumption that the following sections
 // always end in the same token
 const ARMOR_AND_EQUIPMENT_SECTION = "equipment:";
 const DISORDERS_AND_ADAPTATIONS_SECTION = "adaptations:";
+const SAN_LOSS_SECTION = "loss:";
 
 export const States = {
   BeginStatblock: "begin-statblock",
@@ -18,6 +18,7 @@ export const States = {
   Attacks: "attack",
   ArmorAndEquipment: "armor-and-equipment",
   DisordersAndAdaptations: "disorders-and-adaptations",
+  SanLoss: "san-loss",
   Unknown: "unknown",
 };
 
@@ -96,6 +97,12 @@ export function groupEntriesUntilNextSection(tokens) {
       groups.push(accum);
       return [];
     }
+
+    if (token.includes(ENTRY_END)) {
+      groups.push([...accum, token]);
+      return [];
+    }
+
     const cleanedToken = token.replaceAll(/\(|\)/g, "");
     if (cleanedToken === "or") {
       return accum;
@@ -130,6 +137,8 @@ export function determineNextState(nextLine) {
       return States.DisordersAndAdaptations;
     case ARMOR_AND_EQUIPMENT_SECTION:
       return States.ArmorAndEquipment;
+    case SAN_LOSS_SECTION:
+      return States.SanLoss;
     default:
       return States.Unknown;
   }
@@ -322,6 +331,21 @@ export function ExtractDisordersAndAdaptations(tokens) {
   );
 }
 
+export function ExtractSanLoss(tokens) {
+  const [sanLoss, ...rest] = tokens;
+  const [successLoss, failedLoss] = sanLoss.split("/");
+  const sanLossType = rest.find(
+    (token) => token === "violence" || token === "helplessness",
+  );
+
+  return {
+    successLoss,
+    failedLoss,
+    notes: rest.join(" "),
+    type: sanLossType ?? "unnatural",
+  };
+}
+
 function parseStatBlockImpl(lines, state, statBlock) {
   if (lines.length === 0) {
     return { ...statBlock, notes: statBlock.notes.join("\n") };
@@ -403,6 +427,15 @@ function parseStatBlockImpl(lines, state, statBlock) {
     return parseStatBlockImpl(otherLines, nextState, {
       ...statBlock,
       ...disordersAndAdaptations,
+    });
+  }
+
+  if (state === States.SanLoss) {
+    const [sanLossTokens] = groupEntriesUntilNextSection(tokens.slice(1));
+    const sanloss = ExtractSanLoss(sanLossTokens);
+    return parseStatBlockImpl(otherLines, nextState, {
+      ...statBlock,
+      sanloss,
     });
   }
 

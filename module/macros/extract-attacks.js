@@ -72,7 +72,11 @@ function extractAttacksImpl(tokens, accumulatedAttacks, incompleteAttack) {
     return extractAttacksImpl(rest, accumulatedAttacks, partialAttack);
   }
 
-  if (Number.isNaN(skillModifier) && typeof partialAttack.name !== "string") {
+  if (
+    Number.isNaN(skillModifier) &&
+    typeof partialAttack.name !== "string" &&
+    maybeAttackDetail !== undefined
+  ) {
     partialAttack.name = [...partialAttack.name, attackName];
     return extractAttacksImpl(
       [maybeAttackDetail, ...rest],
@@ -85,7 +89,9 @@ function extractAttacksImpl(tokens, accumulatedAttacks, incompleteAttack) {
     partialAttack.name = [...partialAttack.name, attackName]
       .map(capitalize)
       .join(" ");
-    partialAttack.skillModifier = skillModifier;
+    partialAttack.skillModifier = Number.isNaN(skillModifier)
+      ? 0
+      : skillModifier;
     return extractAttacksImpl(rest, accumulatedAttacks, partialAttack);
   }
 

@@ -350,6 +350,17 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
     actorData.system.notes = GetNotesFromInput(inputStr);
   }
 
+  if (actorType === "unnatural") {
+    const {
+      sanloss: { failedLoss, successLoss, notes },
+    } = statBlock;
+    actorData.system.sanity = {
+      notes,
+      failedLoss,
+      successLoss,
+    };
+  }
+
   const [newActor] = await Actor.createDocuments([actorData]);
   const { armor, attacks } = statBlock;
 
@@ -374,7 +385,7 @@ async function RegexParseNpcStatBlock(inputStr, actorType) {
     await newActor.AddWeaponItemToSheet(
       name,
       description,
-      damage,
+      damage ?? "",
       attackSkill,
       skillMod,
       skillTarget,
