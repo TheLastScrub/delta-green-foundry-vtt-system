@@ -1,5 +1,11 @@
 # Release/Patch Notes
 
+## Unreleased
+
+### **Bug Fixes:**
+
+- [#456](https://github.com/deltagreen-foundryvtt/delta-green-foundry-vtt-system/issues/456) - Hide breaking point from players if "Hide Sanity" setting is enabled
+
 ## Version 2.0.1 - 2026-08-10
 
 ### **Bug Fixes:**
