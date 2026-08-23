@@ -1,5 +1,11 @@
 # Release/Patch Notes
 
+### Unreleased
+
+### **Features:**
+
+- [#440](https://github.com/deltagreen-foundryvtt/delta-green-foundry-vtt-system/issues/440) - Remove "Is Lethal" checkbox from attack form
+
 ## Version 2.0.1 - 2026-08-10
 
 ### **Bug Fixes:**
