@@ -24,9 +24,8 @@
       }
     },
     "optionSkills": {
-      "optionPicks": 0,
+      "optionPicks": 2,
       "anthropology": 40,
-      "archeology": 40,
       "humint": 50,
       "navigate": 50,
       "ride": 50,

@@ -1,6 +1,6 @@
 # Release/Patch Notes
 
-## Unrelased
+## Unreleased
 
 ### **Features:**
 
